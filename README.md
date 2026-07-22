@@ -1,4 +1,4 @@
-# NCSC CAF Self-Assessment Tool (static edition)
+# NCSC CAF Self-Assessment Tool
 
 ## What this is
 
