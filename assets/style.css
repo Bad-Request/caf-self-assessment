@@ -366,6 +366,7 @@ a:hover { color: var(--purple-500); }
 .main-content {
   padding: 24px 32px 60px;
   max-width: 1180px;
+  container-type: inline-size;
 }
 
 /* ---------- Buttons ---------- */
@@ -443,7 +444,7 @@ a:hover { color: var(--purple-500); }
 
 .assessment-meta {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) auto;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
   gap: 14px;
   align-items: end;
   background: var(--paper);
@@ -511,7 +512,7 @@ a:hover { color: var(--purple-500); }
   color: #fff;
   margin-bottom: 26px;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   gap: 28px 36px;
   box-shadow: var(--shadow-md);
 }
@@ -590,9 +591,28 @@ a:hover { color: var(--purple-500); }
 .dashboard__objectives {
   grid-column: 2;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
   align-content: start;
+}
+
+/* The 4-column grids above assume plenty of width. That's normally true,
+   but the sidebar can be open or collapsed independently of viewport
+   size, so the space actually left for .main-content isn't something a
+   viewport media query can know — only a container query, keyed off
+   .main-content's own width (see its container-type above), gets both
+   "narrow viewport" and "sidebar open at a mid-size viewport" right
+   without duplicating breakpoints. Must come after the rules above:
+   same specificity, and a later @container still wins on source order. */
+@container (max-width: 820px) {
+  .assessment-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .assessment-meta .field-row--actions { grid-column: 1 / -1; }
+  .dashboard { grid-template-columns: minmax(0, 1fr); }
+  .dashboard__objectives { grid-column: 1; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container (max-width: 480px) {
+  .assessment-meta { grid-template-columns: minmax(0, 1fr); }
+  .dashboard__objectives { grid-template-columns: minmax(0, 1fr); }
 }
 
 .objective-bar {
@@ -1105,7 +1125,7 @@ a:hover { color: var(--purple-500); }
 /* ---------- Responsive ---------- */
 
 @media (max-width: 920px) {
-  .app-shell { grid-template-columns: 1fr; }
+  .app-shell { grid-template-columns: minmax(0, 1fr); }
 
   /* Below the desktop breakpoint the sidebar leaves the document flow
      and becomes an off-canvas drawer over the content, since stacking
@@ -1137,15 +1157,15 @@ a:hover { color: var(--purple-500); }
   }
   body.sidebar-open .sidebar-backdrop { display: block; }
 
-  .assessment-meta { grid-template-columns: 1fr 1fr; }
+  .assessment-meta { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .field-row--actions { grid-column: 1 / -1; }
-  .dashboard { grid-template-columns: 1fr; }
-  .dashboard__objectives { grid-column: 1; grid-template-columns: repeat(2, 1fr); }
+  .dashboard { grid-template-columns: minmax(0, 1fr); }
+  .dashboard__objectives { grid-column: 1; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 560px) {
-  .assessment-meta { grid-template-columns: 1fr; }
-  .dashboard__objectives { grid-template-columns: 1fr; }
+  .assessment-meta { grid-template-columns: minmax(0, 1fr); }
+  .dashboard__objectives { grid-template-columns: minmax(0, 1fr); }
 
   .main-content { padding: 16px 14px 48px; }
 
@@ -1159,7 +1179,7 @@ a:hover { color: var(--purple-500); }
      pill wrap onto two rows of two instead of overflowing sideways. */
   .status-control {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
     border-radius: var(--radius-md);
   }
@@ -1178,7 +1198,7 @@ a:hover { color: var(--purple-500); }
 
   /* IGP panel: 220px columns don't fit narrow phones — drop to one
      column so nothing is forced wider than the viewport. */
-  .igp-panel { grid-template-columns: 1fr; }
+  .igp-panel { grid-template-columns: minmax(0, 1fr); }
 
   /* Score ring + legend: on desktop these sit side by side and the
      legend's two auto-sized columns (long labels like "Partially
@@ -1186,7 +1206,7 @@ a:hover { color: var(--purple-500); }
      than a phone screen. Stack them instead. */
   .dashboard { padding: 20px 16px; }
   .dashboard__score { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .score-legend { grid-template-columns: 1fr; width: 100%; }
+  .score-legend { grid-template-columns: minmax(0, 1fr); width: 100%; }
 
   /* Status badge text (e.g. "PARTIALLY ACHIEVED · MANUAL") is another
      unbreakable nowrap string — let it wrap rather than force width. */
