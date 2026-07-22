@@ -662,6 +662,25 @@ a:hover { color: var(--purple-500); }
 }
 .principle-header h3 { font-size: 16.5px; margin: 2px 0 6px; }
 .principle-header p { font-size: 13px; color: var(--slate-500); }
+.principle-header__baselines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.principle-baseline-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  background: var(--paper);
+  white-space: nowrap;
+}
+.principle-baseline-chip--not { border-color: var(--not-achieved); color: var(--not-achieved); }
+.principle-baseline-chip--partial { border-color: var(--partial); color: var(--partial); }
+.principle-baseline-chip--achieved { border-color: var(--achieved); color: var(--achieved); }
 
 .outcome-card {
   border-bottom: 1px solid var(--line);
@@ -709,6 +728,22 @@ a:hover { color: var(--purple-500); }
 .status-badge--not { background: var(--not-achieved-bg); color: var(--not-achieved); }
 .status-badge--na { background: var(--na-bg); color: var(--na); }
 .status-badge--unset { background: var(--unset-bg); color: var(--slate-500); }
+
+.baseline-badge {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  background: var(--paper);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.baseline-badge--not { border-color: var(--not-achieved); color: var(--not-achieved); }
+.baseline-badge--partial { border-color: var(--partial); color: var(--partial); }
+.baseline-badge--achieved { border-color: var(--achieved); color: var(--achieved); }
 
 .status-control {
   display: inline-flex;
@@ -865,7 +900,7 @@ a:hover { color: var(--purple-500); }
   max-height: 86vh;
   overflow-y: auto;
 }
-.baseline-principle-list {
+.baseline-target-list {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -874,7 +909,26 @@ a:hover { color: var(--purple-500); }
   border-radius: var(--radius-md);
   overflow: hidden;
 }
-.baseline-principle-row {
+.baseline-target-group__heading {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--navy-900);
+  color: #fff;
+}
+.baseline-target-group__heading:first-child { border-top: none; }
+.baseline-target-group__code {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--gold-400);
+  flex-shrink: 0;
+}
+.baseline-target-group__title {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.baseline-target-row {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -882,22 +936,22 @@ a:hover { color: var(--purple-500); }
   border-bottom: 1px solid var(--line);
   background: var(--paper);
 }
-.baseline-principle-row:last-child { border-bottom: none; }
-.baseline-principle-row__label {
+.baseline-target-row:last-child { border-bottom: none; }
+.baseline-target-row__label {
   flex: 1;
   min-width: 0;
 }
-.baseline-principle-row__code {
+.baseline-target-row__code {
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--slate-500);
   margin-right: 6px;
 }
-.baseline-principle-row__title {
+.baseline-target-row__title {
   font-size: 13.5px;
   font-weight: 600;
 }
-.baseline-principle-row select {
+.baseline-target-row select {
   font-family: var(--font-body);
   font-size: 13px;
   padding: 6px 8px;
@@ -1010,8 +1064,8 @@ a:hover { color: var(--purple-500); }
   }
 
   .modal--wide { width: 100%; }
-  .baseline-principle-row { flex-wrap: wrap; }
-  .baseline-principle-row select { width: 100%; }
+  .baseline-target-row { flex-wrap: wrap; }
+  .baseline-target-row select { width: 100%; }
 }
 
 /* ---------- Print ---------- */
@@ -1032,5 +1086,6 @@ a:hover { color: var(--purple-500); }
   .igp-toggle { display: none !important; }
   .igp-check input[type="checkbox"] { accent-color: #000; }
   .status-badge { border: 1px solid #000; background: #fff !important; color: #000 !important; }
+  .baseline-badge, .principle-baseline-chip { border: 1px solid #000 !important; background: #fff !important; color: #000 !important; }
   .method-note { border-color: #000; }
 }

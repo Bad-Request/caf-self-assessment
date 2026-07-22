@@ -51,10 +51,8 @@
 
   var allOutcomes = [];
   var outcomesById = {};
-  var allPrinciples = [];
   DATASET.forEach(function (objective) {
     objective.principles.forEach(function (principle) {
-      allPrinciples.push({ objectiveId: objective.id, id: principle.id, title: principle.title });
       principle.outcomes.forEach(function (outcome) {
         var entry = { objectiveId: objective.id, principleId: principle.id, outcome: outcome };
         allOutcomes.push(entry);
@@ -116,9 +114,11 @@
   // same baseline (e.g. a regulator-agreed target) can be applied to
   // several assessments and exported/imported independently of them.
   //   { id, name, createdAt, updatedAt,
-  //     targets: { "<principleId>": "not"|"partial"|"achieved" } }
-  // A principle with no key (or an empty value) in "targets" has no
-  // baseline target set.
+  //     targets: { "<outcomeId>": "not"|"partial"|"achieved" } }
+  // Targets are set per contributing outcome (e.g. "A1.a", "C1.d") —
+  // not per principle — since a baseline can legitimately expect more
+  // of one outcome within a principle than another. An outcome with no
+  // key (or an empty value) in "targets" has no baseline target set.
   // ---------------------------------------------------------------
 
   function loadBaselines() {
@@ -144,6 +144,28 @@
 
   function baselineUid() {
     return 'bl-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
+  }
+
+  // A short-lived earlier version of this feature keyed "targets" by
+  // principle id (e.g. "A1") rather than by individual outcome id (e.g.
+  // "A1.a"). Expand any such legacy keys onto every outcome under that
+  // principle (skipping outcomes that already have their own explicit
+  // target), so a profile created in that version keeps working.
+  function migrateBaselineTargets(baseline) {
+    var targets = baseline.targets || {};
+    var legacyKeys = Object.keys(targets).filter(function (key) { return !outcomesById[key]; });
+    if (!legacyKeys.length) return false;
+    var migrated = {};
+    Object.keys(targets).forEach(function (key) {
+      if (outcomesById[key]) migrated[key] = targets[key];
+    });
+    allOutcomes.forEach(function (entry) {
+      if (migrated[entry.outcome.id]) return;
+      var legacyValue = targets[entry.principleId];
+      if (legacyValue) migrated[entry.outcome.id] = legacyValue;
+    });
+    baseline.targets = migrated;
+    return true;
   }
 
   // ---------------------------------------------------------------
@@ -206,6 +228,14 @@
   var baselines = loadBaselines();
   var currentBaselineEditId = null;
 
+  (function migrateAllBaselinesOnLoad() {
+    var changed = false;
+    baselines.forEach(function (b) {
+      if (migrateBaselineTargets(b)) changed = true;
+    });
+    if (changed) saveBaselines(baselines);
+  })();
+
   function findBaseline(id) {
     for (var i = 0; i < baselines.length; i++) {
       if (baselines[i].id === id) return baselines[i];
@@ -255,6 +285,7 @@
       el.baselineSelect.value = '';
       applyBaselineBorders();
       updateBaselineLegend();
+      applyBaselineToFramework();
     }
   }
 
@@ -343,7 +374,7 @@
     baselineLegend: document.getElementById('baseline-legend'),
     baselineModal: document.getElementById('baseline-modal'),
     baselineNameInput: document.getElementById('baseline-name-input'),
-    baselinePrincipleList: document.getElementById('baseline-principle-list'),
+    baselineTargetList: document.getElementById('baseline-target-list'),
     baselineModalDelete: document.getElementById('baseline-modal-delete'),
     baselineModalExport: document.getElementById('baseline-modal-export'),
     baselineModalClose: document.getElementById('baseline-modal-close'),
@@ -454,21 +485,32 @@
     touchCurrent();
     applyBaselineBorders();
     updateBaselineLegend();
+    applyBaselineToFramework();
   });
 
-  function baselinePrincipleRow(principle, baseline) {
+  function baselineGroupHeading(principle) {
+    var heading = document.createElement('div');
+    heading.className = 'baseline-target-group__heading';
+    heading.innerHTML = '<span class="baseline-target-group__code">Principle ' + principle.id + '</span>' +
+      '<span class="baseline-target-group__title"></span>';
+    heading.querySelector('.baseline-target-group__title').textContent = principle.title;
+    return heading;
+  }
+
+  function baselineOutcomeRow(entry, baseline) {
+    var outcome = entry.outcome;
     var row = document.createElement('div');
-    row.className = 'baseline-principle-row';
+    row.className = 'baseline-target-row';
 
     var label = document.createElement('div');
-    label.className = 'baseline-principle-row__label';
-    label.innerHTML = '<span class="baseline-principle-row__code">' + principle.id + '</span>' +
-      '<span class="baseline-principle-row__title"></span>';
-    label.querySelector('.baseline-principle-row__title').textContent = principle.title;
+    label.className = 'baseline-target-row__label';
+    label.innerHTML = '<span class="baseline-target-row__code">' + outcome.id + '</span>' +
+      '<span class="baseline-target-row__title"></span>';
+    label.querySelector('.baseline-target-row__title').textContent = outcome.title;
 
     var select = document.createElement('select');
-    select.setAttribute('data-principle-id', principle.id);
-    select.setAttribute('aria-label', 'Baseline target for principle ' + principle.id + ', ' + principle.title);
+    select.setAttribute('data-outcome-id', outcome.id);
+    select.setAttribute('aria-label', 'Baseline target for outcome ' + outcome.id + ', ' + outcome.title);
     var noneOpt = document.createElement('option');
     noneOpt.value = '';
     noneOpt.textContent = 'No target set';
@@ -479,13 +521,13 @@
       opt.textContent = STATUS_META[tier].label;
       select.appendChild(opt);
     });
-    select.value = (baseline.targets && baseline.targets[principle.id]) || '';
+    select.value = (baseline.targets && baseline.targets[outcome.id]) || '';
     select.addEventListener('change', function () {
       if (!baseline.targets) baseline.targets = {};
       if (select.value) {
-        baseline.targets[principle.id] = select.value;
+        baseline.targets[outcome.id] = select.value;
       } else {
-        delete baseline.targets[principle.id];
+        delete baseline.targets[outcome.id];
       }
       touchBaseline(baseline.id);
       // Live-update the grid if this profile is the one currently applied.
@@ -493,6 +535,7 @@
       if (a && a.baselineId === baseline.id) {
         applyBaselineBorders();
         updateBaselineLegend();
+        applyBaselineToFramework();
       }
     });
 
@@ -506,10 +549,18 @@
     if (!baseline) return;
     currentBaselineEditId = id;
     el.baselineNameInput.value = baseline.name || '';
-    el.baselinePrincipleList.innerHTML = '';
-    allPrinciples.forEach(function (principle) {
-      el.baselinePrincipleList.appendChild(baselinePrincipleRow(principle, baseline));
+    el.baselineTargetList.innerHTML = '';
+    var frag = document.createDocumentFragment();
+    DATASET.forEach(function (objective) {
+      objective.principles.forEach(function (principle) {
+        frag.appendChild(baselineGroupHeading(principle));
+        principle.outcomes.forEach(function (outcome) {
+          var entry = { objectiveId: objective.id, principleId: principle.id, outcome: outcome };
+          frag.appendChild(baselineOutcomeRow(entry, baseline));
+        });
+      });
     });
+    el.baselineTargetList.appendChild(frag);
     el.baselineModal.hidden = false;
     window.setTimeout(function () { el.baselineNameInput.focus(); }, 20);
   }
@@ -598,6 +649,7 @@
         imported.updatedAt = nowIso();
         if (!imported.createdAt) imported.createdAt = nowIso();
         if (!imported.name) imported.name = 'Imported baseline';
+        migrateBaselineTargets(imported);
         baselines.push(imported);
         saveBaselines(baselines);
         renderBaselineSidebar();
@@ -626,15 +678,65 @@
     allOutcomes.forEach(function (entry) {
       var dot = document.getElementById('grid-dot-' + entry.outcome.id);
       if (!dot) return;
-      var target = targets[entry.principleId] || '';
+      var target = targets[entry.outcome.id] || '';
       if (target) {
         dot.setAttribute('data-baseline', target);
         dot.title = entry.outcome.id + ' — ' + entry.outcome.title +
-          ' · Principle ' + entry.principleId + ' baseline target: ' + STATUS_META[target].label;
+          ' · Baseline target: ' + STATUS_META[target].label;
       } else {
         dot.removeAttribute('data-baseline');
         dot.title = entry.outcome.id + ' — ' + entry.outcome.title;
       }
+    });
+  }
+
+  // Shows the baseline target inline in the main framework view — a badge
+  // on each outcome card (visible while ticking IGPs for that outcome)
+  // and a summary row of chips on each principle's header (visible at a
+  // glance before working through its outcomes) — so the target is in
+  // view the whole time someone is working through the exercise, not
+  // just on the dashboard grid at the top of the page.
+  function applyBaselineToFramework() {
+    var a = findAssessment(currentId);
+    var targets = {};
+    if (a && a.baselineId) {
+      var b = findBaseline(a.baselineId);
+      if (b && b.targets) targets = b.targets;
+    }
+
+    allOutcomes.forEach(function (entry) {
+      var badge = document.getElementById('baseline-badge-' + entry.outcome.id);
+      if (!badge) return;
+      var target = targets[entry.outcome.id];
+      if (target) {
+        badge.hidden = false;
+        badge.className = 'baseline-badge baseline-badge--' + target;
+        badge.textContent = 'Target: ' + STATUS_META[target].label;
+      } else {
+        badge.hidden = true;
+        badge.className = 'baseline-badge';
+        badge.textContent = '';
+      }
+    });
+
+    DATASET.forEach(function (objective) {
+      objective.principles.forEach(function (principle) {
+        var container = document.getElementById('principle-baselines-' + principle.id);
+        if (!container) return;
+        container.innerHTML = '';
+        var hasAny = false;
+        principle.outcomes.forEach(function (outcome) {
+          var target = targets[outcome.id];
+          if (!target) return;
+          hasAny = true;
+          var chip = document.createElement('span');
+          chip.className = 'principle-baseline-chip principle-baseline-chip--' + target;
+          chip.title = outcome.id + ' — ' + outcome.title + ' · Baseline target: ' + STATUS_META[target].label;
+          chip.textContent = outcome.id + ' ' + STATUS_META[target].label;
+          container.appendChild(chip);
+        });
+        container.hidden = !hasAny;
+      });
     });
   }
 
@@ -705,7 +807,8 @@
         pHeader.className = 'principle-header';
         pHeader.innerHTML =
           '<div class="principle-header__eyebrow">Principle ' + principle.id + '</div>' +
-          '<h3></h3><p></p>';
+          '<h3></h3><p></p>' +
+          '<div class="principle-header__baselines" id="principle-baselines-' + principle.id + '" hidden></div>';
         pHeader.querySelector('h3').textContent = principle.title;
         pHeader.querySelector('p').textContent = principle.description;
         pBlock.appendChild(pHeader);
@@ -750,6 +853,12 @@
     badge.className = 'status-badge status-badge--unset';
     badge.textContent = STATUS_META.unset.label;
     statusArea.appendChild(badge);
+
+    var baselineBadge = document.createElement('span');
+    baselineBadge.className = 'baseline-badge';
+    baselineBadge.id = 'baseline-badge-' + outcome.id;
+    baselineBadge.hidden = true;
+    statusArea.appendChild(baselineBadge);
 
     var statusControl = document.createElement('div');
     statusControl.className = 'status-control';
@@ -1059,6 +1168,7 @@
     refreshBaselineSelectOptions();
     applyBaselineBorders();
     updateBaselineLegend();
+    applyBaselineToFramework();
   }
 
   // ---------------------------------------------------------------
