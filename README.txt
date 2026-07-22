@@ -14,12 +14,17 @@ assets.
 
 DATA HANDLING — IMPORTANT
 Every assessment you create — organisation name, ticks, overrides,
-notes — is saved entirely in your browser's localStorage. This means:
-  - Assessments are tied to the browser/device you created them on.
+notes — is saved entirely in your browser's localStorage. Baseline
+profiles (see FEATURES) are saved the same way, under their own
+separate localStorage key. This means:
+  - Assessments and baseline profiles are tied to the browser/device
+    you created them on.
   - Clearing browser data for this site/folder will delete them.
   - Use "Export assessment (.json)" regularly to back up or move an
     assessment between browsers/devices, and "Import assessment
-    (.json)" to load it elsewhere.
+    (.json)" to load it elsewhere. Baseline profiles have their own
+    "Export (.json)" / "Import baseline (.json)" controls, separate
+    from the assessment ones, so a baseline can be shared on its own.
 
 HOW TO RUN IT
 Genuinely nothing to install. Either:
@@ -53,6 +58,17 @@ FEATURES
   - Dashboard: overall % score, per-objective breakdown, and an
     "outcome grid" — one dot per contributing outcome, colour-coded by
     status, click a dot to jump straight to that outcome.
+  - Baseline profiles: since a CAF assessment is often measured against
+    an agreed baseline rather than "fully achieved" everywhere, you can
+    set a target level (Not achieved / Partially achieved / Achieved)
+    for each of the 14 principles. Baseline profiles are standalone and
+    reusable — create one and apply it to any number of assessments —
+    and are exported/imported as their own separate .json files so a
+    baseline can be shared or reused independently of any assessment.
+    Each outcome dot in the grid gets a coloured BORDER matching the
+    baseline target of its principle (red/amber/green, matching the
+    fill colours used for actual status), while the dot's own FILL
+    colour continues to show the outcome's actual current status.
   - Export/import assessments as JSON.
   - Print / save as PDF (use your browser's print dialog).
 

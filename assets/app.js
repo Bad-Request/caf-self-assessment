@@ -32,6 +32,7 @@
 
   var STORAGE_KEY = 'caf_assessments_v1';
   var CURRENT_KEY = 'caf_current_assessment_id_v1';
+  var BASELINE_STORAGE_KEY = 'caf_baselines_v1';
 
   var DATASET = window.CAF_DATASET || [];
 
@@ -43,10 +44,17 @@
     unset: { label: 'Not yet assessed' }
   };
 
+  // Baseline targets only ever use these three tiers (a target is either
+  // not expected, partially expected, or fully expected — "not applicable"
+  // and "not yet assessed" don't make sense as a *target*).
+  var BASELINE_TIERS = ['not', 'partial', 'achieved'];
+
   var allOutcomes = [];
   var outcomesById = {};
+  var allPrinciples = [];
   DATASET.forEach(function (objective) {
     objective.principles.forEach(function (principle) {
+      allPrinciples.push({ objectiveId: objective.id, id: principle.id, title: principle.title });
       principle.outcomes.forEach(function (outcome) {
         var entry = { objectiveId: objective.id, principleId: principle.id, outcome: outcome };
         allOutcomes.push(entry);
@@ -98,6 +106,44 @@
 
   function nowIso() {
     return new Date().toISOString();
+  }
+
+  // ---------------------------------------------------------------
+  // Baseline profile storage
+  //
+  // Baseline profiles are standalone, reusable and separate from any
+  // one assessment — saved under their own localStorage key, so the
+  // same baseline (e.g. a regulator-agreed target) can be applied to
+  // several assessments and exported/imported independently of them.
+  //   { id, name, createdAt, updatedAt,
+  //     targets: { "<principleId>": "not"|"partial"|"achieved" } }
+  // A principle with no key (or an empty value) in "targets" has no
+  // baseline target set.
+  // ---------------------------------------------------------------
+
+  function loadBaselines() {
+    try {
+      var raw = window.localStorage.getItem(BASELINE_STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      console.error('Could not read baseline profiles from localStorage', e);
+      return [];
+    }
+  }
+
+  function saveBaselines(list) {
+    try {
+      window.localStorage.setItem(BASELINE_STORAGE_KEY, JSON.stringify(list));
+      return true;
+    } catch (e) {
+      console.error('Could not write baseline profiles to localStorage', e);
+      showToast('Could not save baseline profile — your browser storage may be full or blocked.');
+      return false;
+    }
+  }
+
+  function baselineUid() {
+    return 'bl-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
   }
 
   // ---------------------------------------------------------------
@@ -157,6 +203,60 @@
 
   var assessments = loadAssessments();
   var currentId = getCurrentId();
+  var baselines = loadBaselines();
+  var currentBaselineEditId = null;
+
+  function findBaseline(id) {
+    for (var i = 0; i < baselines.length; i++) {
+      if (baselines[i].id === id) return baselines[i];
+    }
+    return null;
+  }
+
+  function createBaseline(name) {
+    var baseline = {
+      id: baselineUid(),
+      name: name || 'Untitled baseline',
+      createdAt: nowIso(),
+      updatedAt: nowIso(),
+      targets: {}
+    };
+    baselines.push(baseline);
+    saveBaselines(baselines);
+    renderBaselineSidebar();
+    refreshBaselineSelectOptions();
+    return baseline;
+  }
+
+  function touchBaseline(id) {
+    var b = findBaseline(id);
+    if (b) {
+      b.updatedAt = nowIso();
+      saveBaselines(baselines);
+    }
+  }
+
+  function deleteBaseline(id) {
+    baselines = baselines.filter(function (b) { return b.id !== id; });
+    saveBaselines(baselines);
+    // Any assessment currently pointed at the deleted profile falls back
+    // to "None" rather than silently referencing a missing profile.
+    var affectedCurrent = false;
+    assessments.forEach(function (a) {
+      if (a.baselineId === id) {
+        a.baselineId = null;
+        if (a.id === currentId) affectedCurrent = true;
+      }
+    });
+    saveAssessments(assessments);
+    renderBaselineSidebar();
+    refreshBaselineSelectOptions();
+    if (affectedCurrent) {
+      el.baselineSelect.value = '';
+      applyBaselineBorders();
+      updateBaselineLegend();
+    }
+  }
 
   function findAssessment(id) {
     for (var i = 0; i < assessments.length; i++) {
@@ -171,6 +271,7 @@
       name: name || 'Untitled assessment',
       org: '',
       assessor: '',
+      baselineId: null,
       createdAt: nowIso(),
       updatedAt: nowIso(),
       results: {}
@@ -235,7 +336,20 @@
     dialogTitle: document.getElementById('dialog-modal-title'),
     dialogMessage: document.getElementById('dialog-modal-message'),
     dialogCancel: document.getElementById('dialog-modal-cancel'),
-    dialogConfirm: document.getElementById('dialog-modal-confirm')
+    dialogConfirm: document.getElementById('dialog-modal-confirm'),
+    baselineList: document.getElementById('baseline-list'),
+    baselineListEmpty: document.getElementById('baseline-list-empty'),
+    baselineSelect: document.getElementById('input-baseline-select'),
+    baselineLegend: document.getElementById('baseline-legend'),
+    baselineModal: document.getElementById('baseline-modal'),
+    baselineNameInput: document.getElementById('baseline-name-input'),
+    baselinePrincipleList: document.getElementById('baseline-principle-list'),
+    baselineModalDelete: document.getElementById('baseline-modal-delete'),
+    baselineModalExport: document.getElementById('baseline-modal-export'),
+    baselineModalClose: document.getElementById('baseline-modal-close'),
+    btnNewBaseline: document.getElementById('btn-new-baseline'),
+    btnImportBaseline: document.getElementById('btn-import-baseline'),
+    inputImportBaseline: document.getElementById('input-import-baseline')
   };
 
   var RING_CIRCUMFERENCE = 2 * Math.PI * 52;
@@ -272,6 +386,280 @@
         li.appendChild(btn);
         el.list.appendChild(li);
       });
+  }
+
+  // ---------------------------------------------------------------
+  // Baseline profile sidebar, modal, and application to the grid
+  // ---------------------------------------------------------------
+
+  function renderBaselineSidebar() {
+    el.baselineList.innerHTML = '';
+    el.baselineListEmpty.hidden = baselines.length > 0;
+
+    baselines
+      .slice()
+      .sort(function (a, b) { return (a.name || '').localeCompare(b.name || ''); })
+      .forEach(function (b) {
+        var li = document.createElement('li');
+        li.className = 'baseline-list__row';
+
+        var nameBtn = document.createElement('button');
+        nameBtn.type = 'button';
+        nameBtn.className = 'baseline-list__name';
+        nameBtn.textContent = b.name || 'Untitled baseline';
+        nameBtn.title = 'Edit "' + (b.name || 'Untitled baseline') + '"';
+        nameBtn.addEventListener('click', function () { openBaselineModal(b.id); });
+
+        var exportBtn = document.createElement('button');
+        exportBtn.type = 'button';
+        exportBtn.className = 'baseline-list__icon-btn';
+        exportBtn.title = 'Export this baseline profile (.json)';
+        exportBtn.setAttribute('aria-label', 'Export baseline profile ' + (b.name || 'Untitled baseline'));
+        exportBtn.textContent = '\u2193';
+        exportBtn.addEventListener('click', function (evt) {
+          evt.stopPropagation();
+          exportBaselineJson(b.id);
+        });
+
+        li.appendChild(nameBtn);
+        li.appendChild(exportBtn);
+        el.baselineList.appendChild(li);
+      });
+  }
+
+  function refreshBaselineSelectOptions() {
+    var a = findAssessment(currentId);
+    var previousValue = el.baselineSelect.value;
+    el.baselineSelect.innerHTML = '<option value="">None</option>';
+    baselines
+      .slice()
+      .sort(function (x, y) { return (x.name || '').localeCompare(y.name || ''); })
+      .forEach(function (b) {
+        var opt = document.createElement('option');
+        opt.value = b.id;
+        opt.textContent = b.name || 'Untitled baseline';
+        el.baselineSelect.appendChild(opt);
+      });
+    if (a) {
+      el.baselineSelect.value = (a.baselineId && findBaseline(a.baselineId)) ? a.baselineId : '';
+    } else {
+      el.baselineSelect.value = previousValue && findBaseline(previousValue) ? previousValue : '';
+    }
+  }
+
+  el.baselineSelect.addEventListener('change', function () {
+    var a = findAssessment(currentId);
+    if (!a) return;
+    a.baselineId = el.baselineSelect.value || null;
+    touchCurrent();
+    applyBaselineBorders();
+    updateBaselineLegend();
+  });
+
+  function baselinePrincipleRow(principle, baseline) {
+    var row = document.createElement('div');
+    row.className = 'baseline-principle-row';
+
+    var label = document.createElement('div');
+    label.className = 'baseline-principle-row__label';
+    label.innerHTML = '<span class="baseline-principle-row__code">' + principle.id + '</span>' +
+      '<span class="baseline-principle-row__title"></span>';
+    label.querySelector('.baseline-principle-row__title').textContent = principle.title;
+
+    var select = document.createElement('select');
+    select.setAttribute('data-principle-id', principle.id);
+    select.setAttribute('aria-label', 'Baseline target for principle ' + principle.id + ', ' + principle.title);
+    var noneOpt = document.createElement('option');
+    noneOpt.value = '';
+    noneOpt.textContent = 'No target set';
+    select.appendChild(noneOpt);
+    BASELINE_TIERS.forEach(function (tier) {
+      var opt = document.createElement('option');
+      opt.value = tier;
+      opt.textContent = STATUS_META[tier].label;
+      select.appendChild(opt);
+    });
+    select.value = (baseline.targets && baseline.targets[principle.id]) || '';
+    select.addEventListener('change', function () {
+      if (!baseline.targets) baseline.targets = {};
+      if (select.value) {
+        baseline.targets[principle.id] = select.value;
+      } else {
+        delete baseline.targets[principle.id];
+      }
+      touchBaseline(baseline.id);
+      // Live-update the grid if this profile is the one currently applied.
+      var a = findAssessment(currentId);
+      if (a && a.baselineId === baseline.id) {
+        applyBaselineBorders();
+        updateBaselineLegend();
+      }
+    });
+
+    row.appendChild(label);
+    row.appendChild(select);
+    return row;
+  }
+
+  function openBaselineModal(id) {
+    var baseline = findBaseline(id);
+    if (!baseline) return;
+    currentBaselineEditId = id;
+    el.baselineNameInput.value = baseline.name || '';
+    el.baselinePrincipleList.innerHTML = '';
+    allPrinciples.forEach(function (principle) {
+      el.baselinePrincipleList.appendChild(baselinePrincipleRow(principle, baseline));
+    });
+    el.baselineModal.hidden = false;
+    window.setTimeout(function () { el.baselineNameInput.focus(); }, 20);
+  }
+
+  function closeBaselineModal() {
+    el.baselineModal.hidden = true;
+    currentBaselineEditId = null;
+  }
+
+  var baselineNameDebounce = null;
+  el.baselineNameInput.addEventListener('input', function () {
+    var baseline = findBaseline(currentBaselineEditId);
+    if (!baseline) return;
+    baseline.name = el.baselineNameInput.value;
+    clearTimeout(baselineNameDebounce);
+    baselineNameDebounce = setTimeout(function () {
+      touchBaseline(baseline.id);
+      renderBaselineSidebar();
+      refreshBaselineSelectOptions();
+    }, 300);
+  });
+
+  el.baselineModalClose.addEventListener('click', closeBaselineModal);
+  el.baselineModal.addEventListener('click', function (evt) {
+    if (evt.target === el.baselineModal) closeBaselineModal();
+  });
+
+  el.baselineModalExport.addEventListener('click', function () {
+    if (currentBaselineEditId) exportBaselineJson(currentBaselineEditId);
+  });
+
+  el.baselineModalDelete.addEventListener('click', function () {
+    var baseline = findBaseline(currentBaselineEditId);
+    if (!baseline) return;
+    showDialog({
+      title: 'Delete this baseline profile?',
+      message: '"' + (baseline.name || 'Untitled baseline') + '" will be permanently deleted, and any assessments using it will be set back to "None". This cannot be undone.',
+      tone: 'danger',
+      confirmLabel: 'Delete',
+      cancelLabel: 'Cancel',
+      onConfirm: function () {
+        deleteBaseline(baseline.id);
+        closeBaselineModal();
+        showToast('Baseline profile deleted.');
+      }
+    });
+  });
+
+  el.btnNewBaseline.addEventListener('click', function () {
+    var baseline = createBaseline('Untitled baseline');
+    showToast('New baseline profile created.');
+    openBaselineModal(baseline.id);
+  });
+
+  function exportBaselineJson(id) {
+    var baseline = findBaseline(id);
+    if (!baseline) return;
+    var blob = new Blob([JSON.stringify(baseline, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    var safeName = (baseline.name || 'caf-baseline').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    link.href = url;
+    link.download = (safeName || 'caf-baseline') + '.json';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    showToast('Exported ' + link.download);
+  }
+
+  el.btnImportBaseline.addEventListener('click', function () {
+    el.inputImportBaseline.click();
+  });
+
+  el.inputImportBaseline.addEventListener('change', function (evt) {
+    var file = evt.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      try {
+        var imported = JSON.parse(reader.result);
+        if (!imported || typeof imported !== 'object' || typeof imported.targets !== 'object' || imported.targets === null) {
+          throw new Error('File does not look like a CAF baseline profile export.');
+        }
+        imported.id = baselineUid(); // avoid clobbering an existing profile with the same id
+        imported.updatedAt = nowIso();
+        if (!imported.createdAt) imported.createdAt = nowIso();
+        if (!imported.name) imported.name = 'Imported baseline';
+        baselines.push(imported);
+        saveBaselines(baselines);
+        renderBaselineSidebar();
+        refreshBaselineSelectOptions();
+        showToast('Imported "' + imported.name + '".');
+      } catch (e) {
+        showDialog({
+          title: 'Import failed',
+          message: 'Could not import this file: ' + e.message,
+          confirmLabel: 'OK'
+        });
+      } finally {
+        evt.target.value = '';
+      }
+    };
+    reader.readAsText(file);
+  });
+
+  function applyBaselineBorders() {
+    var a = findAssessment(currentId);
+    var targets = {};
+    if (a && a.baselineId) {
+      var b = findBaseline(a.baselineId);
+      if (b && b.targets) targets = b.targets;
+    }
+    allOutcomes.forEach(function (entry) {
+      var dot = document.getElementById('grid-dot-' + entry.outcome.id);
+      if (!dot) return;
+      var target = targets[entry.principleId] || '';
+      if (target) {
+        dot.setAttribute('data-baseline', target);
+        dot.title = entry.outcome.id + ' — ' + entry.outcome.title +
+          ' · Principle ' + entry.principleId + ' baseline target: ' + STATUS_META[target].label;
+      } else {
+        dot.removeAttribute('data-baseline');
+        dot.title = entry.outcome.id + ' — ' + entry.outcome.title;
+      }
+    });
+  }
+
+  function updateBaselineLegend() {
+    var a = findAssessment(currentId);
+    var baseline = a && a.baselineId ? findBaseline(a.baselineId) : null;
+    el.baselineLegend.innerHTML = '';
+    if (!baseline) {
+      var none = document.createElement('span');
+      none.className = 'baseline-legend__none';
+      none.textContent = 'No baseline profile selected for this assessment — dots have no border.';
+      el.baselineLegend.appendChild(none);
+      return;
+    }
+    var intro = document.createElement('span');
+    intro.textContent = 'Baseline "' + (baseline.name || 'Untitled baseline') + '" — border key:';
+    el.baselineLegend.appendChild(intro);
+    BASELINE_TIERS.forEach(function (tier) {
+      var item = document.createElement('span');
+      item.className = 'baseline-legend__item';
+      item.innerHTML = '<span class="baseline-legend__swatch baseline-legend__swatch--' + tier + '"></span>' +
+        '<span></span>';
+      item.querySelector('span:last-child').textContent = STATUS_META[tier].label;
+      el.baselineLegend.appendChild(item);
+    });
   }
 
   // ---------------------------------------------------------------
@@ -668,6 +1056,9 @@
 
     applyAllState(a);
     updateDashboard();
+    refreshBaselineSelectOptions();
+    applyBaselineBorders();
+    updateBaselineLegend();
   }
 
   // ---------------------------------------------------------------
@@ -823,6 +1214,12 @@
         imported.id = uid(); // avoid clobbering an existing assessment with the same id
         imported.updatedAt = nowIso();
         if (!imported.name) imported.name = 'Imported assessment';
+        // A baselineId from another browser/device won't correspond to any
+        // baseline profile saved here, so don't carry over a dangling
+        // reference — the assessor can re-attach the right profile locally.
+        if (!imported.baselineId || !findBaseline(imported.baselineId)) {
+          imported.baselineId = null;
+        }
         assessments.push(imported);
         saveAssessments(assessments);
         currentId = imported.id;
@@ -871,5 +1268,6 @@
   }
 
   renderSidebar();
+  renderBaselineSidebar();
   renderCurrentAssessment();
 })();

@@ -245,6 +245,53 @@ a:hover { color: var(--purple-500); }
 .assessment-list__name { font-weight: 600; font-size: 13.5px; }
 .assessment-list__org { font-size: 12px; color: var(--slate-500); }
 
+/* ---------- Baseline profile list ---------- */
+
+.baseline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 28vh;
+  overflow-y: auto;
+}
+.baseline-list__row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.baseline-list__name {
+  flex: 1;
+  text-align: left;
+  padding: 9px 11px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--ink-900);
+}
+.baseline-list__name:hover { background: var(--cream-50); }
+.baseline-list__icon-btn {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--slate-500);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.baseline-list__icon-btn:hover { border-color: var(--purple-500); color: var(--purple-600); }
+
 .main-content {
   padding: 24px 32px 60px;
   max-width: 1180px;
@@ -325,7 +372,7 @@ a:hover { color: var(--purple-500); }
 
 .assessment-meta {
   display: grid;
-  grid-template-columns: repeat(3, 1fr) auto;
+  grid-template-columns: repeat(4, 1fr) auto;
   gap: 14px;
   align-items: end;
   background: var(--paper);
@@ -344,7 +391,7 @@ a:hover { color: var(--purple-500); }
   color: var(--slate-500);
   font-weight: 600;
 }
-.field-row input, .field-row textarea {
+.field-row input, .field-row textarea, .field-row select {
   font-family: var(--font-body);
   font-size: 14px;
   padding: 8px 10px;
@@ -353,7 +400,7 @@ a:hover { color: var(--purple-500); }
   background: var(--cream-50);
   color: var(--ink-900);
 }
-.field-row input:focus, .field-row textarea:focus {
+.field-row input:focus, .field-row textarea:focus, .field-row select:focus {
   background: #fff;
   border-color: var(--purple-500);
 }
@@ -523,7 +570,7 @@ a:hover { color: var(--purple-500); }
   width: 20px;
   height: 20px;
   border-radius: 5px;
-  border: none;
+  border: 2px solid transparent;
   cursor: pointer;
   position: relative;
   background: var(--unset);
@@ -534,6 +581,39 @@ a:hover { color: var(--purple-500); }
 .outcome-dot.status-partial { background: var(--partial); }
 .outcome-dot.status-not { background: var(--not-achieved); }
 .outcome-dot.status-na { background: var(--na); }
+
+/* Baseline target border — independent of the fill above, which shows
+   the outcome's actual current status. The border shows the target
+   baseline set for that outcome's principle (if a baseline profile is
+   applied to this assessment); see .baseline-legend for the key. */
+.outcome-dot[data-baseline="not"] { border-color: var(--not-achieved); }
+.outcome-dot[data-baseline="partial"] { border-color: var(--partial); }
+.outcome-dot[data-baseline="achieved"] { border-color: var(--achieved); }
+
+.baseline-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--slate-300);
+}
+.baseline-legend__item { display: flex; align-items: center; gap: 6px; }
+.baseline-legend__swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: transparent;
+  border: 2px solid var(--slate-300);
+  flex-shrink: 0;
+}
+.baseline-legend__swatch--not { border-color: var(--not-achieved); }
+.baseline-legend__swatch--partial { border-color: var(--partial); }
+.baseline-legend__swatch--achieved { border-color: var(--achieved); }
+.baseline-legend__none {
+  font-style: italic;
+}
 
 /* ---------- Framework / accordions ---------- */
 
@@ -780,6 +860,54 @@ a:hover { color: var(--purple-500); }
   max-width: 100%;
   box-shadow: var(--shadow-md);
 }
+.modal--wide {
+  width: 640px;
+  max-height: 86vh;
+  overflow-y: auto;
+}
+.baseline-principle-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.baseline-principle-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+.baseline-principle-row:last-child { border-bottom: none; }
+.baseline-principle-row__label {
+  flex: 1;
+  min-width: 0;
+}
+.baseline-principle-row__code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--slate-500);
+  margin-right: 6px;
+}
+.baseline-principle-row__title {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.baseline-principle-row select {
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--cream-50);
+  color: var(--ink-900);
+  flex-shrink: 0;
+  width: 190px;
+}
 .modal h2 {
   font-size: 18px;
   margin-bottom: 16px;
@@ -823,6 +951,7 @@ a:hover { color: var(--purple-500); }
   .app-shell { grid-template-columns: 1fr; }
   .sidebar { border-right: none; border-bottom: 1px solid var(--line); }
   .assessment-meta { grid-template-columns: 1fr 1fr; }
+  .field-row--actions { grid-column: 1 / -1; }
   .dashboard { grid-template-columns: 1fr; }
   .dashboard__objectives { grid-column: 1; grid-template-columns: repeat(2, 1fr); }
 }
@@ -879,6 +1008,10 @@ a:hover { color: var(--purple-500); }
     text-align: right;
     border-radius: var(--radius-sm);
   }
+
+  .modal--wide { width: 100%; }
+  .baseline-principle-row { flex-wrap: wrap; }
+  .baseline-principle-row select { width: 100%; }
 }
 
 /* ---------- Print ---------- */

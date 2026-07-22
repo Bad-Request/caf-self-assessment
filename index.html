@@ -56,6 +56,17 @@
       <p class="sidebar__empty" id="assessment-list-empty" hidden>No assessments yet. Select "+" to start one.</p>
     </div>
 
+    <div class="sidebar__section">
+      <div class="sidebar__heading">
+        <h2>Baseline profiles</h2>
+        <button type="button" class="btn btn--icon" id="btn-new-baseline" title="New baseline profile" aria-label="New baseline profile">+</button>
+      </div>
+      <ul class="baseline-list" id="baseline-list" aria-label="Saved baseline profiles"></ul>
+      <p class="sidebar__empty" id="baseline-list-empty" hidden>No baseline profiles yet.</p>
+      <button type="button" class="btn btn--full" id="btn-import-baseline">Import baseline (.json)</button>
+      <input type="file" id="input-import-baseline" accept="application/json" hidden>
+    </div>
+
     <div class="sidebar__section sidebar__section--tools">
       <h2>Backup &amp; sharing</h2>
       <button type="button" class="btn btn--full" id="btn-export-json">Export assessment (.json)</button>
@@ -66,7 +77,7 @@
 
     <div class="sidebar__section sidebar__footer">
       <p>Reference: NCSC <a href="https://www.ncsc.gov.uk/collection/cyber-assessment-framework" target="_blank" rel="noopener">Cyber Assessment Framework 4.0</a>. Contains 41 contributing outcomes across 4 objectives and 14 principles.</p>
-      <p class="version-tag">v1.0.0</p>
+      <p class="version-tag">v1.1.0</p>
     </div>
   </nav>
 
@@ -92,6 +103,12 @@
         <div class="field-row">
           <label for="input-assessor-name">Assessor</label>
           <input type="text" id="input-assessor-name" placeholder="Name / role">
+        </div>
+        <div class="field-row">
+          <label for="input-baseline-select">Baseline profile</label>
+          <select id="input-baseline-select">
+            <option value="">None</option>
+          </select>
         </div>
         <div class="field-row field-row--actions">
           <button type="button" class="btn btn--danger-outline" id="btn-delete-assessment">Delete this assessment</button>
@@ -122,8 +139,9 @@
         <div class="dashboard__objectives" id="objective-bars" aria-label="Score by objective"></div>
 
         <div class="dashboard__grid">
-          <h3>Outcome grid <span class="hint">— every dot is one of the 41 contributing outcomes; colour shows its current status; select a dot to jump to it</span></h3>
+          <h3>Outcome grid <span class="hint">— every dot is one of the 41 contributing outcomes; fill colour shows its current status, border colour (if set) shows its principle's baseline target; select a dot to jump to it</span></h3>
           <div class="outcome-grid" id="outcome-grid"></div>
+          <div class="baseline-legend" id="baseline-legend"></div>
         </div>
       </section>
 
@@ -152,6 +170,23 @@
         <button type="submit" class="btn btn--primary">Create assessment</button>
       </div>
     </form>
+  </div>
+</div>
+
+<div class="modal-overlay no-print" id="baseline-modal" hidden>
+  <div class="modal modal--wide" role="dialog" aria-modal="true" aria-labelledby="baseline-modal-title">
+    <h2 id="baseline-modal-title">Baseline profile</h2>
+    <div class="field-row">
+      <label for="baseline-name-input">Baseline name</label>
+      <input type="text" id="baseline-name-input" placeholder="e.g. Regulator baseline 2026">
+    </div>
+    <p>Set the target outcome level for each principle. The CAF does not require every principle to be fully "Achieved" — a baseline lets you record what's actually expected here, separately from what's currently in place. Leave a principle as "No target set" if none applies.</p>
+    <div class="baseline-principle-list" id="baseline-principle-list"></div>
+    <div class="modal__actions">
+      <button type="button" class="btn btn--danger-outline" id="baseline-modal-delete">Delete profile</button>
+      <button type="button" class="btn" id="baseline-modal-export">Export (.json)</button>
+      <button type="button" class="btn btn--primary" id="baseline-modal-close">Done</button>
+    </div>
   </div>
 </div>
 
