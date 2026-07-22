@@ -226,7 +226,16 @@
     countNot: document.getElementById('count-not'),
     countNa: document.getElementById('count-na'),
     countUnset: document.getElementById('count-unset'),
-    toast: document.getElementById('toast')
+    toast: document.getElementById('toast'),
+    newAssessmentModal: document.getElementById('new-assessment-modal'),
+    newAssessmentForm: document.getElementById('new-assessment-form'),
+    newAssessmentNameInput: document.getElementById('new-assessment-name'),
+    newAssessmentCancel: document.getElementById('new-assessment-cancel'),
+    dialogModal: document.getElementById('dialog-modal'),
+    dialogTitle: document.getElementById('dialog-modal-title'),
+    dialogMessage: document.getElementById('dialog-modal-message'),
+    dialogCancel: document.getElementById('dialog-modal-cancel'),
+    dialogConfirm: document.getElementById('dialog-modal-confirm')
   };
 
   var RING_CIRCUMFERENCE = 2 * Math.PI * 52;
@@ -686,25 +695,96 @@
   el.deleteBtn.addEventListener('click', function () {
     var a = findAssessment(currentId);
     if (!a) return;
-    if (window.confirm('Delete "' + (a.name || 'this assessment') + '"? This cannot be undone.')) {
-      deleteAssessment(a.id);
-      showToast('Assessment deleted.');
+    showDialog({
+      title: 'Delete this assessment?',
+      message: '"' + (a.name || 'Untitled assessment') + '" will be permanently deleted. This cannot be undone.',
+      tone: 'danger',
+      confirmLabel: 'Delete',
+      cancelLabel: 'Cancel',
+      onConfirm: function () {
+        deleteAssessment(a.id);
+        showToast('Assessment deleted.');
+      }
+    });
+  });
+
+  // ---------------------------------------------------------------
+  // Generic dialog modal (confirmations + messages) — replaces
+  // window.confirm() / window.alert() with in-page UI.
+  // ---------------------------------------------------------------
+
+  var dialogOnConfirm = null;
+
+  function showDialog(opts) {
+    el.dialogTitle.textContent = opts.title || '';
+    el.dialogMessage.textContent = opts.message || '';
+    el.dialogConfirm.textContent = opts.confirmLabel || 'OK';
+    el.dialogConfirm.className = 'btn ' + (opts.tone === 'danger' ? 'btn--danger' : 'btn--primary');
+    if (opts.cancelLabel) {
+      el.dialogCancel.hidden = false;
+      el.dialogCancel.textContent = opts.cancelLabel;
+    } else {
+      el.dialogCancel.hidden = true;
     }
+    dialogOnConfirm = typeof opts.onConfirm === 'function' ? opts.onConfirm : null;
+    el.dialogModal.hidden = false;
+    window.setTimeout(function () { el.dialogConfirm.focus(); }, 20);
+  }
+
+  function closeDialog() {
+    el.dialogModal.hidden = true;
+    dialogOnConfirm = null;
+  }
+
+  el.dialogConfirm.addEventListener('click', function () {
+    var cb = dialogOnConfirm;
+    closeDialog();
+    if (cb) cb();
+  });
+
+  el.dialogCancel.addEventListener('click', closeDialog);
+
+  el.dialogModal.addEventListener('click', function (evt) {
+    if (evt.target === el.dialogModal) closeDialog();
   });
 
   // ---------------------------------------------------------------
   // New / import / export / print
   // ---------------------------------------------------------------
 
-  function promptNewAssessment() {
-    var name = window.prompt('Name this assessment (e.g. organisation + year):', 'New CAF assessment');
-    if (name === null) return;
-    createAssessment(name.trim() || 'Untitled assessment');
-    showToast('New assessment created.');
+  function openNewAssessmentModal() {
+    el.newAssessmentNameInput.value = '';
+    el.newAssessmentModal.hidden = false;
+    // Focus after the browser has actually unhidden the element.
+    window.setTimeout(function () { el.newAssessmentNameInput.focus(); }, 20);
   }
 
-  document.getElementById('btn-new-assessment').addEventListener('click', promptNewAssessment);
-  document.getElementById('btn-new-assessment-cta').addEventListener('click', promptNewAssessment);
+  function closeNewAssessmentModal() {
+    el.newAssessmentModal.hidden = true;
+  }
+
+  el.newAssessmentForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    var name = el.newAssessmentNameInput.value.trim() || 'Untitled assessment';
+    createAssessment(name);
+    closeNewAssessmentModal();
+    showToast('New assessment created.');
+  });
+
+  el.newAssessmentCancel.addEventListener('click', closeNewAssessmentModal);
+
+  el.newAssessmentModal.addEventListener('click', function (evt) {
+    if (evt.target === el.newAssessmentModal) closeNewAssessmentModal();
+  });
+
+  document.addEventListener('keydown', function (evt) {
+    if (evt.key !== 'Escape') return;
+    if (!el.newAssessmentModal.hidden) closeNewAssessmentModal();
+    if (!el.dialogModal.hidden) closeDialog();
+  });
+
+  document.getElementById('btn-new-assessment').addEventListener('click', openNewAssessmentModal);
+  document.getElementById('btn-new-assessment-cta').addEventListener('click', openNewAssessmentModal);
 
   document.getElementById('btn-print').addEventListener('click', function () {
     window.print();
@@ -751,7 +831,11 @@
         renderCurrentAssessment();
         showToast('Imported "' + imported.name + '".');
       } catch (e) {
-        window.alert('Could not import this file: ' + e.message);
+        showDialog({
+          title: 'Import failed',
+          message: 'Could not import this file: ' + e.message,
+          confirmLabel: 'OK'
+        });
       } finally {
         evt.target.value = '';
       }

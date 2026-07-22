@@ -139,6 +139,33 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
+<div class="modal-overlay no-print" id="new-assessment-modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="new-assessment-title">
+    <h2 id="new-assessment-title">New assessment</h2>
+    <form id="new-assessment-form" novalidate>
+      <div class="field-row">
+        <label for="new-assessment-name">Assessment name</label>
+        <input type="text" id="new-assessment-name" placeholder="e.g. Acme Utilities — 2026 review" autocomplete="off">
+      </div>
+      <div class="modal__actions">
+        <button type="button" class="btn" id="new-assessment-cancel">Cancel</button>
+        <button type="submit" class="btn btn--primary">Create assessment</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay no-print" id="dialog-modal" hidden>
+  <div class="modal" role="alertdialog" aria-modal="true" aria-labelledby="dialog-modal-title" aria-describedby="dialog-modal-message">
+    <h2 id="dialog-modal-title"></h2>
+    <p id="dialog-modal-message"></p>
+    <div class="modal__actions">
+      <button type="button" class="btn" id="dialog-modal-cancel">Cancel</button>
+      <button type="button" class="btn btn--primary" id="dialog-modal-confirm">OK</button>
+    </div>
+  </div>
+</div>
+
 <script src="assets/data.js"></script>
 <script src="assets/app.js"></script>
 </body>

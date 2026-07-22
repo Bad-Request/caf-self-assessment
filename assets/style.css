@@ -292,6 +292,13 @@ a:hover { color: var(--purple-500); }
 }
 .btn--danger-outline:hover { background: var(--not-achieved-bg); }
 
+.btn--danger {
+  background: var(--not-achieved);
+  color: #fff;
+  border-color: var(--not-achieved);
+}
+.btn--danger:hover { background: #921f34; border-color: #921f34; color: #fff; }
+
 .btn--small {
   font-size: 12px;
   padding: 5px 9px;
@@ -748,6 +755,49 @@ a:hover { color: var(--purple-500); }
   margin-bottom: 20px;
 }
 .method-note strong { color: var(--navy-900); }
+
+/* ---------- Modal ---------- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 18, 58, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 600;
+}
+.modal-overlay[hidden] { display: none; }
+
+.modal {
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  padding: 26px 26px 22px;
+  width: 400px;
+  max-width: 100%;
+  box-shadow: var(--shadow-md);
+}
+.modal h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+.modal p {
+  font-size: 13.5px;
+  color: var(--ink-700);
+  margin-bottom: 20px;
+}
+.modal .field-row { margin-bottom: 20px; }
+.modal .field-row input {
+  width: 100%;
+  font-size: 15px;
+  padding: 10px 12px;
+}
+.modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
 
 /* ---------- Toast ---------- */
 
