@@ -32,6 +32,8 @@
 
   var STORAGE_KEY = 'caf_assessments_v1';
   var CURRENT_KEY = 'caf_current_assessment_id_v1';
+  var BASELINE_STORAGE_KEY = 'caf_baselines_v1';
+  var SIDEBAR_COLLAPSED_KEY = 'caf_sidebar_collapsed_v1';
 
   var DATASET = window.CAF_DATASET || [];
 
@@ -42,6 +44,11 @@
     na: { label: 'Not applicable' },
     unset: { label: 'Not yet assessed' }
   };
+
+  // Baseline targets only ever use these three tiers (a target is either
+  // not expected, partially expected, or fully expected — "not applicable"
+  // and "not yet assessed" don't make sense as a *target*).
+  var BASELINE_TIERS = ['not', 'partial', 'achieved'];
 
   var allOutcomes = [];
   var outcomesById = {};
@@ -101,6 +108,68 @@
   }
 
   // ---------------------------------------------------------------
+  // Baseline profile storage
+  //
+  // Baseline profiles are standalone, reusable and separate from any
+  // one assessment — saved under their own localStorage key, so the
+  // same baseline (e.g. a regulator-agreed target) can be applied to
+  // several assessments and exported/imported independently of them.
+  //   { id, name, createdAt, updatedAt,
+  //     targets: { "<outcomeId>": "not"|"partial"|"achieved" } }
+  // Targets are set per contributing outcome (e.g. "A1.a", "C1.d") —
+  // not per principle — since a baseline can legitimately expect more
+  // of one outcome within a principle than another. An outcome with no
+  // key (or an empty value) in "targets" has no baseline target set.
+  // ---------------------------------------------------------------
+
+  function loadBaselines() {
+    try {
+      var raw = window.localStorage.getItem(BASELINE_STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      console.error('Could not read baseline profiles from localStorage', e);
+      return [];
+    }
+  }
+
+  function saveBaselines(list) {
+    try {
+      window.localStorage.setItem(BASELINE_STORAGE_KEY, JSON.stringify(list));
+      return true;
+    } catch (e) {
+      console.error('Could not write baseline profiles to localStorage', e);
+      showToast('Could not save baseline profile — your browser storage may be full or blocked.');
+      return false;
+    }
+  }
+
+  function baselineUid() {
+    return 'bl-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
+  }
+
+  // A short-lived earlier version of this feature keyed "targets" by
+  // principle id (e.g. "A1") rather than by individual outcome id (e.g.
+  // "A1.a"). Expand any such legacy keys onto every outcome under that
+  // principle (skipping outcomes that already have their own explicit
+  // target), so a profile created in that version keeps working.
+  function migrateBaselineTargets(baseline) {
+    var targets = baseline.targets || {};
+    var legacyKeys = Object.keys(targets).filter(function (key) { return !outcomesById[key]; });
+    if (!legacyKeys.length) return false;
+    var migrated = {};
+    Object.keys(targets).forEach(function (key) {
+      if (outcomesById[key]) migrated[key] = targets[key];
+    });
+    allOutcomes.forEach(function (entry) {
+      if (migrated[entry.outcome.id]) return;
+      var legacyValue = targets[entry.principleId];
+      if (legacyValue) migrated[entry.outcome.id] = legacyValue;
+    });
+    baseline.targets = migrated;
+    return true;
+  }
+
+  // ---------------------------------------------------------------
   // Result normalisation + suggestion logic
   // ---------------------------------------------------------------
 
@@ -157,6 +226,69 @@
 
   var assessments = loadAssessments();
   var currentId = getCurrentId();
+  var baselines = loadBaselines();
+  var currentBaselineEditId = null;
+
+  (function migrateAllBaselinesOnLoad() {
+    var changed = false;
+    baselines.forEach(function (b) {
+      if (migrateBaselineTargets(b)) changed = true;
+    });
+    if (changed) saveBaselines(baselines);
+  })();
+
+  function findBaseline(id) {
+    for (var i = 0; i < baselines.length; i++) {
+      if (baselines[i].id === id) return baselines[i];
+    }
+    return null;
+  }
+
+  function createBaseline(name) {
+    var baseline = {
+      id: baselineUid(),
+      name: name || 'Untitled baseline',
+      createdAt: nowIso(),
+      updatedAt: nowIso(),
+      targets: {}
+    };
+    baselines.push(baseline);
+    saveBaselines(baselines);
+    renderBaselineSidebar();
+    refreshBaselineSelectOptions();
+    return baseline;
+  }
+
+  function touchBaseline(id) {
+    var b = findBaseline(id);
+    if (b) {
+      b.updatedAt = nowIso();
+      saveBaselines(baselines);
+    }
+  }
+
+  function deleteBaseline(id) {
+    baselines = baselines.filter(function (b) { return b.id !== id; });
+    saveBaselines(baselines);
+    // Any assessment currently pointed at the deleted profile falls back
+    // to "None" rather than silently referencing a missing profile.
+    var affectedCurrent = false;
+    assessments.forEach(function (a) {
+      if (a.baselineId === id) {
+        a.baselineId = null;
+        if (a.id === currentId) affectedCurrent = true;
+      }
+    });
+    saveAssessments(assessments);
+    renderBaselineSidebar();
+    refreshBaselineSelectOptions();
+    if (affectedCurrent) {
+      el.baselineSelect.value = '';
+      applyBaselineBorders();
+      updateBaselineLegend();
+      applyBaselineToFramework();
+    }
+  }
 
   function findAssessment(id) {
     for (var i = 0; i < assessments.length; i++) {
@@ -171,6 +303,7 @@
       name: name || 'Untitled assessment',
       org: '',
       assessor: '',
+      baselineId: null,
       createdAt: nowIso(),
       updatedAt: nowIso(),
       results: {}
@@ -208,6 +341,9 @@
   // ---------------------------------------------------------------
 
   var el = {
+    sidebar: document.getElementById('app-sidebar'),
+    btnToggleSidebar: document.getElementById('btn-toggle-sidebar'),
+    sidebarBackdrop: document.getElementById('sidebar-backdrop'),
     list: document.getElementById('assessment-list'),
     listEmpty: document.getElementById('assessment-list-empty'),
     emptyState: document.getElementById('empty-state'),
@@ -235,7 +371,20 @@
     dialogTitle: document.getElementById('dialog-modal-title'),
     dialogMessage: document.getElementById('dialog-modal-message'),
     dialogCancel: document.getElementById('dialog-modal-cancel'),
-    dialogConfirm: document.getElementById('dialog-modal-confirm')
+    dialogConfirm: document.getElementById('dialog-modal-confirm'),
+    baselineList: document.getElementById('baseline-list'),
+    baselineListEmpty: document.getElementById('baseline-list-empty'),
+    baselineSelect: document.getElementById('input-baseline-select'),
+    baselineLegend: document.getElementById('baseline-legend'),
+    baselineModal: document.getElementById('baseline-modal'),
+    baselineNameInput: document.getElementById('baseline-name-input'),
+    baselineTargetList: document.getElementById('baseline-target-list'),
+    baselineModalDelete: document.getElementById('baseline-modal-delete'),
+    baselineModalExport: document.getElementById('baseline-modal-export'),
+    baselineModalClose: document.getElementById('baseline-modal-close'),
+    btnNewBaseline: document.getElementById('btn-new-baseline'),
+    btnImportBaseline: document.getElementById('btn-import-baseline'),
+    inputImportBaseline: document.getElementById('input-import-baseline')
   };
 
   var RING_CIRCUMFERENCE = 2 * Math.PI * 52;
@@ -272,6 +421,351 @@
         li.appendChild(btn);
         el.list.appendChild(li);
       });
+  }
+
+  // ---------------------------------------------------------------
+  // Baseline profile sidebar, modal, and application to the grid
+  // ---------------------------------------------------------------
+
+  function renderBaselineSidebar() {
+    el.baselineList.innerHTML = '';
+    el.baselineListEmpty.hidden = baselines.length > 0;
+
+    baselines
+      .slice()
+      .sort(function (a, b) { return (a.name || '').localeCompare(b.name || ''); })
+      .forEach(function (b) {
+        var li = document.createElement('li');
+        li.className = 'baseline-list__row';
+
+        var nameBtn = document.createElement('button');
+        nameBtn.type = 'button';
+        nameBtn.className = 'baseline-list__name';
+        nameBtn.textContent = b.name || 'Untitled baseline';
+        nameBtn.title = 'Edit "' + (b.name || 'Untitled baseline') + '"';
+        nameBtn.addEventListener('click', function () { openBaselineModal(b.id); });
+
+        var exportBtn = document.createElement('button');
+        exportBtn.type = 'button';
+        exportBtn.className = 'baseline-list__icon-btn';
+        exportBtn.title = 'Export this baseline profile (.json)';
+        exportBtn.setAttribute('aria-label', 'Export baseline profile ' + (b.name || 'Untitled baseline'));
+        exportBtn.textContent = '\u2193';
+        exportBtn.addEventListener('click', function (evt) {
+          evt.stopPropagation();
+          exportBaselineJson(b.id);
+        });
+
+        li.appendChild(nameBtn);
+        li.appendChild(exportBtn);
+        el.baselineList.appendChild(li);
+      });
+  }
+
+  function refreshBaselineSelectOptions() {
+    var a = findAssessment(currentId);
+    var previousValue = el.baselineSelect.value;
+    el.baselineSelect.innerHTML = '<option value="">None</option>';
+    baselines
+      .slice()
+      .sort(function (x, y) { return (x.name || '').localeCompare(y.name || ''); })
+      .forEach(function (b) {
+        var opt = document.createElement('option');
+        opt.value = b.id;
+        opt.textContent = b.name || 'Untitled baseline';
+        el.baselineSelect.appendChild(opt);
+      });
+    if (a) {
+      el.baselineSelect.value = (a.baselineId && findBaseline(a.baselineId)) ? a.baselineId : '';
+    } else {
+      el.baselineSelect.value = previousValue && findBaseline(previousValue) ? previousValue : '';
+    }
+  }
+
+  el.baselineSelect.addEventListener('change', function () {
+    var a = findAssessment(currentId);
+    if (!a) return;
+    a.baselineId = el.baselineSelect.value || null;
+    touchCurrent();
+    applyBaselineBorders();
+    updateBaselineLegend();
+    applyBaselineToFramework();
+  });
+
+  function baselineGroupHeading(principle) {
+    var heading = document.createElement('div');
+    heading.className = 'baseline-target-group__heading';
+    heading.innerHTML = '<span class="baseline-target-group__code">Principle ' + principle.id + '</span>' +
+      '<span class="baseline-target-group__title"></span>';
+    heading.querySelector('.baseline-target-group__title').textContent = principle.title;
+    return heading;
+  }
+
+  function baselineOutcomeRow(entry, baseline) {
+    var outcome = entry.outcome;
+    var row = document.createElement('div');
+    row.className = 'baseline-target-row';
+
+    var label = document.createElement('div');
+    label.className = 'baseline-target-row__label';
+    label.innerHTML = '<span class="baseline-target-row__code">' + outcome.id + '</span>' +
+      '<span class="baseline-target-row__title"></span>';
+    label.querySelector('.baseline-target-row__title').textContent = outcome.title;
+
+    var select = document.createElement('select');
+    select.setAttribute('data-outcome-id', outcome.id);
+    select.setAttribute('aria-label', 'Baseline target for outcome ' + outcome.id + ', ' + outcome.title);
+    var noneOpt = document.createElement('option');
+    noneOpt.value = '';
+    noneOpt.textContent = 'No target set';
+    select.appendChild(noneOpt);
+    BASELINE_TIERS.forEach(function (tier) {
+      var opt = document.createElement('option');
+      opt.value = tier;
+      opt.textContent = STATUS_META[tier].label;
+      select.appendChild(opt);
+    });
+    select.value = (baseline.targets && baseline.targets[outcome.id]) || '';
+    select.addEventListener('change', function () {
+      if (!baseline.targets) baseline.targets = {};
+      if (select.value) {
+        baseline.targets[outcome.id] = select.value;
+      } else {
+        delete baseline.targets[outcome.id];
+      }
+      touchBaseline(baseline.id);
+      // Live-update the grid if this profile is the one currently applied.
+      var a = findAssessment(currentId);
+      if (a && a.baselineId === baseline.id) {
+        applyBaselineBorders();
+        updateBaselineLegend();
+        applyBaselineToFramework();
+      }
+    });
+
+    row.appendChild(label);
+    row.appendChild(select);
+    return row;
+  }
+
+  function openBaselineModal(id) {
+    var baseline = findBaseline(id);
+    if (!baseline) return;
+    currentBaselineEditId = id;
+    el.baselineNameInput.value = baseline.name || '';
+    el.baselineTargetList.innerHTML = '';
+    var frag = document.createDocumentFragment();
+    DATASET.forEach(function (objective) {
+      objective.principles.forEach(function (principle) {
+        frag.appendChild(baselineGroupHeading(principle));
+        principle.outcomes.forEach(function (outcome) {
+          var entry = { objectiveId: objective.id, principleId: principle.id, outcome: outcome };
+          frag.appendChild(baselineOutcomeRow(entry, baseline));
+        });
+      });
+    });
+    el.baselineTargetList.appendChild(frag);
+    el.baselineModal.hidden = false;
+    window.setTimeout(function () { el.baselineNameInput.focus(); }, 20);
+  }
+
+  function closeBaselineModal() {
+    el.baselineModal.hidden = true;
+    currentBaselineEditId = null;
+  }
+
+  var baselineNameDebounce = null;
+  el.baselineNameInput.addEventListener('input', function () {
+    var baseline = findBaseline(currentBaselineEditId);
+    if (!baseline) return;
+    baseline.name = el.baselineNameInput.value;
+    clearTimeout(baselineNameDebounce);
+    baselineNameDebounce = setTimeout(function () {
+      touchBaseline(baseline.id);
+      renderBaselineSidebar();
+      refreshBaselineSelectOptions();
+    }, 300);
+  });
+
+  el.baselineModalClose.addEventListener('click', closeBaselineModal);
+  el.baselineModal.addEventListener('click', function (evt) {
+    if (evt.target === el.baselineModal) closeBaselineModal();
+  });
+
+  el.baselineModalExport.addEventListener('click', function () {
+    if (currentBaselineEditId) exportBaselineJson(currentBaselineEditId);
+  });
+
+  el.baselineModalDelete.addEventListener('click', function () {
+    var baseline = findBaseline(currentBaselineEditId);
+    if (!baseline) return;
+    showDialog({
+      title: 'Delete this baseline profile?',
+      message: '"' + (baseline.name || 'Untitled baseline') + '" will be permanently deleted, and any assessments using it will be set back to "None". This cannot be undone.',
+      tone: 'danger',
+      confirmLabel: 'Delete',
+      cancelLabel: 'Cancel',
+      onConfirm: function () {
+        deleteBaseline(baseline.id);
+        closeBaselineModal();
+        showToast('Baseline profile deleted.');
+      }
+    });
+  });
+
+  el.btnNewBaseline.addEventListener('click', function () {
+    var baseline = createBaseline('Untitled baseline');
+    showToast('New baseline profile created.');
+    openBaselineModal(baseline.id);
+  });
+
+  function exportBaselineJson(id) {
+    var baseline = findBaseline(id);
+    if (!baseline) return;
+    var blob = new Blob([JSON.stringify(baseline, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    var safeName = (baseline.name || 'caf-baseline').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    link.href = url;
+    link.download = (safeName || 'caf-baseline') + '.json';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    showToast('Exported ' + link.download);
+  }
+
+  el.btnImportBaseline.addEventListener('click', function () {
+    el.inputImportBaseline.click();
+  });
+
+  el.inputImportBaseline.addEventListener('change', function (evt) {
+    var file = evt.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      try {
+        var imported = JSON.parse(reader.result);
+        if (!imported || typeof imported !== 'object' || typeof imported.targets !== 'object' || imported.targets === null) {
+          throw new Error('File does not look like a CAF baseline profile export.');
+        }
+        imported.id = baselineUid(); // avoid clobbering an existing profile with the same id
+        imported.updatedAt = nowIso();
+        if (!imported.createdAt) imported.createdAt = nowIso();
+        if (!imported.name) imported.name = 'Imported baseline';
+        migrateBaselineTargets(imported);
+        baselines.push(imported);
+        saveBaselines(baselines);
+        renderBaselineSidebar();
+        refreshBaselineSelectOptions();
+        showToast('Imported "' + imported.name + '".');
+      } catch (e) {
+        showDialog({
+          title: 'Import failed',
+          message: 'Could not import this file: ' + e.message,
+          confirmLabel: 'OK'
+        });
+      } finally {
+        evt.target.value = '';
+      }
+    };
+    reader.readAsText(file);
+  });
+
+  function applyBaselineBorders() {
+    var a = findAssessment(currentId);
+    var targets = {};
+    if (a && a.baselineId) {
+      var b = findBaseline(a.baselineId);
+      if (b && b.targets) targets = b.targets;
+    }
+    allOutcomes.forEach(function (entry) {
+      var dot = document.getElementById('grid-dot-' + entry.outcome.id);
+      if (!dot) return;
+      var target = targets[entry.outcome.id] || '';
+      if (target) {
+        dot.setAttribute('data-baseline', target);
+        dot.title = entry.outcome.id + ' — ' + entry.outcome.title +
+          ' · Baseline target: ' + STATUS_META[target].label;
+      } else {
+        dot.removeAttribute('data-baseline');
+        dot.title = entry.outcome.id + ' — ' + entry.outcome.title;
+      }
+    });
+  }
+
+  // Shows the baseline target inline in the main framework view — a badge
+  // on each outcome card (visible while ticking IGPs for that outcome)
+  // and a summary row of chips on each principle's header (visible at a
+  // glance before working through its outcomes) — so the target is in
+  // view the whole time someone is working through the exercise, not
+  // just on the dashboard grid at the top of the page.
+  function applyBaselineToFramework() {
+    var a = findAssessment(currentId);
+    var targets = {};
+    if (a && a.baselineId) {
+      var b = findBaseline(a.baselineId);
+      if (b && b.targets) targets = b.targets;
+    }
+
+    allOutcomes.forEach(function (entry) {
+      var badge = document.getElementById('baseline-badge-' + entry.outcome.id);
+      if (!badge) return;
+      var target = targets[entry.outcome.id];
+      if (target) {
+        badge.hidden = false;
+        badge.className = 'baseline-badge baseline-badge--' + target;
+        badge.textContent = 'Target: ' + STATUS_META[target].label;
+      } else {
+        badge.hidden = true;
+        badge.className = 'baseline-badge';
+        badge.textContent = '';
+      }
+    });
+
+    DATASET.forEach(function (objective) {
+      objective.principles.forEach(function (principle) {
+        var container = document.getElementById('principle-baselines-' + principle.id);
+        if (!container) return;
+        container.innerHTML = '';
+        var hasAny = false;
+        principle.outcomes.forEach(function (outcome) {
+          var target = targets[outcome.id];
+          if (!target) return;
+          hasAny = true;
+          var chip = document.createElement('span');
+          chip.className = 'principle-baseline-chip principle-baseline-chip--' + target;
+          chip.title = outcome.id + ' — ' + outcome.title + ' · Baseline target: ' + STATUS_META[target].label;
+          chip.textContent = outcome.id + ' ' + STATUS_META[target].label;
+          container.appendChild(chip);
+        });
+        container.hidden = !hasAny;
+      });
+    });
+  }
+
+  function updateBaselineLegend() {
+    var a = findAssessment(currentId);
+    var baseline = a && a.baselineId ? findBaseline(a.baselineId) : null;
+    el.baselineLegend.innerHTML = '';
+    if (!baseline) {
+      var none = document.createElement('span');
+      none.className = 'baseline-legend__none';
+      none.textContent = 'No baseline profile selected for this assessment — dots have no border.';
+      el.baselineLegend.appendChild(none);
+      return;
+    }
+    var intro = document.createElement('span');
+    intro.textContent = 'Baseline "' + (baseline.name || 'Untitled baseline') + '" — border key:';
+    el.baselineLegend.appendChild(intro);
+    BASELINE_TIERS.forEach(function (tier) {
+      var item = document.createElement('span');
+      item.className = 'baseline-legend__item';
+      item.innerHTML = '<span class="baseline-legend__swatch baseline-legend__swatch--' + tier + '"></span>' +
+        '<span></span>';
+      item.querySelector('span:last-child').textContent = STATUS_META[tier].label;
+      el.baselineLegend.appendChild(item);
+    });
   }
 
   // ---------------------------------------------------------------
@@ -317,7 +811,8 @@
         pHeader.className = 'principle-header';
         pHeader.innerHTML =
           '<div class="principle-header__eyebrow">Principle ' + principle.id + '</div>' +
-          '<h3></h3><p></p>';
+          '<h3></h3><p></p>' +
+          '<div class="principle-header__baselines" id="principle-baselines-' + principle.id + '" hidden></div>';
         pHeader.querySelector('h3').textContent = principle.title;
         pHeader.querySelector('p').textContent = principle.description;
         pBlock.appendChild(pHeader);
@@ -362,6 +857,12 @@
     badge.className = 'status-badge status-badge--unset';
     badge.textContent = STATUS_META.unset.label;
     statusArea.appendChild(badge);
+
+    var baselineBadge = document.createElement('span');
+    baselineBadge.className = 'baseline-badge';
+    baselineBadge.id = 'baseline-badge-' + outcome.id;
+    baselineBadge.hidden = true;
+    statusArea.appendChild(baselineBadge);
 
     var statusControl = document.createElement('div');
     statusControl.className = 'status-control';
@@ -668,6 +1169,10 @@
 
     applyAllState(a);
     updateDashboard();
+    refreshBaselineSelectOptions();
+    applyBaselineBorders();
+    updateBaselineLegend();
+    applyBaselineToFramework();
   }
 
   // ---------------------------------------------------------------
@@ -823,6 +1328,12 @@
         imported.id = uid(); // avoid clobbering an existing assessment with the same id
         imported.updatedAt = nowIso();
         if (!imported.name) imported.name = 'Imported assessment';
+        // A baselineId from another browser/device won't correspond to any
+        // baseline profile saved here, so don't carry over a dangling
+        // reference — the assessor can re-attach the right profile locally.
+        if (!imported.baselineId || !findBaseline(imported.baselineId)) {
+          imported.baselineId = null;
+        }
         assessments.push(imported);
         saveAssessments(assessments);
         currentId = imported.id;
@@ -842,6 +1353,66 @@
     };
     reader.readAsText(file);
   });
+
+  // ---------------------------------------------------------------
+  // Sidebar toggle
+  // ---------------------------------------------------------------
+  // Desktop: the sidebar is a permanent column that can be collapsed to
+  // reclaim width, and the preference is remembered. Mobile/tablet: the
+  // sidebar is an off-canvas drawer over the content (see the max-width
+  // media query in style.css) that always starts closed. Both cases are
+  // driven by the same open/closed toggle so there's one code path.
+
+  var sidebarBreakpoint = window.matchMedia('(min-width: 921px)');
+
+  function isSidebarDesktop() { return sidebarBreakpoint.matches; }
+
+  function setSidebarOpen(open) {
+    document.body.classList.toggle('sidebar-open', open);
+    document.body.classList.toggle('sidebar-collapsed', !open);
+    el.btnToggleSidebar.setAttribute('aria-expanded', String(open));
+    el.sidebarBackdrop.hidden = !open;
+  }
+
+  function initSidebarState() {
+    var collapsed = false;
+    try { collapsed = window.localStorage.getItem(SIDEBAR_COLLAPSED_KEY) === '1'; } catch (e) {}
+    setSidebarOpen(isSidebarDesktop() ? !collapsed : false);
+  }
+
+  el.btnToggleSidebar.addEventListener('click', function () {
+    var open = !document.body.classList.contains('sidebar-open');
+    setSidebarOpen(open);
+    if (isSidebarDesktop()) {
+      try { window.localStorage.setItem(SIDEBAR_COLLAPSED_KEY, open ? '0' : '1'); } catch (e) {}
+    }
+  });
+
+  el.sidebarBackdrop.addEventListener('click', function () { setSidebarOpen(false); });
+
+  document.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Escape' && !isSidebarDesktop() && document.body.classList.contains('sidebar-open')) {
+      setSidebarOpen(false);
+    }
+  });
+
+  // Crossing the desktop/mobile breakpoint changes what "open" should
+  // mean (permanent column vs. off-canvas drawer), so recompute rather
+  // than carry over whatever state the other layout left behind.
+  if (sidebarBreakpoint.addEventListener) {
+    sidebarBreakpoint.addEventListener('change', initSidebarState);
+  } else if (sidebarBreakpoint.addListener) {
+    sidebarBreakpoint.addListener(initSidebarState);
+  }
+
+  // On mobile, picking something in the drawer should close it so the
+  // result (a modal, a switched assessment) is immediately visible.
+  el.sidebar.addEventListener('click', function (evt) {
+    if (isSidebarDesktop()) return;
+    if (evt.target.closest('button, a')) setSidebarOpen(false);
+  });
+
+  initSidebarState();
 
   // ---------------------------------------------------------------
   // Toast
@@ -871,5 +1442,6 @@
   }
 
   renderSidebar();
+  renderBaselineSidebar();
   renderCurrentAssessment();
 })();

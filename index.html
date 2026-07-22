@@ -25,6 +25,9 @@
 
 <header class="app-header no-print">
   <div class="app-header__brand">
+    <button type="button" class="btn btn--icon sidebar-toggle" id="btn-toggle-sidebar" title="Toggle sidebar" aria-label="Toggle sidebar" aria-expanded="true" aria-controls="app-sidebar">
+      <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M2.5 5h15a1 1 0 100-2h-15a1 1 0 100 2zm0 6h15a1 1 0 100-2h-15a1 1 0 100 2zm0 6h15a1 1 0 100-2h-15a1 1 0 100 2z"/></svg>
+    </button>
     <span class="brand-mark" aria-hidden="true">
       <svg viewBox="0 0 32 32" width="30" height="30">
         <polygon points="16,2 29,9 29,23 16,30 3,23 3,9" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -44,9 +47,11 @@
   </div>
 </header>
 
-<div class="app-shell">
+<div class="sidebar-backdrop no-print" id="sidebar-backdrop" hidden></div>
 
-  <nav class="sidebar no-print" aria-label="Saved assessments">
+<div class="app-shell" id="app-shell">
+
+  <nav class="sidebar no-print" id="app-sidebar" aria-label="Saved assessments">
     <div class="sidebar__section">
       <div class="sidebar__heading">
         <h2>Assessments</h2>
@@ -54,6 +59,17 @@
       </div>
       <ul class="assessment-list" id="assessment-list" role="listbox" aria-label="Saved assessments"></ul>
       <p class="sidebar__empty" id="assessment-list-empty" hidden>No assessments yet. Select "+" to start one.</p>
+    </div>
+
+    <div class="sidebar__section">
+      <div class="sidebar__heading">
+        <h2>Baseline profiles</h2>
+        <button type="button" class="btn btn--icon" id="btn-new-baseline" title="New baseline profile" aria-label="New baseline profile">+</button>
+      </div>
+      <ul class="baseline-list" id="baseline-list" aria-label="Saved baseline profiles"></ul>
+      <p class="sidebar__empty" id="baseline-list-empty" hidden>No baseline profiles yet.</p>
+      <button type="button" class="btn btn--full" id="btn-import-baseline">Import baseline (.json)</button>
+      <input type="file" id="input-import-baseline" accept="application/json" hidden>
     </div>
 
     <div class="sidebar__section sidebar__section--tools">
@@ -66,7 +82,7 @@
 
     <div class="sidebar__section sidebar__footer">
       <p>Reference: NCSC <a href="https://www.ncsc.gov.uk/collection/cyber-assessment-framework" target="_blank" rel="noopener">Cyber Assessment Framework 4.0</a>. Contains 41 contributing outcomes across 4 objectives and 14 principles.</p>
-      <p class="version-tag">v1.0.0</p>
+      <p class="version-tag">v1.2.0</p>
     </div>
   </nav>
 
@@ -92,6 +108,12 @@
         <div class="field-row">
           <label for="input-assessor-name">Assessor</label>
           <input type="text" id="input-assessor-name" placeholder="Name / role">
+        </div>
+        <div class="field-row">
+          <label for="input-baseline-select">Baseline profile</label>
+          <select id="input-baseline-select">
+            <option value="">None</option>
+          </select>
         </div>
         <div class="field-row field-row--actions">
           <button type="button" class="btn btn--danger-outline" id="btn-delete-assessment">Delete this assessment</button>
@@ -122,8 +144,9 @@
         <div class="dashboard__objectives" id="objective-bars" aria-label="Score by objective"></div>
 
         <div class="dashboard__grid">
-          <h3>Outcome grid <span class="hint">— every dot is one of the 41 contributing outcomes; colour shows its current status; select a dot to jump to it</span></h3>
+          <h3>Outcome grid <span class="hint">— every dot is one of the 41 contributing outcomes; fill colour shows its current status, border colour (if set) shows its baseline target; select a dot to jump to it</span></h3>
           <div class="outcome-grid" id="outcome-grid"></div>
+          <div class="baseline-legend" id="baseline-legend"></div>
         </div>
       </section>
 
@@ -152,6 +175,23 @@
         <button type="submit" class="btn btn--primary">Create assessment</button>
       </div>
     </form>
+  </div>
+</div>
+
+<div class="modal-overlay no-print" id="baseline-modal" hidden>
+  <div class="modal modal--wide" role="dialog" aria-modal="true" aria-labelledby="baseline-modal-title">
+    <h2 id="baseline-modal-title">Baseline profile</h2>
+    <div class="field-row">
+      <label for="baseline-name-input">Baseline name</label>
+      <input type="text" id="baseline-name-input" placeholder="e.g. Regulator baseline 2026">
+    </div>
+    <p>Set the target level for each contributing outcome (e.g. A1.a, C1.d). The CAF does not require every outcome to be fully "Achieved" — a baseline lets you record what's actually expected here, separately from what's currently in place. Leave an outcome as "No target set" if none applies.</p>
+    <div class="baseline-target-list" id="baseline-target-list"></div>
+    <div class="modal__actions">
+      <button type="button" class="btn btn--danger-outline" id="baseline-modal-delete">Delete profile</button>
+      <button type="button" class="btn" id="baseline-modal-export">Export (.json)</button>
+      <button type="button" class="btn btn--primary" id="baseline-modal-close">Done</button>
+    </div>
   </div>
 </div>
 
