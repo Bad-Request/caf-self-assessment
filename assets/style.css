@@ -57,6 +57,8 @@ html, body {
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.5;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4 {
@@ -828,6 +830,55 @@ a:hover { color: var(--purple-500); }
 @media (max-width: 560px) {
   .assessment-meta { grid-template-columns: 1fr; }
   .dashboard__objectives { grid-template-columns: 1fr; }
+
+  .main-content { padding: 16px 14px 48px; }
+
+  /* The outcome-card header row can no longer assume desktop width:
+     let the title group and status area each take a full row instead
+     of forcing the status buttons to stay on one unbreakable line. */
+  .outcome-card__head { gap: 10px; }
+  .status-area { align-items: stretch; width: 100%; }
+
+  /* Status buttons: stop forcing one unbroken nowrap row, and let the
+     pill wrap onto two rows of two instead of overflowing sideways. */
+  .status-control {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    border-radius: var(--radius-md);
+  }
+  .status-control button {
+    white-space: normal;
+    text-align: center;
+    border-left: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+    padding: 8px 6px;
+    font-size: 11.5px;
+  }
+  .status-control button:first-child,
+  .status-control button:nth-child(2) { border-top: none; }
+  .status-control button:first-child,
+  .status-control button:nth-child(3) { border-left: none; }
+
+  /* IGP panel: 220px columns don't fit narrow phones — drop to one
+     column so nothing is forced wider than the viewport. */
+  .igp-panel { grid-template-columns: 1fr; }
+
+  /* Score ring + legend: on desktop these sit side by side and the
+     legend's two auto-sized columns (long labels like "Partially
+     achieved") don't shrink, so together with the ring they're wider
+     than a phone screen. Stack them instead. */
+  .dashboard { padding: 20px 16px; }
+  .dashboard__score { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .score-legend { grid-template-columns: 1fr; width: 100%; }
+
+  /* Status badge text (e.g. "PARTIALLY ACHIEVED · MANUAL") is another
+     unbreakable nowrap string — let it wrap rather than force width. */
+  .status-badge {
+    white-space: normal;
+    text-align: right;
+    border-radius: var(--radius-sm);
+  }
 }
 
 /* ---------- Print ---------- */
