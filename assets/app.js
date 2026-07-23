@@ -149,40 +149,13 @@
     return 'bl-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
   }
 
-  // A short-lived earlier version of this feature keyed "targets" by
-  // principle id (e.g. "A1") rather than by individual outcome id (e.g.
-  // "A1.a"). Expand any such legacy keys onto every outcome under that
-  // principle (skipping outcomes that already have their own explicit
-  // target), so a profile created in that version keeps working.
-  function migrateBaselineTargets(baseline) {
-    var targets = baseline.targets || {};
-    var legacyKeys = Object.keys(targets).filter(function (key) { return !outcomesById[key]; });
-    if (!legacyKeys.length) return false;
-    var migrated = {};
-    Object.keys(targets).forEach(function (key) {
-      if (outcomesById[key]) migrated[key] = targets[key];
-    });
-    allOutcomes.forEach(function (entry) {
-      if (migrated[entry.outcome.id]) return;
-      var legacyValue = targets[entry.principleId];
-      if (legacyValue) migrated[entry.outcome.id] = legacyValue;
-    });
-    baseline.targets = migrated;
-    return true;
-  }
-
   // ---------------------------------------------------------------
   // Result normalisation + suggestion logic
   // ---------------------------------------------------------------
 
   function normalizeResult(raw) {
     if (!raw) return { checks: {}, override: null, notes: '' };
-    var checks = raw.checks || {};
-    // Back-compat: assessments saved before this version stored a plain
-    // "status" field with no checkboxes. Treat that as a manual override.
-    var override = (typeof raw.override !== 'undefined') ? raw.override : (raw.status || null);
-    var notes = raw.notes || '';
-    return { checks: checks, override: override || null, notes: notes };
+    return { checks: raw.checks || {}, override: raw.override || null, notes: raw.notes || '' };
   }
 
   function computeSuggestedStatus(outcome, checks) {
@@ -230,14 +203,6 @@
   var currentId = getCurrentId();
   var baselines = loadBaselines();
   var currentBaselineEditId = null;
-
-  (function migrateAllBaselinesOnLoad() {
-    var changed = false;
-    baselines.forEach(function (b) {
-      if (migrateBaselineTargets(b)) changed = true;
-    });
-    if (changed) saveBaselines(baselines);
-  })();
 
   function findBaseline(id) {
     for (var i = 0; i < baselines.length; i++) {
@@ -657,7 +622,6 @@
         imported.updatedAt = nowIso();
         if (!imported.createdAt) imported.createdAt = nowIso();
         if (!imported.name) imported.name = 'Imported baseline';
-        migrateBaselineTargets(imported);
         baselines.push(imported);
         saveBaselines(baselines);
         renderBaselineSidebar();
