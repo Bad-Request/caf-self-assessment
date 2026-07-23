@@ -24,6 +24,11 @@
   See README.md for how to serve it locally.
 -->
 <link rel="stylesheet" href="assets/style.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon-512.png" sizes="512x512" type="image/png">
+<link rel="icon" href="assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#11123a">
 <script>
 (function () {
   try {
@@ -120,7 +125,7 @@
 
     <div class="sidebar__section sidebar__footer">
       <p>Reference: NCSC <a href="https://www.ncsc.gov.uk/collection/cyber-assessment-framework" target="_blank" rel="noopener">Cyber Assessment Framework 4.0</a>. Contains 41 contributing outcomes across 4 objectives and 14 principles.</p>
-      <p class="version-tag">v2.1.0</p>
+      <p class="version-tag">v2.2.0</p>
       <p class="footer-links"><a href="https://github.com/Bad-Request/caf-self-assessment" target="_blank" rel="noopener">View on GitHub &mdash; contributions welcome</a></p>
     </div>
   </nav>
@@ -247,5 +252,12 @@
 
 <script src="assets/data.js"></script>
 <script type="module" src="assets/js/app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
 </body>
 </html>

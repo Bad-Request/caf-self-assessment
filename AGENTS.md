@@ -12,6 +12,10 @@ Both are easy to forget mid-task — check this list before opening a PR.
     Changelog](https://keepachangelog.com/en/1.1.0/): `Added` / `Changed` /
     `Fixed` / `Removed` subsections, newest first.
   - `index.html` — the `<p class="version-tag">vX.Y.Z</p>` line.
+- [ ] If the change touches any file listed in `sw.js`'s `APP_SHELL` array
+  (or adds/removes one), bump `CACHE_VERSION` in `sw.js` too — otherwise
+  users who installed the app offline keep serving stale cached files
+  after the update.
 - [ ] Pick the version bump by semver: breaking change (e.g. the app no
   longer works the way it used to, a stored data format changes
   incompatibly) → major; new capability or non-breaking behaviour change →
