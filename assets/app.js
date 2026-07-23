@@ -109,6 +109,22 @@
     return new Date().toISOString();
   }
 
+  // Trailing-edge debounce: delays invoking fn until `wait` ms after the
+  // last call. Used to coalesce rapid typing into a single persist/render
+  // pass — the caller is responsible for applying any state change to the
+  // in-memory model immediately (before debouncing), so a delayed run never
+  // reads state that's since moved on (e.g. the user switching to a
+  // different saved assessment while a keystroke's write is still pending).
+  function debounce(fn, wait) {
+    var timer = null;
+    return function () {
+      var args = arguments;
+      var ctx = this;
+      clearTimeout(timer);
+      timer = setTimeout(function () { fn.apply(ctx, args); }, wait);
+    };
+  }
+
   // ---------------------------------------------------------------
   // Baseline profile storage
   //
@@ -578,17 +594,17 @@
     currentBaselineEditId = null;
   }
 
-  var baselineNameDebounce = null;
+  var persistBaselineNameChange = debounce(function (baselineId) {
+    touchBaseline(baselineId);
+    renderBaselineSidebar();
+    refreshBaselineSelectOptions();
+  }, 300);
+
   el.baselineNameInput.addEventListener('input', function () {
     var baseline = findBaseline(currentBaselineEditId);
     if (!baseline) return;
     baseline.name = el.baselineNameInput.value;
-    clearTimeout(baselineNameDebounce);
-    baselineNameDebounce = setTimeout(function () {
-      touchBaseline(baseline.id);
-      renderBaselineSidebar();
-      refreshBaselineSelectOptions();
-    }, 300);
+    persistBaselineNameChange(baseline.id);
   });
 
   el.baselineModalClose.addEventListener('click', closeBaselineModal);
@@ -935,12 +951,10 @@
     notesTextarea.placeholder = 'Justification, evidence references, or follow-up actions for this outcome…';
     notesTextarea.setAttribute('data-notes-for', outcome.id);
 
-    var debounceTimer = null;
+    var persistNotesChange = debounce(touchCurrent, 300);
     notesTextarea.addEventListener('input', function () {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(function () {
-        setNotes(outcome.id, notesTextarea.value);
-      }, 400);
+      setNotes(outcome.id, notesTextarea.value);
+      persistNotesChange();
     });
 
     notesRow.appendChild(notesLabel);
@@ -1047,7 +1061,6 @@
     var r = normalizeResult(a.results[outcomeId]);
     r.notes = notes;
     a.results[outcomeId] = r;
-    touchCurrent();
   }
 
   function applyOutcomeState(outcomeId, rawResult) {
@@ -1198,16 +1211,15 @@
   // ---------------------------------------------------------------
 
   function bindMetaField(input, prop) {
-    var t = null;
+    var persistChange = debounce(function () {
+      touchCurrent();
+      renderSidebar();
+    }, 300);
     input.addEventListener('input', function () {
       var a = findAssessment(currentId);
       if (!a) return;
       a[prop] = input.value;
-      clearTimeout(t);
-      t = setTimeout(function () {
-        touchCurrent();
-        renderSidebar();
-      }, 300);
+      persistChange();
     });
   }
 
