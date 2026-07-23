@@ -616,10 +616,21 @@ a:hover { color: var(--purple-500); }
 }
 
 .objective-bar {
+  display: block;
+  width: 100%;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: var(--radius-md);
   padding: 12px 14px;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.objective-bar:hover,
+.objective-bar:focus-visible {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.2);
 }
 .objective-bar__head {
   display: flex;
@@ -901,6 +912,8 @@ a:hover { color: var(--purple-500); }
 .igp-toggle::before {
   content: "▸";
   display: inline-block;
+  font-size: 1.3em;
+  line-height: 1;
   transition: transform 0.15s ease;
 }
 .igp-toggle[aria-expanded="true"]::before { transform: rotate(90deg); }
