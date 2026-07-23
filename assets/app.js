@@ -629,9 +629,9 @@
     var blob = new Blob([JSON.stringify(baseline, null, 2)], { type: 'application/json' });
     var url = URL.createObjectURL(blob);
     var link = document.createElement('a');
-    var safeName = (baseline.name || 'caf-baseline').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    var safeName = (baseline.name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     link.href = url;
-    link.download = (safeName || 'caf-baseline') + '.json';
+    link.download = (safeName || 'baseline') + '-CAFBaseline.json';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -797,6 +797,7 @@
     DATASET.forEach(function (objective) {
       var objBlock = document.createElement('div');
       objBlock.className = 'objective-block';
+      objBlock.id = 'objective-' + objective.id;
       objBlock.innerHTML =
         '<div class="objective-header">' +
         '  <span class="objective-header__code">' + objective.id + '</span>' +
@@ -1136,8 +1137,10 @@
         });
       });
       var s = scoreFor(entries, results);
-      var bar = document.createElement('div');
+      var bar = document.createElement('button');
+      bar.type = 'button';
       bar.className = 'objective-bar';
+      bar.setAttribute('aria-label', 'Jump to Objective ' + objective.id + ', ' + objective.title);
       bar.innerHTML =
         '<div class="objective-bar__head">' +
         '  <div><span class="objective-bar__code">Obj ' + objective.id + '</span><br>' +
@@ -1146,6 +1149,14 @@
         '</div>' +
         '<div class="objective-bar__track"><div class="objective-bar__fill" style="width:' + s.pct + '%"></div></div>';
       bar.querySelector('.objective-bar__title').textContent = objective.title;
+      bar.addEventListener('click', function () {
+        var target = document.getElementById('objective-' + objective.id);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          target.style.outline = '2px solid var(--gold-500)';
+          setTimeout(function () { target.style.outline = ''; }, 1200);
+        }
+      });
       el.objectiveBars.appendChild(bar);
     });
   }
@@ -1305,9 +1316,9 @@
     var blob = new Blob([JSON.stringify(a, null, 2)], { type: 'application/json' });
     var url = URL.createObjectURL(blob);
     var link = document.createElement('a');
-    var safeName = (a.name || 'caf-assessment').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    var safeName = (a.name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     link.href = url;
-    link.download = (safeName || 'caf-assessment') + '.json';
+    link.download = (safeName || 'assessment') + '-CAFAssessment.json';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
