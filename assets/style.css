@@ -623,7 +623,10 @@ a:hover { color: var(--purple-500); }
 }
 
 .objective-bar {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   width: 100%;
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1);
@@ -642,8 +645,7 @@ a:hover { color: var(--purple-500); }
 .objective-bar__head {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 8px;
+  align-items: flex-start;
   gap: 6px;
 }
 .objective-bar__code {
@@ -652,13 +654,17 @@ a:hover { color: var(--purple-500); }
   color: var(--gold-400);
 }
 .objective-bar__title {
+  display: block;
   font-size: 0.8333rem;
   color: var(--slate-300);
+  margin: 10px 0;
 }
 .objective-bar__pct {
   font-family: var(--font-mono);
   font-weight: 600;
   font-size: 0.8667rem;
+  color: var(--slate-300);
+  flex: 0 0 auto;
 }
 .objective-bar__track {
   height: 6px;
