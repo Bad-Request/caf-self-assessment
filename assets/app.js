@@ -898,7 +898,7 @@
     toggle.type = 'button';
     toggle.className = 'igp-toggle';
     toggle.setAttribute('aria-expanded', 'false');
-    toggle.textContent = 'Tick indicators to assess this outcome';
+    toggle.textContent = 'Show indicators to assess this outcome';
     var panelId = 'igp-panel-' + outcome.id;
     toggle.setAttribute('aria-controls', panelId);
 
