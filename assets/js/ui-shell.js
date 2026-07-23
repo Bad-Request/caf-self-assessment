@@ -196,3 +196,20 @@ el.fontSizeToggle.addEventListener('click', function (evt) {
 });
 
 applyFontSize(getStoredFontSize() || 'standard');
+
+// ---------------------------------------------------------------
+// Back to top
+// ---------------------------------------------------------------
+// The page (not a scrolling sub-container) is what scrolls here, so a
+// plain window scroll listener is enough — show the button once the
+// user has scrolled far enough that "top" isn't already in view.
+
+var BACK_TO_TOP_THRESHOLD = 400;
+
+window.addEventListener('scroll', function () {
+  el.backToTop.hidden = window.scrollY < BACK_TO_TOP_THRESHOLD;
+}, { passive: true });
+
+el.backToTop.addEventListener('click', function () {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});

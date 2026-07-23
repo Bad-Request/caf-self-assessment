@@ -1162,6 +1162,30 @@ a:hover { color: var(--purple-500); }
   z-index: 500;
 }
 
+/* ---------- Back to top ---------- */
+
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--navy-900);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  z-index: 500;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+.back-to-top:hover { background: var(--navy-800); }
+.back-to-top:active { transform: scale(0.94); }
+.back-to-top:focus-visible { outline: 2px solid var(--gold-500); outline-offset: 2px; }
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 920px) {

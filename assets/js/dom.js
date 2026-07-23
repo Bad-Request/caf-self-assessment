@@ -47,7 +47,8 @@ export const el = {
   btnImportBaseline: document.getElementById('btn-import-baseline'),
   inputImportBaseline: document.getElementById('input-import-baseline'),
   themeToggle: document.getElementById('theme-toggle'),
-  fontSizeToggle: document.getElementById('fontsize-toggle')
+  fontSizeToggle: document.getElementById('fontsize-toggle'),
+  backToTop: document.getElementById('btn-back-to-top')
 };
 
 export const RING_CIRCUMFERENCE = 2 * Math.PI * 52;

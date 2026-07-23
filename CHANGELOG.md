@@ -5,6 +5,14 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.3.0] - 2026-07-23
+
+### Added
+
+- A "back to top" button that appears once you've scrolled down the page
+  (e.g. through a long outcome/framework list) and smooth-scrolls back to
+  the top on select. Hidden when printing.
+
 ## [2.2.0] - 2026-07-23
 
 ### Added
