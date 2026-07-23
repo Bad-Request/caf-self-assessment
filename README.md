@@ -6,6 +6,8 @@ A fully static self-assessment tool for the NCSC Cyber Assessment Framework (CAF
 
 There is **no server-side component at all**: no PHP, no build step, no database, nothing to install. It's plain HTML/CSS/JS, served as a folder of static files — the app logic is a handful of native ES modules, no bundler required.
 
+See [CHANGELOG.md](CHANGELOG.md) for release history (this project follows [Semantic Versioning](https://semver.org/)).
+
 ## Data handling — important
 
 Every assessment you create — organisation name, ticks, overrides, notes — is saved entirely in your browser's `localStorage`. Baseline profiles (see [Features](#features)) are saved the same way, under their own separate `localStorage` key. This means:
