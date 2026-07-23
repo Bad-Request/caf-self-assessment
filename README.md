@@ -32,7 +32,11 @@ Nothing to install, but the app logic loads as native ES modules, which browsers
 | File | Purpose |
 |---|---|
 | `index.html` | The app shell. |
-| `assets/data.js` | The full CAF 4.0 dataset (read-only reference content, Crown copyright / OGL v3.0) as a plain JS variable — `window.CAF_DATASET`. Loaded as a classic script, before the module entry point. |
+| `assets/data.json` | Source of truth for the full CAF 4.0 dataset (read-only reference content, Crown copyright / OGL v3.0). See [docs/data-schema.md](docs/data-schema.md). Edit this, not `data.js`. |
+| `assets/data.js` | Generated from `assets/data.json` by `tools/build-data.js` — a plain JS variable, `window.CAF_DATASET`. Loaded as a classic script, before the module entry point. |
+| `docs/data-schema.md` | Documents the `assets/data.json` structure and the invariants a reviewer should check after any update. |
+| `tools/build-data.js` | Regenerates `assets/data.js` from `assets/data.json`. Run after every edit to the dataset. |
+| `tools/extract_caf_pdf.py` | Extracts a draft `data.json` from a CAF PDF, for updating the dataset when NCSC publish a revision. |
 | `assets/style.css` | Styling. |
 | `assets/js/app.js` | Entry point (`<script type="module">`) — wires the other modules together and handles the cross-cutting UI (new/delete assessment, JSON import/export, print). |
 | `assets/js/model.js` | Pure domain logic: the flattened CAF dataset, the IGP-tick → suggested-status rules, and scoring. No DOM, no storage. |
@@ -77,4 +81,22 @@ The percentage score gives Achieved = 1 point, Partially achieved = 0.5, Not ach
 
 ## Updating the reference data
 
-`assets/data.js` is generated, not hand-written — it's a straight JSON dump of the CAF dataset. If NCSC publish a revised CAF version in future, the tidiest way to update this tool is to regenerate that file from a maintained source of the dataset, rather than hand-editing the JSON directly.
+`assets/data.json` is the source of truth for the CAF reference content (objectives, principles, contributing outcomes, IGPs) — its structure is documented in [docs/data-schema.md](docs/data-schema.md). `assets/data.js` (the `window.CAF_DATASET` global the app actually loads) is generated from it and must never be hand-edited directly.
+
+After editing `assets/data.json`, regenerate `assets/data.js` and commit both files together:
+
+```
+node tools/build-data.js
+```
+
+If NCSC publish a revised CAF version, use `tools/extract_caf_pdf.py` to pull a fresh draft out of the new PDF rather than re-transcribing it by hand — see the tool's own `--help` and header comment for how it works and its known limitations:
+
+```
+pip install pymupdf
+python3 tools/extract_caf_pdf.py extract path/to/new-caf.pdf \
+  --merge-from assets/data.json -o assets/data.new.json
+python3 tools/extract_caf_pdf.py validate assets/data.new.json
+git diff --no-index assets/data.json assets/data.new.json   # review every change by hand
+```
+
+The extraction is a best-effort table-reconstruction over the PDF's text layout, not a guaranteed-correct import — `validate` only catches a handful of known defect patterns (unsplit Partially/Achieved columns, duplicate or suspiciously short bullets). Always read the full diff against the previous `assets/data.json` before replacing it, paying particular attention to outcomes whose IGPs fall right at a page break, since that's where the extraction is most likely to misplace a bullet.

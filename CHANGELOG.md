@@ -5,6 +5,32 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.1.0] - 2026-07-23
+
+### Fixed
+
+- Several outcomes had Indicators of Good Practice (IGPs) misclassified
+  between the Partially Achieved and Achieved columns — bullets that
+  belong to Achieved were sitting in Partially Achieved (or, for one
+  outcome, duplicated across both). Affected outcomes: `B4.a`, `B4.b`,
+  `B6.b`, `B3.e`, `B5.a`, `C1.f`, `D1.a`. Found and corrected by
+  cross-referencing every outcome's IGPs against the official CAF 4.0 PDF.
+
+### Changed
+
+- `assets/data.js` is no longer hand-edited directly. The CAF reference
+  dataset now lives in `assets/data.json` (schema documented in
+  `docs/data-schema.md`), with `assets/data.js` generated from it via
+  `tools/build-data.js`. App behaviour is unchanged.
+
+### Added
+
+- `tools/extract_caf_pdf.py`, which rebuilds a draft `data.json` from a CAF
+  PDF (using positioned text blocks clustered by column, to correctly
+  reconstruct the Not/Partially/Achieved table columns), plus a `validate`
+  subcommand that flags known defect patterns. Intended for updating the
+  dataset when NCSC publish a future CAF revision.
+
 ## [2.0.0] - 2026-07-23
 
 ### Changed
