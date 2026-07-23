@@ -11,8 +11,15 @@
   principles, contributing outcomes, IGPs) as a plain JS variable.
   Every assessment a person creates — statuses, notes, organisation
   name, everything — is written to, and read from, the browser's own
-  localStorage (assets/app.js). Clearing browser data / a different
-  browser / a different device means the assessment will not be there.
+  localStorage (assets/js/storage.js). Clearing browser data / a
+  different browser / a different device means the assessment will
+  not be there.
+
+  The app logic in assets/js/ is loaded as native ES modules
+  (assets/js/app.js is the entry point), so this page must be served
+  over http(s) — opening index.html directly via a file:// URL will
+  not work, as browsers block module imports from the file system.
+  See README.md for how to serve it locally.
 -->
 <link rel="stylesheet" href="assets/style.css">
 <script>
@@ -236,6 +243,6 @@
 </div>
 
 <script src="assets/data.js"></script>
-<script src="assets/app.js"></script>
+<script type="module" src="assets/js/app.js"></script>
 </body>
 </html>
