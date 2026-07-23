@@ -5,6 +5,18 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.2.0] - 2026-07-23
+
+### Added
+
+- Converted the app into an installable Progressive Web App: a web app
+  manifest and app icons so it can be added to the home screen / installed
+  as a standalone app, and a service worker that caches the app shell
+  (HTML, CSS, JS, dataset, icons) so it keeps working offline after the
+  first visit. Since everything already runs client-side with data in
+  `localStorage`, this makes no difference to how assessments are stored —
+  it only removes the need for a live network connection to load the app.
+
 ## [2.1.0] - 2026-07-23
 
 ### Fixed

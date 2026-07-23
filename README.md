@@ -6,6 +6,8 @@ A fully static self-assessment tool for the NCSC Cyber Assessment Framework (CAF
 
 There is **no server-side component at all**: no PHP, no build step, no database, nothing to install. It's plain HTML/CSS/JS, served as a folder of static files — the app logic is a handful of native ES modules, no bundler required.
 
+It's also an installable Progressive Web App: a service worker caches the app shell after your first visit, so it keeps working offline (or on a flaky connection) after that, and most browsers let you "install" it as a standalone app from the address bar or share menu.
+
 See [CHANGELOG.md](CHANGELOG.md) for release history (this project follows [Semantic Versioning](https://semver.org/)).
 
 ## Data handling — important
@@ -32,6 +34,9 @@ Nothing to install, but the app logic loads as native ES modules, which browsers
 | File | Purpose |
 |---|---|
 | `index.html` | The app shell. |
+| `manifest.webmanifest` | Web app manifest (name, icons, colours) that makes the app installable. |
+| `sw.js` | Service worker — caches the app shell on first visit so the app works offline afterwards. Bump `CACHE_VERSION` inside it whenever a cached file's contents change. |
+| `assets/icons/` | App icons for the manifest/home screen, generated from the header's hexagon brand mark. |
 | `assets/data.json` | Source of truth for the full CAF 4.0 dataset (read-only reference content, Crown copyright / OGL v3.0). See [docs/data-schema.md](docs/data-schema.md). Edit this, not `data.js`. |
 | `assets/data.js` | Generated from `assets/data.json` by `tools/build-data.js` — a plain JS variable, `window.CAF_DATASET`. Loaded as a classic script, before the module entry point. |
 | `docs/data-schema.md` | Documents the `assets/data.json` structure and the invariants a reviewer should check after any update. |
