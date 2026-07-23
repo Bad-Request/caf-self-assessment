@@ -8,7 +8,9 @@
   IMPORTANT — data handling:
   This is a fully static app: no server, no build step, no database.
   assets/data.js holds the static CAF reference dataset (objectives,
-  principles, contributing outcomes, IGPs) as a plain JS variable.
+  principles, contributing outcomes, IGPs) as a plain JS variable. It is
+  generated from assets/data.json — see docs/data-schema.md and
+  tools/build-data.js if you need to edit the CAF reference content.
   Every assessment a person creates — statuses, notes, organisation
   name, everything — is written to, and read from, the browser's own
   localStorage (assets/js/storage.js). Clearing browser data / a
