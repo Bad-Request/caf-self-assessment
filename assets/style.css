@@ -1305,4 +1305,12 @@ a:hover { color: var(--purple-500); }
   .status-badge { border: 1px solid #000; background: #fff !important; color: #000 !important; }
   .baseline-badge, .principle-baseline-chip { border: 1px solid #000 !important; background: #fff !important; color: #000 !important; }
   .method-note { border-color: #000; }
+
+  /* Force outcome status fills to print — otherwise Chrome/Firefox strip
+     background colours by default and only the baseline border survives. */
+  .outcome-dot, .baseline-legend__swatch {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+  }
 }
