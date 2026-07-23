@@ -284,6 +284,10 @@ a:hover { color: var(--purple-500); }
   color: var(--slate-300);
 }
 
+.footer-links {
+  margin-top: 6px;
+}
+
 .assessment-list {
   list-style: none;
   margin: 0;
