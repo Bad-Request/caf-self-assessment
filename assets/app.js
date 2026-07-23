@@ -817,6 +817,9 @@
         pHeader.innerHTML =
           '<div class="principle-header__eyebrow">Principle ' + principle.id + '</div>' +
           '<h3></h3><p></p>' +
+          (principle.ncscUrl
+            ? '<a class="principle-header__ncsc-link" href="' + principle.ncscUrl + '" target="_blank" rel="noopener">NCSC guidance for Principle ' + principle.id + ' ↗</a>'
+            : '') +
           '<div class="principle-header__baselines" id="principle-baselines-' + principle.id + '" hidden></div>';
         pHeader.querySelector('h3').textContent = principle.title;
         pHeader.querySelector('p').textContent = principle.description;
@@ -1308,6 +1311,13 @@
 
   document.getElementById('btn-print').addEventListener('click', function () {
     window.print();
+  });
+
+  document.getElementById('btn-storage-info').addEventListener('click', function () {
+    showDialog({
+      title: 'Your data never leaves this browser',
+      message: 'This tool is fully static and has no server or backend of any kind — nothing you type is ever sent, uploaded or transmitted anywhere. Assessment names, statuses, notes, organisation details and baseline profiles are written only to this browser’s local storage, on this device. Nobody else, including whoever hosts this page, can see or access your data. It stays on this device until you clear your browser data, use a different browser, or use a different device — none of which will carry your assessments across. Use "Export assessment (.json)" in the sidebar to back up or move an assessment yourself.'
+    });
   });
 
   document.getElementById('btn-export-json').addEventListener('click', function () {
