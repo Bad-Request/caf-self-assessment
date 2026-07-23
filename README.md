@@ -4,7 +4,7 @@
 
 A fully static self-assessment tool for the NCSC Cyber Assessment Framework (CAF) 4.0 — all 4 objectives, 14 principles and 41 contributing outcomes, with the full Indicators of Good Practice (IGP) text for each, ticked off individually with checkboxes that suggest an overall status per outcome.
 
-There is **no server-side component at all**: no PHP, no build step, no database, nothing to install. Just three plain files plus a folder of assets.
+There is **no server-side component at all**: no PHP, no build step, no database, nothing to install. It's plain HTML/CSS/JS, served as a folder of static files — the app logic is a handful of native ES modules, no bundler required.
 
 ## Data handling — important
 
@@ -16,24 +16,33 @@ Every assessment you create — organisation name, ticks, overrides, notes — i
 
 ## How to run it
 
-Genuinely nothing to install. Either:
+Nothing to install, but the app logic loads as native ES modules, which browsers only allow over `http(s)://` — **opening `index.html` directly via a `file://` URL will not work** (module imports are blocked from the local filesystem). Serve the folder instead:
 
-1. Double-click `index.html` to open it directly in your browser, or
-2. Serve the folder with any static file server, e.g.:
+1. Any static file server, e.g.:
    ```
    python3 -m http.server 8000
    ```
    then open http://localhost:8000, or
-3. Upload the whole folder to any static host — GitHub Pages, S3, a shared network drive, an internal web server, whatever you've already got. There is no database and no write access required on the server; it never needs to run any server-side code.
+2. Upload the whole folder to any static host — GitHub Pages, S3, a shared network drive, an internal web server, whatever you've already got. There is no database and no write access required on the server; it never needs to run any server-side code.
 
 ## File layout
 
 | File | Purpose |
 |---|---|
 | `index.html` | The app shell. |
-| `assets/data.js` | The full CAF 4.0 dataset (read-only reference content, Crown copyright / OGL v3.0) as a plain JS variable — `window.CAF_DATASET`. |
+| `assets/data.js` | The full CAF 4.0 dataset (read-only reference content, Crown copyright / OGL v3.0) as a plain JS variable — `window.CAF_DATASET`. Loaded as a classic script, before the module entry point. |
 | `assets/style.css` | Styling. |
-| `assets/app.js` | All app logic: localStorage-backed assessment management, rendering, scoring, JSON import/export, print support. |
+| `assets/js/app.js` | Entry point (`<script type="module">`) — wires the other modules together and handles the cross-cutting UI (new/delete assessment, JSON import/export, print). |
+| `assets/js/model.js` | Pure domain logic: the flattened CAF dataset, the IGP-tick → suggested-status rules, and scoring. No DOM, no storage. |
+| `assets/js/storage.js` | `localStorage` read/write for assessments and baseline profiles. |
+| `assets/js/assessments.js` | Assessment records: in-memory list, the current selection, and the sidebar list of saved assessments. |
+| `assets/js/baselines.js` | Baseline profiles: CRUD, the edit modal, and the borders/badges/legend they project onto the framework and outcome grid. |
+| `assets/js/framework.js` | Builds the objective/principle/outcome-card tree and the outcome grid, and applies per-outcome state to them. |
+| `assets/js/dashboard.js` | The score ring, status counts and per-objective bars. |
+| `assets/js/ui-shell.js` | Chrome with no domain knowledge: toast, the generic confirm dialog, sidebar collapse/drawer behaviour, theme and text-size preferences. |
+| `assets/js/dom.js` | The single set of DOM element references shared by every module. |
+| `assets/js/utils.js` | `uid`/`nowIso`/`debounce` — small helpers with no dependencies. |
+| `assets/js/download.js` | Shared "save an object as a downloaded `.json` file" helper (used by both assessment and baseline export). |
 
 ## Features
 
