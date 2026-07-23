@@ -1146,10 +1146,10 @@
       bar.setAttribute('aria-label', 'Jump to Objective ' + objective.id + ', ' + objective.title);
       bar.innerHTML =
         '<div class="objective-bar__head">' +
-        '  <div><span class="objective-bar__code">Obj ' + objective.id + '</span><br>' +
-        '  <span class="objective-bar__title"></span></div>' +
+        '  <span class="objective-bar__code">Obj ' + objective.id + '</span>' +
         '  <span class="objective-bar__pct">' + s.pct + '%</span>' +
         '</div>' +
+        '<span class="objective-bar__title"></span>' +
         '<div class="objective-bar__track"><div class="objective-bar__fill" style="width:' + s.pct + '%"></div></div>';
       bar.querySelector('.objective-bar__title').textContent = objective.title;
       bar.addEventListener('click', function () {
