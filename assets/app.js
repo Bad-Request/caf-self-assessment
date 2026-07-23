@@ -916,7 +916,7 @@
       var expanded = toggle.getAttribute('aria-expanded') === 'true';
       toggle.setAttribute('aria-expanded', String(!expanded));
       panel.hidden = expanded;
-      toggle.textContent = expanded ? 'Tick indicators to assess this outcome' : 'Hide indicators';
+      toggle.textContent = expanded ? 'Show indicators to assess this outcome' : 'Hide indicators';
     });
 
     body.appendChild(toggle);
