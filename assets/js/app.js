@@ -132,7 +132,7 @@ document.getElementById('btn-print').addEventListener('click', function () {
 document.getElementById('btn-storage-info').addEventListener('click', function () {
   showDialog({
     title: 'Your data never leaves this browser',
-    message: 'This tool is fully static and has no server or backend of any kind — nothing you type is ever sent, uploaded or transmitted anywhere. Assessment names, statuses, notes, organisation details and baseline profiles are written only to this browser’s local storage, on this device. Nobody else, including whoever hosts this page, can see or access your data. It stays on this device until you clear your browser data, use a different browser, or use a different device — none of which will carry your assessments across. Use "Export assessment (.json)" in the sidebar to back up or move an assessment yourself.'
+    message: 'This tool is fully static and has no server or backend of any kind — nothing you type is ever sent, uploaded or transmitted anywhere. Assessment names, statuses, notes, organisation details and profiles are written only to this browser’s local storage, on this device. Nobody else, including whoever hosts this page, can see or access your data. It stays on this device until you clear your browser data, use a different browser, or use a different device — none of which will carry your assessments across. Use "Export assessment (.json)" in the sidebar to back up or move an assessment yourself.'
   });
 });
 

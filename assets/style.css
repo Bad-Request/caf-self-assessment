@@ -84,20 +84,20 @@ html, body {
   background: var(--cream-50);
   color: var(--ink-900);
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.5;
   max-width: 100%;
   overflow-x: hidden;
 }
 
-/* Every other font-size in this file is written in rem against the 15px
+/* Every other font-size in this file is written in rem against the 16px
    base above, so bumping the root size here scales all text (and, via
    em-based layout like padding-in-ch/line-height, most of its knock-on
    spacing) without changing any fixed-pixel widths — text reflows and
    wraps within its existing containers instead of overflowing them, the
    way a whole-page `zoom` would. */
-html[data-font-size="large"] { font-size: 17px; }
-html[data-font-size="larger"] { font-size: 19px; }
+html[data-font-size="large"] { font-size: 18px; }
+html[data-font-size="larger"] { font-size: 20px; }
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
@@ -272,7 +272,6 @@ a:hover { color: var(--purple-500); }
 }
 
 .sidebar__footer {
-  margin-top: auto;
   font-size: 0.8rem;
   color: var(--slate-500);
   border-top: 1px solid var(--line);
