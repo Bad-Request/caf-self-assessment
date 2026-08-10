@@ -5,6 +5,18 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.4.0] - 2026-08-10
+
+### Changed
+
+- Renamed "Baseline Profiles" to "Profiles" throughout the UI, exported
+  filenames, and documentation (issue #22).
+- The sidebar footer (reference note, version, GitHub link) now flows with
+  the rest of the sidebar content instead of being anchored to the bottom,
+  where it was easy to miss (issue #21).
+- Increased the default text size slightly, from 15px to 16px (with the
+  "Large"/"Larger" options shifting up to match, 18px/20px) (issue #20).
+
 ## [2.3.1] - 2026-07-23
 
 ### Fixed

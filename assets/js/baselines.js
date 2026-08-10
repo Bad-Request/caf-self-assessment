@@ -24,7 +24,7 @@ export function findBaseline(id) {
 export function createBaseline(name) {
   var baseline = {
     id: baselineUid(),
-    name: name || 'Untitled baseline',
+    name: name || 'Untitled profile',
     createdAt: nowIso(),
     updatedAt: nowIso(),
     targets: {}
@@ -82,15 +82,15 @@ export function renderBaselineSidebar() {
       var nameBtn = document.createElement('button');
       nameBtn.type = 'button';
       nameBtn.className = 'baseline-list__name';
-      nameBtn.textContent = b.name || 'Untitled baseline';
-      nameBtn.title = 'Edit "' + (b.name || 'Untitled baseline') + '"';
+      nameBtn.textContent = b.name || 'Untitled profile';
+      nameBtn.title = 'Edit "' + (b.name || 'Untitled profile') + '"';
       nameBtn.addEventListener('click', function () { openBaselineModal(b.id); });
 
       var exportBtn = document.createElement('button');
       exportBtn.type = 'button';
       exportBtn.className = 'baseline-list__icon-btn';
-      exportBtn.title = 'Export this baseline profile (.json)';
-      exportBtn.setAttribute('aria-label', 'Export baseline profile ' + (b.name || 'Untitled baseline'));
+      exportBtn.title = 'Export this profile (.json)';
+      exportBtn.setAttribute('aria-label', 'Export profile ' + (b.name || 'Untitled profile'));
       exportBtn.textContent = '↓';
       exportBtn.addEventListener('click', function (evt) {
         evt.stopPropagation();
@@ -113,7 +113,7 @@ export function refreshBaselineSelectOptions() {
     .forEach(function (b) {
       var opt = document.createElement('option');
       opt.value = b.id;
-      opt.textContent = b.name || 'Untitled baseline';
+      opt.textContent = b.name || 'Untitled profile';
       el.baselineSelect.appendChild(opt);
     });
   if (a) {
@@ -241,29 +241,29 @@ el.baselineModalDelete.addEventListener('click', function () {
   var baseline = findBaseline(currentBaselineEditId);
   if (!baseline) return;
   showDialog({
-    title: 'Delete this baseline profile?',
-    message: '"' + (baseline.name || 'Untitled baseline') + '" will be permanently deleted, and any assessments using it will be set back to "None". This cannot be undone.',
+    title: 'Delete this profile?',
+    message: '"' + (baseline.name || 'Untitled profile') + '" will be permanently deleted, and any assessments using it will be set back to "None". This cannot be undone.',
     tone: 'danger',
     confirmLabel: 'Delete',
     cancelLabel: 'Cancel',
     onConfirm: function () {
       deleteBaseline(baseline.id);
       closeBaselineModal();
-      showToast('Baseline profile deleted.');
+      showToast('Profile deleted.');
     }
   });
 });
 
 el.btnNewBaseline.addEventListener('click', function () {
-  var baseline = createBaseline('Untitled baseline');
-  showToast('New baseline profile created.');
+  var baseline = createBaseline('Untitled profile');
+  showToast('New profile created.');
   openBaselineModal(baseline.id);
 });
 
 function exportBaselineJson(id) {
   var baseline = findBaseline(id);
   if (!baseline) return;
-  var filename = downloadJson(baseline, 'CAFBaseline', 'baseline');
+  var filename = downloadJson(baseline, 'CAFProfile', 'profile');
   showToast('Exported ' + filename);
 }
 
@@ -279,12 +279,12 @@ el.inputImportBaseline.addEventListener('change', function (evt) {
     try {
       var imported = JSON.parse(reader.result);
       if (!imported || typeof imported !== 'object' || typeof imported.targets !== 'object' || imported.targets === null) {
-        throw new Error('File does not look like a CAF baseline profile export.');
+        throw new Error('File does not look like a CAF profile export.');
       }
       imported.id = baselineUid(); // avoid clobbering an existing profile with the same id
       imported.updatedAt = nowIso();
       if (!imported.createdAt) imported.createdAt = nowIso();
-      if (!imported.name) imported.name = 'Imported baseline';
+      if (!imported.name) imported.name = 'Imported profile';
       baselines.push(imported);
       saveBaselines(baselines);
       renderBaselineSidebar();
@@ -317,7 +317,7 @@ export function applyBaselineBorders() {
     if (target) {
       dot.setAttribute('data-baseline', target);
       dot.title = entry.outcome.id + ' — ' + entry.outcome.title +
-        ' · Baseline target: ' + STATUS_META[target].label;
+        ' · Profile target: ' + STATUS_META[target].label;
     } else {
       dot.removeAttribute('data-baseline');
       dot.title = entry.outcome.id + ' — ' + entry.outcome.title;
@@ -366,7 +366,7 @@ export function applyBaselineToFramework() {
         hasAny = true;
         var chip = document.createElement('span');
         chip.className = 'principle-baseline-chip principle-baseline-chip--' + target;
-        chip.title = outcome.id + ' — ' + outcome.title + ' · Baseline target: ' + STATUS_META[target].label;
+        chip.title = outcome.id + ' — ' + outcome.title + ' · Profile target: ' + STATUS_META[target].label;
         chip.textContent = outcome.id + ' ' + STATUS_META[target].label;
         container.appendChild(chip);
       });
@@ -382,12 +382,12 @@ export function updateBaselineLegend() {
   if (!baseline) {
     var none = document.createElement('span');
     none.className = 'baseline-legend__none';
-    none.textContent = 'No baseline profile selected for this assessment — dots have no border.';
+    none.textContent = 'No profile selected for this assessment — dots have no border.';
     el.baselineLegend.appendChild(none);
     return;
   }
   var intro = document.createElement('span');
-  intro.textContent = 'Baseline "' + (baseline.name || 'Untitled baseline') + '" — border key:';
+  intro.textContent = 'Profile "' + (baseline.name || 'Untitled profile') + '" — border key:';
   el.baselineLegend.appendChild(intro);
   BASELINE_TIERS.forEach(function (tier) {
     var item = document.createElement('span');

@@ -12,11 +12,11 @@ See [CHANGELOG.md](CHANGELOG.md) for release history (this project follows [Sema
 
 ## Data handling — important
 
-Every assessment you create — organisation name, ticks, overrides, notes — is saved entirely in your browser's `localStorage`. Baseline profiles (see [Features](#features)) are saved the same way, under their own separate `localStorage` key. This means:
+Every assessment you create — organisation name, ticks, overrides, notes — is saved entirely in your browser's `localStorage`. Profiles (see [Features](#features)) are saved the same way, under their own separate `localStorage` key. This means:
 
-- Assessments and baseline profiles are tied to the browser/device you created them on.
+- Assessments and profiles are tied to the browser/device you created them on.
 - Clearing browser data for this site/folder will delete them.
-- Use **"Export assessment (.json)"** regularly to back up or move an assessment between browsers/devices, and **"Import assessment (.json)"** to load it elsewhere. Baseline profiles have their own **"Export (.json)"** / **"Import baseline (.json)"** controls, separate from the assessment ones, so a baseline can be shared on its own.
+- Use **"Export assessment (.json)"** regularly to back up or move an assessment between browsers/devices, and **"Import assessment (.json)"** to load it elsewhere. Profiles have their own **"Export (.json)"** / **"Import profile (.json)"** controls, separate from the assessment ones, so a profile can be shared on its own.
 
 ## How to run it
 
@@ -45,9 +45,9 @@ Nothing to install, but the app logic loads as native ES modules, which browsers
 | `assets/style.css` | Styling. |
 | `assets/js/app.js` | Entry point (`<script type="module">`) — wires the other modules together and handles the cross-cutting UI (new/delete assessment, JSON import/export, print). |
 | `assets/js/model.js` | Pure domain logic: the flattened CAF dataset, the IGP-tick → suggested-status rules, and scoring. No DOM, no storage. |
-| `assets/js/storage.js` | `localStorage` read/write for assessments and baseline profiles. |
+| `assets/js/storage.js` | `localStorage` read/write for assessments and profiles. |
 | `assets/js/assessments.js` | Assessment records: in-memory list, the current selection, and the sidebar list of saved assessments. |
-| `assets/js/baselines.js` | Baseline profiles: CRUD, the edit modal, and the borders/badges/legend they project onto the framework and outcome grid. |
+| `assets/js/baselines.js` | Profiles: CRUD, the edit modal, and the borders/badges/legend they project onto the framework and outcome grid. |
 | `assets/js/framework.js` | Builds the objective/principle/outcome-card tree and the outcome grid, and applies per-outcome state to them. |
 | `assets/js/dashboard.js` | The score ring, status counts and per-objective bars. |
 | `assets/js/ui-shell.js` | Chrome with no domain knowledge: toast, the generic confirm dialog, sidebar collapse/drawer behaviour, theme and text-size preferences. |
@@ -62,10 +62,10 @@ Nothing to install, but the app logic loads as native ES modules, which browsers
 - An automatically **suggested** status per contributing outcome, worked out from those ticks (see [How suggestions work](#how-suggestions-work) below), which you can override by hand at any time.
 - Notes/evidence field per outcome.
 - Dashboard: overall % score, per-objective breakdown, and an "outcome grid" — one dot per contributing outcome, colour-coded by status, click a dot to jump straight to that outcome.
-- **Baseline profiles**: since a CAF assessment is often measured against an agreed baseline rather than "fully achieved" everywhere, you can set a target level (Not achieved / Partially achieved / Achieved) for each of the 41 individual contributing outcomes (e.g. `A1.a`, `C1.d`) — not just per principle, since a baseline can reasonably expect more of one outcome within a principle than another.
-  - Baseline profiles are standalone and reusable — create one and apply it to any number of assessments — and are exported/imported as their own separate `.json` files so a baseline can be shared or reused independently of any assessment.
-  - Each outcome dot in the grid gets a coloured **border** matching its own baseline target (red/amber/green, matching the fill colours used for actual status), while the dot's own **fill** colour continues to show the outcome's actual current status.
-  - The target is also shown inline as you work through the assessment: each outcome card gets a small "Target: …" badge next to its status badge, and each principle's header shows a summary row of chips for all of its outcomes' targets, so the baseline stays visible without scrolling back up to the dashboard.
+- **Profiles**: since a CAF assessment is often measured against an agreed baseline rather than "fully achieved" everywhere, you can set a target level (Not achieved / Partially achieved / Achieved) for each of the 41 individual contributing outcomes (e.g. `A1.a`, `C1.d`) — not just per principle, since a profile can reasonably expect more of one outcome within a principle than another.
+  - Profiles are standalone and reusable — create one and apply it to any number of assessments — and are exported/imported as their own separate `.json` files so a profile can be shared or reused independently of any assessment.
+  - Each outcome dot in the grid gets a coloured **border** matching its own profile target (red/amber/green, matching the fill colours used for actual status), while the dot's own **fill** colour continues to show the outcome's actual current status.
+  - The target is also shown inline as you work through the assessment: each outcome card gets a small "Target: …" badge next to its status badge, and each principle's header shows a summary row of chips for all of its outcomes' targets, so the profile stays visible without scrolling back up to the dashboard.
 - Export/import assessments as JSON.
 - Print / save as PDF (use your browser's print dialog).
 
