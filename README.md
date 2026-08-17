@@ -10,6 +10,24 @@ It's also an installable Progressive Web App: a service worker caches the app sh
 
 See [CHANGELOG.md](CHANGELOG.md) for release history (this project follows [Semantic Versioning](https://semver.org/)).
 
+## Unofficial tool — important
+
+This is **not** the official NCSC Cyber Assessment Framework application
+process, is not affiliated with NCSC, and does not submit
+anything anywhere. It's a self-assessment aid to help you prepare your
+answers, understand the requirements, and spot likely compliance gaps.
+Always refer to the official guidance and the document for the definitive requirements
+— this tool's compliance flags are indicative only.
+
+## Attribution
+
+The IGP text, guidance, and control requirements reproduced in
+`assets/data.json` are taken from the NCSC CAF published by NCSC at
+[https://www.ncsc.gov.uk/collection/cyber-assessment-framework](https://www.ncsc.gov.uk/collection/cyber-assessment-framework). All credit
+for that content belongs to NCSC. This project is an independent,
+unofficial companion tool and claims no ownership over that content.
+
+
 ## Data handling — important
 
 Every assessment you create — organisation name, ticks, overrides, notes — is saved entirely in your browser's `localStorage`. Profiles (see [Features](#features)) are saved the same way, under their own separate `localStorage` key. This means:
