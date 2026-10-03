@@ -5,6 +5,22 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.5.0] - 2026-10-03
+
+### Added
+
+- Each principle now has a collapsible "Guidance & references" section
+  listing the NCSC guidance and external resources (standards, NPSA,
+  RITICS, NIST, etc.) from NCSC's Consolidated view of CAF Guidance
+  (issue #19). It is collapsed by default and left out of printouts.
+- `tools/extract_ncsc_guidance.js`, a dev-only script that refreshes these
+  links from a saved copy of the NCSC page.
+
+### Changed
+
+- `tools/extract_caf_pdf.py --merge-from` now carries each principle's
+  `guidance` over from the existing dataset, alongside `ncscUrl`.
+
 ## [2.4.0] - 2026-08-10
 
 ### Changed

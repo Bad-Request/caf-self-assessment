@@ -815,6 +815,44 @@ a:hover { color: var(--purple-500); }
 }
 .principle-header__ncsc-link:hover,
 .principle-header__ncsc-link:focus-visible { text-decoration: underline; }
+
+.principle-guidance { margin-top: 6px; font-size: 0.8333rem; }
+.principle-guidance > summary {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 0;
+  color: var(--purple-600);
+  font-weight: 600;
+  cursor: pointer;
+}
+.principle-guidance > summary::-webkit-details-marker { display: none; }
+.principle-guidance > summary::before {
+  content: "▸";
+  display: inline-block;
+  font-size: 1.3em;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+.principle-guidance[open] > summary::before { transform: rotate(90deg); }
+.principle-guidance > summary:hover,
+.principle-guidance > summary:focus-visible { text-decoration: underline; }
+.principle-guidance__heading {
+  margin: 8px 0 4px;
+  font-size: 0.7667rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+.principle-guidance__list {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--ink-700);
+}
+.principle-guidance__list li { margin: 2px 0; overflow-wrap: anywhere; }
+.principle-guidance__list a { color: var(--purple-600); }
 .principle-header__baselines {
   display: flex;
   flex-wrap: wrap;
@@ -1287,7 +1325,7 @@ a:hover { color: var(--purple-500); }
 /* ---------- Print ---------- */
 
 @media print {
-  .no-print, .sidebar, .app-header, .status-control, .igp-toggle { display: none !important; }
+  .no-print, .sidebar, .app-header, .status-control, .igp-toggle, .principle-guidance { display: none !important; }
   body { background: #fff; }
   .app-shell { display: block; }
   .main-content { max-width: 100%; padding: 0; }

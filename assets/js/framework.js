@@ -131,6 +131,8 @@ export function buildFramework() {
         '<div class="principle-header__baselines" id="principle-baselines-' + principle.id + '" hidden></div>';
       pHeader.querySelector('h3').textContent = principle.title;
       pHeader.querySelector('p').textContent = principle.description;
+      var guidance = buildGuidance(principle);
+      if (guidance) pHeader.insertBefore(guidance, pHeader.querySelector('.principle-header__baselines'));
       pBlock.appendChild(pHeader);
 
       principle.outcomes.forEach(function (outcome) {
@@ -145,6 +147,70 @@ export function buildFramework() {
 
   el.framework.appendChild(frag);
   frameworkBuilt = true;
+}
+
+// The principle's "Guidance and references" from NCSC's consolidated view
+// of CAF guidance, as a collapsed <details>. Returns null if there is none.
+var GUIDANCE_GROUPS = [
+  { key: 'ncsc', label: 'NCSC guidance' },
+  { key: 'external', label: 'External resources' }
+];
+
+function buildGuidance(principle) {
+  var g = principle.guidance;
+  if (!g) return null;
+  var groups = GUIDANCE_GROUPS.filter(function (grp) { return g[grp.key] && g[grp.key].length; });
+  if (!groups.length) return null;
+  var total = groups.reduce(function (n, grp) { return n + g[grp.key].length; }, 0);
+
+  var details = document.createElement('details');
+  details.className = 'principle-guidance';
+  var summary = document.createElement('summary');
+  summary.textContent = 'Guidance & references (' + total + ')';
+  details.appendChild(summary);
+
+  groups.forEach(function (grp) {
+    var heading = document.createElement('h4');
+    heading.className = 'principle-guidance__heading';
+    heading.textContent = grp.label;
+    var list = document.createElement('ul');
+    list.className = 'principle-guidance__list';
+    g[grp.key].forEach(function (item) {
+      var li = document.createElement('li');
+      appendGuidanceItem(li, item);
+      list.appendChild(li);
+    });
+    details.appendChild(heading);
+    details.appendChild(list);
+  });
+  return details;
+}
+
+function guidanceLink(text, url) {
+  var a = document.createElement('a');
+  a.href = url;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  a.textContent = text;
+  return a;
+}
+
+// item is { title }, { title, url } or { title, links: [{ text, url }] }
+// (see docs/data-schema.md).
+function appendGuidanceItem(li, item) {
+  if (item.url) {
+    li.appendChild(guidanceLink(item.title, item.url));
+    return;
+  }
+  var rest = item.title;
+  (item.links || []).forEach(function (link) {
+    var at = rest.indexOf(link.text);
+    if (at === -1) return;
+    li.appendChild(document.createTextNode(rest.slice(0, at)));
+    li.appendChild(guidanceLink(link.text, link.url));
+    rest = rest.slice(at + link.text.length);
+  });
+  li.appendChild(document.createTextNode(rest));
 }
 
 function buildOutcomeCard(outcome) {
