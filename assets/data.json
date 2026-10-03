@@ -66,7 +66,51 @@
             ]
           }
         ],
-        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-a-managing-security-risk/principle-a1-governance"
+        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-a-managing-security-risk/principle-a1-governance",
+        "guidance": {
+          "ncsc": [
+            {
+              "title": "Introduction to Security Governance",
+              "url": "https://www.ncsc.gov.uk/collection/risk-management-collection/governance-cyber-risk/security-governance-introduction"
+            },
+            {
+              "title": "Board Toolkit",
+              "url": "https://www.ncsc.gov.uk/collection/board-toolkit"
+            },
+            {
+              "title": "Cyber security design principles - establish the context",
+              "url": "https://www.ncsc.gov.uk/collection/cyber-security-design-principles/establish-the-context-before-designing-a-system"
+            }
+          ],
+          "external": [
+            {
+              "title": "NPSA secure business",
+              "url": "https://www.npsa.gov.uk/secure-business"
+            },
+            {
+              "title": "NPSA Good Governance",
+              "url": "https://www.npsa.gov.uk/content/good-governance"
+            },
+            {
+              "title": "ISO/IEC 27001"
+            },
+            {
+              "title": "ISO/IEC 27002"
+            },
+            {
+              "title": "ISO/IEC 27019"
+            },
+            {
+              "title": "IEC 62443-2-1:2010"
+            },
+            {
+              "title": "NIST SP800-53"
+            },
+            {
+              "title": "NIST SP800-82"
+            }
+          ]
+        }
       },
       {
         "id": "A2",
@@ -155,7 +199,87 @@
             ]
           }
         ],
-        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-a-managing-security-risk/principle-a2-risk-management"
+        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-a-managing-security-risk/principle-a2-risk-management",
+        "guidance": {
+          "ncsc": [
+            {
+              "title": "Risk management guidance",
+              "url": "https://www.ncsc.gov.uk/collection/risk-management"
+            },
+            {
+              "title": "NCSC Risk Management, Threat Modelling",
+              "url": "https://www.ncsc.gov.uk/collection/risk-management/threat-modelling"
+            },
+            {
+              "title": "Penetration testing guidance",
+              "url": "https://www.ncsc.gov.uk/guidance/penetration-testing"
+            },
+            {
+              "title": "Cloud security guidance",
+              "url": "https://www.ncsc.gov.uk/collection/cloud"
+            },
+            {
+              "title": "Technology assurance guidance",
+              "url": "https://www.ncsc.gov.uk/collection/technology-assurance"
+            },
+            {
+              "title": "NCSC certification",
+              "url": "https://www.ncsc.gov.uk/section/products-services/ncsc-certification"
+            },
+            {
+              "title": "NCSC Assured Cyber Security Consultancy",
+              "url": "https://www.ncsc.gov.uk/information/ncsc-assured-cyber-security-consultancy"
+            },
+            {
+              "title": "NCSC The near-term impact of AI on the cyber threat",
+              "url": "https://www.ncsc.gov.uk/report/impact-of-ai-on-cyber-threat"
+            }
+          ],
+          "external": [
+            {
+              "title": "NPSA Protective Security Risk Management",
+              "url": "https://www.npsa.gov.uk/protective-security-risk-management-psrm-0"
+            },
+            {
+              "title": "ISO/IEC 27005"
+            },
+            {
+              "title": "Civil Contingencies Secretariat’s 2011 guidance on resilience of critical infrastructure and essential services (.pdf)",
+              "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/61342/natural-hazards-infrastructure.pdf"
+            },
+            {
+              "title": "NIST SP800-53"
+            },
+            {
+              "title": "NIST SP800-82"
+            },
+            {
+              "title": "IEC 62443-2-1"
+            },
+            {
+              "title": "IEC 62443-3-3"
+            },
+            {
+              "title": "ISO 31000"
+            },
+            {
+              "title": "UK Government Performing threat modelling",
+              "url": "https://www.security.gov.uk/policy-and-guidance/secure-by-design/activities/performing-threat-modelling/"
+            },
+            {
+              "title": "CISA Identifying and Mitigating Living Off the Land Techniques",
+              "url": "https://www.cisa.gov/resources-tools/resources/identifying-and-mitigating-living-land-techniques"
+            },
+            {
+              "title": "NIST AI 100-1",
+              "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf"
+            },
+            {
+              "title": "NIST Adversarial Machine Learning a Taxonomy and Terminology of Attacks and Mitigations",
+              "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2023.pdf"
+            }
+          ]
+        }
       },
       {
         "id": "A3",
@@ -184,7 +308,61 @@
             ]
           }
         ],
-        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-a-managing-security-risk/principle-a3-asset-management"
+        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-a-managing-security-risk/principle-a3-asset-management",
+        "guidance": {
+          "ncsc": [
+            {
+              "title": "Asset management",
+              "url": "https://www.ncsc.gov.uk/guidance/asset-management"
+            },
+            {
+              "title": "10 Steps to Cyber Security – Asset management",
+              "url": "https://www.ncsc.gov.uk/collection/10-steps/asset-management"
+            },
+            {
+              "title": "Asset management list of guidance",
+              "url": "https://www.ncsc.gov.uk/section/advice-guidance/all-topics?allTopics=true&topics=asset%20management&sort=date%2Bdesc"
+            }
+          ],
+          "external": [
+            {
+              "title": "NPSA Identify your Most Valuable Assets",
+              "url": "https://www.npsa.gov.uk/content/identify-your-most-valuable-assets"
+            },
+            {
+              "title": "RITICS Asset management within ICS / OT environments",
+              "url": "https://ritics.org/wp-content/uploads/2023/10/ICS-COI-Asset-Management.pdf"
+            },
+            {
+              "title": "RITICS Visibility for ICS / OT environment asset management",
+              "url": "https://ritics.org/wp-content/uploads/2024/01/Visibility-for-ICS-OT-Environment-Asset-Management-070124.pdf"
+            },
+            {
+              "title": "RITICS A manual approach to asset management in ICS / OT environments",
+              "url": "https://ritics.org/wp-content/uploads/2023/11/ICS-COI-Manual-Approach-Asset-Management.pdf"
+            },
+            {
+              "title": "RITICS Resolving anti-patterns in ICS / OT environments",
+              "url": "https://ritics.org/wp-content/uploads/2023/10/ICS-COI-Resolving-Anti-Patterns.pdf"
+            },
+            {
+              "title": "ISO/IEC 27001"
+            },
+            {
+              "title": "ISO 55001 (to be replaced by ISO/FDIS 55001)"
+            },
+            {
+              "title": "ITIL",
+              "url": "https://www.axelos.com/certifications/itil-service-management"
+            },
+            {
+              "title": "NIST SP800-82"
+            },
+            {
+              "title": "ISO/IEC 27019"
+            }
+          ]
+        }
       },
       {
         "id": "A4",
@@ -256,7 +434,96 @@
             ]
           }
         ],
-        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-a-managing-security-risk/principle-a4-supply-chain"
+        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-a-managing-security-risk/principle-a4-supply-chain",
+        "guidance": {
+          "ncsc": [
+            {
+              "title": "Supply chain security guidance",
+              "url": "https://www.ncsc.gov.uk/collection/supply-chain-security"
+            },
+            {
+              "title": "Cloud security guidance. Principle 8: Supply chain security",
+              "url": "https://www.ncsc.gov.uk/collection/cloud/the-cloud-security-principles/principle-8-supply-chain-security"
+            },
+            {
+              "title": "Supply chain guidance",
+              "url": "https://www.ncsc.gov.uk/collection/supply-chain"
+            },
+            {
+              "title": "How to assess and gain confidence in your supply chain cyber security guidance",
+              "url": "https://www.ncsc.gov.uk/collection/assess-supply-chain-cyber-security"
+            },
+            {
+              "title": "NCSC Secure development and deployment guidance",
+              "url": "https://www.ncsc.gov.uk/collection/developers-collection"
+            },
+            {
+              "title": "NCSC Vulnerability Disclosure Toolkit",
+              "url": "https://www.ncsc.gov.uk/information/vulnerability-disclosure-toolkit"
+            },
+            {
+              "title": "NCSC A method to assess 'forgivable' vs 'unforgivable' vulnerabilities",
+              "url": "https://www.ncsc.gov.uk/report/a-method-to-assess-forgivable-vs-unforgivable-vulnerabilities"
+            },
+            {
+              "title": "NCSC Raising software cyber resilience 'at scale'",
+              "url": "https://www.ncsc.gov.uk/blog-post/raising-cyber-resilience-software-at-scale"
+            },
+            {
+              "title": "NCSC Guidelines for secure AI system development",
+              "url": "https://www.ncsc.gov.uk/collection/guidelines-secure-ai-system-development"
+            }
+          ],
+          "external": [
+            {
+              "title": "Cloud security alliance. Security, Trust, Assurance and Risk (STAR)",
+              "url": "https://cloudsecurityalliance.org/star#_overview"
+            },
+            {
+              "title": "NPSA Supply Chain Guidance",
+              "url": "https://www.npsa.gov.uk/protected-procurement"
+            },
+            {
+              "title": "Embedding cyber resilience in local government supply chains",
+              "url": "https://www.local.gov.uk/our-support/cyber-digital-and-technology/cyber-security/embedding-cyber-resilience-local-government"
+            },
+            {
+              "title": "NIST SP800-53"
+            },
+            {
+              "title": "NIST SP800-82"
+            },
+            {
+              "title": "IEC 62443"
+            },
+            {
+              "title": "ISO/IEC 27001"
+            },
+            {
+              "title": "UK Government Software Security Code of Practice",
+              "url": "https://www.gov.uk/government/publications/software-security-code-of-practice/software-security-code-of-practice"
+            },
+            {
+              "title": "UK Government AI Cyber Security Code of Practice",
+              "url": "https://www.gov.uk/government/publications/ai-cyber-security-code-of-practice"
+            },
+            {
+              "title": "ISO/IEC 29147:2018Information technology - Security techniques - Vulnerability disclosure"
+            },
+            {
+              "title": "NIST Secure Software Development Framework",
+              "url": "https://csrc.nist.gov/projects/ssdf"
+            },
+            {
+              "title": "Microsoft Security Development Lifecycle (SDL)",
+              "url": "https://www.microsoft.com/en-us/securityengineering/sdl"
+            },
+            {
+              "title": "ETSI Securing Artificial Intelligence (SAI); Baseline Cyber Security Requirements for AI Models and Systems",
+              "url": "https://www.etsi.org/deliver/etsi_ts/104200_104299/104223/01.01.01_60/ts_104223v010101p.pdf"
+            }
+          ]
+        }
       }
     ]
   },
@@ -325,7 +592,38 @@
             ]
           }
         ],
-        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-b/principle-b1-service-protection-policies-processes-and-procedures"
+        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-b/principle-b1-service-protection-policies-processes-and-procedures",
+        "guidance": {
+          "ncsc": [
+            {
+              "title": "You shape security guidance",
+              "url": "https://www.ncsc.gov.uk/collection/cyber-security-culture-principles"
+            }
+          ],
+          "external": [
+            {
+              "title": "NPSA Embedding Security Behaviour Change",
+              "url": "https://www.npsa.gov.uk/security-best-practices/security-culture/embedding-security-behaviour-change-0"
+            },
+            {
+              "title": "NPSA's Personnel and People Security",
+              "url": "https://www.npsa.gov.uk/personnel-and-people-security"
+            },
+            {
+              "title": "SANS Security Policy Templates",
+              "url": "https://www.sans.org/information-security-policy"
+            },
+            {
+              "title": "NIST SP800-82"
+            },
+            {
+              "title": "IEC 62443 / ISA99 2-1"
+            },
+            {
+              "title": "ISO/IEC 27001/27002"
+            }
+          ]
+        }
       },
       {
         "id": "B2",
@@ -441,7 +739,67 @@
             ]
           }
         ],
-        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-b/principle-b2-identity-and-access-control"
+        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-b/principle-b2-identity-and-access-control",
+        "guidance": {
+          "ncsc": [
+            {
+              "title": "Introduction to identity and access management guidance",
+              "url": "https://www.ncsc.gov.uk/guidance/introduction-identity-and-access-management"
+            },
+            {
+              "title": "Access control list of guidance",
+              "url": "https://www.ncsc.gov.uk/section/advice-guidance/all-topics"
+            },
+            {
+              "title": "Device Security Guidance",
+              "url": "https://www.ncsc.gov.uk/collection/device-security-guidance"
+            },
+            {
+              "title": "NCSC Authentication methods: choosing the right type",
+              "url": "https://www.ncsc.gov.uk/guidance/authentication-methods-choosing-the-right-type"
+            },
+            {
+              "title": "Multi-factor authentication for your corporate online services",
+              "url": "https://www.ncsc.gov.uk/collection/mfa-for-your-corporate-online-services"
+            },
+            {
+              "title": "NCSC Principles for secure privileged access workstations (PAWs)",
+              "url": "https://www.ncsc.gov.uk/collection/principles-for-secure-paws"
+            }
+          ],
+          "external": [
+            {
+              "title": "NPSA Control Access",
+              "url": "https://www.npsa.gov.uk/security-best-practices/passport-good-security/control-access"
+            },
+            {
+              "title": "RITICS Management of ICS / OT field devices",
+              "url": "https://ritics.org/wp-content/uploads/2023/11/Guidance-on-the-Management-of-ICS-and-OT-Field-Devices.pdf"
+            },
+            {
+              "title": "NIST SP800-82"
+            },
+            {
+              "title": "IEC 62443 / ISA 99 3-3"
+            },
+            {
+              "title": "ISA 62443-2-1"
+            },
+            {
+              "title": "ISA 99 (Part 4)"
+            },
+            {
+              "title": "ISO/IEC 27001 / 27002"
+            },
+            {
+              "title": "CISA Identifying and Mitigating Living Off the Land Techniques"
+            },
+            {
+              "title": "CISA Implementing Phishing-Resistant MFA",
+              "url": "https://www.cisa.gov/sites/default/files/publications/fact-sheet-implementing-phishing-resistant-mfa-508c.pdf"
+            }
+          ]
+        }
       },
       {
         "id": "B3",
@@ -561,7 +919,60 @@
             ]
           }
         ],
-        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-b/principle-b3-data-security"
+        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-b/principle-b3-data-security",
+        "guidance": {
+          "ncsc": [
+            {
+              "title": "Protecting bulk personal data",
+              "url": "https://www.ncsc.gov.uk/collection/protecting-bulk-personal-data"
+            },
+            {
+              "title": "Using TLS to protect data",
+              "url": "https://www.ncsc.gov.uk/guidance/using-tls-to-protect-data"
+            },
+            {
+              "title": "Cloud security guidance Principle 1: Data in transit protection",
+              "url": "https://www.ncsc.gov.uk/collection/cloud/the-cloud-security-principles/principle-1-data-in-transit-protection"
+            },
+            {
+              "title": "10 Steps to Cyber Security Data security",
+              "url": "https://www.ncsc.gov.uk/collection/10-steps/data-security"
+            },
+            {
+              "title": "Device Security Guidance",
+              "url": "https://www.ncsc.gov.uk/collection/device-security-guidance"
+            },
+            {
+              "title": "Secure sanitisation of storage media",
+              "url": "https://www.ncsc.gov.uk/guidance/secure-sanitisation-storage-media"
+            },
+            {
+              "title": "NCSC Ransomware-resistant backups",
+              "url": "https://www.ncsc.gov.uk/collection/ransomware-resistant-backups"
+            }
+          ],
+          "external": [
+            {
+              "title": "RITICS The management of removable media within ICS / OT environments",
+              "url": "https://ritics.org/wp-content/uploads/2023/10/ICS-COI-Removable-Media.pdf"
+            },
+            {
+              "title": "NIST 800-82"
+            },
+            {
+              "title": "IEC 62443-2-1"
+            },
+            {
+              "title": "IEC 62443-3-3"
+            },
+            {
+              "title": "NIST 800-53"
+            },
+            {
+              "title": "ISO/IEC 27001"
+            }
+          ]
+        }
       },
       {
         "id": "B4",
@@ -674,7 +1085,94 @@
             ]
           }
         ],
-        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-b/principle-b4-system-security"
+        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-b/principle-b4-system-security",
+        "guidance": {
+          "ncsc": [
+            {
+              "title": "Vulnerability management",
+              "url": "https://www.ncsc.gov.uk/collection/vulnerability-management"
+            },
+            {
+              "title": "Secure design principles",
+              "url": "https://www.ncsc.gov.uk/collection/cyber-security-design-principles"
+            },
+            {
+              "title": "10 Steps to Cyber Security - Architecture and configuration",
+              "url": "https://www.ncsc.gov.uk/collection/10-steps/architecture-and-configuration"
+            },
+            {
+              "title": "Pattern: Safely Importing Data",
+              "url": "https://www.ncsc.gov.uk/guidance/pattern-safely-importing-data"
+            },
+            {
+              "title": "Mitigating malware and ransomware attacks",
+              "url": "https://www.ncsc.gov.uk/guidance/mitigating-malware-and-ransomware-attacks"
+            },
+            {
+              "title": "Penetration testing",
+              "url": "https://www.ncsc.gov.uk/guidance/penetration-testing"
+            },
+            {
+              "title": "Device Security Guidance - Obsolete products",
+              "url": "https://www.ncsc.gov.uk/collection/device-security-guidance/managing-deployed-devices/obsolete-products"
+            },
+            {
+              "title": "NCSC Secure by default principles",
+              "url": "https://www.ncsc.gov.uk/information/secure-default"
+            },
+            {
+              "title": "NCSC Principles for the security of machine learning",
+              "url": "https://www.ncsc.gov.uk/blog-post/machine-learning-security-principles-updated"
+            },
+            {
+              "title": "NCSC Security principles for cross domain solutions",
+              "url": "https://www.ncsc.gov.uk/collection/cross-domain-solutions"
+            }
+          ],
+          "external": [
+            {
+              "title": "UK Government Security Secure by Design Approach",
+              "url": "https://www.security.gov.uk/policy-and-guidance/secure-by-design/"
+            },
+            {
+              "title": "Ministry of Defence Industry Security Notice - Secure by Design Requirements",
+              "url": "https://assets.publishing.service.gov.uk/media/64bfb929d4051a00145a9289/ISN_2023-09_Secure_by_Design_Requirements.pdf"
+            },
+            {
+              "title": "RITICS The management of removable media within ICS / OT environments",
+              "url": "https://ritics.org/wp-content/uploads/2023/10/ICS-COI-Removable-Media.pdf"
+            },
+            {
+              "title": "RITICS Management of ICS / OT field devices",
+              "url": "https://ritics.org/wp-content/uploads/2023/11/Guidance-on-the-Management-of-ICS-and-OT-Field-Devices.pdf"
+            },
+            {
+              "title": "RITICS Resolving anti-patterns in ICS / OT environments",
+              "url": "https://ritics.org/wp-content/uploads/2023/10/ICS-COI-Resolving-Anti-Patterns.pdf"
+            },
+            {
+              "title": "NIST SP800-82"
+            },
+            {
+              "title": "IEC 62443 / ISA99 3-3"
+            },
+            {
+              "title": "ISO/IEC 27001"
+            },
+            {
+              "title": "CISA Secure by Design",
+              "url": "https://www.cisa.gov/securebydesign"
+            },
+            {
+              "title": "UK Government AI Cyber Security Code of Practice",
+              "url": "https://www.gov.uk/government/publications/ai-cyber-security-code-of-practice"
+            },
+            {
+              "title": "ETSI Securing Artificial Intelligence (SAI); Baseline Cyber Security Requirements for AI Models and Systems",
+              "url": "https://www.etsi.org/deliver/etsi_ts/104200_104299/104223/01.01.01_60/ts_104223v010101p.pdf"
+            }
+          ]
+        }
       },
       {
         "id": "B5",
@@ -743,7 +1241,96 @@
             ]
           }
         ],
-        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-b/principle-b5-resilient-networks-and-systems"
+        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-b/principle-b5-resilient-networks-and-systems",
+        "guidance": {
+          "ncsc": [
+            {
+              "title": "Exercising list of guidance",
+              "url": "https://www.ncsc.gov.uk/section/advice-guidance/all-topics?allTopics=true&topics=exercising&sort=date%2Bdes"
+            },
+            {
+              "title": "Principles for ransomware-resistant cloud backups",
+              "url": "https://www.ncsc.gov.uk/collection/ransomware-resistant-backups/principles-for-ransomware-resistant-cloud-backups"
+            },
+            {
+              "title": "Cloud security guidance - Principle 2: Asset protection and resilience",
+              "url": "https://www.ncsc.gov.uk/collection/ransomware-resistant-backups/principles-for-ransomware-resistant-cloud-backups"
+            },
+            {
+              "title": "Secure design principles - 5. Reduce the impact of compromise",
+              "url": "https://www.ncsc.gov.uk/collection/cyber-security-design-principles/virtualisation-security-design-principles/reducing-the-impact-of-compromise"
+            },
+            {
+              "title": "10 Steps to Cyber Security - Data Security",
+              "url": "https://www.ncsc.gov.uk/collection/10-steps/data-security"
+            },
+            {
+              "title": "Small Business Guide: Cyber Security. Step 1 - Backing up your data",
+              "url": "https://www.ncsc.gov.uk/collection/small-business-guide/backing-your-data"
+            },
+            {
+              "title": "Using online services safely. Back up your organisation's critical data",
+              "url": "https://www.ncsc.gov.uk/collection/using-online-services-safely/back-up-critical-data"
+            },
+            {
+              "title": "Actions to take when the cyber threat is heightened",
+              "url": "https://www.ncsc.gov.uk/guidance/actions-to-take-when-the-cyber-threat-is-heightened"
+            },
+            {
+              "title": "Denial of Service (DoS) guidance",
+              "url": "https://www.ncsc.gov.uk/collection/denial-service-dos-guidance-collection"
+            },
+            {
+              "title": "NCSC Ransomware-resistant backups",
+              "url": "https://www.ncsc.gov.uk/collection/ransomware-resistant-backups"
+            }
+          ],
+          "external": [
+            {
+              "title": "RITICS Resolving anti-patterns in ICS / OT environments",
+              "url": "https://ritics.org/wp-content/uploads/2023/10/ICS-COI-Resolving-Anti-Patterns.pdf"
+            },
+            {
+              "title": "The Business Continuity Institute has some freely available introductory business continuity guidance and members can access more detailed resources",
+              "links": [
+                {
+                  "text": "Business Continuity Institute",
+                  "url": "https://www.thebci.org/"
+                },
+                {
+                  "text": "introductory business continuity guidance",
+                  "url": "https://www.thebci.org/knowledge/introduction-to-business-continuity.html"
+                }
+              ]
+            },
+            {
+              "title": "Civil Contingencies Secretariat’s 2011 guidance on resilience of critical infrastructure and essential services (pdf)",
+              "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/61342/natural-hazards-infrastructure.pdf"
+            },
+            {
+              "title": "NIST SP800-53"
+            },
+            {
+              "title": "NIST SP800-82"
+            },
+            {
+              "title": "IEC 62443 / ISA99 2-1"
+            },
+            {
+              "title": "IEC 62443-1-1"
+            },
+            {
+              "title": "IEC 62443-3-3"
+            },
+            {
+              "title": "ISO/IEC 27001"
+            },
+            {
+              "title": "NCSC Ransomware-resistant backups",
+              "url": "https://www.ncsc.gov.uk/collection/ransomware-resistant-backups"
+            }
+          ]
+        }
       },
       {
         "id": "B6",
@@ -803,7 +1390,51 @@
             ]
           }
         ],
-        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-b/principle-b6-staff-awareness-and-training"
+        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-b/principle-b6-staff-awareness-and-training",
+        "guidance": {
+          "ncsc": [
+            {
+              "title": "10 Steps to Cyber Security",
+              "url": "https://www.ncsc.gov.uk/collection/10-steps/engagement-and-training"
+            },
+            {
+              "title": "NCSC Cyber Security Culture Principles",
+              "url": "https://www.ncsc.gov.uk/collection/cyber-security-culture-principles"
+            },
+            {
+              "title": "NCSC Certified Training",
+              "url": "https://www.ncsc.gov.uk/information/certified-training"
+            },
+            {
+              "title": "Putting staff welfare at the heart of incident response",
+              "url": "https://www.ncsc.gov.uk/guidance/putting-staff-welfare-at-the-heart-of-incident-response"
+            }
+          ],
+          "external": [
+            {
+              "title": "NPSA Passport to Good Security - 8. Create a Strong Security Culture - Soft Measures",
+              "url": "https://www.npsa.gov.uk/content/create-strong-security-culture-soft-measures"
+            },
+            {
+              "title": "NPSA Passport to Good Security - 8. Create a Strong Security Culture - Hard Measures",
+              "url": "https://www.npsa.gov.uk/content/create-strong-security-culture-hard-measures"
+            },
+            {
+              "title": "The UK Cyber Security Council",
+              "url": "https://www.ukcybersecuritycouncil.org.uk/"
+            },
+            {
+              "title": "NIST SP800-82"
+            },
+            {
+              "title": "ISO/IEC 27001"
+            },
+            {
+              "title": "UK Government Security Improving security culture",
+              "url": "https://www.security.gov.uk/policy-and-guidance/improving-security-culture/"
+            }
+          ]
+        }
       }
     ]
   },
@@ -1008,7 +1639,63 @@
             ]
           }
         ],
-        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-c-detecting-cyber-security-events/principle-c1-security-monitoring"
+        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-c-detecting-cyber-security-events/principle-c1-security-monitoring",
+        "guidance": {
+          "ncsc": [
+            {
+              "title": "Introduction to logging for security purposes",
+              "url": "https://www.ncsc.gov.uk/guidance/introduction-logging-security-purposes"
+            },
+            {
+              "title": "Building a Security Operations Centre (SOC)",
+              "url": "https://www.ncsc.gov.uk/collection/building-a-security-operations-centre"
+            },
+            {
+              "title": "10 Steps to Cyber Security - Logging and monitoring",
+              "url": "https://www.ncsc.gov.uk/collection/10-steps/logging-and-monitoring"
+            },
+            {
+              "title": "Device Security Guidance - Logging and protective monitoring",
+              "url": "https://www.ncsc.gov.uk/collection/device-security-guidance/managing-deployed-devices/logging-and-protective-monitoring"
+            }
+          ],
+          "external": [
+            {
+              "title": "RITICS Why you need to undertake cyber security logging and monitoring in an ICS / OT environment",
+              "url": "https://ritics.org/wp-content/uploads/2023/10/ICS-COI-Logging-and-Monitoring-2.pdf"
+            },
+            {
+              "title": "RITICS ICS / OT Logging and Monitoring",
+              "url": "https://ritics.org/wp-content/uploads/2023/10/ICS-COI-Logging-and-Monitoring-1.pdf"
+            },
+            {
+              "title": "NIST SP 800-82"
+            },
+            {
+              "title": "NIST SP 800-137"
+            },
+            {
+              "title": "NIST SP 800-94"
+            },
+            {
+              "title": "IEC 62443-3-3"
+            },
+            {
+              "title": "IEC 62443-2-1"
+            },
+            {
+              "title": "ISO/IEC 27001"
+            },
+            {
+              "title": "CISA Identifying and Mitigating Living Off the Land Techniques",
+              "url": "https://www.cisa.gov/resources-tools/resources/identifying-and-mitigating-living-land-techniques"
+            },
+            {
+              "title": "MITRE 11 Strategies of a World-Class Cybersecurity Operations Center",
+              "url": "https://www.mitre.org/sites/default/files/2022-04/11-strategies-of-a-world-class-cybersecurity-operations-center.pdf"
+            }
+          ]
+        }
       },
       {
         "id": "C2",
@@ -1043,7 +1730,31 @@
             ]
           }
         ],
-        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-c-detecting-cyber-security-events/principle-c2-threat-hunting"
+        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-c-detecting-cyber-security-events/principle-c2-threat-hunting",
+        "guidance": {
+          "ncsc": [
+            {
+              "title": "Intelligent security tools",
+              "url": "https://www.ncsc.gov.uk/collection/intelligent-security-tools"
+            }
+          ],
+          "external": [
+            {
+              "title": "NIST SP 800-82"
+            },
+            {
+              "title": "IEC 62443-1-1"
+            },
+            {
+              "title": "UK Government Detecting the Unknown: A Guide to Threat Hunting",
+              "url": "https://hodigital.blog.gov.uk/wp-content/uploads/sites/161/2020/03/Detecting-the-Unknown-A-Guide-to-Threat-Hunting-v2.0.pdf"
+            },
+            {
+              "title": "MITRE TTP-Based Hunting",
+              "url": "https://www.mitre.org/news-insights/publication/ttp-based-hunting"
+            }
+          ]
+        }
       }
     ]
   },
@@ -1120,7 +1831,61 @@
             ]
           }
         ],
-        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-d/principle-d1-response-and-recovery-planning"
+        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-d/principle-d1-response-and-recovery-planning",
+        "guidance": {
+          "ncsc": [
+            {
+              "title": "10 Steps to Cyber Security – Incident Management",
+              "url": "https://www.ncsc.gov.uk/collection/10-steps/incident-management"
+            },
+            {
+              "title": "Incident Management",
+              "url": "https://www.ncsc.gov.uk/collection/incident-management"
+            },
+            {
+              "title": "Categorising UK cyber incidents",
+              "url": "https://www.ncsc.gov.uk/information/categorising-uk-cyber-incidents"
+            },
+            {
+              "title": "Effective steps to cyber exercise creation",
+              "url": "https://www.ncsc.gov.uk/guidance/effective-steps-to-cyber-exercise-creation"
+            },
+            {
+              "title": "Putting staff welfare at the heart of incident response",
+              "url": "https://www.ncsc.gov.uk/guidance/putting-staff-welfare-at-the-heart-of-incident-response"
+            },
+            {
+              "title": "Cyber Incident Response Assurance Scheme",
+              "url": "https://www.ncsc.gov.uk/schemes/cyber-incident-response"
+            }
+          ],
+          "external": [
+            {
+              "title": "NPSA Incident Management",
+              "url": "https://www.npsa.gov.uk/incident-management"
+            },
+            {
+              "title": "ISO/IEC 27035-1",
+              "url": "https://www.iso.org/standard/78973.html"
+            },
+            {
+              "title": "NIST SP 800-61 Computer Security Incident Handling Guide",
+              "url": "https://www.nist.gov/privacy-framework/nist-sp-800-61"
+            },
+            {
+              "title": "CREST Cyber Security Incident Response Guide",
+              "url": "https://www.crest-approved.org/wp-content/uploads/2022/04/CSIR-Procurement-Guide-1.pdf"
+            },
+            {
+              "title": "CREST Cyber Security Incident Response Maturity Assessment [Model]",
+              "url": "https://www.crest-approved.org/buying-building-cyber-services/cyber-security-incident-response-maturity-assessment/"
+            },
+            {
+              "title": "CREST Cyber Security Incident Response Supplier Selection Guide",
+              "url": "https://www.crest-approved.org/wp-content/uploads/2022/04/CSIR-Supplier-Selection-Guide.pdf"
+            }
+          ]
+        }
       },
       {
         "id": "D2",
@@ -1167,7 +1932,25 @@
             ]
           }
         ],
-        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-d/principle-d2-lessons-learned"
+        "ncscUrl": "https://www.ncsc.gov.uk/collection/cyber-assessment-framework/caf-objective-d/principle-d2-lessons-learned",
+        "guidance": {
+          "ncsc": [
+            {
+              "title": "Incident management",
+              "url": "https://www.ncsc.gov.uk/collection/incident-management"
+            }
+          ],
+          "external": [
+            {
+              "title": "NIST SP 800-61 Computer Security Incident Handling Guide",
+              "url": "https://www.nist.gov/privacy-framework/nist-sp-800-61"
+            },
+            {
+              "title": "ISO/IEC 27035-1",
+              "url": "https://www.iso.org/standard/78973.html"
+            }
+          ]
+        }
       }
     ]
   }

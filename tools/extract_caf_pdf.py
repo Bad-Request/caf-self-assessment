@@ -23,7 +23,9 @@ Known limitations, from validating a full pass against the CAF 4.0 PDF:
     rather than assuming a dropped apostrophe is a real change.
   - `ncscUrl` (the per-principle link to ncsc.gov.uk) is not present in the
     PDF at all — pass --merge-from to carry it over from an existing
-    data.json, and fill in any new principles by hand.
+    data.json, and fill in any new principles by hand. The same goes for
+    each principle's `guidance` links (also carried over by --merge-from;
+    refresh them with tools/extract_ncsc_guidance.js).
 
 Usage:
     python3 tools/extract_caf_pdf.py extract <path-to-caf.pdf> \\
@@ -248,20 +250,32 @@ def merge_urls(data, existing_path):
     with open(existing_path) as f:
         existing = json.load(f)
     urls = {}
+    guidance = {}
     for obj in existing:
         for p in obj.get('principles', []):
             if p.get('ncscUrl'):
                 urls[p['id']] = p['ncscUrl']
+            if p.get('guidance'):
+                guidance[p['id']] = p['guidance']
     missing = []
+    missing_guidance = []
     for obj in data:
         for p in obj['principles']:
             if p['id'] in urls:
                 p['ncscUrl'] = urls[p['id']]
             else:
                 missing.append(p['id'])
+            if p['id'] in guidance:
+                p['guidance'] = guidance[p['id']]
+            else:
+                missing_guidance.append(p['id'])
     if missing:
         print(f'No ncscUrl found for new/changed principles: {missing} '
               f'(fill these in by hand)', file=sys.stderr)
+    if missing_guidance:
+        print(f'No guidance found for new/changed principles: '
+              f'{missing_guidance} (run tools/extract_ncsc_guidance.js)',
+              file=sys.stderr)
     return data
 
 

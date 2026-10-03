@@ -59,6 +59,7 @@ Nothing to install, but the app logic loads as native ES modules, which browsers
 | `assets/data.js` | Generated from `assets/data.json` by `tools/build-data.js` — a plain JS variable, `window.CAF_DATASET`. Loaded as a classic script, before the module entry point. |
 | `docs/data-schema.md` | Documents the `assets/data.json` structure and the invariants a reviewer should check after any update. |
 | `tools/build-data.js` | Regenerates `assets/data.js` from `assets/data.json`. Run after every edit to the dataset. |
+| `tools/extract_ncsc_guidance.js` | Merges the per-principle guidance and reference links from NCSC's [Consolidated view of CAF Guidance](https://www.ncsc.gov.uk/collection/cyber-assessment-framework/consolidated-view-of-caf-guidance) page (saved as HTML) into `assets/data.json`. |
 | `tools/extract_caf_pdf.py` | Extracts a draft `data.json` from a CAF PDF, for updating the dataset when NCSC publish a revision. |
 | `assets/style.css` | Styling. |
 | `assets/js/app.js` | Entry point (`<script type="module">`) — wires the other modules together and handles the cross-cutting UI (new/delete assessment, JSON import/export, print). |
@@ -79,6 +80,7 @@ Nothing to install, but the app logic loads as native ES modules, which browsers
 - A checkbox against every individual Indicator of Good Practice (IGP) — tick the ones that genuinely describe your organisation.
 - An automatically **suggested** status per contributing outcome, worked out from those ticks (see [How suggestions work](#how-suggestions-work) below), which you can override by hand at any time.
 - Notes/evidence field per outcome.
+- A collapsible **Guidance & references** section on each principle, listing the NCSC guidance and external resources from NCSC's [Consolidated view of CAF Guidance](https://www.ncsc.gov.uk/collection/cyber-assessment-framework/consolidated-view-of-caf-guidance). Collapsed by default and left out of printouts.
 - Dashboard: overall % score, per-objective breakdown, and an "outcome grid" — one dot per contributing outcome, colour-coded by status, click a dot to jump straight to that outcome.
 - **Profiles**: since a CAF assessment is often measured against an agreed baseline rather than "fully achieved" everywhere, you can set a target level (Not achieved / Partially achieved / Achieved) for each of the 41 individual contributing outcomes (e.g. `A1.a`, `C1.d`) — not just per principle, since a profile can reasonably expect more of one outcome within a principle than another.
   - Profiles are standalone and reusable — create one and apply it to any number of assessments — and are exported/imported as their own separate `.json` files so a profile can be shared or reused independently of any assessment.
