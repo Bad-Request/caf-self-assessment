@@ -4,10 +4,10 @@
 // once at startup to be notified when the selected assessment changes.
 
 import { el } from './dom.js';
-import { loadAssessments, saveAssessments, getCurrentId, setCurrentId } from './storage.js';
-import { uid, nowIso } from './utils.js';
+import { loadList, saveList, ASSESSMENTS_KEY, getCurrentId, setCurrentId } from './storage.js';
+import { uid, nowIso, byNewest } from './utils.js';
 
-var assessments = loadAssessments();
+var assessments = loadList(ASSESSMENTS_KEY);
 var currentId = getCurrentId();
 var onCurrentChanged = function () {};
 
@@ -24,21 +24,18 @@ export function getCurrentAssessmentId() {
 }
 
 export function findAssessment(id) {
-  for (var i = 0; i < assessments.length; i++) {
-    if (assessments[i].id === id) return assessments[i];
-  }
-  return null;
+  return assessments.find(function (a) { return a.id === id; }) || null;
 }
 
 export function persistAssessments() {
-  saveAssessments(assessments);
+  saveList(ASSESSMENTS_KEY, assessments);
 }
 
 export function touchCurrent() {
   var a = findAssessment(currentId);
   if (a) {
     a.updatedAt = nowIso();
-    saveAssessments(assessments);
+    persistAssessments();
   }
 }
 
@@ -51,7 +48,7 @@ function selectAssessment(id) {
 
 export function createAssessment(name) {
   var assessment = {
-    id: uid(),
+    id: uid('a'),
     name: name || 'Untitled assessment',
     org: '',
     assessor: '',
@@ -61,14 +58,14 @@ export function createAssessment(name) {
     results: {}
   };
   assessments.push(assessment);
-  saveAssessments(assessments);
+  persistAssessments();
   selectAssessment(assessment.id);
   return assessment;
 }
 
 export function deleteAssessment(id) {
   assessments = assessments.filter(function (a) { return a.id !== id; });
-  saveAssessments(assessments);
+  persistAssessments();
   if (currentId === id) {
     selectAssessment(assessments.length ? assessments[0].id : null);
   } else {
@@ -80,7 +77,7 @@ export function deleteAssessment(id) {
 // makes it the current selection.
 export function addImportedAssessment(assessment) {
   assessments.push(assessment);
-  saveAssessments(assessments);
+  persistAssessments();
   selectAssessment(assessment.id);
 }
 
@@ -90,7 +87,7 @@ export function renderSidebar() {
 
   assessments
     .slice()
-    .sort(function (a, b) { return b.updatedAt.localeCompare(a.updatedAt); })
+    .sort(byNewest)
     .forEach(function (a) {
       var li = document.createElement('li');
       var btn = document.createElement('button');
@@ -116,8 +113,6 @@ if (currentId && !findAssessment(currentId)) {
   setCurrentId(null);
 }
 if (!currentId && assessments.length) {
-  currentId = assessments
-    .slice()
-    .sort(function (a, b) { return b.updatedAt.localeCompare(a.updatedAt); })[0].id;
+  currentId = assessments.slice().sort(byNewest)[0].id;
   setCurrentId(currentId);
 }

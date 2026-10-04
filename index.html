@@ -7,10 +7,9 @@
 <!--
   IMPORTANT — data handling:
   This is a fully static app: no server, no build step, no database.
-  assets/data.js holds the static CAF reference dataset (objectives,
-  principles, contributing outcomes, IGPs) as a plain JS variable. It is
-  generated from assets/data.json — see docs/data-schema.md and
-  tools/build-data.js if you need to edit the CAF reference content.
+  assets/data.json holds the static CAF reference dataset (objectives,
+  principles, contributing outcomes, IGPs), fetched by assets/js/model.js —
+  see docs/data-schema.md if you need to edit the CAF reference content.
   Every assessment a person creates — statuses, notes, organisation
   name, everything — is written to, and read from, the browser's own
   localStorage (assets/js/storage.js). Clearing browser data / a
@@ -125,7 +124,7 @@
 
     <div class="sidebar__section sidebar__footer">
       <p>Reference: NCSC <a href="https://www.ncsc.gov.uk/collection/cyber-assessment-framework" target="_blank" rel="noopener">Cyber Assessment Framework 4.0</a>. Contains 41 contributing outcomes across 4 objectives and 14 principles.</p>
-      <p class="version-tag">v2.5.0</p>
+      <p class="version-tag">v2.5.1</p>
       <p class="footer-links"><a href="https://github.com/Bad-Request/caf-self-assessment" target="_blank" rel="noopener">View on GitHub &mdash; contributions welcome</a></p>
     </div>
   </nav>
@@ -254,7 +253,6 @@
   </div>
 </div>
 
-<script src="assets/data.js"></script>
 <script type="module" src="assets/js/app.js"></script>
 <script>
 if ('serviceWorker' in navigator) {

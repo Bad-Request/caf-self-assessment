@@ -3,40 +3,37 @@
 // changes), and owns the per-outcome state mutations triggered from them.
 
 import { el } from './dom.js';
-import { DATASET, allOutcomes, outcomesById, STATUS_META, normalizeResult, effectiveStatus } from './model.js';
-import { debounce } from './utils.js';
+import { DATASET, allOutcomes, outcomesById, STATUS_LABEL, normalizeResult, effectiveStatus } from './model.js';
+import { debounce, flashTo } from './utils.js';
 import { findAssessment, getCurrentAssessmentId, touchCurrent, renderSidebar } from './assessments.js';
 import { updateDashboard } from './dashboard.js';
 
-function setChecked(outcomeId, checkKey, checked) {
+// Applies fn to the current assessment's result for this outcome (in
+// memory only); returns the updated result, or null if nothing is selected.
+function updateResult(outcomeId, fn) {
   var a = findAssessment(getCurrentAssessmentId());
-  if (!a) return;
+  if (!a) return null;
   var r = normalizeResult(a.results[outcomeId]);
-  r.checks[checkKey] = checked;
+  fn(r);
   a.results[outcomeId] = r;
+  return r;
+}
+
+function setChecked(outcomeId, checkKey, checked) {
+  var r = updateResult(outcomeId, function (r) { r.checks[checkKey] = checked; });
+  if (!r) return;
   touchCurrent();
   applyOutcomeState(outcomeId, r);
   updateDashboard();
 }
 
 function setOverride(outcomeId, status) {
-  var a = findAssessment(getCurrentAssessmentId());
-  if (!a) return;
-  var r = normalizeResult(a.results[outcomeId]);
-  r.override = (r.override === status) ? null : status;
-  a.results[outcomeId] = r;
+  var r = updateResult(outcomeId, function (r) { r.override = (r.override === status) ? null : status; });
+  if (!r) return;
   touchCurrent();
   applyOutcomeState(outcomeId, r);
   updateDashboard();
   renderSidebar();
-}
-
-function setNotes(outcomeId, notes) {
-  var a = findAssessment(getCurrentAssessmentId());
-  if (!a) return;
-  var r = normalizeResult(a.results[outcomeId]);
-  r.notes = notes;
-  a.results[outcomeId] = r;
 }
 
 export function applyOutcomeState(outcomeId, rawResult) {
@@ -63,7 +60,7 @@ export function applyOutcomeState(outcomeId, rawResult) {
       var suffix = '';
       if (r.override) suffix = ' · manual';
       else if (effective) suffix = ' · suggested';
-      badge.textContent = STATUS_META[key].label + suffix;
+      badge.textContent = STATUS_LABEL[key] + suffix;
     }
 
     var textarea = card.querySelector('[data-notes-for="' + outcomeId + '"]');
@@ -85,15 +82,10 @@ export function applyAllState(assessment) {
 }
 
 function overrideButtonsFor(outcome) {
-  var opts = [
-    { key: 'not', cls: 'opt-not', label: 'Not achieved' }
-  ];
-  if (outcome.type === 3) {
-    opts.push({ key: 'partial', cls: 'opt-partial', label: 'Partially achieved' });
-  }
-  opts.push({ key: 'achieved', cls: 'opt-achieved', label: 'Achieved' });
-  opts.push({ key: 'na', cls: 'opt-na', label: 'N/A' });
-  return opts;
+  var keys = outcome.type === 3 ? ['not', 'partial', 'achieved'] : ['not', 'achieved'];
+  return keys.map(function (key) {
+    return { key: key, cls: 'opt-' + key, label: STATUS_LABEL[key] };
+  }).concat({ key: 'na', cls: 'opt-na', label: 'N/A' });
 }
 
 var frameworkBuilt = false;
@@ -237,7 +229,7 @@ function buildOutcomeCard(outcome) {
 
   var badge = document.createElement('span');
   badge.className = 'status-badge status-badge--unset';
-  badge.textContent = STATUS_META.unset.label;
+  badge.textContent = STATUS_LABEL.unset;
   statusArea.appendChild(badge);
 
   var baselineBadge = document.createElement('span');
@@ -311,7 +303,7 @@ function buildOutcomeCard(outcome) {
 
   var persistNotesChange = debounce(touchCurrent, 300);
   notesTextarea.addEventListener('input', function () {
-    setNotes(outcome.id, notesTextarea.value);
+    updateResult(outcome.id, function (r) { r.notes = notesTextarea.value; });
     persistNotesChange();
   });
 
@@ -369,12 +361,7 @@ export function buildOutcomeGrid() {
     dot.title = entry.outcome.id + ' — ' + entry.outcome.title;
     dot.setAttribute('aria-label', 'Jump to outcome ' + entry.outcome.id + ', ' + entry.outcome.title);
     dot.addEventListener('click', function () {
-      var target = document.getElementById('outcome-' + entry.outcome.id);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        target.style.outline = '2px solid var(--gold-500)';
-        setTimeout(function () { target.style.outline = ''; }, 1200);
-      }
+      flashTo(document.getElementById('outcome-' + entry.outcome.id), 'center');
     });
     frag.appendChild(dot);
   });

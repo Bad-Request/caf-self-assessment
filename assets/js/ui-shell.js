@@ -44,7 +44,7 @@ export function showDialog(opts) {
   window.setTimeout(function () { el.dialogConfirm.focus(); }, 20);
 }
 
-export function closeDialog() {
+function closeDialog() {
   el.dialogModal.hidden = true;
   dialogOnConfirm = null;
 }
@@ -64,6 +64,24 @@ el.dialogModal.addEventListener('click', function (evt) {
 document.addEventListener('keydown', function (evt) {
   if (evt.key === 'Escape' && !el.dialogModal.hidden) closeDialog();
 });
+
+// Wires an "Import (.json)" button to its hidden file input: parses the
+// chosen file and hands it to onImport, which should throw if the file
+// isn't the right shape. Any failure is shown in the dialog.
+export function bindJsonImport(button, input, onImport) {
+  button.addEventListener('click', function () { input.click(); });
+  input.addEventListener('change', async function () {
+    var file = input.files[0];
+    if (!file) return;
+    try {
+      onImport(JSON.parse(await file.text()));
+    } catch (e) {
+      showDialog({ title: 'Import failed', message: 'Could not import this file: ' + e.message, confirmLabel: 'OK' });
+    } finally {
+      input.value = '';
+    }
+  });
+}
 
 // ---------------------------------------------------------------
 // Sidebar toggle
@@ -110,11 +128,7 @@ document.addEventListener('keydown', function (evt) {
 // Crossing the desktop/mobile breakpoint changes what "open" should
 // mean (permanent column vs. off-canvas drawer), so recompute rather
 // than carry over whatever state the other layout left behind.
-if (sidebarBreakpoint.addEventListener) {
-  sidebarBreakpoint.addEventListener('change', initSidebarState);
-} else if (sidebarBreakpoint.addListener) {
-  sidebarBreakpoint.addListener(initSidebarState);
-}
+sidebarBreakpoint.addEventListener('change', initSidebarState);
 
 // On mobile, picking something in the drawer should close it so the
 // result (a modal, a switched assessment) is immediately visible.
@@ -164,14 +178,9 @@ el.themeToggle.addEventListener('click', function (evt) {
 
 // Only follow the OS preference live while "System" is selected — an
 // explicit Light/Dark choice shouldn't be overridden by it changing.
-var handleSystemThemeChange = function () {
+systemDarkQuery.addEventListener('change', function () {
   if ((getStoredTheme() || 'system') === 'system') applyTheme('system');
-};
-if (systemDarkQuery.addEventListener) {
-  systemDarkQuery.addEventListener('change', handleSystemThemeChange);
-} else if (systemDarkQuery.addListener) {
-  systemDarkQuery.addListener(handleSystemThemeChange);
-}
+});
 
 applyTheme(getStoredTheme() || 'system');
 

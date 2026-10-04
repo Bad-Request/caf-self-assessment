@@ -1,10 +1,9 @@
 # CAF dataset schema — `assets/data.json`
 
 `assets/data.json` is the source of truth for the NCSC Cyber Assessment
-Framework (CAF) reference content shown in the app. It is **not** loaded
-directly by the browser — run `node tools/build-data.js` after editing it,
-which regenerates `assets/data.js` (the `window.CAF_DATASET` global the app
-actually loads). Commit both files together.
+Framework (CAF) reference content shown in the app. The browser fetches it
+directly (`assets/js/model.js`); bump `CACHE_VERSION` in `sw.js` after
+editing it so offline installs pick up the change.
 
 ## Shape
 

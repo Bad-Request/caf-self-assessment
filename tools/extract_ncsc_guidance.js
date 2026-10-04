@@ -9,8 +9,7 @@
 //   1. Save the page's HTML, e.g.
 //        curl -sSL -o ncsc.html https://www.ncsc.gov.uk/collection/cyber-assessment-framework/consolidated-view-of-caf-guidance
 //   2. node tools/extract_ncsc_guidance.js ncsc.html
-//   3. node tools/build-data.js
-//   4. Hand-review the diff of assets/data.json before committing.
+//   3. Hand-review the diff of assets/data.json before committing.
 //
 // Deliberately strict: it exits non-zero rather than guess if the page's
 // structure changes (an unknown heading, a list item with more than one
@@ -153,4 +152,4 @@ Object.keys(guidance).forEach(function (id) {
 });
 
 fs.writeFileSync(jsonPath, JSON.stringify(data, null, 2) + '\n');
-console.log('Updated ' + jsonPath + '. Now run: node tools/build-data.js, then review the diff.');
+console.log('Updated ' + jsonPath + '. Now review the diff.');

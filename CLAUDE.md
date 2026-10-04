@@ -26,10 +26,9 @@ Both are easy to forget mid-task — check this list before opening a PR.
 
 ## Editing the CAF reference dataset
 
-- [ ] Never hand-edit `assets/data.js` — edit `assets/data.json` (schema in
-  `docs/data-schema.md`) and regenerate with `node tools/build-data.js`.
-  Commit both files in the same commit.
-- [ ] `node tools/build-data.js --check` should pass before committing.
+- [ ] Edit `assets/data.json` (schema in `docs/data-schema.md`); the app
+  fetches it directly, so there's nothing to regenerate. It's in
+  `APP_SHELL`, so bump `CACHE_VERSION` in `sw.js`.
 - [ ] If re-extracting from a new CAF PDF via `tools/extract_caf_pdf.py`,
   hand-review the full diff against the previous `data.json` — the tool's
   own docstring lists its known failure modes (page-break splits, dropped
