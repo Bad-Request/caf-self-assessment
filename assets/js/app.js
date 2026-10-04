@@ -3,16 +3,14 @@
 // assessment, JSON import/export, meta field bindings, print).
 
 import { el } from './dom.js';
-import { uid, nowIso, debounce } from './utils.js';
-import { showDialog, showToast } from './ui-shell.js';
-import { downloadJson } from './download.js';
+import { uid, nowIso, debounce, downloadJson } from './utils.js';
+import { showDialog, showToast, bindJsonImport } from './ui-shell.js';
 import {
   renderSidebar, findAssessment, getCurrentAssessmentId, createAssessment,
   deleteAssessment, addImportedAssessment, touchCurrent, setOnCurrentChanged
 } from './assessments.js';
 import {
-  renderBaselineSidebar, refreshBaselineSelectOptions, applyBaselineBorders,
-  updateBaselineLegend, applyBaselineToFramework, findBaseline
+  renderBaselineSidebar, refreshBaselineSelectOptions, applyBaseline, findBaseline
 } from './baselines.js';
 import { buildFramework, buildOutcomeGrid, applyAllState } from './framework.js';
 import { updateDashboard } from './dashboard.js';
@@ -41,9 +39,7 @@ function renderCurrentAssessment() {
   applyAllState(a);
   updateDashboard();
   refreshBaselineSelectOptions();
-  applyBaselineBorders();
-  updateBaselineLegend();
-  applyBaselineToFramework();
+  applyBaseline();
 }
 
 setOnCurrentChanged(renderCurrentAssessment);
@@ -143,42 +139,21 @@ document.getElementById('btn-export-json').addEventListener('click', function ()
   showToast('Exported ' + filename);
 });
 
-document.getElementById('btn-import-json').addEventListener('click', function () {
-  document.getElementById('input-import-json').click();
-});
-
-document.getElementById('input-import-json').addEventListener('change', function (evt) {
-  var file = evt.target.files[0];
-  if (!file) return;
-  var reader = new FileReader();
-  reader.onload = function () {
-    try {
-      var imported = JSON.parse(reader.result);
-      if (!imported || typeof imported !== 'object' || !imported.results) {
-        throw new Error('File does not look like a CAF assessment export.');
-      }
-      imported.id = uid(); // avoid clobbering an existing assessment with the same id
-      imported.updatedAt = nowIso();
-      if (!imported.name) imported.name = 'Imported assessment';
-      // A baselineId from another browser/device won't correspond to any
-      // baseline profile saved here, so don't carry over a dangling
-      // reference — the assessor can re-attach the right profile locally.
-      if (!imported.baselineId || !findBaseline(imported.baselineId)) {
-        imported.baselineId = null;
-      }
-      addImportedAssessment(imported);
-      showToast('Imported "' + imported.name + '".');
-    } catch (e) {
-      showDialog({
-        title: 'Import failed',
-        message: 'Could not import this file: ' + e.message,
-        confirmLabel: 'OK'
-      });
-    } finally {
-      evt.target.value = '';
-    }
-  };
-  reader.readAsText(file);
+bindJsonImport(document.getElementById('btn-import-json'), document.getElementById('input-import-json'), function (imported) {
+  if (!imported || typeof imported !== 'object' || !imported.results) {
+    throw new Error('File does not look like a CAF assessment export.');
+  }
+  imported.id = uid('a'); // avoid clobbering an existing assessment with the same id
+  imported.updatedAt = nowIso();
+  if (!imported.name) imported.name = 'Imported assessment';
+  // A baselineId from another browser/device won't correspond to any
+  // baseline profile saved here, so don't carry over a dangling
+  // reference — the assessor can re-attach the right profile locally.
+  if (!imported.baselineId || !findBaseline(imported.baselineId)) {
+    imported.baselineId = null;
+  }
+  addImportedAssessment(imported);
+  showToast('Imported "' + imported.name + '".');
 });
 
 // ---------------------------------------------------------------
