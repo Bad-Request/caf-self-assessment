@@ -12,9 +12,8 @@ and this project uses [Semantic Versioning](https://semver.org/).
 - Plain English mode (Appearance → Plain English): shows a short,
   unofficial summary under each Indicator of Good Practice, alongside the
   official NCSC wording, to help with the more densely worded indicators.
-  Off by default, remembered per browser, and never printed. Summaries are
-  included for Objectives A and B so far; Objectives C and D will
-  follow.
+  Off by default, remembered per browser, and never printed. Summaries
+  cover all 558 indicators.
 
 ## [2.6.0] - 2026-10-26
 

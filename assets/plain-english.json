@@ -596,5 +596,275 @@
       { "src": "8fcf4518", "text": "You routinely check that your security training and awareness activities reach as many people as possible and actually work." },
       { "src": "217d6bad", "text": "Security information and good-practice guidance is easy to find and widely available, and you know people actually use it." }
     ]
+  },
+  "C1.a": {
+    "not": [
+      { "src": "12c18fc1", "text": "You don't collect information about the security and running of the systems behind your essential functions." },
+      { "src": "6ac18336", "text": "You can't check back on what users and systems have done on these systems." },
+      { "src": "8b7800f6", "text": "You don't monitor traffic going in and out of your network." },
+      { "src": "af13f48c", "text": "Your logs can't be lined up against one accurate, shared clock." },
+      { "src": "b53c2edf", "text": "Logs are kept where the people and systems allowed to use them can't easily get to them." },
+      { "src": "922006b6", "text": "Your monitoring tools can't be set up to use new sources of log data as they're added." },
+      { "src": "627db49d", "text": "Your monitoring tools can only use a small part of the log data you collect." },
+      { "src": "9576bc60", "text": "You don't know where log data is kept or how long it should be kept for." },
+      { "src": "76699898", "text": "You have no way of making sure logs are being recorded as expected and are there when you need them." }
+    ],
+    "partial": [
+      { "src": "0cea695d", "text": "You collect security and operational information from some parts of these systems, but not all." },
+      { "src": "81043d46", "text": "You monitor some user and system activity, but not against a fully agreed list of suspicious or unwanted behaviour." },
+      { "src": "96b4715b", "text": "You monitor traffic going in and out of your network, recording at least which network addresses (IP addresses) connect to which." },
+      { "src": "aeaf992c", "text": "Some, but not all, of your logs can be easily searched to help with investigations." },
+      { "src": "95c80963", "text": "Your monitoring tools work with most of your log data, with some setting up." },
+      { "src": "8351f95a", "text": "Your monitoring tools can use log data that would reveal all common threats." },
+      { "src": "dd69042f", "text": "You make sure log data is available for analysis when it's needed." }
+    ],
+    "achieved": [
+      { "src": "a14eb577", "text": "Your monitoring is based on a thorough understanding of your systems, how attackers operate, and what you need to record and watch to spot incidents affecting your essential functions." },
+      { "src": "561d7c55", "text": "Your monitoring data has enough detail to spot security events and incidents quickly and reliably, and to support investigations. You review this regularly and after major events." },
+      { "src": "8055a9d7", "text": "Extensive monitoring of user and system activity lets you quickly spot rule-breaking, suspicious behaviour, or anything out of the ordinary that could signal an attack." },
+      { "src": "9c21a13e", "text": "You monitor both individual computers and devices, and the network traffic between them." },
+      { "src": "746e4c50", "text": "Every new system behind your essential functions is considered as a possible source of monitoring data, so your coverage stays complete." },
+      { "src": "5ca707ef", "text": "Your logs are lined up against an accurate, shared clock, so events in different logs can be matched up." },
+      { "src": "be36315d", "text": "You add extra information from other systems to your log data to build a fuller picture of what's happening." },
+      { "src": "9160e7c0", "text": "Your monitoring tools use log data to pinpoint exactly what activity happened." },
+      { "src": "94c3425f", "text": "You regularly review the sources and tools you use for logging and monitoring to make sure they still work well." }
+    ]
+  },
+  "C1.b": {
+    "not": [
+      { "src": "af1ae6a8", "text": "Unauthorised people, systems or attackers could easily edit or delete log data." },
+      { "src": "c9a73f3b", "text": "Nothing controls which users and systems can get at log data." },
+      { "src": "1adc026d", "text": "Nobody watches who accesses log data." },
+      { "src": "329ed4b2", "text": "You have no policies on who can access log data." }
+    ],
+    "partial": [
+      { "src": "42e398b0", "text": "Only approved users and systems can access log data." },
+      { "src": "5ce4adae", "text": "There's some monitoring of access to log data, e.g. copying, deleting, changing or even viewing it." },
+      { "src": "97098b41", "text": "You've decided how long to keep log data, and you stick to it." },
+      { "src": "42d9cb88", "text": "Your policies set out the legitimate reasons for accessing log data." }
+    ],
+    "achieved": [
+      { "src": "d45d5217", "text": "Access to log data is limited to the users and systems that need it for their work." },
+      { "src": "6bca7e66", "text": "Your logging set-up is protected against the same kinds of threat it's designed to spot, covering both the system itself and the data in it." },
+      { "src": "375e159d", "text": "Log data is only analysed or reformatted using copies, so the original stays untouched." },
+      { "src": "b0faa798", "text": "Every action on log data, e.g. copying, deleting, changing or even viewing it, can be traced to a specific user or system." },
+      { "src": "8124604f", "text": "Log data is protected from tampering and checked, and any change or deletion is detected and traced to whoever made it." }
+    ]
+  },
+  "C1.c": {
+    "not": [
+      { "src": "7a3196e6", "text": "You don't promptly apply updates to your detection tools once received, e.g. new antivirus signatures or indicators of compromise (known signs of an attack)." },
+      { "src": "cb3ec4f5", "text": "Security alerts about these systems aren't prioritised." },
+      { "src": "ec106111", "text": "You can't add extra context to security alerts from these systems." },
+      { "src": "9ed3557c", "text": "You can't reliably spot known signs of an attack on these systems, such as traffic from an attacker remotely controlling a machine, e.g. because your logs lack detail." },
+      { "src": "5a8dcc3a", "text": "You don't watch for unusual user or system behaviour that could signal an attack." },
+      { "src": "31190a4b", "text": "Logs are rarely checked." }
+    ],
+    "partial": [
+      { "src": "699e001d", "text": "You easily spot known signs of an attack (indicators of compromise) on these systems, such as traffic from an attacker remotely controlling a machine." },
+      { "src": "d7b15b6d", "text": "You apply some updates, new signatures and indicators of compromise promptly." },
+      { "src": "54e05191", "text": "Security alerts about these systems are prioritised." },
+      { "src": "09dd170d", "text": "You add extra context to alerts from these systems, but separately rather than as part of the original alert." },
+      { "src": "96797291", "text": "Detection and alerting rely on standard tools used without customisation, or on users reporting things." },
+      { "src": "5537936c", "text": "Everyone who supports your essential function has a written, shared process for reporting events and possible security incidents." },
+      { "src": "9fc8514c", "text": "Where appropriate, detections automatically trigger action, e.g. antivirus quarantining malware it finds." },
+      { "src": "334a7e1f", "text": "You check for unusual user or system behaviour that could signal an attack, but not regularly." },
+      { "src": "721fe998", "text": "Logs are checked at regular intervals." }
+    ],
+    "achieved": [
+      { "src": "bc86fc16", "text": "You easily spot known signs of an attack, such as an attacker remotely controlling a machine, as well as unusual behaviour that could signal an attack." },
+      { "src": "1714c148", "text": "You apply all updates, new signatures and indicators of compromise promptly." },
+      { "src": "6ff489da", "text": "Security alerts about all these systems are prioritised, and this is used to help manage incidents." },
+      { "src": "9eed5265", "text": "Alerts routinely have extra context added, almost in real time, as part of the original alert." },
+      { "src": "96f38683", "text": "Alerts and the rules behind them are regularly reviewed and tested so they fire quickly and reliably, and real incidents can be told apart from false alarms." },
+      { "src": "dd82c1b2", "text": "Alerts and the rules behind them can be customised and fine-tuned to cut false alarms and improve responses." },
+      { "src": "b02a1a29", "text": "Detection and alerting may use both standard, off-the-shelf tools and rules, and your own custom ones." },
+      { "src": "bb744d38", "text": "You constantly watch for unusual user and system behaviour that could signal an attack, and raise alerts based on what you find." },
+      { "src": "37ed600b", "text": "Logs are monitored constantly, almost in real time." }
+    ]
+  },
+  "C1.d": {
+    "not": [
+      { "src": "b404a965", "text": "You don't assess and sort (triage) alerts from your security detection tools, e.g. antivirus or intrusion detection systems." },
+      { "src": "d8b4cd1b", "text": "You don't sort alerts and incidents by type and by priority or severity." },
+      { "src": "0230f7c9", "text": "You have no step-by-step guides (playbooks) to follow when assessing alerts." },
+      { "src": "3a23904a", "text": "You don't keep records of how alerts were assessed." },
+      { "src": "38ebb1b7", "text": "You don't understand normal user or system behaviour well enough to make good decisions when assessing alerts." }
+    ],
+    "partial": [
+      { "src": "a9ff77ea", "text": "You investigate and assess alerts from some of your security tools, and act on them." },
+      { "src": "9bef9113", "text": "You have step-by-step guides (playbooks) for the most common situations, which people use when appropriate and which are regularly reviewed to keep them effective." },
+      { "src": "14a07d6f", "text": "You assess some alerts, and record the actions taken by your monitoring staff." },
+      { "src": "0d6c43f7", "text": "You sort alerts and incidents by type and by priority or severity." },
+      { "src": "b2827ac5", "text": "Your understanding of normal user or system behaviour helps you make decisions when assessing alerts." }
+    ],
+    "achieved": [
+      { "src": "2263f73f", "text": "You investigate and assess alerts from all of your security tools, and act on them." },
+      { "src": "53ad161e", "text": "You have step-by-step guides (playbooks) for every realistic situation, which people use when appropriate and which are regularly reviewed to keep them effective." },
+      { "src": "0d6c43f7", "text": "You sort alerts and incidents by type and by priority or severity." },
+      { "src": "d9ebe9e6", "text": "You record everything your monitoring staff do when assessing alerts, and use these records to drive improvements." },
+      { "src": "f9d8b0d2", "text": "Assessing alerts gives enough information to prioritise what happens next, e.g. containing damaging malware." },
+      { "src": "7ccfc20a", "text": "You understand normal user and system behaviour, and threats, well enough to make good decisions when assessing alerts." }
+    ]
+  },
+  "C1.e": {
+    "not": [
+      { "src": "18a289ce", "text": "Nobody is responsible for monitoring and detecting security issues." },
+      { "src": "fec85cf7", "text": "Your monitoring staff lack the right specialist skills." },
+      { "src": "1967b71c", "text": "Your monitoring staff can't report in the way your governance requires." },
+      { "src": "086b43c0", "text": "Monitoring staff don't know what essential functions you provide or which assets support them, so can't judge how important logs and events are." },
+      { "src": "a5496651", "text": "Monitoring staff know nothing about other roles or tasks, outside security monitoring, that matter to running your essential functions." },
+      { "src": "45893036", "text": "Monitoring staff are so swamped by data and alerts that they've stopped giving each one proper attention." }
+    ],
+    "partial": [
+      { "src": "1c155ebb", "text": "Monitoring staff have some investigation skills and a basic understanding of the data they work with." },
+      { "src": "5a453d1b", "text": "Monitoring staff can report to other parts of the organisation, e.g. security directors or resilience managers." },
+      { "src": "e2b4b734", "text": "Monitoring staff can follow most of the required processes." },
+      { "src": "de9d0e79", "text": "Monitoring staff know about some of your systems and essential functions, and can handle alerts relating to them." },
+      { "src": "9da29f61", "text": "Monitoring staff have some understanding of how your organisation operates, its people, processes and systems, which helps them monitor better." },
+      { "src": "356f995c", "text": "Monitoring staff handle their workload and cases effectively." }
+    ],
+    "achieved": [
+      { "src": "ce2336b7", "text": "Named monitoring staff are responsible for analysing, investigating and reporting on alerts, both proactively and in response, covering security and performance." },
+      { "src": "ce5a734f", "text": "Monitoring staff have defined roles and skills covering every part of the monitoring and investigation process." },
+      { "src": "2a05b319", "text": "Monitoring staff follow policies and procedures that meet all internal and external governance reporting requirements." },
+      { "src": "8f00ad83", "text": "Monitoring staff are free to go beyond the set process to investigate unusual threats." },
+      { "src": "64bb57a2", "text": "Monitoring staff know your systems, essential functions and related assets, and can spot and prioritise alerts and investigations relating to them." },
+      { "src": "b4a08f52", "text": "Monitoring staff help decide what new log data to collect, and make good use of it." },
+      { "src": "187cec76", "text": "Monitoring staff can follow all of the required processes." },
+      { "src": "0e11a06a", "text": "Monitoring staff understand how your organisation operates, its people, processes and systems, well enough to make monitoring more effective." },
+      { "src": "dbcb3937", "text": "Monitoring staff handle their workload and cases effectively, and spot ways to improve." }
+    ]
+  },
+  "C1.f": {
+    "not": [
+      { "src": "03e3fdb9", "text": "You have no sources of information about current threats (threat intelligence)." },
+      { "src": "f2b475e0", "text": "You don't assess how useful your threat intelligence is, or give feedback to its providers or other users." },
+      { "src": "d4136635", "text": "You don't know what's needed to make the most of threat intelligence in your monitoring." },
+      { "src": "69f9f8df", "text": "Your threat intelligence is unreliable, or the right people and systems don't act on it promptly." },
+      { "src": "ae53c341", "text": "You have no settled idea of what unusual activity to look for that might signal an attack." },
+      { "src": "32d10cd7", "text": "You don't get updates for all your detection tools, e.g. antivirus or intrusion detection systems." },
+      { "src": "a8327f03", "text": "You don't understand normal user and system behaviour well enough to spot attacks by noticing what's unusual." }
+    ],
+    "partial": [
+      { "src": "b4e899b8", "text": "You know how effective your threat intelligence is, e.g. by tracking how it helps you identify incidents." },
+      { "src": "5bdd02d6", "text": "You may use threat intelligence services, but don't necessarily choose them based on your business needs or the specific threats in your sector." },
+      { "src": "a214f53e", "text": "You treat unusual behaviour seen in past attacks, on your own or others' systems, and in threat intelligence, as warning signs." },
+      { "src": "14fa9646", "text": "You get regular updates for all your detection tools, e.g. antivirus or intrusion detection systems." }
+    ],
+    "achieved": [
+      { "src": "203e5f12", "text": "You track how effective your threat intelligence is, and actively share feedback on how useful it was with others, e.g. sector partners, providers and government agencies." },
+      { "src": "68e40498", "text": "Any threat intelligence feeds you use were chosen based on the risks and threats facing your business and sector." },
+      { "src": "5536feb1", "text": "You get relevant, reliable threat intelligence that can be acted on to the right people and systems promptly." },
+      { "src": "7c01ebae", "text": "You put threat intelligence into context, linking it to why and how attacks happen, to guide your monitoring." },
+      { "src": "31b4d08b", "text": "You know normal user and system behaviour so well that looking for anything unusual is an effective way to spot attacks, e.g. you know which systems should communicate, and when." },
+      { "src": "52f047c6", "text": "The unusual behaviour you watch for is based on the kinds of attack most likely to affect the systems behind your essential functions." },
+      { "src": "c45794cd", "text": "The warning signs you watch for are regularly updated to reflect changes to your systems and the latest threat intelligence." },
+      { "src": "a8ea198f", "text": "You're able to share threat intelligence, e.g. effective ways to detect attackers, with sector partners, providers and government agencies when needed." }
+    ]
+  },
+  "C2.a": {
+    "not": [
+      { "src": "8f0d9356", "text": "You don't know what resources you'd need to actively search for attackers your monitoring has missed (threat hunting)." },
+      { "src": "c32adf38", "text": "You don't have access to an effective threat hunting capability." },
+      { "src": "457c6228", "text": "Your threat hunts have no structure, and little or nothing is written down." }
+    ],
+    "partial": [
+      { "src": "c8c64184", "text": "You know what resources you need for threat hunting and can deploy them promptly, on an occasional basis." },
+      { "src": "cae8d985", "text": "You carry out effective threat hunting, but not often enough for the risks your systems face, e.g. only after a tip-off from a trusted source." },
+      { "src": "ac9a76e4", "text": "Your threat hunts follow set, written methods, e.g. starting from a theory, from data, or from a specific user or device, to find attacks automated tools miss." },
+      { "src": "c1ddc938", "text": "You write up the details of each threat hunt and what you found afterwards." }
+    ],
+    "achieved": [
+      { "src": "d365f050", "text": "You understand what resources threat hunting needs, and it's part of your normal, day-to-day work." },
+      { "src": "14e0c07b", "text": "You hunt for threats as often as the risks to your systems require." },
+      { "src": "ac9a76e4", "text": "Your threat hunts follow set, written methods, e.g. starting from a theory, from data, or from a specific user or device, to find attacks automated tools miss." },
+      { "src": "0614234a", "text": "Where it makes sense, you turn what you learn from threat hunts into automated detections and alerts." },
+      { "src": "7d9960a8", "text": "You routinely record details of past threat hunts and follow-up work, and use them to improve your hunting and overall security." },
+      { "src": "868a75f8", "text": "You can justify your confidence that your threat hunts work, and you review and update the process to match the risks your systems face." },
+      { "src": "2706e67d", "text": "Where it makes sense, you use automation to improve threat hunts, e.g. automating some stages." },
+      { "src": "5907140a", "text": "Your threat hunts focus on how attackers behave and operate, rather than on single clues such as file fingerprints (hashes), IP addresses or domain names." }
+    ]
+  },
+  "D1.a": {
+    "not": [
+      { "src": "00c27e45", "text": "Your incident response plan isn't written down." },
+      { "src": "b1687026", "text": "Your incident response plan doesn't cover the essential functions your organisation has identified." },
+      { "src": "a9a17d88", "text": "Relevant staff don't understand your incident response plan well." }
+    ],
+    "partial": [
+      { "src": "be7dc019", "text": "Your incident response plan covers the systems behind your essential functions." },
+      { "src": "fcddb109", "text": "Your incident response plan thoroughly covers scenarios, but only the likely effects of known, well-understood attacks." },
+      { "src": "a42d1218", "text": "Everyone involved in responding to incidents understands your incident response plan." },
+      { "src": "ad682a85", "text": "Your incident response plan is written down and shared with everyone who needs it." },
+      { "src": "90fc1a83", "text": "Your incident response plan is easy to get to, even if an incident has knocked out your IT systems." },
+      { "src": "a147edbe", "text": "Your incident response plan is regularly reviewed to keep it effective." }
+    ],
+    "achieved": [
+      { "src": "6ae44586", "text": "Your incident response plan is based on a clear understanding of the security risks to the systems behind your essential functions." },
+      { "src": "4b63d370", "text": "Your incident response plan is complete, covering an incident from start to finish, roles and reporting, and both known types of attack and new, never-seen ones." },
+      { "src": "65821a85", "text": "Your incident response plan is written down and joined up with wider business plans, suppliers' response plans, and supporting services such as power and cooling." },
+      { "src": "b2a278f6", "text": "The parts of the business involved in running your essential functions have been told about, and understand, your incident response plan." }
+    ]
+  },
+  "D1.b": {
+    "not": [
+      { "src": "01a0a84d", "text": "You haven't arranged for the right resources to be available to carry out your response plan." },
+      { "src": "8d02a4f8", "text": "Your response team aren't equipped to make good response decisions and act on them." },
+      { "src": "8910a15d", "text": "You lack adequate fallback arrangements to keep your essential functions running during an incident." }
+    ],
+    "achieved": [
+      { "src": "9e581680", "text": "You know what resources you'll probably need to respond to an incident, and have arranged for them to be available." },
+      { "src": "3b844ce8", "text": "You know what information you'll probably need to make response decisions, and have arranged for it to be available." },
+      { "src": "9963e047", "text": "Your response team have the skills and knowledge to decide what's needed to limit harm, and the authority to do it." },
+      { "src": "93bc2064", "text": "Key roles have backup people, and everyone involved in running and recovering your essential functions shares the know-how to deliver them." },
+      { "src": "f99a0662", "text": "Fallback arrangements can be quickly switched on to keep your essential functions running, perhaps at a reduced level, if your main systems fail." },
+      { "src": "a9b38e17", "text": "You've arranged extra outside help for incident response if needed, e.g. specialist cyber incident responders." }
+    ]
+  },
+  "D1.c": {
+    "not": [
+      { "src": "73c06761", "text": "Exercises only test one part of the process, e.g. that backups work, rather than all areas." },
+      { "src": "35dde85b", "text": "Incident response exercises aren't held routinely, or only happen now and then without a plan." },
+      { "src": "1b1e371e", "text": "What you learn from exercises isn't fed into your organisation's lessons-learned process." },
+      { "src": "96f5b830", "text": "Exercises don't test every stage of your response." }
+    ],
+    "achieved": [
+      { "src": "e71ab5d4", "text": "Exercise scenarios are based on real incidents at your own or other organisations, or built from experience or threat intelligence." },
+      { "src": "cad9b629", "text": "Exercise scenarios are written down, regularly reviewed and checked for realism." },
+      { "src": "8ec533e2", "text": "Exercises are held routinely, and the findings are written up and used to improve your response plans and security." },
+      { "src": "b95a0d02", "text": "Exercises test every stage of your response for your essential functions, including getting back to normal service." }
+    ]
+  },
+  "D2.a": {
+    "not": [
+      { "src": "dc7408a7", "text": "You usually can't trace incidents back to their underlying cause, or see what contributed to them across your wider systems." },
+      { "src": "1c6c13c4", "text": "You have no formal process for investigating what caused an incident." },
+      { "src": "2c35a2ae", "text": "Investigators settle on a theory early and only look for evidence that supports it." },
+      { "src": "d9438fc6", "text": "Investigations focus only on finding someone to blame." }
+    ],
+    "achieved": [
+      { "src": "55b5ac8d", "text": "You routinely analyse incidents afterwards as a key part of learning lessons from them." },
+      { "src": "085e2d89", "text": "Your analysis is thorough, covering organisational factors such as policies, technical factors such as system design, human factors such as training, and changes in threat." },
+      { "src": "8d197fa6", "text": "The analysis team gets all the relevant incident data it needs." },
+      { "src": "1a56fa29", "text": "Your analysis considers what could have happened in realistic alternative circumstances, e.g. \"what if\" or \"if only\" scenarios." }
+    ]
+  },
+  "D2.b": {
+    "not": [
+      { "src": "7c1ca084", "text": "After incidents, lessons aren't captured, or only a narrow set are." },
+      { "src": "4082b136", "text": "Improvements identified after an incident aren't made, or aren't given enough priority." },
+      { "src": "f15e3948", "text": "Changes are rushed in as a knee-jerk reaction to an incident, without proper analysis and testing to check they're right." },
+      { "src": "1ac42391", "text": "You wait for a serious or high-profile incident before taking steps to improve." }
+    ],
+    "achieved": [
+      { "src": "52ec9807", "text": "You have a written incident review process that makes sure lessons from every incident, including near misses, are identified, recorded and acted on." },
+      { "src": "1e2b6227", "text": "Lessons learned cover reporting, roles, governance, skills and policies, not just the technical side of your systems." },
+      { "src": "9d81c870", "text": "You use lessons learned to improve security, including updating and retesting response plans when needed." },
+      { "src": "7146b094", "text": "Security improvements from lessons learned are prioritised, and the most important are completed promptly." },
+      { "src": "79465955", "text": "Findings go to senior management and feed into risk management and ongoing improvement." },
+      { "src": "65279cff", "text": "You get the most from lessons learned by exploring \"what if\" and \"if only\" scenarios." },
+      { "src": "34bd84b5", "text": "You learn from incidents reported elsewhere in your sector and across national infrastructure more widely." }
+    ]
   }
 }
