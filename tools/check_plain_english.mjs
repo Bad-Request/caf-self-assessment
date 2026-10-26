@@ -20,7 +20,9 @@
 import fs from 'node:fs';
 import { fingerprint } from '../assets/js/utils.js';
 
-const MAX_WORDS = 20;
+// Summaries aim for about 20 words but may run longer where that's clearer;
+// past this they've probably stopped being a summary.
+const MAX_WORDS = 30;
 const COLUMNS = ['not', 'partial', 'achieved'];
 
 const readJson = (file) => JSON.parse(fs.readFileSync(new URL('../assets/' + file, import.meta.url), 'utf8'));

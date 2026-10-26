@@ -126,7 +126,12 @@ alone.
 
 ## Writing summaries
 
-- One sentence, 20 words or fewer, British English, second person ("You…").
+- One sentence where possible, British English, second person ("You…").
+  Aim for about 20 words, but up to about 30 is fine where it makes the
+  meaning clearer — clarity beats brevity.
+- Explain the official jargon rather than repeating it (e.g. not
+  "proportionate", "assurance", "provenance", "threat analysis", "OT";
+  say what they mean). Words that are already plain can stay.
 - Keep the polarity: a Not achieved summary must still read as a failing.
 - Keep the qualifiers that change the meaning: "all" vs "some",
   "regularly", "board", and especially **"common threats"** (usually the
@@ -144,5 +149,5 @@ node tools/check_plain_english.mjs stub B2.a # skeleton entries with src filled 
 ```
 
 The check fails on unknown outcomes/columns, out-of-range entries, stale
-`src` fingerprints and empty summaries, and warns about summaries over 20
+`src` fingerprints and empty summaries, and warns about summaries over 30
 words.
