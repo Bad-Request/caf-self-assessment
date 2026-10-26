@@ -10,6 +10,8 @@
    ============================================================ */
 
 :root {
+  --back-to-top-inset: 24px;
+  --back-to-top-size: 44px;
   --navy-900: #11123a;
   --navy-800: #1b1c52;
   --navy-700: #262873;
@@ -243,9 +245,6 @@ a:hover { color: var(--purple-500); }
     opacity: 0;
     pointer-events: none;
   }
-  /* With the sidebar reclaimed, let the content use the freed width
-     instead of staying capped at the sidebar-present max-width. */
-  body.sidebar-collapsed .main-content { max-width: 1500px; }
 }
 
 .sidebar-backdrop { display: none; }
@@ -398,8 +397,10 @@ a:hover { color: var(--purple-500); }
 .baseline-list__icon-btn:hover { border-color: var(--purple-500); color: var(--purple-600); }
 
 .main-content {
-  padding: 24px 32px 60px;
-  max-width: 1180px;
+  /* Fill the available width; the right padding keeps a gutter clear of
+     the fixed back-to-top button (its right offset + width + a gap) so
+     content never runs underneath it. */
+  padding: 24px calc(var(--back-to-top-inset) + var(--back-to-top-size) + 16px) 60px 32px;
   container-type: inline-size;
 }
 
@@ -1290,10 +1291,10 @@ a:hover { color: var(--purple-500); }
 
 .back-to-top {
   position: fixed;
-  right: 24px;
-  bottom: 24px;
-  width: 44px;
-  height: 44px;
+  right: var(--back-to-top-inset);
+  bottom: var(--back-to-top-inset);
+  width: var(--back-to-top-size);
+  height: var(--back-to-top-size);
   border-radius: 50%;
   border: 1px solid var(--line);
   background: var(--navy-900);

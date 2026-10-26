@@ -5,6 +5,15 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.7.1] - 2026-10-26
+
+### Fixed
+
+- The main content now fills the full width beside the sidebar on wide
+  screens, rather than stopping at a fixed maximum and leaving empty space
+  on the right. A right-hand gutter keeps content clear of the back to top
+  button on tablet and desktop widths.
+
 ## [2.7.0] - 2026-10-26
 
 ### Added
