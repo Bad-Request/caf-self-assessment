@@ -1,6 +1,6 @@
 // Baseline profiles: standalone, reusable target-level sets that can be
 // applied to any assessment (see storage.js for the on-disk shape). Owns
-// their own sidebar list, edit modal, and the borders/badges/legend they
+// their own sidebar list, edit modal, and the rings/badges/legend they
 // project onto the outcome grid and framework built by framework.js.
 
 import { el } from './dom.js';
@@ -272,11 +272,11 @@ bindJsonImport(el.btnImportBaseline, el.inputImportBaseline, function (imported)
   showToast('Imported "' + imported.name + '".');
 });
 
-// Projects the current assessment's profile onto the page: borders on the
-// outcome grid dots, plus — so the target is in view the whole time
+// Projects the current assessment's profile onto the page: rings on the
+// outcome grid tiles, plus — so the target is in view the whole time
 // someone is working through the exercise, not just on the dashboard grid
 // — a badge on each outcome card and a row of chips on each principle's
-// header, and the border-key legend.
+// header, and the ring-key legend.
 export function applyBaseline() {
   var a = findAssessment(getCurrentAssessmentId());
   var baseline = a && a.baselineId ? findBaseline(a.baselineId) : null;
@@ -324,12 +324,12 @@ export function applyBaseline() {
   if (!baseline) {
     var none = document.createElement('span');
     none.className = 'baseline-legend__none';
-    none.textContent = 'No profile selected for this assessment — dots have no border.';
+    none.textContent = 'No profile selected for this assessment — tiles have no ring.';
     el.baselineLegend.appendChild(none);
     return;
   }
   var intro = document.createElement('span');
-  intro.textContent = 'Profile "' + (baseline.name || 'Untitled profile') + '" — border key:';
+  intro.textContent = 'Profile "' + (baseline.name || 'Untitled profile') + '" — ring key:';
   el.baselineLegend.appendChild(intro);
   BASELINE_TIERS.forEach(function (tier) {
     var item = document.createElement('span');
