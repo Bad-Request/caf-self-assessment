@@ -414,5 +414,187 @@
       { "src": "0b95586f", "text": "You record and track every device containing important data, whether it's a dedicated storage device or something with built-in storage." },
       { "src": "f09c3cc4", "text": "Important data is securely erased from all devices, equipment and removable media before reuse or disposal, using an independently approved product or service." }
     ]
+  },
+  "B4.a": {
+    "not": [
+      { "src": "eb2e1bef", "text": "The systems behind your essential functions aren't properly kept apart from your other systems." },
+      { "src": "74f9ceee", "text": "People can browse the web or use email from the systems behind your essential functions." },
+      { "src": "0282a2da", "text": "Data moves between these systems and others in such complicated ways that it's hard to tell normal traffic from malicious traffic." },
+      { "src": "bc12eb56", "text": "Remote or third-party connections bypass some network controls to get more direct access to these systems." }
+    ],
+    "partial": [
+      { "src": "83b5bc52", "text": "You use people with the right expertise to design the systems behind your essential functions." },
+      { "src": "4a119a18", "text": "You build strong defences at the points where your systems connect to other organisations or the internet." },
+      { "src": "596c98fa", "text": "You keep the routes data takes between your systems and the outside world simple, so they're easy to monitor." },
+      { "src": "d3d2c08a", "text": "You design your systems so they're simple to recover." },
+      { "src": "33c73a1c", "text": "Everything coming into these systems is checked at the network edge where possible; otherwise, extra monitoring watches for attacks hidden in files or messages." }
+    ],
+    "achieved": [
+      { "src": "83b5bc52", "text": "You use people with the right expertise to design the systems behind your essential functions." },
+      { "src": "04fdcdef", "text": "Your systems are split into security zones, with those behind your essential functions in a highly trusted, better-protected zone." },
+      { "src": "71ed75c1", "text": "These systems are designed so data moves between their parts by simple routes, which makes security monitoring effective." },
+      { "src": "2f4bdde5", "text": "These systems are designed to be easy to recover." },
+      { "src": "42f098b1", "text": "Everything coming into these systems is protected against attacks hidden in files or messages, e.g. by converting, inspecting, cleaning and checking it." },
+      { "src": "6cb3ae3b", "text": "If you use automated decision-making, such as AI, you set limits that stop it taking actions that could harm these systems." }
+    ]
+  },
+  "B4.b": {
+    "not": [
+      { "src": "246daa8b", "text": "You haven't worked out which assets need careful setting up to keep these systems secure." },
+      { "src": "a7cce235", "text": "Rules for installing and setting up operating systems securely aren't applied consistently across these systems." },
+      { "src": "7e2dc515", "text": "System settings aren't recorded, or not in enough detail to rebuild the system or device." },
+      { "src": "40db66aa", "text": "Changes to security settings that affect your essential functions aren't recorded, or are recorded inconsistently." },
+      { "src": "5d6afd64", "text": "Generic, shared, default and built-in accounts haven't been removed or switched off." },
+      { "src": "b3c0c5d2", "text": "Ordinary users can change settings in ways that would weaken the security of these systems." }
+    ],
+    "partial": [
+      { "src": "8f0faa75", "text": "You have identified and written down which assets need careful setting up to keep these systems secure." },
+      { "src": "c092055c", "text": "Secure, standard set-ups are used for platforms and devices across your organisation." },
+      { "src": "4d9fc22b", "text": "Systems and devices of the same kind are set up consistently and securely, with only the features they need switched on." },
+      { "src": "439f7bce", "text": "Changes to security settings at the edges of these systems are approved and recorded." },
+      { "src": "e607b809", "text": "Software is checked before anyone is allowed to install it." },
+      { "src": "607be015", "text": "Generic, shared, default and built-in accounts are removed or switched off, or their passwords changed where that's impossible. Accounts used by software and services are suitably protected." },
+      { "src": "149e43f5", "text": "Ordinary users can't change settings in ways that would weaken the security of these systems." }
+    ],
+    "achieved": [
+      { "src": "d49b1485", "text": "You have identified and written down which assets need careful setting up, and actively look after them, e.g. keeping settings secure and applying updates." },
+      { "src": "994c7853", "text": "Every platform matches your defined secure standard set-up, or the latest version of its settings known to be good." },
+      { "src": "bc440913", "text": "You closely control changes to your systems, making sure their settings stay secure and are recorded." },
+      { "src": "3aa89bfa", "text": "You regularly check that your systems still have the secure settings you expect." },
+      { "src": "23d32d31", "text": "Only approved software can be installed." },
+      { "src": "e101bc3e", "text": "If you use automated decision-making, such as AI, you understand how it works and its decisions can be reproduced." },
+      { "src": "607be015", "text": "Generic, shared, default and built-in accounts are removed or switched off, or their passwords changed where that's impossible. Accounts used by software and services are suitably protected." }
+    ]
+  },
+  "B4.c": {
+    "not": [
+      { "src": "cf1c5647", "text": "The systems behind your essential functions are run or maintained from devices your organisation doesn't own and manage." },
+      { "src": "a2207740", "text": "You don't have good, up-to-date technical documentation for your systems." }
+    ],
+    "partial": [
+      { "src": "d017e70c", "text": "Only approved admins run or maintain these systems, using devices kept suitably separate from everyday user activity, based on the risk." },
+      { "src": "5d76e518", "text": "Technical information about your systems, such as documentation and network diagrams, is regularly reviewed and updated." },
+      { "src": "3fad9390", "text": "You prevent, detect and remove malicious software (malware) and unapproved software, using technical, procedural and physical measures as needed." }
+    ],
+    "achieved": [
+      { "src": "1e04ec4d", "text": "Only approved admins run or maintain these systems, using highly trusted devices used for nothing else, such as Privileged Access Workstations." },
+      { "src": "15b311ce", "text": "You regularly review and update technical information about your systems, such as documentation and network diagrams, and store it securely." },
+      { "src": "3fad9390", "text": "You prevent, detect and remove malicious software (malware) and unapproved software, using technical, procedural and physical measures as needed." }
+    ]
+  },
+  "B4.d": {
+    "not": [
+      { "src": "f391aa79", "text": "You don't know how exposed these systems are to publicly known security weaknesses." },
+      { "src": "36713ad1", "text": "You don't promptly fix or reduce weaknesses that can be reached from outside your organisation." },
+      { "src": "f4140bec", "text": "You haven't recently tested your systems to check what you think you know about their weaknesses." },
+      { "src": "c1475c93", "text": "You haven't taken suitable steps to protect systems or software that no longer get updates from their makers." },
+      { "src": "25ebcb76", "text": "You aren't working towards replacing systems or software that no longer get updates." }
+    ],
+    "partial": [
+      { "src": "c22f2381", "text": "You keep an up-to-date picture of how exposed these systems are to publicly known security weaknesses." },
+      { "src": "00fdceab", "text": "You track and prioritise announced weaknesses in all the software you use, and promptly fix those reachable from outside, e.g. by patching." },
+      { "src": "716a6b7c", "text": "Some weaknesses that can't be reached from outside are left with stop-gap protections for a long time." },
+      { "src": "b07a22f6", "text": "You have stop-gap protections for unsupported systems and software while you work on moving to supported ones." },
+      { "src": "740d38ff", "text": "You regularly test your systems to fully understand their weaknesses." }
+    ],
+    "achieved": [
+      { "src": "c22f2381", "text": "You keep an up-to-date picture of how exposed these systems are to publicly known security weaknesses." },
+      { "src": "c388d0c7", "text": "You track, prioritise and promptly fix announced weaknesses in all the software you use, e.g. by patching." },
+      { "src": "81558059", "text": "You regularly test your systems to fully understand their weaknesses, and have outside testers confirm what you've found." },
+      { "src": "537676e6", "text": "You use, as far as possible, software, hardware and device firmware (the software built into equipment) that still gets updates from its makers." }
+    ]
+  },
+  "B5.a": {
+    "not": [
+      { "src": "fa92120e", "text": "You only partly understand everything needed to get these systems running again." },
+      { "src": "426a3dfa", "text": "You haven't finished plans for keeping going and recovering from disaster, covering these systems and what they depend on." },
+      { "src": "7a200b6b", "text": "You haven't fully checked whether your business continuity and disaster recovery plans would actually work in practice." }
+    ],
+    "partial": [
+      { "src": "f8001fcc", "text": "You know every system and underlying technology needed to restore your essential functions, and how they depend on each other." },
+      { "src": "f492710b", "text": "You know which order to recover systems in to restore your essential functions quickly and effectively." }
+    ],
+    "achieved": [
+      { "src": "062a8228", "text": "Your continuity and disaster recovery plans have been tested to check they're practical, effective and complete, using suitable methods such as switch-over tests, discussion-based exercises or simulated attacks." },
+      { "src": "498c9243", "text": "You use security news and threat intelligence to spot new or growing risks, and respond with immediate, possibly temporary, extra security measures, e.g. during a damaging malware outbreak." }
+    ]
+  },
+  "B5.b": {
+    "not": [
+      { "src": "96f41b19", "text": "The systems behind your essential functions aren't properly kept apart from other systems." },
+      { "src": "795c8a00", "text": "People can browse the web or use email from the systems behind your essential functions." },
+      { "src": "3d5a4772", "text": "You don't understand, or have no plans to deal with, all the capacity limits and single points of failure that could disrupt your essential functions." }
+    ],
+    "partial": [
+      { "src": "308f3fc9", "text": "These systems are kept separate from your business systems by network controls rather than physically, e.g. in their own zone (a DMZ) on the same network." },
+      { "src": "99f742b3", "text": "People can't browse the web or use email from the systems behind your essential functions." },
+      { "src": "f3bbf7f3", "text": "You've identified capacity limits and single points of failure, such as limited bandwidth or a single network route, but haven't fully dealt with them." }
+    ],
+    "achieved": [
+      { "src": "878a93f1", "text": "These systems are separated from other business and external systems by technical and physical means, e.g. their own network, infrastructure and user administration." },
+      { "src": "99f742b3", "text": "People can't browse the web or use email from the systems behind your essential functions." },
+      { "src": "2c162918", "text": "You've identified and dealt with all capacity limits and single points of failure, such as limited bandwidth or a single network route." },
+      { "src": "cb565477", "text": "You've identified and dealt with location-based weaknesses, e.g. copying key systems to another site and having alternative physical routes and providers for important connections." },
+      { "src": "3b40ee07", "text": "You review and update your assessments of dependencies, capacity and location weaknesses, and how you've dealt with them, when needed." }
+    ]
+  },
+  "B5.c": {
+    "not": [
+      { "src": "45709167", "text": "Your backups don't cover all the data and information needed to restore your essential functions." },
+      { "src": "feab5e28", "text": "You don't back up often enough to restore your essential functions effectively." },
+      { "src": "a4456a89", "text": "Your restore process doesn't bring your essential functions back quickly enough." }
+    ],
+    "partial": [
+      { "src": "b0052a1a", "text": "You have suitably secured backups, covering data, settings, software, equipment, processes and knowledge, that you could still reach after a major event such as a ransomware attack." },
+      { "src": "ddd4499e", "text": "You routinely test your backups to make sure the backup process works and the backups can actually be used." }
+    ],
+    "achieved": [
+      { "src": "0203473e", "text": "Your thorough, automatic and tested backups, covering both systems and procedures, are kept securely at central or secondary sites so you can recover from a major event." },
+      { "src": "be03dd03", "text": "Backups of all important data and information needed to recover your essential functions are made, tested, written up and regularly reviewed." }
+    ]
+  },
+  "B6.a": {
+    "not": [
+      { "src": "bfbd3494", "text": "People don't understand what part they play in keeping the systems behind your essential functions secure." },
+      { "src": "a91ef1ef", "text": "People don't know how to raise a cyber security concern." },
+      { "src": "e7c684b5", "text": "People think reporting problems might get them into trouble." },
+      { "src": "fbc63cf8", "text": "Staff see your approach to security as getting in the way of the business, which may push them into bad security habits." },
+      { "src": "bb5bec07", "text": "Formal or informal incentives and rewards work against good security." }
+    ],
+    "partial": [
+      { "src": "11afac85", "text": "Executive management understand, and widely share, why a positive security culture matters, and you've described the attitudes and behaviours you expect." },
+      { "src": "37ba8588", "text": "Everyone in your organisation understands what part they play in keeping these systems secure." },
+      { "src": "19cf0f09", "text": "Everyone knows who to contact and where to find more information about cyber security, and how to raise an issue." },
+      { "src": "d972f362", "text": "You find and fix the things that stop people behaving in the secure ways you want." }
+    ],
+    "achieved": [
+      { "src": "f40c137f", "text": "Executive management clearly communicate the organisation's security priorities and goals to all staff, and your organisation shows positive security attitudes and behaviours." },
+      { "src": "030bc85b", "text": "People who raise possible security incidents or issues are treated positively." },
+      { "src": "90840bfc", "text": "People at every level routinely report security concerns and are recognised for helping keep the organisation secure." },
+      { "src": "3fcbac74", "text": "Management are visibly committed to, and actively involved in, cyber security." },
+      { "src": "28195adc", "text": "Your organisation talks openly about cyber security and takes every concern seriously." },
+      { "src": "ed91603d", "text": "People across the organisation work together on security, bringing their own expertise and sharing ownership of it." }
+    ]
+  },
+  "B6.b": {
+    "not": [
+      { "src": "546a29e3", "text": "Some teams that run or support your essential functions have had no cyber security training at all." },
+      { "src": "51fcb027", "text": "Only certain roles get cyber security training." },
+      { "src": "36aab984", "text": "Your records of who has had cyber security training are missing or incomplete." },
+      { "src": "8e1bd7b5", "text": "Training is treated as the answer to every user security problem." },
+      { "src": "be68ada1", "text": "Training success is judged only by how many people completed it, not by whether it actually improved security behaviour." },
+      { "src": "088840af", "text": "Training materials are out of date, contradict themselves, or conflict with other policies and procedures." }
+    ],
+    "partial": [
+      { "src": "b53fe413", "text": "You've defined suitable security training and awareness for every role, from executives to the most junior staff." },
+      { "src": "8e2b522c", "text": "You use a range of teaching and communication methods so security training and awareness reach as many people as possible." },
+      { "src": "d7827cd6", "text": "Cyber security information is easy to find." }
+    ],
+    "achieved": [
+      { "src": "adfe59c6", "text": "Everyone, from the most senior to the most junior, follows a suitable cyber security training path." },
+      { "src": "8000824d", "text": "Each person's security training is tracked and refreshed at suitable intervals." },
+      { "src": "8fcf4518", "text": "You routinely check that your security training and awareness activities reach as many people as possible and actually work." },
+      { "src": "217d6bad", "text": "Security information and good-practice guidance is easy to find and widely available, and you know people actually use it." }
+    ]
   }
 }
