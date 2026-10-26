@@ -4,33 +4,33 @@
 // project onto the outcome grid and framework built by framework.js.
 
 import { el } from './dom.js';
-import { DATASET, allOutcomes, STATUS_META, BASELINE_TIERS } from './model.js';
-import { loadBaselines, saveBaselines } from './storage.js';
-import { baselineUid, nowIso, debounce } from './utils.js';
-import { showDialog, showToast } from './ui-shell.js';
-import { downloadJson } from './download.js';
+import { DATASET, allOutcomes, STATUS_LABEL, BASELINE_TIERS } from './model.js';
+import { loadList, saveList, BASELINES_KEY } from './storage.js';
+import { uid, nowIso, debounce, byName, downloadJson } from './utils.js';
+import { showDialog, showToast, bindJsonImport } from './ui-shell.js';
 import { findAssessment, getCurrentAssessmentId, touchCurrent, getAssessments, persistAssessments } from './assessments.js';
 
-var baselines = loadBaselines();
+var baselines = loadList(BASELINES_KEY);
 var currentBaselineEditId = null;
 
 export function findBaseline(id) {
-  for (var i = 0; i < baselines.length; i++) {
-    if (baselines[i].id === id) return baselines[i];
-  }
-  return null;
+  return baselines.find(function (b) { return b.id === id; }) || null;
 }
 
-export function createBaseline(name) {
+function persistBaselines() {
+  saveList(BASELINES_KEY, baselines);
+}
+
+function createBaseline(name) {
   var baseline = {
-    id: baselineUid(),
+    id: uid('bl'),
     name: name || 'Untitled profile',
     createdAt: nowIso(),
     updatedAt: nowIso(),
     targets: {}
   };
   baselines.push(baseline);
-  saveBaselines(baselines);
+  persistBaselines();
   renderBaselineSidebar();
   refreshBaselineSelectOptions();
   return baseline;
@@ -40,13 +40,13 @@ function touchBaseline(id) {
   var b = findBaseline(id);
   if (b) {
     b.updatedAt = nowIso();
-    saveBaselines(baselines);
+    persistBaselines();
   }
 }
 
 function deleteBaseline(id) {
   baselines = baselines.filter(function (b) { return b.id !== id; });
-  saveBaselines(baselines);
+  persistBaselines();
   // Any assessment currently pointed at the deleted profile falls back
   // to "None" rather than silently referencing a missing profile.
   var affectedCurrent = false;
@@ -62,9 +62,7 @@ function deleteBaseline(id) {
   refreshBaselineSelectOptions();
   if (affectedCurrent) {
     el.baselineSelect.value = '';
-    applyBaselineBorders();
-    updateBaselineLegend();
-    applyBaselineToFramework();
+    applyBaseline();
   }
 }
 
@@ -74,7 +72,7 @@ export function renderBaselineSidebar() {
 
   baselines
     .slice()
-    .sort(function (a, b) { return (a.name || '').localeCompare(b.name || ''); })
+    .sort(byName)
     .forEach(function (b) {
       var li = document.createElement('li');
       li.className = 'baseline-list__row';
@@ -109,7 +107,7 @@ export function refreshBaselineSelectOptions() {
   el.baselineSelect.innerHTML = '<option value="">None</option>';
   baselines
     .slice()
-    .sort(function (x, y) { return (x.name || '').localeCompare(y.name || ''); })
+    .sort(byName)
     .forEach(function (b) {
       var opt = document.createElement('option');
       opt.value = b.id;
@@ -128,9 +126,7 @@ el.baselineSelect.addEventListener('change', function () {
   if (!a) return;
   a.baselineId = el.baselineSelect.value || null;
   touchCurrent();
-  applyBaselineBorders();
-  updateBaselineLegend();
-  applyBaselineToFramework();
+  applyBaseline();
 });
 
 function baselineGroupHeading(principle) {
@@ -142,8 +138,7 @@ function baselineGroupHeading(principle) {
   return heading;
 }
 
-function baselineOutcomeRow(entry, baseline) {
-  var outcome = entry.outcome;
+function baselineOutcomeRow(outcome, baseline) {
   var row = document.createElement('div');
   row.className = 'baseline-target-row';
 
@@ -163,7 +158,7 @@ function baselineOutcomeRow(entry, baseline) {
   BASELINE_TIERS.forEach(function (tier) {
     var opt = document.createElement('option');
     opt.value = tier;
-    opt.textContent = STATUS_META[tier].label;
+    opt.textContent = STATUS_LABEL[tier];
     select.appendChild(opt);
   });
   select.value = (baseline.targets && baseline.targets[outcome.id]) || '';
@@ -177,11 +172,7 @@ function baselineOutcomeRow(entry, baseline) {
     touchBaseline(baseline.id);
     // Live-update the grid if this profile is the one currently applied.
     var a = findAssessment(getCurrentAssessmentId());
-    if (a && a.baselineId === baseline.id) {
-      applyBaselineBorders();
-      updateBaselineLegend();
-      applyBaselineToFramework();
-    }
+    if (a && a.baselineId === baseline.id) applyBaseline();
   });
 
   row.appendChild(label);
@@ -200,8 +191,7 @@ function openBaselineModal(id) {
     objective.principles.forEach(function (principle) {
       frag.appendChild(baselineGroupHeading(principle));
       principle.outcomes.forEach(function (outcome) {
-        var entry = { objectiveId: objective.id, principleId: principle.id, outcome: outcome };
-        frag.appendChild(baselineOutcomeRow(entry, baseline));
+        frag.appendChild(baselineOutcomeRow(outcome, baseline));
       });
     });
   });
@@ -267,90 +257,48 @@ function exportBaselineJson(id) {
   showToast('Exported ' + filename);
 }
 
-el.btnImportBaseline.addEventListener('click', function () {
-  el.inputImportBaseline.click();
+bindJsonImport(el.btnImportBaseline, el.inputImportBaseline, function (imported) {
+  if (!imported || typeof imported !== 'object' || typeof imported.targets !== 'object' || imported.targets === null) {
+    throw new Error('File does not look like a CAF profile export.');
+  }
+  imported.id = uid('bl'); // avoid clobbering an existing profile with the same id
+  imported.updatedAt = nowIso();
+  if (!imported.createdAt) imported.createdAt = nowIso();
+  if (!imported.name) imported.name = 'Imported profile';
+  baselines.push(imported);
+  persistBaselines();
+  renderBaselineSidebar();
+  refreshBaselineSelectOptions();
+  showToast('Imported "' + imported.name + '".');
 });
 
-el.inputImportBaseline.addEventListener('change', function (evt) {
-  var file = evt.target.files[0];
-  if (!file) return;
-  var reader = new FileReader();
-  reader.onload = function () {
-    try {
-      var imported = JSON.parse(reader.result);
-      if (!imported || typeof imported !== 'object' || typeof imported.targets !== 'object' || imported.targets === null) {
-        throw new Error('File does not look like a CAF profile export.');
-      }
-      imported.id = baselineUid(); // avoid clobbering an existing profile with the same id
-      imported.updatedAt = nowIso();
-      if (!imported.createdAt) imported.createdAt = nowIso();
-      if (!imported.name) imported.name = 'Imported profile';
-      baselines.push(imported);
-      saveBaselines(baselines);
-      renderBaselineSidebar();
-      refreshBaselineSelectOptions();
-      showToast('Imported "' + imported.name + '".');
-    } catch (e) {
-      showDialog({
-        title: 'Import failed',
-        message: 'Could not import this file: ' + e.message,
-        confirmLabel: 'OK'
-      });
-    } finally {
-      evt.target.value = '';
-    }
-  };
-  reader.readAsText(file);
-});
-
-export function applyBaselineBorders() {
+// Projects the current assessment's profile onto the page: borders on the
+// outcome grid dots, plus — so the target is in view the whole time
+// someone is working through the exercise, not just on the dashboard grid
+// — a badge on each outcome card and a row of chips on each principle's
+// header, and the border-key legend.
+export function applyBaseline() {
   var a = findAssessment(getCurrentAssessmentId());
-  var targets = {};
-  if (a && a.baselineId) {
-    var b = findBaseline(a.baselineId);
-    if (b && b.targets) targets = b.targets;
-  }
-  allOutcomes.forEach(function (entry) {
-    var dot = document.getElementById('grid-dot-' + entry.outcome.id);
-    if (!dot) return;
-    var target = targets[entry.outcome.id] || '';
-    if (target) {
-      dot.setAttribute('data-baseline', target);
-      dot.title = entry.outcome.id + ' — ' + entry.outcome.title +
-        ' · Profile target: ' + STATUS_META[target].label;
-    } else {
-      dot.removeAttribute('data-baseline');
-      dot.title = entry.outcome.id + ' — ' + entry.outcome.title;
-    }
-  });
-}
-
-// Shows the baseline target inline in the main framework view — a badge
-// on each outcome card (visible while ticking IGPs for that outcome)
-// and a summary row of chips on each principle's header (visible at a
-// glance before working through its outcomes) — so the target is in
-// view the whole time someone is working through the exercise, not
-// just on the dashboard grid at the top of the page.
-export function applyBaselineToFramework() {
-  var a = findAssessment(getCurrentAssessmentId());
-  var targets = {};
-  if (a && a.baselineId) {
-    var b = findBaseline(a.baselineId);
-    if (b && b.targets) targets = b.targets;
-  }
+  var baseline = a && a.baselineId ? findBaseline(a.baselineId) : null;
+  var targets = (baseline && baseline.targets) || {};
 
   allOutcomes.forEach(function (entry) {
-    var badge = document.getElementById('baseline-badge-' + entry.outcome.id);
-    if (!badge) return;
-    var target = targets[entry.outcome.id];
-    if (target) {
-      badge.hidden = false;
-      badge.className = 'baseline-badge baseline-badge--' + target;
-      badge.textContent = 'Target: ' + STATUS_META[target].label;
-    } else {
-      badge.hidden = true;
-      badge.className = 'baseline-badge';
-      badge.textContent = '';
+    var outcome = entry.outcome;
+    var target = targets[outcome.id];
+    var label = outcome.id + ' — ' + outcome.title;
+
+    var dot = document.getElementById('grid-dot-' + outcome.id);
+    if (dot) {
+      if (target) dot.setAttribute('data-baseline', target);
+      else dot.removeAttribute('data-baseline');
+      dot.title = target ? label + ' · Profile target: ' + STATUS_LABEL[target] : label;
+    }
+
+    var badge = document.getElementById('baseline-badge-' + outcome.id);
+    if (badge) {
+      badge.hidden = !target;
+      badge.className = 'baseline-badge' + (target ? ' baseline-badge--' + target : '');
+      badge.textContent = target ? 'Target: ' + STATUS_LABEL[target] : '';
     }
   });
 
@@ -359,25 +307,19 @@ export function applyBaselineToFramework() {
       var container = document.getElementById('principle-baselines-' + principle.id);
       if (!container) return;
       container.innerHTML = '';
-      var hasAny = false;
       principle.outcomes.forEach(function (outcome) {
         var target = targets[outcome.id];
         if (!target) return;
-        hasAny = true;
         var chip = document.createElement('span');
         chip.className = 'principle-baseline-chip principle-baseline-chip--' + target;
-        chip.title = outcome.id + ' — ' + outcome.title + ' · Profile target: ' + STATUS_META[target].label;
-        chip.textContent = outcome.id + ' ' + STATUS_META[target].label;
+        chip.title = outcome.id + ' — ' + outcome.title + ' · Profile target: ' + STATUS_LABEL[target];
+        chip.textContent = outcome.id + ' ' + STATUS_LABEL[target];
         container.appendChild(chip);
       });
-      container.hidden = !hasAny;
+      container.hidden = !container.childElementCount;
     });
   });
-}
 
-export function updateBaselineLegend() {
-  var a = findAssessment(getCurrentAssessmentId());
-  var baseline = a && a.baselineId ? findBaseline(a.baselineId) : null;
   el.baselineLegend.innerHTML = '';
   if (!baseline) {
     var none = document.createElement('span');
@@ -394,7 +336,7 @@ export function updateBaselineLegend() {
     item.className = 'baseline-legend__item';
     item.innerHTML = '<span class="baseline-legend__swatch baseline-legend__swatch--' + tier + '"></span>' +
       '<span></span>';
-    item.querySelector('span:last-child').textContent = STATUS_META[tier].label;
+    item.querySelector('span:last-child').textContent = STATUS_LABEL[tier];
     el.baselineLegend.appendChild(item);
   });
 }

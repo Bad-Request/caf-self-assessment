@@ -55,10 +55,8 @@ Nothing to install, but the app logic loads as native ES modules, which browsers
 | `manifest.webmanifest` | Web app manifest (name, icons, colours) that makes the app installable. |
 | `sw.js` | Service worker — caches the app shell on first visit so the app works offline afterwards. Bump `CACHE_VERSION` inside it whenever a cached file's contents change. |
 | `assets/icons/` | App icons for the manifest/home screen, generated from the header's hexagon brand mark. |
-| `assets/data.json` | Source of truth for the full CAF 4.0 dataset (read-only reference content, Crown copyright / OGL v3.0). See [docs/data-schema.md](docs/data-schema.md). Edit this, not `data.js`. |
-| `assets/data.js` | Generated from `assets/data.json` by `tools/build-data.js` — a plain JS variable, `window.CAF_DATASET`. Loaded as a classic script, before the module entry point. |
+| `assets/data.json` | Source of truth for the full CAF 4.0 dataset (read-only reference content, Crown copyright / OGL v3.0). Fetched at startup by `assets/js/model.js`. See [docs/data-schema.md](docs/data-schema.md). |
 | `docs/data-schema.md` | Documents the `assets/data.json` structure and the invariants a reviewer should check after any update. |
-| `tools/build-data.js` | Regenerates `assets/data.js` from `assets/data.json`. Run after every edit to the dataset. |
 | `tools/extract_ncsc_guidance.js` | Merges the per-principle guidance and reference links from NCSC's [Consolidated view of CAF Guidance](https://www.ncsc.gov.uk/collection/cyber-assessment-framework/consolidated-view-of-caf-guidance) page (saved as HTML) into `assets/data.json`. |
 | `tools/extract_caf_pdf.py` | Extracts a draft `data.json` from a CAF PDF, for updating the dataset when NCSC publish a revision. |
 | `assets/style.css` | Styling. |
@@ -69,10 +67,9 @@ Nothing to install, but the app logic loads as native ES modules, which browsers
 | `assets/js/baselines.js` | Profiles: CRUD, the edit modal, and the borders/badges/legend they project onto the framework and outcome grid. |
 | `assets/js/framework.js` | Builds the objective/principle/outcome-card tree and the outcome grid, and applies per-outcome state to them. |
 | `assets/js/dashboard.js` | The score ring, status counts and per-objective bars. |
-| `assets/js/ui-shell.js` | Chrome with no domain knowledge: toast, the generic confirm dialog, sidebar collapse/drawer behaviour, theme and text-size preferences. |
+| `assets/js/ui-shell.js` | Chrome with no domain knowledge: toast, the generic confirm dialog, JSON file import, sidebar collapse/drawer behaviour, theme and text-size preferences. |
 | `assets/js/dom.js` | The single set of DOM element references shared by every module. |
-| `assets/js/utils.js` | `uid`/`nowIso`/`debounce` — small helpers with no dependencies. |
-| `assets/js/download.js` | Shared "save an object as a downloaded `.json` file" helper (used by both assessment and baseline export). |
+| `assets/js/utils.js` | Small dependency-free helpers: ids, timestamps, `debounce`, sort comparators, scroll-to, JSON download. |
 
 ## Features
 
@@ -106,13 +103,7 @@ The percentage score gives Achieved = 1 point, Partially achieved = 0.5, Not ach
 
 ## Updating the reference data
 
-`assets/data.json` is the source of truth for the CAF reference content (objectives, principles, contributing outcomes, IGPs) — its structure is documented in [docs/data-schema.md](docs/data-schema.md). `assets/data.js` (the `window.CAF_DATASET` global the app actually loads) is generated from it and must never be hand-edited directly.
-
-After editing `assets/data.json`, regenerate `assets/data.js` and commit both files together:
-
-```
-node tools/build-data.js
-```
+`assets/data.json` is the source of truth for the CAF reference content (objectives, principles, contributing outcomes, IGPs) — its structure is documented in [docs/data-schema.md](docs/data-schema.md). The app fetches it directly, so there is nothing to regenerate after editing it — just bump `CACHE_VERSION` in `sw.js` so offline installs pick up the change.
 
 If NCSC publish a revised CAF version, use `tools/extract_caf_pdf.py` to pull a fresh draft out of the new PDF rather than re-transcribing it by hand — see the tool's own `--help` and header comment for how it works and its known limitations:
 

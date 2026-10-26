@@ -2,6 +2,7 @@
 
 import { el, RING_CIRCUMFERENCE } from './dom.js';
 import { DATASET, allOutcomes, scoreFor } from './model.js';
+import { flashTo } from './utils.js';
 import { findAssessment, getCurrentAssessmentId } from './assessments.js';
 
 export function updateDashboard() {
@@ -22,13 +23,7 @@ export function updateDashboard() {
 
   el.objectiveBars.innerHTML = '';
   DATASET.forEach(function (objective) {
-    var entries = [];
-    objective.principles.forEach(function (p) {
-      p.outcomes.forEach(function (o) {
-        entries.push({ objectiveId: objective.id, principleId: p.id, outcome: o });
-      });
-    });
-    var s = scoreFor(entries, results);
+    var s = scoreFor(allOutcomes.filter(function (e) { return e.objectiveId === objective.id; }), results);
     var bar = document.createElement('button');
     bar.type = 'button';
     bar.className = 'objective-bar';
@@ -42,12 +37,7 @@ export function updateDashboard() {
       '<div class="objective-bar__track"><div class="objective-bar__fill" style="width:' + s.pct + '%"></div></div>';
     bar.querySelector('.objective-bar__title').textContent = objective.title;
     bar.addEventListener('click', function () {
-      var target = document.getElementById('objective-' + objective.id);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        target.style.outline = '2px solid var(--gold-500)';
-        setTimeout(function () { target.style.outline = ''; }, 1200);
-      }
+      flashTo(document.getElementById('objective-' + objective.id), 'start');
     });
     el.objectiveBars.appendChild(bar);
   });

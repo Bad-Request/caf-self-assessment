@@ -24,14 +24,14 @@
 // accepting the suggestion (the CAF is explicit that IGPs support expert
 // judgement rather than replace it). When set, override always wins.
 
-export const DATASET = window.CAF_DATASET || [];
+export const DATASET = await fetch(new URL('../data.json', import.meta.url)).then(function (r) { return r.json(); });
 
-export const STATUS_META = {
-  not: { label: 'Not achieved' },
-  partial: { label: 'Partially achieved' },
-  achieved: { label: 'Achieved' },
-  na: { label: 'Not applicable' },
-  unset: { label: 'Not yet assessed' }
+export const STATUS_LABEL = {
+  not: 'Not achieved',
+  partial: 'Partially achieved',
+  achieved: 'Achieved',
+  na: 'Not applicable',
+  unset: 'Not yet assessed'
 };
 
 // Baseline targets only ever use these three tiers (a target is either
@@ -56,36 +56,18 @@ export function normalizeResult(raw) {
   return { checks: raw.checks || {}, override: raw.override || null, notes: raw.notes || '' };
 }
 
-export function computeSuggestedStatus(outcome, checks) {
+function computeSuggestedStatus(outcome, checks) {
   checks = checks || {};
+  function ticked(key) { return function (_, i) { return checks[key + '-' + i]; }; }
+  var achieved = outcome.achieved || [];
 
-  var notItems = outcome.not || [];
-  for (var i = 0; i < notItems.length; i++) {
-    if (checks['not-' + i]) return 'not';
+  if ((outcome.not || []).some(ticked('not'))) return 'not';
+  if (achieved.length && achieved.every(ticked('achieved'))) return 'achieved';
+  // Some positive evidence, but not the complete "achieved" set. Only
+  // three-column outcomes have a partial tier to suggest.
+  if (outcome.type === 3 && (achieved.some(ticked('achieved')) || (outcome.partial || []).some(ticked('partial')))) {
+    return 'partial';
   }
-
-  var achievedItems = outcome.achieved || [];
-  var achievedTickedCount = 0;
-  for (var j = 0; j < achievedItems.length; j++) {
-    if (checks['achieved-' + j]) achievedTickedCount++;
-  }
-  var allAchievedTicked = achievedItems.length > 0 && achievedTickedCount === achievedItems.length;
-  if (allAchievedTicked) return 'achieved';
-
-  var anyPartialTicked = false;
-  if (outcome.type === 3) {
-    var partialItems = outcome.partial || [];
-    for (var k = 0; k < partialItems.length; k++) {
-      if (checks['partial-' + k]) { anyPartialTicked = true; break; }
-    }
-  }
-
-  if (achievedTickedCount > 0 || anyPartialTicked) {
-    // Some positive evidence, but not the complete "achieved" set.
-    // Only three-column outcomes have a partial tier to suggest.
-    return outcome.type === 3 ? 'partial' : null;
-  }
-
   return null; // nothing meaningful ticked yet
 }
 

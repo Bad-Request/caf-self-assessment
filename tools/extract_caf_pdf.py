@@ -35,7 +35,7 @@ Usage:
 
 Then hand-review the diff between assets/data.json and assets/data.new.json
 (e.g. `git diff --no-index assets/data.json assets/data.new.json`) before
-replacing assets/data.json and running `node tools/build-data.js`.
+replacing assets/data.json.
 """
 import argparse
 import json

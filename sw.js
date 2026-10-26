@@ -1,13 +1,12 @@
 // Service worker for the CAF Self-Assessment Tool.
 //
 // This app has no build step, so the cache list below is hand-maintained —
-// add new assets/js/*.js files here when they're added to the app, and add
-// a comment note to AGENTS.md if that checklist needs it too.
+// add new assets/js/*.js files here when they're added to the app.
 //
 // CACHE_VERSION must be bumped (any string change is enough) whenever any
 // cached file's contents change, so returning visitors pick up the update
 // instead of being stuck on a stale offline copy.
-const CACHE_VERSION = 'v2.5.0';
+const CACHE_VERSION = 'v2.5.1';
 const CACHE_NAME = 'caf-shell-' + CACHE_VERSION;
 
 const APP_SHELL = [
@@ -15,13 +14,12 @@ const APP_SHELL = [
   './index.html',
   './manifest.webmanifest',
   './assets/style.css',
-  './assets/data.js',
+  './assets/data.json',
   './assets/js/app.js',
   './assets/js/assessments.js',
   './assets/js/baselines.js',
   './assets/js/dashboard.js',
   './assets/js/dom.js',
-  './assets/js/download.js',
   './assets/js/framework.js',
   './assets/js/model.js',
   './assets/js/storage.js',

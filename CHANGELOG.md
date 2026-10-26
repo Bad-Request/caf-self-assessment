@@ -5,6 +5,17 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.5.1] - 2026-10-04
+
+### Changed
+
+- The CAF dataset is now fetched directly from `assets/data.json`; the
+  generated `assets/data.js` and `tools/build-data.js` are gone, so there
+  is no longer a regenerate step after editing the dataset.
+- Internal simplification of the app's modules (shared JSON import,
+  storage and helper code; `assets/js/download.js` folded into
+  `utils.js`). App behaviour is unchanged.
+
 ## [2.5.0] - 2026-10-03
 
 ### Added
