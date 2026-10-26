@@ -3,7 +3,7 @@
 // changes), and owns the per-outcome state mutations triggered from them.
 
 import { el } from './dom.js';
-import { DATASET, allOutcomes, outcomesById, STATUS_LABEL, normalizeResult, effectiveStatus } from './model.js';
+import { DATASET, allOutcomes, outcomesById, STATUS_LABEL, normalizeResult, effectiveStatus, plainEnglishFor } from './model.js';
 import { debounce, flashTo } from './utils.js';
 import { findAssessment, getCurrentAssessmentId, touchCurrent, renderSidebar } from './assessments.js';
 import { updateDashboard } from './dashboard.js';
@@ -337,11 +337,27 @@ function igpChecklistColumn(key, label, items, outcomeId) {
       setChecked(outcomeId, checkKey, input.checked);
     });
 
-    var span = document.createElement('span');
-    span.textContent = text;
+    var body = document.createElement('span');
+    body.className = 'igp-check__body';
+    var official = document.createElement('span');
+    official.className = 'igp-check__official';
+    official.textContent = text;
+    body.appendChild(official);
+
+    var plain = plainEnglishFor(outcomeId, key, idx, text);
+    if (plain) {
+      var plainEl = document.createElement('span');
+      plainEl.className = 'igp-plain';
+      var plainLabel = document.createElement('span');
+      plainLabel.className = 'visually-hidden';
+      plainLabel.textContent = 'Plain English (unofficial): ';
+      plainEl.appendChild(plainLabel);
+      plainEl.appendChild(document.createTextNode(plain));
+      body.appendChild(plainEl);
+    }
 
     row.appendChild(input);
-    row.appendChild(span);
+    row.appendChild(body);
     list.appendChild(row);
   });
   col.appendChild(list);

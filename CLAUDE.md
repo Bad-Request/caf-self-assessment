@@ -34,6 +34,15 @@ Both are easy to forget mid-task — check this list before opening a PR.
   own docstring lists its known failure modes (page-break splits, dropped
   glyphs). Don't trust it silently.
 
+## Editing the plain-English summaries
+
+- [ ] Edit `assets/plain-english.json` (rules in `docs/data-schema.md`),
+  then run `node tools/check_plain_english.mjs` — it must pass. It's in
+  `APP_SHELL`, so bump `CACHE_VERSION` in `sw.js`.
+- [ ] After changing an IGP in `data.json`, its summary goes stale (the
+  check fails): rewrite the summary against the new wording, don't just
+  update `src`.
+
 ## General
 
 - [ ] This app has no build step for its own runtime code (`assets/js/`) —

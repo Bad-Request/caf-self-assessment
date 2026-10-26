@@ -5,6 +5,16 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.7.0] - 2026-10-26
+
+### Added
+
+- Plain English mode (Appearance → Plain English): shows a short,
+  unofficial summary under each Indicator of Good Practice, alongside the
+  official NCSC wording, to help with the more densely worded indicators.
+  Off by default, remembered per browser, and never printed. Summaries are
+  included for all of Objective A so far; Objectives B–D will follow.
+
 ## [2.6.0] - 2026-10-26
 
 ### Added

@@ -1,0 +1,188 @@
+{
+  "A1.a": {
+    "not": [
+      { "src": "30daf9b7", "text": "The board doesn't regularly discuss, or get reports on, the security of the systems behind your essential functions." },
+      { "src": "b472b44d", "text": "When the board discusses security, it works from incomplete or outdated information, with no expert advice." },
+      { "src": "f518c6f8", "text": "The board's direction doesn't effectively drive how those systems are secured in practice." },
+      { "src": "eabc4213", "text": "Senior managers or some teams think certain security policies don't apply to them, or expect exceptions." }
+    ],
+    "achieved": [
+      { "src": "e6cfa1f3", "text": "The board owns your security approach and policy, and explains it meaningfully to risk decision-makers across the organisation." },
+      { "src": "2b1e31bf", "text": "The board regularly discusses security using timely, accurate information and expert advice." },
+      { "src": "3bedb0e4", "text": "One board member is accountable overall for security and keeps it regularly on the board's agenda." },
+      { "src": "81ff89db", "text": "The board's direction is turned into real working practices that control how systems are secured." },
+      { "src": "1dfa5987", "text": "The board understands how system security supports your essential functions, and what a compromise would mean." },
+      { "src": "3f3113de", "text": "Security is seen as key to keeping essential functions running, and is part of every relevant discussion." }
+    ]
+  },
+  "A1.b": {
+    "not": [
+      { "src": "8b76f51c", "text": "Key security roles are missing, vacant, or covered informally or only as and when needed." },
+      { "src": "f7eed652", "text": "People are given security duties without the authority or resources to carry them out." },
+      { "src": "e9cb2bd9", "text": "Staff don't know what they are responsible for in keeping essential functions secure." }
+    ],
+    "achieved": [
+      { "src": "3d8bd9d9", "text": "You have identified key security roles and responsibilities, and regularly review that they're still right." },
+      { "src": "354d1632", "text": "Those roles are filled by capable, knowledgeable people with the time, authority and resources to do them." },
+      { "src": "300e6c0a", "text": "It is clear who is accountable overall for the security of these systems." }
+    ]
+  },
+  "A1.c": {
+    "not": [
+      { "src": "b55d869d", "text": "Simple risk decisions keep getting passed up the chain, or never get made." },
+      { "src": "096f92ef", "text": "Risks are handled informally, or ignored, locally when they should be formally reported." },
+      { "src": "4a0db35b", "text": "Decision-makers don't clearly know how much risk senior management will accept, beyond vague words like \"cautious\"." },
+      { "src": "3ff8bf9a", "text": "Decision-makers can't explain why they made their risk decisions." },
+      { "src": "62037777", "text": "Teams make risk decisions in silos, e.g. engineering and IT don't talk to each other about risk." },
+      { "src": "a7933a5d", "text": "Risk ratings are too vague to prioritise, e.g. nearly everything is \"medium\" or \"amber\"." }
+    ],
+    "achieved": [
+      { "src": "89343d13", "text": "Senior management can see the key risk decisions being made across the organisation." },
+      { "src": "4da0e6e6", "text": "Decision-makers know they must make timely, effective risk decisions within senior management's stated risk appetite." },
+      { "src": "f319a00b", "text": "Risk decisions are delegated or escalated to people with the right skills, knowledge, tools and authority." },
+      { "src": "2f971b54", "text": "Past risk decisions are regularly reviewed to check they're still relevant and valid." }
+    ]
+  },
+  "A2.a": {
+    "not": [
+      { "src": "9cd4db91", "text": "Risk assessments aren't based on a clearly defined set of assumptions about threats." },
+      { "src": "c1985b63", "text": "Risk assessment results are too complex for decision-makers, and aren't communicated clearly or promptly." },
+      { "src": "353e3ae5", "text": "Risk assessments are done once and never revisited, or not done at all." },
+      { "src": "ee8cf61f", "text": "Projects treat finishing a risk assessment as a box to tick, ignoring what it actually found." },
+      { "src": "cf49b36d", "text": "There's no systematic process to make sure identified security risks are actually dealt with." },
+      { "src": "f40746ea", "text": "Systems are assessed on their own, ignoring how they depend on or connect to others, e.g. IT and OT." },
+      { "src": "cedaa4a1", "text": "Security controls are picked arbitrarily or straight from a catalogue, without asking how they help protect essential functions." },
+      { "src": "607c1358", "text": "Risks sit unresolved on the register for long periods, waiting for senior decisions or resources." }
+    ],
+    "partial": [
+      { "src": "149ddfa8", "text": "You have a process that identifies, analyses, prioritises and manages security risks to essential functions." },
+      { "src": "ed19fae8", "text": "Your risk assessments draw on an understanding of well-known threats and vulnerabilities in your systems." },
+      { "src": "ca752bca", "text": "Your risk process produces a clear set of security requirements that address the risks found." },
+      { "src": "6c323037", "text": "Important findings from your risk process are shared with key security decision-makers and accountable people." },
+      { "src": "b0e87aa4", "text": "You reassess risk after significant changes, e.g. a system replacement, new technology or a change in threat." }
+    ],
+    "achieved": [
+      { "src": "149ddfa8", "text": "You have a process that identifies, analyses, prioritises and manages security risks to essential functions." },
+      { "src": "c6ca6d89", "text": "Your risk approach focuses on how attackers could harm essential functions, given how your systems are secured." },
+      { "src": "38b99929", "text": "Your risk assessments rest on clear threat assumptions, kept up to date for your systems, sector and national infrastructure." },
+      { "src": "f7d94994", "text": "Your risk assessments draw on an understanding of the vulnerabilities in your systems." },
+      { "src": "8745672e", "text": "Your risk process produces clear, traceable and prioritised security requirements that address the risks found." },
+      { "src": "6c323037", "text": "Important findings from your risk process are shared with key security decision-makers and accountable people." },
+      { "src": "1870b805", "text": "Your risk assessments are living documents, updated promptly when systems, their use, technology or threats change." },
+      { "src": "b14d7f4f", "text": "You regularly review how well your risk process works, and improve it as needed." },
+      { "src": "d0eab69b", "text": "You look ahead to new technologies that attackers could use against your systems." }
+    ]
+  },
+  "A2.b": {
+    "not": [
+      { "src": "db3f6045", "text": "You can't carry out threat analysis." },
+      { "src": "762d2700", "text": "You don't understand the threats to the systems behind your essential functions." },
+      { "src": "15a2c775", "text": "You don't have a clearly defined set of assumptions about threats." },
+      { "src": "0715c5c1", "text": "You don't use what you know about threats when making risk decisions." }
+    ],
+    "partial": [
+      { "src": "e1c21fca", "text": "You carry out threat analysis and understand how common threats apply to your systems." },
+      { "src": "51912166", "text": "You understand common types of cyber attack and how they might affect your systems, and keep this up to date." },
+      { "src": "5afb977b", "text": "You can predict what attackers might target in your systems to harm your essential functions." },
+      { "src": "83f5fc5c", "text": "Your understanding of threats is informed by common incidents." },
+      { "src": "5144531d", "text": "You use what you know about threats when making risk decisions." }
+    ],
+    "achieved": [
+      { "src": "0e68d4d0", "text": "You carry out detailed threat analysis for your systems, in the context of your sector and national infrastructure." },
+      { "src": "216b6971", "text": "You understand how capable, well-resourced attackers could systematically use their methods against your systems." },
+      { "src": "2e328fb3", "text": "You look at your systems from an attacker's point of view and build realistic attack scenarios." },
+      { "src": "98f8a23d", "text": "You understand the steps a capable, well-resourced attacker would need to take to reach their likely targets." },
+      { "src": "0aa4876d", "text": "You identify, and can justify, measures that make it harder for an attacker to succeed at each step." },
+      { "src": "4663956b", "text": "You keep a detailed, current understanding of threats, e.g. through threat intelligence and research." },
+      { "src": "0124c63b", "text": "You use your detailed understanding of threats when making risk decisions." },
+      { "src": "0b035b8d", "text": "You have written down how to carry out detailed threat analysis." }
+    ]
+  },
+  "A2.c": {
+    "not": [
+      { "src": "7d8f6309", "text": "A product or service is treated as a cure-all, and vendor claims are accepted without checking." },
+      { "src": "551fe659", "text": "Assurance methods are used without understanding what they can and can't tell you." },
+      { "src": "e56891f5", "text": "You assume security is fine because nothing has gone wrong yet." }
+    ],
+    "achieved": [
+      { "src": "25336840", "text": "You check that your security measures work, and keep working for as long as they're needed." },
+      { "src": "da165866", "text": "You understand the available ways of checking security, and pick the right ones for your systems." },
+      { "src": "841e1889", "text": "You can justify your confidence in security across technology, people and processes, and a third party could verify it." },
+      { "src": "2d330f81", "text": "Weaknesses found by assurance are assessed, prioritised and fixed promptly and effectively where needed." },
+      { "src": "d7beaf78", "text": "You review your assurance methods to check they work and are still the best choice." }
+    ]
+  },
+  "A3.a": {
+    "not": [
+      { "src": "90d80077", "text": "Your inventories of relevant assets are incomplete, missing or lack detail." },
+      { "src": "31e4f21d", "text": "Only some areas or types of asset are recorded and understood." },
+      { "src": "3590ed34", "text": "You don't understand how assets depend on each other, e.g. between IT and OT." },
+      { "src": "255998e5", "text": "Information, including personal or critical data, is kept for long periods without a business need or retention policy." },
+      { "src": "dc50bba5", "text": "Only one or two people hold knowledge critical to running or recovering your systems, with no succession plan." },
+      { "src": "7052e832", "text": "Asset inventories are neglected and out of date." }
+    ],
+    "achieved": [
+      { "src": "71d67242", "text": "All relevant assets are identified and recorded in suitable detail, and the inventory is kept up to date." },
+      { "src": "fad69eb0", "text": "You recognise and record dependencies on supporting infrastructure, such as power and cooling." },
+      { "src": "805b4f9a", "text": "You have ranked your assets by how important they are to running the systems behind your essential functions." },
+      { "src": "1fbf73ec", "text": "Every relevant asset, including physical ones, has someone responsible for managing it." },
+      { "src": "600349a6", "text": "Assets are managed with security in mind throughout their life, from creation to decommissioning or disposal." }
+    ]
+  },
+  "A4.a": {
+    "not": [
+      { "src": "c7576380", "text": "You don't know which of your data suppliers hold, or how they manage it." },
+      { "src": "530f6060", "text": "Parts of your supply chain are subcontracted and you have little or no visibility of those subcontractors." },
+      { "src": "c955423d", "text": "You don't know which contracts matter for security, or they lack proper security obligations." },
+      { "src": "02686902", "text": "Suppliers' access to your systems is unrestricted, unmonitored or bypasses your security controls." }
+    ],
+    "partial": [
+      { "src": "a36d9f82", "text": "You understand the general risks suppliers may pose to your systems." },
+      { "src": "eded3184", "text": "You know how far your supply chain extends, including subcontractors." },
+      { "src": "c708f860", "text": "Suppliers can show their cyber security is appropriate and proportionate for common threats." },
+      { "src": "9d67b8c2", "text": "You know which contracts matter for security and include appropriate security obligations in them." },
+      { "src": "15a25fc6", "text": "You know about every third-party connection and have assurance each meets your security requirements." },
+      { "src": "7e1f26f9", "text": "Your incident management plans cover incidents that might start in your supply chain." },
+      { "src": "d269c21d", "text": "You're confident suppliers protect information they hold that your systems need from common threats." }
+    ],
+    "achieved": [
+      { "src": "f3175425", "text": "You deeply understand your supply chain, including subcontractors, and the wider risks it faces." },
+      { "src": "957fd374", "text": "Your risk assessments and buying decisions weigh suppliers' ownership, nationality, partners, subcontractors and security approach." },
+      { "src": "acf937b2", "text": "Your supply chain risk management considers capable, well-resourced attackers subverting your supply chain." },
+      { "src": "4918e6d3", "text": "Critical suppliers can show their cyber security is appropriate against capable, well-resourced attackers." },
+      { "src": "aca9e6ec", "text": "You're confident suppliers protect information essential to your systems from capable, well-resourced attackers." },
+      { "src": "9d67b8c2", "text": "You know which contracts matter for security and include appropriate security obligations in them." },
+      { "src": "77c66f7e", "text": "You actively manage relevant contracts, which may include a contract management plan." },
+      { "src": "48ba62ed", "text": "Contracts set out which responsibilities belong to you and which to the supplier." },
+      { "src": "a40ed668", "text": "All network connections and data sharing with third parties are managed effectively and proportionately." },
+      { "src": "4b4b1f3e", "text": "Where appropriate, you and your suppliers support each other in resolving incidents." }
+    ]
+  },
+  "A4.b": {
+    "not": [
+      { "src": "0391d6ab", "text": "Your software suppliers don't know what their software contains or where its components came from." },
+      { "src": "c32fb38c", "text": "Software, including updates and patches, gets little or no testing." },
+      { "src": "b47ba3bc", "text": "Updates and patches often cause new problems or don't fix existing ones." },
+      { "src": "6cb7929f", "text": "Vulnerabilities are found in software that could easily have been prevented." }
+    ],
+    "partial": [
+      { "src": "3925541f", "text": "Your software supplier follows secure development principles and practices." },
+      { "src": "916817f1", "text": "Your software suppliers can show at least a basic understanding of what their software contains and where it came from." },
+      { "src": "7e6dfd03", "text": "Development, test and production environments, code and repositories are secured appropriately against common threats." },
+      { "src": "a91c8ef9", "text": "Testing uses a range of methods covering the whole development lifecycle, both functional and non-functional." },
+      { "src": "40602816", "text": "You've arranged to get timely security updates, patches and notifications from your software supplier." },
+      { "src": "c3ea0d58", "text": "You get software, updates and patches from suppliers through secure channels." },
+      { "src": "f84689e6", "text": "Your software suppliers have processes to find, report and fix security vulnerabilities." },
+      { "src": "d8969d1c", "text": "Your software supplier will tell you about significant events that could harm your systems." },
+      { "src": "2b11da06", "text": "If you use open-source software, you've taken proportionate steps to be, and stay, confident in its security." },
+      { "src": "68bc6fc7", "text": "You have appropriate support and maintenance arrangements in place." }
+    ],
+    "achieved": [
+      { "src": "bbf99836", "text": "Your software suppliers follow an established secure development framework, such as NIST SSDF or Microsoft SDL." },
+      { "src": "22dfa1af", "text": "Your supplier fully knows what its software contains, including third-party components, and monitors them for new vulnerabilities." },
+      { "src": "9a44c76b", "text": "Development, test and production environments, code and repositories are secured appropriately against capable, well-resourced attackers." },
+      { "src": "a6b66c06", "text": "Software development uses up-to-date threat understanding and techniques like threat modelling to find likely weaknesses." },
+      { "src": "f5577090", "text": "You can confirm software, updates and patches are genuine and haven't been tampered with." }
+    ]
+  }
+}

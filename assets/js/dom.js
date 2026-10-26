@@ -48,6 +48,7 @@ export const el = {
   inputImportBaseline: document.getElementById('input-import-baseline'),
   themeToggle: document.getElementById('theme-toggle'),
   fontSizeToggle: document.getElementById('fontsize-toggle'),
+  plainEnglishToggle: document.getElementById('plain-english-toggle'),
   backToTop: document.getElementById('btn-back-to-top')
 };
 

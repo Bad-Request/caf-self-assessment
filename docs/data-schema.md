@@ -88,3 +88,61 @@ official wording.
   set `[]`).
 - Counts are a useful smoke test but not proof of correctness — always spot
   check wording against the PDF for any outcome the tool flags.
+
+# Plain-English summaries — `assets/plain-english.json`
+
+Optional, **unofficial** one-sentence summaries of individual IGPs, shown
+under the official wording when the user turns on the "Plain English"
+preference (never printed). They are our own wording, not NCSC's, and are
+kept in a separate file from `data.json` so that the official dataset stays
+verbatim and `tools/extract_caf_pdf.py` can regenerate `data.json` without
+touching them. It's in `sw.js`'s `APP_SHELL`, so bump `CACHE_VERSION` after
+editing it. If the file is missing or fails to load the app still works,
+just without summaries.
+
+## Shape
+
+```
+{ "<outcome id>": { "not"?: Entry[], "partial"?: Entry[], "achieved"?: Entry[] } }
+```
+
+Each array is aligned by index with the same outcome's column in
+`data.json` — entry `i` summarises IGP `i`. Outcomes, columns, or trailing
+entries without a summary are simply omitted (a `null` entry can hold a
+gap mid-array).
+
+### Entry
+
+| Field | Type | Notes |
+|---|---|---|
+| `src` | string | Fingerprint (32-bit FNV-1a of the UTF-8 text, 8 hex digits — `fingerprint()` in `assets/js/utils.js`) of the exact official IGP wording this summary was written for. |
+| `text` | string | The summary itself. |
+
+The app only shows a summary whose `src` matches the current official
+text, so when NCSC revise an IGP its old summary disappears instead of
+sitting next to wording it no longer describes. Fix it by re-reading the
+new IGP and rewriting `text`, then updating `src` — never update `src`
+alone.
+
+## Writing summaries
+
+- One sentence, 20 words or fewer, British English, second person ("You…").
+- Keep the polarity: a Not achieved summary must still read as a failing.
+- Keep the qualifiers that change the meaning: "all" vs "some",
+  "regularly", "board", and especially **"common threats"** (usually the
+  Partially achieved bar) vs **"capable and well-resourced threat
+  actors"** (usually the Achieved bar).
+- An IGP repeated verbatim in `partial` and `achieved` gets the same
+  summary in both.
+- Don't add advice, examples or requirements that aren't in the IGP.
+
+## Checking
+
+```
+node tools/check_plain_english.mjs           # validate + coverage per objective
+node tools/check_plain_english.mjs stub B2.a # skeleton entries with src filled in
+```
+
+The check fails on unknown outcomes/columns, out-of-range entries, stale
+`src` fingerprints and empty summaries, and warns about summaries over 20
+words.
