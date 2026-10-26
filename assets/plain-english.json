@@ -1,0 +1,870 @@
+{
+  "A1.a": {
+    "not": [
+      { "src": "30daf9b7", "text": "The board doesn't regularly discuss, or get reports on, the security of the systems behind your essential functions." },
+      { "src": "b472b44d", "text": "When the board discusses security, it works from incomplete or outdated information, with no expert advice." },
+      { "src": "f518c6f8", "text": "The board's direction doesn't effectively drive how those systems are secured in practice." },
+      { "src": "eabc4213", "text": "Senior managers or some teams think certain security policies don't apply to them, or expect exceptions." }
+    ],
+    "achieved": [
+      { "src": "e6cfa1f3", "text": "The board owns your security approach and policy, and explains it meaningfully to risk decision-makers across the organisation." },
+      { "src": "2b1e31bf", "text": "The board regularly discusses security using timely, accurate information and expert advice." },
+      { "src": "3bedb0e4", "text": "One board member is accountable overall for security and keeps it regularly on the board's agenda." },
+      { "src": "81ff89db", "text": "The board's direction is turned into real working practices that control how systems are secured." },
+      { "src": "1dfa5987", "text": "The board understands how system security supports your essential functions, and what a compromise would mean." },
+      { "src": "3f3113de", "text": "Security is seen as key to keeping essential functions running, and is part of every relevant discussion." }
+    ]
+  },
+  "A1.b": {
+    "not": [
+      { "src": "8b76f51c", "text": "Key security roles are missing, vacant, or covered informally or only as and when needed." },
+      { "src": "f7eed652", "text": "People are given security duties without the authority or resources to carry them out." },
+      { "src": "e9cb2bd9", "text": "Staff don't know what they are responsible for in keeping essential functions secure." }
+    ],
+    "achieved": [
+      { "src": "3d8bd9d9", "text": "You have identified key security roles and responsibilities, and regularly review that they're still right." },
+      { "src": "354d1632", "text": "Those roles are filled by capable, knowledgeable people with the time, authority and resources to do them." },
+      { "src": "300e6c0a", "text": "It is clear who is accountable overall for the security of these systems." }
+    ]
+  },
+  "A1.c": {
+    "not": [
+      { "src": "b55d869d", "text": "Simple risk decisions keep getting passed up the chain, or never get made." },
+      { "src": "096f92ef", "text": "Local teams handle risks informally, or ignore them, when they should be reported through the formal risk process." },
+      { "src": "4a0db35b", "text": "Decision-makers don't clearly know how much risk senior management will accept, beyond vague words like \"cautious\"." },
+      { "src": "3ff8bf9a", "text": "Decision-makers can't explain why they made their risk decisions." },
+      { "src": "62037777", "text": "Teams make risk decisions in silos, e.g. engineering and IT don't talk to each other about risk." },
+      { "src": "a7933a5d", "text": "Risk ratings are too vague to prioritise, e.g. nearly everything is \"medium\" or \"amber\"." }
+    ],
+    "achieved": [
+      { "src": "89343d13", "text": "Senior management can see the key risk decisions being made across the organisation." },
+      { "src": "4da0e6e6", "text": "Decision-makers know they must make timely, effective risk decisions that stay within the level of risk senior management has said it will accept." },
+      { "src": "f319a00b", "text": "Risk decisions are handed down, or passed up, to whoever has the skills, knowledge, tools and authority to make them." },
+      { "src": "2f971b54", "text": "Past risk decisions are regularly reviewed to check they're still relevant and valid." }
+    ]
+  },
+  "A2.a": {
+    "not": [
+      { "src": "9cd4db91", "text": "Risk assessments don't start from a clear, agreed view of who might attack you and what they could do." },
+      { "src": "c1985b63", "text": "Risk assessment results are too complex for decision-makers, and aren't communicated clearly or promptly." },
+      { "src": "353e3ae5", "text": "Risk assessments are done once and never revisited, or not done at all." },
+      { "src": "ee8cf61f", "text": "Projects treat finishing a risk assessment as a box to tick, ignoring what it actually found." },
+      { "src": "cf49b36d", "text": "There's no systematic process to make sure identified security risks are actually dealt with." },
+      { "src": "f40746ea", "text": "Systems are assessed on their own, ignoring how they rely on or connect to others, e.g. office IT and the operational technology (OT) that runs physical equipment." },
+      { "src": "cedaa4a1", "text": "Security controls are chosen at random or copied from a standard list, without asking how each one actually helps protect your essential functions." },
+      { "src": "607c1358", "text": "Risks sit unresolved on the register for long periods, waiting for senior decisions or resources." }
+    ],
+    "partial": [
+      { "src": "149ddfa8", "text": "You have a process that identifies, analyses, prioritises and manages security risks to essential functions." },
+      { "src": "ed19fae8", "text": "Your risk assessments draw on an understanding of well-known threats and vulnerabilities in your systems." },
+      { "src": "ca752bca", "text": "Your risk process produces a clear set of security requirements that address the risks found." },
+      { "src": "6c323037", "text": "Important findings from your risk process are shared with key security decision-makers and accountable people." },
+      { "src": "b0e87aa4", "text": "You reassess risk after significant changes, e.g. a system replacement, new technology or a change in threat." }
+    ],
+    "achieved": [
+      { "src": "149ddfa8", "text": "You have a process that identifies, analyses, prioritises and manages security risks to essential functions." },
+      { "src": "c6ca6d89", "text": "Your risk thinking centres on how attackers could disrupt your essential functions, and how the way your systems are secured would help or hinder them." },
+      { "src": "38b99929", "text": "Your risk assessments start from a clear view of who might attack you and how, kept up to date for your systems, your sector and national infrastructure more widely." },
+      { "src": "f7d94994", "text": "Your risk assessments draw on an understanding of the vulnerabilities in your systems." },
+      { "src": "8745672e", "text": "Your risk process produces prioritised security requirements, each of which can be traced back to the risk it addresses." },
+      { "src": "6c323037", "text": "Important findings from your risk process are shared with key security decision-makers and accountable people." },
+      { "src": "1870b805", "text": "Your risk assessments are living documents, updated promptly when systems, their use, technology or threats change." },
+      { "src": "b14d7f4f", "text": "You regularly review how well your risk process works, and improve it as needed." },
+      { "src": "d0eab69b", "text": "You look ahead to new technologies that attackers could use against your systems." }
+    ]
+  },
+  "A2.b": {
+    "not": [
+      { "src": "db3f6045", "text": "You're unable to work out who might attack your systems, how, and why." },
+      { "src": "762d2700", "text": "You don't understand the threats to the systems behind your essential functions." },
+      { "src": "15a2c775", "text": "You don't have a clear, agreed view of who might attack you and what they could do." },
+      { "src": "0715c5c1", "text": "You don't use what you know about threats when making risk decisions." }
+    ],
+    "partial": [
+      { "src": "e1c21fca", "text": "You work out who might attack your systems and understand how common, everyday attacks would affect them." },
+      { "src": "51912166", "text": "You understand common types of cyber attack and how they might affect your systems, and keep this up to date." },
+      { "src": "5afb977b", "text": "You can predict what attackers might target in your systems to harm your essential functions." },
+      { "src": "83f5fc5c", "text": "Your understanding of threats is shaped by the kinds of incidents that commonly happen." },
+      { "src": "5144531d", "text": "You use what you know about threats when making risk decisions." }
+    ],
+    "achieved": [
+      { "src": "0e68d4d0", "text": "You analyse in detail who might attack your systems and how, taking into account your sector and national infrastructure more widely." },
+      { "src": "216b6971", "text": "You understand how capable, well-resourced attackers could systematically use their methods against your systems." },
+      { "src": "2e328fb3", "text": "You look at your systems from an attacker's point of view and build realistic attack scenarios." },
+      { "src": "98f8a23d", "text": "You understand the steps a capable, well-resourced attacker would need to take to reach their likely targets." },
+      { "src": "0aa4876d", "text": "You identify, and can justify, measures that make it harder for an attacker to succeed at each step." },
+      { "src": "4663956b", "text": "You keep a detailed, current understanding of threats, e.g. through threat intelligence and research." },
+      { "src": "0124c63b", "text": "You use your detailed understanding of threats when making risk decisions." },
+      { "src": "0b035b8d", "text": "You have written down the steps for carrying out a detailed analysis of who might attack you and how." }
+    ]
+  },
+  "A2.c": {
+    "not": [
+      { "src": "7d8f6309", "text": "A product or service is treated as a cure-all, and vendor claims are accepted without checking." },
+      { "src": "551fe659", "text": "Security checks such as audits, tests or certifications are relied on without understanding what each one can and can't prove." },
+      { "src": "e56891f5", "text": "You assume security is fine because nothing has gone wrong yet." }
+    ],
+    "achieved": [
+      { "src": "25336840", "text": "You check that your security measures work, and keep working for as long as they're needed." },
+      { "src": "da165866", "text": "You know the different ways of gaining confidence in your security, such as testing, audits and certification, and pick the ones that suit your systems." },
+      { "src": "841e1889", "text": "You can justify your confidence in security across technology, people and processes, and a third party could verify it." },
+      { "src": "2d330f81", "text": "Weaknesses found by these checks are assessed, prioritised and fixed promptly and effectively where needed." },
+      { "src": "d7beaf78", "text": "You review how you check your security, to make sure those checks work and are still the best choice." }
+    ]
+  },
+  "A3.a": {
+    "not": [
+      { "src": "90d80077", "text": "Your lists of relevant assets are incomplete, missing or lack detail." },
+      { "src": "31e4f21d", "text": "Only some areas or types of asset are recorded and understood." },
+      { "src": "3590ed34", "text": "You don't understand how assets rely on each other, e.g. between office IT and the operational technology (OT) that runs physical equipment." },
+      { "src": "255998e5", "text": "Information, including personal or critical data, is kept for long periods without a business need or retention policy." },
+      { "src": "dc50bba5", "text": "Only one or two people hold knowledge critical to running or recovering your systems, with no succession plan." },
+      { "src": "7052e832", "text": "Asset lists are neglected and out of date." }
+    ],
+    "achieved": [
+      { "src": "71d67242", "text": "All relevant assets are identified and listed in suitable detail, and the list is kept up to date." },
+      { "src": "fad69eb0", "text": "You recognise and record dependencies on supporting infrastructure, such as power and cooling." },
+      { "src": "805b4f9a", "text": "You have ranked your assets by how important they are to running the systems behind your essential functions." },
+      { "src": "1fbf73ec", "text": "Every relevant asset, including physical ones, has someone responsible for managing it." },
+      { "src": "600349a6", "text": "Assets are managed with security in mind throughout their life, from when they're created or bought to when they're retired or disposed of." }
+    ]
+  },
+  "A4.a": {
+    "not": [
+      { "src": "c7576380", "text": "You don't know which of your data suppliers hold, or how they manage it." },
+      { "src": "530f6060", "text": "Parts of your supply chain are subcontracted and you have little or no visibility of those subcontractors." },
+      { "src": "c955423d", "text": "You don't know which contracts matter for security, or they lack proper security obligations." },
+      { "src": "02686902", "text": "Suppliers' access to your systems is unrestricted, unmonitored or bypasses your security controls." }
+    ],
+    "partial": [
+      { "src": "a36d9f82", "text": "You understand the general risks suppliers may pose to your systems." },
+      { "src": "eded3184", "text": "You know how far your supply chain extends, including subcontractors." },
+      { "src": "c708f860", "text": "Suppliers can show their cyber security is at the right level to cope with common threats." },
+      { "src": "9d67b8c2", "text": "You know which contracts matter for security and include appropriate security obligations in them." },
+      { "src": "15a25fc6", "text": "You know about every connection third parties have into your systems, and have evidence that each one meets your security requirements." },
+      { "src": "7e1f26f9", "text": "Your incident management plans cover incidents that might start in your supply chain." },
+      { "src": "d269c21d", "text": "You're confident suppliers protect information they hold that your systems need from common threats." }
+    ],
+    "achieved": [
+      { "src": "f3175425", "text": "You deeply understand your supply chain, including subcontractors, and the wider risks it faces." },
+      { "src": "957fd374", "text": "Your risk assessments and buying decisions weigh suppliers' ownership, nationality, partners, subcontractors and security approach." },
+      { "src": "acf937b2", "text": "Your supply chain risk planning considers capable, well-resourced attackers deliberately compromising your suppliers to get at you." },
+      { "src": "4918e6d3", "text": "Your most important suppliers can show their cyber security is at the right level to withstand capable, well-resourced attackers." },
+      { "src": "aca9e6ec", "text": "You're confident suppliers protect information essential to your systems from capable, well-resourced attackers." },
+      { "src": "9d67b8c2", "text": "You know which contracts matter for security and include appropriate security obligations in them." },
+      { "src": "77c66f7e", "text": "You actively manage relevant contracts, which may include a contract management plan." },
+      { "src": "48ba62ed", "text": "Contracts set out which responsibilities belong to you and which to the supplier." },
+      { "src": "a40ed668", "text": "All network connections and data sharing with third parties are well managed, with controls that match the level of risk." },
+      { "src": "4b4b1f3e", "text": "Where appropriate, you and your suppliers support each other in resolving incidents." }
+    ]
+  },
+  "A4.b": {
+    "not": [
+      { "src": "0391d6ab", "text": "Your software suppliers don't know what their software contains or where its components came from." },
+      { "src": "c32fb38c", "text": "Software, including updates and patches, gets little or no testing." },
+      { "src": "b47ba3bc", "text": "Updates and patches often cause new problems or don't fix existing ones." },
+      { "src": "6cb7929f", "text": "Vulnerabilities are found in software that could easily have been prevented." }
+    ],
+    "partial": [
+      { "src": "3925541f", "text": "Your software supplier follows secure development principles and practices." },
+      { "src": "916817f1", "text": "Your software suppliers can show at least a basic understanding of what their software contains and where it came from." },
+      { "src": "7e6dfd03", "text": "Development, test and production environments, code and repositories are protected well enough to withstand common threats." },
+      { "src": "a91c8ef9", "text": "Testing uses a range of methods across the whole development process, checking both what the software does and qualities such as performance and security." },
+      { "src": "40602816", "text": "You've arranged to get timely security updates, patches and notifications from your software supplier." },
+      { "src": "c3ea0d58", "text": "You get software, updates and patches from suppliers in a way that stops them being intercepted or tampered with." },
+      { "src": "f84689e6", "text": "Your software suppliers have processes to find, report and fix security vulnerabilities." },
+      { "src": "d8969d1c", "text": "Your software supplier will tell you about significant events that could harm your systems." },
+      { "src": "2b11da06", "text": "If you use open-source software, you've taken sensible steps, scaled to the risk, to become confident in its security and stay that way." },
+      { "src": "68bc6fc7", "text": "You have appropriate support and maintenance arrangements in place." }
+    ],
+    "achieved": [
+      { "src": "bbf99836", "text": "Your software suppliers follow a recognised secure development framework, such as NIST SSDF or Microsoft SDL." },
+      { "src": "22dfa1af", "text": "Your supplier knows exactly what goes into its software, including third-party components, and watches those components for new vulnerabilities for the product's whole life." },
+      { "src": "9a44c76b", "text": "Development, test and production environments, code and repositories are protected well enough to withstand capable, well-resourced attackers." },
+      { "src": "a6b66c06", "text": "Software development is shaped by a current understanding of threats, using techniques like threat modelling (mapping out how someone might attack it) to find weaknesses." },
+      { "src": "f5577090", "text": "You can confirm software, updates and patches are genuine and haven't been tampered with." }
+    ]
+  },
+  "B1.a": {
+    "not": [
+      { "src": "1e410d70", "text": "Your security policies and procedures are missing or leave gaps." },
+      { "src": "ace1d941", "text": "Your security policies and procedures aren't applied everywhere, or aren't applied consistently." },
+      { "src": "bf57e74c", "text": "People often work around security policies and procedures to get their jobs done." },
+      { "src": "bb593418", "text": "Your policies and procedures don't reflect how your organisation says it governs security and manages risk." },
+      { "src": "52465395", "text": "System security depends entirely on users carefully and consistently following manual steps." },
+      { "src": "39fbe133", "text": "Policies and procedures haven't been reviewed after major changes, such as new technology or regulations, or haven't been reviewed for too long." },
+      { "src": "06d9035f", "text": "Staff can't easily find your policies and procedures, or they're too detailed to remember or too hard to understand." }
+    ],
+    "partial": [
+      { "src": "6de7992d", "text": "Your policies and procedures set out your overall approach to governing security and managing risk, your technical security practices, and the regulations you must meet." },
+      { "src": "cb0d35c0", "text": "You review and update policies and procedures after major cyber security incidents." }
+    ],
+    "achieved": [
+      { "src": "3e3daf83", "text": "You fully write down your overall approach to governing security and managing risk, your technical security practices, and the regulations you must meet." },
+      { "src": "db6e9a9d", "text": "Cyber security is built into all your policies and procedures, and measures of security performance are reported to executive management." },
+      { "src": "44d941db", "text": "Your policies and procedures are practical, usable and suitable for reducing the risk of harm to the systems behind your essential functions." },
+      { "src": "78e9a8be", "text": "Where policies and procedures depend on how people behave, they are practical, sensible and realistic to follow." },
+      { "src": "31423c8b", "text": "You review and update policies and procedures at suitably regular intervals to keep them relevant, not just after major incidents." },
+      { "src": "6d365fb4", "text": "Any change to your essential functions, or to the threats they face, triggers a review of your policies and procedures." },
+      { "src": "ce3dae4c", "text": "Your systems are designed to stay secure even when people don't always follow security policies and procedures." }
+    ]
+  },
+  "B1.b": {
+    "not": [
+      { "src": "b6aa1478", "text": "Policies and procedures are ignored or only partly followed." },
+      { "src": "234def07", "text": "People don't really understand how your policies and procedures help keep your essential functions running." },
+      { "src": "73dbf468", "text": "Staff don't know what your policies and procedures require of them." },
+      { "src": "b98a84c5", "text": "You make no attempt to spot when policies and procedures are broken." },
+      { "src": "1e55011f", "text": "Your security policies and procedures don't fit together with the rest of your organisation's policies and procedures." },
+      { "src": "fcc62ffe", "text": "Your policies and procedures aren't communicated well across the organisation." }
+    ],
+    "partial": [
+      { "src": "e69c79a0", "text": "Most policies and procedures are followed, and you monitor how they're applied." },
+      { "src": "86eb3b2e", "text": "Your security policies and procedures link up with your other policies, including HR checks on whether individuals can be trusted." },
+      { "src": "e2bc8b32", "text": "All staff know what your policies and procedures require of them." },
+      { "src": "bf048b5e", "text": "Every breach that could harm your essential functions is fully investigated. Other breaches are tracked, checked for patterns and acted on." }
+    ],
+    "achieved": [
+      { "src": "2f97fea7", "text": "All policies and procedures are followed, and you check both that they're applied correctly and that they actually improve security." },
+      { "src": "86eb3b2e", "text": "Your security policies and procedures link up with your other policies, including HR checks on whether individuals can be trusted." },
+      { "src": "340cea3c", "text": "Policies and procedures are communicated well at every level of the organisation, so staff clearly understand their responsibilities." },
+      { "src": "2b0a6771", "text": "You act on every breach that could harm your essential functions, including lots of small breaches that add up to a bigger problem." }
+    ]
+  },
+  "B2.a": {
+    "not": [
+      { "src": "32a4c494", "text": "Your checks on who someone is, before giving them access, aren't thorough enough to be confident they are who they claim to be." },
+      { "src": "dca8e550", "text": "You can't identify each individual person or system that has access to the systems your essential functions rely on." },
+      { "src": "bdfc1a5a", "text": "People or devices that shouldn't have access can get into the networks or systems your essential functions rely on." },
+      { "src": "dfd1134f", "text": "More people and systems have access than your essential functions actually need." },
+      { "src": "e8d831d5", "text": "How you check the identity of users, devices and systems when they log in doesn't follow current good practice." }
+    ],
+    "partial": [
+      { "src": "8c98bf97", "text": "Before giving someone access, you check who they are thoroughly enough to be reasonably confident of their identity." },
+      { "src": "72e85a4c", "text": "Every person and system with access is individually identified and has to prove who they are when logging in." },
+      { "src": "57d4abe2", "text": "Only as many people and systems as your essential functions genuinely need have access." },
+      { "src": "5e22ad9f", "text": "Admin-level (privileged) access to all these systems needs a stronger login on top of a password, such as multi-factor authentication (MFA), e.g. a code from a phone app." },
+      { "src": "57bdcd8b", "text": "Every remote connection to these systems is individually checked: who it is, and what it's allowed to do." },
+      { "src": "b85620f3", "text": "You review the list of people and systems with access regularly, at least once a year." },
+      { "src": "be5f93a6", "text": "How you check the identity of users, devices and systems when they log in follows current good practice." }
+    ],
+    "achieved": [
+      { "src": "f733bbcb", "text": "Before giving someone access, you check who they are thoroughly enough to be highly confident of their identity." },
+      { "src": "687c0717", "text": "Only approved people who have individually proved who they are can physically get to, or connect over the network to, the systems your essential functions rely on." },
+      { "src": "57d4abe2", "text": "Only as many people and systems as your essential functions genuinely need have access." },
+      { "src": "0fa8748b", "text": "All access to these systems, including remote access, needs a stronger login on top of a password, such as multi-factor authentication (MFA)." },
+      { "src": "16151acd", "text": "You review the list of people and systems with access regularly, at least every six months." },
+      { "src": "be5f93a6", "text": "How you check the identity of users, devices and systems when they log in follows current good practice." }
+    ]
+  },
+  "B2.b": {
+    "not": [
+      { "src": "cb03e187", "text": "Users can connect to these systems from devices your organisation doesn't own and manage, such as personal phones or laptops." },
+      { "src": "f6bb2ae2", "text": "People with admin rights can carry out admin tasks from devices your organisation doesn't own and manage." },
+      { "src": "dcc5c3d1", "text": "You've done nothing to check the security of other organisations' devices or networks connected to your systems." },
+      { "src": "38c362a9", "text": "Plugging a device into your network gives it access without checking the device or the person using it." }
+    ],
+    "partial": [
+      { "src": "fc035a5d", "text": "Only devices your organisation owns and manages can access the systems behind your essential functions." },
+      { "src": "642e034a", "text": "All admin tasks are done from devices your organisation owns and manages, kept suitably separate from everyday user activity based on the risk." },
+      { "src": "c4cbd80a", "text": "Before other organisations' devices or networks can connect to your systems, you look into how secure they are and deal with any risks you find." },
+      { "src": "d8729a7f", "text": "Simply plugging into a network socket or cable doesn't give access to any systems." },
+      { "src": "601803ff", "text": "You can spot unknown devices being connected to your systems, and you investigate when it happens." }
+    ],
+    "achieved": [
+      { "src": "296e42e8", "text": "All admin tasks on these systems are done from highly trusted devices used for nothing else, such as Privileged Access Workstations." },
+      { "src": "55c01550", "text": "Other organisations' devices or networks can only connect if independent experts have vouched for their security, or if they're dedicated solely to supporting your systems." },
+      { "src": "de9af32a", "text": "Devices prove who they are using digital certificates, and only known devices can access the systems your essential functions need." },
+      { "src": "41bafc1a", "text": "You regularly scan for unknown devices and investigate anything you find." }
+    ]
+  },
+  "B2.c": {
+    "not": [
+      { "src": "eebb3949", "text": "You don't know, or don't manage, who has admin rights over these systems, including their infrastructure, platforms, software and settings." },
+      { "src": "3bddbabe", "text": "Admin access to these systems relies on weak logins, such as a simple password alone." },
+      { "src": "d8824603", "text": "The list of people with admin rights hasn't been reviewed recently, e.g. in the last 12 months." },
+      { "src": "ec2348fa", "text": "Admin rights cover whole systems rather than being limited to what each person's role needs." },
+      { "src": "fe8f5f54", "text": "Admin access uses generic, shared or default accounts rather than accounts belonging to named individuals." },
+      { "src": "deea1ae9", "text": "Terminals that stay logged in with admin powers, e.g. in a control room, have no extra controls, such as physical ones, limiting who can use them." },
+      { "src": "295dd152", "text": "Nothing separates a person's different roles, e.g. the same account is used both for email and for admin tasks." }
+    ],
+    "partial": [
+      { "src": "2add5700", "text": "All admin access to these systems needs a strong login, such as multi-factor authentication (MFA)." },
+      { "src": "b5204915", "text": "You know and manage exactly who has admin rights over these systems, including people from third parties." },
+      { "src": "95e990d0", "text": "Admin activity is routinely reviewed and checked, e.g. at least once a year." },
+      { "src": "39bf1241", "text": "People only get the specific admin rights they genuinely need for their job." }
+    ],
+    "achieved": [
+      { "src": "86e93ddc", "text": "Admin work is done from separate accounts used only for that purpose, which are closely monitored and managed." },
+      { "src": "f8f81691", "text": "You can grant admin rights, and access for outside support providers, for a limited time only, after which they expire." },
+      { "src": "0eb5b84c", "text": "Admin rights are reviewed regularly and always updated when people join, change roles or leave." },
+      { "src": "8129059d", "text": "All admin activity is routinely reviewed and checked, and recorded so it can be analysed or investigated later." }
+    ]
+  },
+  "B2.d": {
+    "not": [
+      { "src": "98edc7b7", "text": "People are given more access than they need." },
+      { "src": "7b33006c", "text": "You don't check who a user, device or system is, or whether it actually needs access, before granting it." },
+      { "src": "723e6fe6", "text": "People's access isn't reviewed when they change roles." },
+      { "src": "c898dd9f", "text": "People's access still works after they've left your organisation." },
+      { "src": "03247a02", "text": "The access that devices and systems have to each other isn't reviewed regularly, at least once a year." }
+    ],
+    "partial": [
+      { "src": "baa230af", "text": "You follow a thorough process to confirm who each user is and give them only the access they need." },
+      { "src": "00d7db91", "text": "You regularly review who has access and remove access that's no longer needed." },
+      { "src": "5a4c3e8c", "text": "People's access is reviewed when they change roles, as part of your process for people joining, moving and leaving." },
+      { "src": "3feaeec1", "text": "All access by users, devices and systems is logged and monitored, but not cross-checked against other logs or access records." }
+    ],
+    "achieved": [
+      { "src": "fab8c341", "text": "You follow a thorough process to confirm who each user is and give them only the access they need, and you regularly audit that it's followed." },
+      { "src": "a498c712", "text": "People's access is reviewed when they change roles, as part of your joining, moving and leaving process, and also at least once a year." },
+      { "src": "7742e96c", "text": "All access by users, devices and systems to the systems behind your essential functions is logged and monitored." },
+      { "src": "9ec8fe1c", "text": "You regularly review access logs and cross-check them against other access records and the activity you'd expect to see." },
+      { "src": "a9b94f87", "text": "Attempts by unapproved users, devices or systems to connect trigger an alert, and are quickly assessed and investigated." }
+    ]
+  },
+  "B3.a": {
+    "not": [
+      { "src": "1af462c1", "text": "You don't fully know what data your systems use and produce in running your essential functions." },
+      { "src": "a434bd6e", "text": "You haven't worked out which data the systems behind your essential functions depend on." },
+      { "src": "adb63136", "text": "You haven't worked out who can access your important data." },
+      { "src": "e3f3c60d", "text": "You haven't clearly set out what would happen if important data were compromised or became unavailable." }
+    ],
+    "partial": [
+      { "src": "77f643ee", "text": "You have found and recorded all data important to running these systems, plus any data that would help an attacker." },
+      { "src": "b4e9f4a4", "text": "You have found and recorded who has access to that important data." },
+      { "src": "00b2b08f", "text": "You regularly review where important data is kept, how it's sent, how much there is and how accurate it is." },
+      { "src": "09a35f0b", "text": "You have identified every mobile device and portable storage item, such as USB drives, that holds important data." },
+      { "src": "5af17595", "text": "You understand and write down how your essential functions would suffer if important data were wrongly accessed, leaked, changed or deleted, or became unavailable to the right people." },
+      { "src": "614374a8", "text": "You occasionally check that those written impact assessments are still right." }
+    ],
+    "achieved": [
+      { "src": "77f643ee", "text": "You have found and recorded all data important to running these systems, plus any data that would help an attacker." },
+      { "src": "b4e9f4a4", "text": "You have found and recorded who has access to that important data." },
+      { "src": "f6ab9a53", "text": "You always know where important data is kept, how much there is and how accurate it is." },
+      { "src": "3600a7f4", "text": "You remove or reduce unnecessary copies of data, and old data you no longer need." },
+      { "src": "f9928fb0", "text": "You have identified every mobile device and portable storage item that might hold important data." },
+      { "src": "b31f5911", "text": "You always know which network connections are used to send important data." },
+      { "src": "d109465f", "text": "You understand how your important data fits into your operations, what its limitations are, and what it relies on." },
+      { "src": "5af17595", "text": "You understand and write down how your essential functions would suffer if important data were wrongly accessed, leaked, changed or deleted, or became unavailable to the right people." },
+      { "src": "e539d3d2", "text": "You check those written impact assessments regularly, at least once a year." }
+    ]
+  },
+  "B3.b": {
+    "not": [
+      { "src": "e7a3406c", "text": "You don't know all your data connections, or which of them carry data important to your essential functions." },
+      { "src": "db5f7d43", "text": "Important data travels over untrusted or public networks without technical protection, such as encryption." },
+      { "src": "4e6d40e6", "text": "Critical data routes that could fail, be jammed or get overloaded have no backup route." }
+    ],
+    "partial": [
+      { "src": "b90315a5", "text": "You have identified every connection that carries important data and protected each one effectively, in line with the risk." },
+      { "src": "1339e00b", "text": "You use physical or technical measures, e.g. encryption, to protect important data sent over untrusted or public networks, but have little or no confidence the protection is strong enough." }
+    ],
+    "achieved": [
+      { "src": "b90315a5", "text": "You have identified every connection that carries important data and protected each one effectively, in line with the risk." },
+      { "src": "3ca3bc92", "text": "You use physical or technical measures, e.g. encryption, to protect important data sent over untrusted or public networks, and can justify your confidence the protection is strong enough." },
+      { "src": "a04a85ee", "text": "Where losing a data route would seriously affect your essential functions, e.g. through equipment failure or jamming, a suitable backup route is available." }
+    ]
+  },
+  "B3.c": {
+    "not": [
+      { "src": "73ddd114", "text": "You know little or nothing about where important data is stored." },
+      { "src": "2336f4e5", "text": "Important stored data that's at risk hasn't been properly protected." },
+      { "src": "7c8e4fdc", "text": "Backups are incomplete, untested, poorly secured, or might be out of reach when you need to recover from a disaster or keep the business running." }
+    ],
+    "partial": [
+      { "src": "906407b9", "text": "You keep only the copies of important data that you need, and copies sent to less secure systems are cut down or read-only." },
+      { "src": "ac44bea6", "text": "You use physical or technical measures to stop important stored data being accessed, changed or deleted without permission." },
+      { "src": "c4e879eb", "text": "If you use encryption, you've set it up with suitable technical and procedural measures, but have little or no confidence it's strong enough." },
+      { "src": "04683098", "text": "You have suitable, secure backups so your systems can keep running if the original data is lost, e.g. offline or separate backups, or paper copies." }
+    ],
+    "achieved": [
+      { "src": "906407b9", "text": "You keep only the copies of important data that you need, and copies sent to less secure systems are cut down or read-only." },
+      { "src": "ac44bea6", "text": "You use physical or technical measures to stop important stored data being accessed, changed or deleted without permission." },
+      { "src": "860a6cea", "text": "If you use encryption, you've set it up with suitable technical and procedural measures, and can justify your confidence that it's strong enough." },
+      { "src": "04683098", "text": "You have suitable, secure backups so your systems can keep running if the original data is lost, e.g. offline or separate backups, or paper copies." },
+      { "src": "534f0a9e", "text": "Old or archived data you still need is stored securely." }
+    ]
+  },
+  "B3.d": {
+    "not": [
+      { "src": "16124b2e", "text": "You don't know which mobile devices might hold important data." },
+      { "src": "665a645a", "text": "You let important data be stored on devices your organisation doesn't manage, or that aren't managed to at least the same standard." },
+      { "src": "315b8c63", "text": "Data on mobile devices isn't technically protected, or only some of it is." }
+    ],
+    "partial": [
+      { "src": "d0b0830d", "text": "You know which mobile devices hold important data." },
+      { "src": "7c71156f", "text": "Important data is only stored on mobile devices that meet at least the security standard set by your overall security policies." },
+      { "src": "3c861758", "text": "Data on mobile devices is technically protected, e.g. encrypted." }
+    ],
+    "achieved": [
+      { "src": "d8446ef3", "text": "Mobile devices holding important data are recorded, controlled by your organisation and set up following best practice for that type of device, with suitable rules in place." },
+      { "src": "8b4a2b1c", "text": "You can remotely erase every mobile device that holds important data." },
+      { "src": "8d8b87d2", "text": "You keep as little important data on mobile devices as possible, and some may be deleted automatically after a set time." }
+    ]
+  },
+  "B3.e": {
+    "not": [
+      { "src": "5f395952", "text": "Some or all devices, equipment or removable media holding important data are reused or thrown away without that data being securely erased." }
+    ],
+    "partial": [
+      { "src": "0230aee4", "text": "Important data is securely erased from all devices, equipment and removable media, such as USB drives, before they're reused or disposed of." }
+    ],
+    "achieved": [
+      { "src": "0b95586f", "text": "You record and track every device containing important data, whether it's a dedicated storage device or something with built-in storage." },
+      { "src": "f09c3cc4", "text": "Important data is securely erased from all devices, equipment and removable media before reuse or disposal, using an independently approved product or service." }
+    ]
+  },
+  "B4.a": {
+    "not": [
+      { "src": "eb2e1bef", "text": "The systems behind your essential functions aren't properly kept apart from your other systems." },
+      { "src": "74f9ceee", "text": "People can browse the web or use email from the systems behind your essential functions." },
+      { "src": "0282a2da", "text": "Data moves between these systems and others in such complicated ways that it's hard to tell normal traffic from malicious traffic." },
+      { "src": "bc12eb56", "text": "Remote or third-party connections bypass some network controls to get more direct access to these systems." }
+    ],
+    "partial": [
+      { "src": "83b5bc52", "text": "You use people with the right expertise to design the systems behind your essential functions." },
+      { "src": "4a119a18", "text": "You build strong defences at the points where your systems connect to other organisations or the internet." },
+      { "src": "596c98fa", "text": "You keep the routes data takes between your systems and the outside world simple, so they're easy to monitor." },
+      { "src": "d3d2c08a", "text": "You design your systems so they're simple to recover." },
+      { "src": "33c73a1c", "text": "Everything coming into these systems is checked at the network edge where possible; otherwise, extra monitoring watches for attacks hidden in files or messages." }
+    ],
+    "achieved": [
+      { "src": "83b5bc52", "text": "You use people with the right expertise to design the systems behind your essential functions." },
+      { "src": "04fdcdef", "text": "Your systems are split into security zones, with those behind your essential functions in a highly trusted, better-protected zone." },
+      { "src": "71ed75c1", "text": "These systems are designed so data moves between their parts by simple routes, which makes security monitoring effective." },
+      { "src": "2f4bdde5", "text": "These systems are designed to be easy to recover." },
+      { "src": "42f098b1", "text": "Everything coming into these systems is protected against attacks hidden in files or messages, e.g. by converting, inspecting, cleaning and checking it." },
+      { "src": "6cb3ae3b", "text": "If you use automated decision-making, such as AI, you set limits that stop it taking actions that could harm these systems." }
+    ]
+  },
+  "B4.b": {
+    "not": [
+      { "src": "246daa8b", "text": "You haven't worked out which assets need careful setting up to keep these systems secure." },
+      { "src": "a7cce235", "text": "Rules for installing and setting up operating systems securely aren't applied consistently across these systems." },
+      { "src": "7e2dc515", "text": "System settings aren't recorded, or not in enough detail to rebuild the system or device." },
+      { "src": "40db66aa", "text": "Changes to security settings that affect your essential functions aren't recorded, or are recorded inconsistently." },
+      { "src": "5d6afd64", "text": "Generic, shared, default and built-in accounts haven't been removed or switched off." },
+      { "src": "b3c0c5d2", "text": "Ordinary users can change settings in ways that would weaken the security of these systems." }
+    ],
+    "partial": [
+      { "src": "8f0faa75", "text": "You have identified and written down which assets need careful setting up to keep these systems secure." },
+      { "src": "c092055c", "text": "Secure, standard set-ups are used for platforms and devices across your organisation." },
+      { "src": "4d9fc22b", "text": "Systems and devices of the same kind are set up consistently and securely, with only the features they need switched on." },
+      { "src": "439f7bce", "text": "Changes to security settings at the edges of these systems are approved and recorded." },
+      { "src": "e607b809", "text": "Software is checked before anyone is allowed to install it." },
+      { "src": "607be015", "text": "Generic, shared, default and built-in accounts are removed or switched off, or their passwords changed where that's impossible. Accounts used by software and services are suitably protected." },
+      { "src": "149e43f5", "text": "Ordinary users can't change settings in ways that would weaken the security of these systems." }
+    ],
+    "achieved": [
+      { "src": "d49b1485", "text": "You have identified and written down which assets need careful setting up, and actively look after them, e.g. keeping settings secure and applying updates." },
+      { "src": "994c7853", "text": "Every platform matches your defined secure standard set-up, or the latest version of its settings known to be good." },
+      { "src": "bc440913", "text": "You closely control changes to your systems, making sure their settings stay secure and are recorded." },
+      { "src": "3aa89bfa", "text": "You regularly check that your systems still have the secure settings you expect." },
+      { "src": "23d32d31", "text": "Only approved software can be installed." },
+      { "src": "e101bc3e", "text": "If you use automated decision-making, such as AI, you understand how it works and its decisions can be reproduced." },
+      { "src": "607be015", "text": "Generic, shared, default and built-in accounts are removed or switched off, or their passwords changed where that's impossible. Accounts used by software and services are suitably protected." }
+    ]
+  },
+  "B4.c": {
+    "not": [
+      { "src": "cf1c5647", "text": "The systems behind your essential functions are run or maintained from devices your organisation doesn't own and manage." },
+      { "src": "a2207740", "text": "You don't have good, up-to-date technical documentation for your systems." }
+    ],
+    "partial": [
+      { "src": "d017e70c", "text": "Only approved admins run or maintain these systems, using devices kept suitably separate from everyday user activity, based on the risk." },
+      { "src": "5d76e518", "text": "Technical information about your systems, such as documentation and network diagrams, is regularly reviewed and updated." },
+      { "src": "3fad9390", "text": "You prevent, detect and remove malicious software (malware) and unapproved software, using technical, procedural and physical measures as needed." }
+    ],
+    "achieved": [
+      { "src": "1e04ec4d", "text": "Only approved admins run or maintain these systems, using highly trusted devices used for nothing else, such as Privileged Access Workstations." },
+      { "src": "15b311ce", "text": "You regularly review and update technical information about your systems, such as documentation and network diagrams, and store it securely." },
+      { "src": "3fad9390", "text": "You prevent, detect and remove malicious software (malware) and unapproved software, using technical, procedural and physical measures as needed." }
+    ]
+  },
+  "B4.d": {
+    "not": [
+      { "src": "f391aa79", "text": "You don't know how exposed these systems are to publicly known security weaknesses." },
+      { "src": "36713ad1", "text": "You don't promptly fix or reduce weaknesses that can be reached from outside your organisation." },
+      { "src": "f4140bec", "text": "You haven't recently tested your systems to check what you think you know about their weaknesses." },
+      { "src": "c1475c93", "text": "You haven't taken suitable steps to protect systems or software that no longer get updates from their makers." },
+      { "src": "25ebcb76", "text": "You aren't working towards replacing systems or software that no longer get updates." }
+    ],
+    "partial": [
+      { "src": "c22f2381", "text": "You keep an up-to-date picture of how exposed these systems are to publicly known security weaknesses." },
+      { "src": "00fdceab", "text": "You track and prioritise announced weaknesses in all the software you use, and promptly fix those reachable from outside, e.g. by patching." },
+      { "src": "716a6b7c", "text": "Some weaknesses that can't be reached from outside are left with stop-gap protections for a long time." },
+      { "src": "b07a22f6", "text": "You have stop-gap protections for unsupported systems and software while you work on moving to supported ones." },
+      { "src": "740d38ff", "text": "You regularly test your systems to fully understand their weaknesses." }
+    ],
+    "achieved": [
+      { "src": "c22f2381", "text": "You keep an up-to-date picture of how exposed these systems are to publicly known security weaknesses." },
+      { "src": "c388d0c7", "text": "You track, prioritise and promptly fix announced weaknesses in all the software you use, e.g. by patching." },
+      { "src": "81558059", "text": "You regularly test your systems to fully understand their weaknesses, and have outside testers confirm what you've found." },
+      { "src": "537676e6", "text": "You use, as far as possible, software, hardware and device firmware (the software built into equipment) that still gets updates from its makers." }
+    ]
+  },
+  "B5.a": {
+    "not": [
+      { "src": "fa92120e", "text": "You only partly understand everything needed to get these systems running again." },
+      { "src": "426a3dfa", "text": "You haven't finished plans for keeping going and recovering from disaster, covering these systems and what they depend on." },
+      { "src": "7a200b6b", "text": "You haven't fully checked whether your business continuity and disaster recovery plans would actually work in practice." }
+    ],
+    "partial": [
+      { "src": "f8001fcc", "text": "You know every system and underlying technology needed to restore your essential functions, and how they depend on each other." },
+      { "src": "f492710b", "text": "You know which order to recover systems in to restore your essential functions quickly and effectively." }
+    ],
+    "achieved": [
+      { "src": "062a8228", "text": "Your continuity and disaster recovery plans have been tested to check they're practical, effective and complete, using suitable methods such as switch-over tests, discussion-based exercises or simulated attacks." },
+      { "src": "498c9243", "text": "You use security news and threat intelligence to spot new or growing risks, and respond with immediate, possibly temporary, extra security measures, e.g. during a damaging malware outbreak." }
+    ]
+  },
+  "B5.b": {
+    "not": [
+      { "src": "96f41b19", "text": "The systems behind your essential functions aren't properly kept apart from other systems." },
+      { "src": "795c8a00", "text": "People can browse the web or use email from the systems behind your essential functions." },
+      { "src": "3d5a4772", "text": "You don't understand, or have no plans to deal with, all the capacity limits and single points of failure that could disrupt your essential functions." }
+    ],
+    "partial": [
+      { "src": "308f3fc9", "text": "These systems are kept separate from your business systems by network controls rather than physically, e.g. in their own zone (a DMZ) on the same network." },
+      { "src": "99f742b3", "text": "People can't browse the web or use email from the systems behind your essential functions." },
+      { "src": "f3bbf7f3", "text": "You've identified capacity limits and single points of failure, such as limited bandwidth or a single network route, but haven't fully dealt with them." }
+    ],
+    "achieved": [
+      { "src": "878a93f1", "text": "These systems are separated from other business and external systems by technical and physical means, e.g. their own network, infrastructure and user administration." },
+      { "src": "99f742b3", "text": "People can't browse the web or use email from the systems behind your essential functions." },
+      { "src": "2c162918", "text": "You've identified and dealt with all capacity limits and single points of failure, such as limited bandwidth or a single network route." },
+      { "src": "cb565477", "text": "You've identified and dealt with location-based weaknesses, e.g. copying key systems to another site and having alternative physical routes and providers for important connections." },
+      { "src": "3b40ee07", "text": "You review and update your assessments of dependencies, capacity and location weaknesses, and how you've dealt with them, when needed." }
+    ]
+  },
+  "B5.c": {
+    "not": [
+      { "src": "45709167", "text": "Your backups don't cover all the data and information needed to restore your essential functions." },
+      { "src": "feab5e28", "text": "You don't back up often enough to restore your essential functions effectively." },
+      { "src": "a4456a89", "text": "Your restore process doesn't bring your essential functions back quickly enough." }
+    ],
+    "partial": [
+      { "src": "b0052a1a", "text": "You have suitably secured backups, covering data, settings, software, equipment, processes and knowledge, that you could still reach after a major event such as a ransomware attack." },
+      { "src": "ddd4499e", "text": "You routinely test your backups to make sure the backup process works and the backups can actually be used." }
+    ],
+    "achieved": [
+      { "src": "0203473e", "text": "Your thorough, automatic and tested backups, covering both systems and procedures, are kept securely at central or secondary sites so you can recover from a major event." },
+      { "src": "be03dd03", "text": "Backups of all important data and information needed to recover your essential functions are made, tested, written up and regularly reviewed." }
+    ]
+  },
+  "B6.a": {
+    "not": [
+      { "src": "bfbd3494", "text": "People don't understand what part they play in keeping the systems behind your essential functions secure." },
+      { "src": "a91ef1ef", "text": "People don't know how to raise a cyber security concern." },
+      { "src": "e7c684b5", "text": "People think reporting problems might get them into trouble." },
+      { "src": "fbc63cf8", "text": "Staff see your approach to security as getting in the way of the business, which may push them into bad security habits." },
+      { "src": "bb5bec07", "text": "Formal or informal incentives and rewards work against good security." }
+    ],
+    "partial": [
+      { "src": "11afac85", "text": "Executive management understand, and widely share, why a positive security culture matters, and you've described the attitudes and behaviours you expect." },
+      { "src": "37ba8588", "text": "Everyone in your organisation understands what part they play in keeping these systems secure." },
+      { "src": "19cf0f09", "text": "Everyone knows who to contact and where to find more information about cyber security, and how to raise an issue." },
+      { "src": "d972f362", "text": "You find and fix the things that stop people behaving in the secure ways you want." }
+    ],
+    "achieved": [
+      { "src": "f40c137f", "text": "Executive management clearly communicate the organisation's security priorities and goals to all staff, and your organisation shows positive security attitudes and behaviours." },
+      { "src": "030bc85b", "text": "People who raise possible security incidents or issues are treated positively." },
+      { "src": "90840bfc", "text": "People at every level routinely report security concerns and are recognised for helping keep the organisation secure." },
+      { "src": "3fcbac74", "text": "Management are visibly committed to, and actively involved in, cyber security." },
+      { "src": "28195adc", "text": "Your organisation talks openly about cyber security and takes every concern seriously." },
+      { "src": "ed91603d", "text": "People across the organisation work together on security, bringing their own expertise and sharing ownership of it." }
+    ]
+  },
+  "B6.b": {
+    "not": [
+      { "src": "546a29e3", "text": "Some teams that run or support your essential functions have had no cyber security training at all." },
+      { "src": "51fcb027", "text": "Only certain roles get cyber security training." },
+      { "src": "36aab984", "text": "Your records of who has had cyber security training are missing or incomplete." },
+      { "src": "8e1bd7b5", "text": "Training is treated as the answer to every user security problem." },
+      { "src": "be68ada1", "text": "Training success is judged only by how many people completed it, not by whether it actually improved security behaviour." },
+      { "src": "088840af", "text": "Training materials are out of date, contradict themselves, or conflict with other policies and procedures." }
+    ],
+    "partial": [
+      { "src": "b53fe413", "text": "You've defined suitable security training and awareness for every role, from executives to the most junior staff." },
+      { "src": "8e2b522c", "text": "You use a range of teaching and communication methods so security training and awareness reach as many people as possible." },
+      { "src": "d7827cd6", "text": "Cyber security information is easy to find." }
+    ],
+    "achieved": [
+      { "src": "adfe59c6", "text": "Everyone, from the most senior to the most junior, follows a suitable cyber security training path." },
+      { "src": "8000824d", "text": "Each person's security training is tracked and refreshed at suitable intervals." },
+      { "src": "8fcf4518", "text": "You routinely check that your security training and awareness activities reach as many people as possible and actually work." },
+      { "src": "217d6bad", "text": "Security information and good-practice guidance is easy to find and widely available, and you know people actually use it." }
+    ]
+  },
+  "C1.a": {
+    "not": [
+      { "src": "12c18fc1", "text": "You don't collect information about the security and running of the systems behind your essential functions." },
+      { "src": "6ac18336", "text": "You can't check back on what users and systems have done on these systems." },
+      { "src": "8b7800f6", "text": "You don't monitor traffic going in and out of your network." },
+      { "src": "af13f48c", "text": "Your logs can't be lined up against one accurate, shared clock." },
+      { "src": "b53c2edf", "text": "Logs are kept where the people and systems allowed to use them can't easily get to them." },
+      { "src": "922006b6", "text": "Your monitoring tools can't be set up to use new sources of log data as they're added." },
+      { "src": "627db49d", "text": "Your monitoring tools can only use a small part of the log data you collect." },
+      { "src": "9576bc60", "text": "You don't know where log data is kept or how long it should be kept for." },
+      { "src": "76699898", "text": "You have no way of making sure logs are being recorded as expected and are there when you need them." }
+    ],
+    "partial": [
+      { "src": "0cea695d", "text": "You collect security and operational information from some parts of these systems, but not all." },
+      { "src": "81043d46", "text": "You monitor some user and system activity, but not against a fully agreed list of suspicious or unwanted behaviour." },
+      { "src": "96b4715b", "text": "You monitor traffic going in and out of your network, recording at least which network addresses (IP addresses) connect to which." },
+      { "src": "aeaf992c", "text": "Some, but not all, of your logs can be easily searched to help with investigations." },
+      { "src": "95c80963", "text": "Your monitoring tools work with most of your log data, with some setting up." },
+      { "src": "8351f95a", "text": "Your monitoring tools can use log data that would reveal all common threats." },
+      { "src": "dd69042f", "text": "You make sure log data is available for analysis when it's needed." }
+    ],
+    "achieved": [
+      { "src": "a14eb577", "text": "Your monitoring is based on a thorough understanding of your systems, how attackers operate, and what you need to record and watch to spot incidents affecting your essential functions." },
+      { "src": "561d7c55", "text": "Your monitoring data has enough detail to spot security events and incidents quickly and reliably, and to support investigations. You review this regularly and after major events." },
+      { "src": "8055a9d7", "text": "Extensive monitoring of user and system activity lets you quickly spot rule-breaking, suspicious behaviour, or anything out of the ordinary that could signal an attack." },
+      { "src": "9c21a13e", "text": "You monitor both individual computers and devices, and the network traffic between them." },
+      { "src": "746e4c50", "text": "Every new system behind your essential functions is considered as a possible source of monitoring data, so your coverage stays complete." },
+      { "src": "5ca707ef", "text": "Your logs are lined up against an accurate, shared clock, so events in different logs can be matched up." },
+      { "src": "be36315d", "text": "You add extra information from other systems to your log data to build a fuller picture of what's happening." },
+      { "src": "9160e7c0", "text": "Your monitoring tools use log data to pinpoint exactly what activity happened." },
+      { "src": "94c3425f", "text": "You regularly review the sources and tools you use for logging and monitoring to make sure they still work well." }
+    ]
+  },
+  "C1.b": {
+    "not": [
+      { "src": "af1ae6a8", "text": "Unauthorised people, systems or attackers could easily edit or delete log data." },
+      { "src": "c9a73f3b", "text": "Nothing controls which users and systems can get at log data." },
+      { "src": "1adc026d", "text": "Nobody watches who accesses log data." },
+      { "src": "329ed4b2", "text": "You have no policies on who can access log data." }
+    ],
+    "partial": [
+      { "src": "42e398b0", "text": "Only approved users and systems can access log data." },
+      { "src": "5ce4adae", "text": "There's some monitoring of access to log data, e.g. copying, deleting, changing or even viewing it." },
+      { "src": "97098b41", "text": "You've decided how long to keep log data, and you stick to it." },
+      { "src": "42d9cb88", "text": "Your policies set out the legitimate reasons for accessing log data." }
+    ],
+    "achieved": [
+      { "src": "d45d5217", "text": "Access to log data is limited to the users and systems that need it for their work." },
+      { "src": "6bca7e66", "text": "Your logging set-up is protected against the same kinds of threat it's designed to spot, covering both the system itself and the data in it." },
+      { "src": "375e159d", "text": "Log data is only analysed or reformatted using copies, so the original stays untouched." },
+      { "src": "b0faa798", "text": "Every action on log data, e.g. copying, deleting, changing or even viewing it, can be traced to a specific user or system." },
+      { "src": "8124604f", "text": "Log data is protected from tampering and checked, and any change or deletion is detected and traced to whoever made it." }
+    ]
+  },
+  "C1.c": {
+    "not": [
+      { "src": "7a3196e6", "text": "You don't promptly apply updates to your detection tools once received, e.g. new antivirus signatures or indicators of compromise (known signs of an attack)." },
+      { "src": "cb3ec4f5", "text": "Security alerts about these systems aren't prioritised." },
+      { "src": "ec106111", "text": "You can't add extra context to security alerts from these systems." },
+      { "src": "9ed3557c", "text": "You can't reliably spot known signs of an attack on these systems, such as traffic from an attacker remotely controlling a machine, e.g. because your logs lack detail." },
+      { "src": "5a8dcc3a", "text": "You don't watch for unusual user or system behaviour that could signal an attack." },
+      { "src": "31190a4b", "text": "Logs are rarely checked." }
+    ],
+    "partial": [
+      { "src": "699e001d", "text": "You easily spot known signs of an attack (indicators of compromise) on these systems, such as traffic from an attacker remotely controlling a machine." },
+      { "src": "d7b15b6d", "text": "You apply some updates, new signatures and indicators of compromise promptly." },
+      { "src": "54e05191", "text": "Security alerts about these systems are prioritised." },
+      { "src": "09dd170d", "text": "You add extra context to alerts from these systems, but separately rather than as part of the original alert." },
+      { "src": "96797291", "text": "Detection and alerting rely on standard tools used without customisation, or on users reporting things." },
+      { "src": "5537936c", "text": "Everyone who supports your essential function has a written, shared process for reporting events and possible security incidents." },
+      { "src": "9fc8514c", "text": "Where appropriate, detections automatically trigger action, e.g. antivirus quarantining malware it finds." },
+      { "src": "334a7e1f", "text": "You check for unusual user or system behaviour that could signal an attack, but not regularly." },
+      { "src": "721fe998", "text": "Logs are checked at regular intervals." }
+    ],
+    "achieved": [
+      { "src": "bc86fc16", "text": "You easily spot known signs of an attack, such as an attacker remotely controlling a machine, as well as unusual behaviour that could signal an attack." },
+      { "src": "1714c148", "text": "You apply all updates, new signatures and indicators of compromise promptly." },
+      { "src": "6ff489da", "text": "Security alerts about all these systems are prioritised, and this is used to help manage incidents." },
+      { "src": "9eed5265", "text": "Alerts routinely have extra context added, almost in real time, as part of the original alert." },
+      { "src": "96f38683", "text": "Alerts and the rules behind them are regularly reviewed and tested so they fire quickly and reliably, and real incidents can be told apart from false alarms." },
+      { "src": "dd82c1b2", "text": "Alerts and the rules behind them can be customised and fine-tuned to cut false alarms and improve responses." },
+      { "src": "b02a1a29", "text": "Detection and alerting may use both standard, off-the-shelf tools and rules, and your own custom ones." },
+      { "src": "bb744d38", "text": "You constantly watch for unusual user and system behaviour that could signal an attack, and raise alerts based on what you find." },
+      { "src": "37ed600b", "text": "Logs are monitored constantly, almost in real time." }
+    ]
+  },
+  "C1.d": {
+    "not": [
+      { "src": "b404a965", "text": "You don't assess and sort (triage) alerts from your security detection tools, e.g. antivirus or intrusion detection systems." },
+      { "src": "d8b4cd1b", "text": "You don't sort alerts and incidents by type and by priority or severity." },
+      { "src": "0230f7c9", "text": "You have no step-by-step guides (playbooks) to follow when assessing alerts." },
+      { "src": "3a23904a", "text": "You don't keep records of how alerts were assessed." },
+      { "src": "38ebb1b7", "text": "You don't understand normal user or system behaviour well enough to make good decisions when assessing alerts." }
+    ],
+    "partial": [
+      { "src": "a9ff77ea", "text": "You investigate and assess alerts from some of your security tools, and act on them." },
+      { "src": "9bef9113", "text": "You have step-by-step guides (playbooks) for the most common situations, which people use when appropriate and which are regularly reviewed to keep them effective." },
+      { "src": "14a07d6f", "text": "You assess some alerts, and record the actions taken by your monitoring staff." },
+      { "src": "0d6c43f7", "text": "You sort alerts and incidents by type and by priority or severity." },
+      { "src": "b2827ac5", "text": "Your understanding of normal user or system behaviour helps you make decisions when assessing alerts." }
+    ],
+    "achieved": [
+      { "src": "2263f73f", "text": "You investigate and assess alerts from all of your security tools, and act on them." },
+      { "src": "53ad161e", "text": "You have step-by-step guides (playbooks) for every realistic situation, which people use when appropriate and which are regularly reviewed to keep them effective." },
+      { "src": "0d6c43f7", "text": "You sort alerts and incidents by type and by priority or severity." },
+      { "src": "d9ebe9e6", "text": "You record everything your monitoring staff do when assessing alerts, and use these records to drive improvements." },
+      { "src": "f9d8b0d2", "text": "Assessing alerts gives enough information to prioritise what happens next, e.g. containing damaging malware." },
+      { "src": "7ccfc20a", "text": "You understand normal user and system behaviour, and threats, well enough to make good decisions when assessing alerts." }
+    ]
+  },
+  "C1.e": {
+    "not": [
+      { "src": "18a289ce", "text": "Nobody is responsible for monitoring and detecting security issues." },
+      { "src": "fec85cf7", "text": "Your monitoring staff lack the right specialist skills." },
+      { "src": "1967b71c", "text": "Your monitoring staff can't report in the way your governance requires." },
+      { "src": "086b43c0", "text": "Monitoring staff don't know what essential functions you provide or which assets support them, so can't judge how important logs and events are." },
+      { "src": "a5496651", "text": "Monitoring staff know nothing about other roles or tasks, outside security monitoring, that matter to running your essential functions." },
+      { "src": "45893036", "text": "Monitoring staff are so swamped by data and alerts that they've stopped giving each one proper attention." }
+    ],
+    "partial": [
+      { "src": "1c155ebb", "text": "Monitoring staff have some investigation skills and a basic understanding of the data they work with." },
+      { "src": "5a453d1b", "text": "Monitoring staff can report to other parts of the organisation, e.g. security directors or resilience managers." },
+      { "src": "e2b4b734", "text": "Monitoring staff can follow most of the required processes." },
+      { "src": "de9d0e79", "text": "Monitoring staff know about some of your systems and essential functions, and can handle alerts relating to them." },
+      { "src": "9da29f61", "text": "Monitoring staff have some understanding of how your organisation operates, its people, processes and systems, which helps them monitor better." },
+      { "src": "356f995c", "text": "Monitoring staff handle their workload and cases effectively." }
+    ],
+    "achieved": [
+      { "src": "ce2336b7", "text": "Named monitoring staff are responsible for analysing, investigating and reporting on alerts, both proactively and in response, covering security and performance." },
+      { "src": "ce5a734f", "text": "Monitoring staff have defined roles and skills covering every part of the monitoring and investigation process." },
+      { "src": "2a05b319", "text": "Monitoring staff follow policies and procedures that meet all internal and external governance reporting requirements." },
+      { "src": "8f00ad83", "text": "Monitoring staff are free to go beyond the set process to investigate unusual threats." },
+      { "src": "64bb57a2", "text": "Monitoring staff know your systems, essential functions and related assets, and can spot and prioritise alerts and investigations relating to them." },
+      { "src": "b4a08f52", "text": "Monitoring staff help decide what new log data to collect, and make good use of it." },
+      { "src": "187cec76", "text": "Monitoring staff can follow all of the required processes." },
+      { "src": "0e11a06a", "text": "Monitoring staff understand how your organisation operates, its people, processes and systems, well enough to make monitoring more effective." },
+      { "src": "dbcb3937", "text": "Monitoring staff handle their workload and cases effectively, and spot ways to improve." }
+    ]
+  },
+  "C1.f": {
+    "not": [
+      { "src": "03e3fdb9", "text": "You have no sources of information about current threats (threat intelligence)." },
+      { "src": "f2b475e0", "text": "You don't assess how useful your threat intelligence is, or give feedback to its providers or other users." },
+      { "src": "d4136635", "text": "You don't know what's needed to make the most of threat intelligence in your monitoring." },
+      { "src": "69f9f8df", "text": "Your threat intelligence is unreliable, or the right people and systems don't act on it promptly." },
+      { "src": "ae53c341", "text": "You have no settled idea of what unusual activity to look for that might signal an attack." },
+      { "src": "32d10cd7", "text": "You don't get updates for all your detection tools, e.g. antivirus or intrusion detection systems." },
+      { "src": "a8327f03", "text": "You don't understand normal user and system behaviour well enough to spot attacks by noticing what's unusual." }
+    ],
+    "partial": [
+      { "src": "b4e899b8", "text": "You know how effective your threat intelligence is, e.g. by tracking how it helps you identify incidents." },
+      { "src": "5bdd02d6", "text": "You may use threat intelligence services, but don't necessarily choose them based on your business needs or the specific threats in your sector." },
+      { "src": "a214f53e", "text": "You treat unusual behaviour seen in past attacks, on your own or others' systems, and in threat intelligence, as warning signs." },
+      { "src": "14fa9646", "text": "You get regular updates for all your detection tools, e.g. antivirus or intrusion detection systems." }
+    ],
+    "achieved": [
+      { "src": "203e5f12", "text": "You track how effective your threat intelligence is, and actively share feedback on how useful it was with others, e.g. sector partners, providers and government agencies." },
+      { "src": "68e40498", "text": "Any threat intelligence feeds you use were chosen based on the risks and threats facing your business and sector." },
+      { "src": "5536feb1", "text": "You get relevant, reliable threat intelligence that can be acted on to the right people and systems promptly." },
+      { "src": "7c01ebae", "text": "You put threat intelligence into context, linking it to why and how attacks happen, to guide your monitoring." },
+      { "src": "31b4d08b", "text": "You know normal user and system behaviour so well that looking for anything unusual is an effective way to spot attacks, e.g. you know which systems should communicate, and when." },
+      { "src": "52f047c6", "text": "The unusual behaviour you watch for is based on the kinds of attack most likely to affect the systems behind your essential functions." },
+      { "src": "c45794cd", "text": "The warning signs you watch for are regularly updated to reflect changes to your systems and the latest threat intelligence." },
+      { "src": "a8ea198f", "text": "You're able to share threat intelligence, e.g. effective ways to detect attackers, with sector partners, providers and government agencies when needed." }
+    ]
+  },
+  "C2.a": {
+    "not": [
+      { "src": "8f0d9356", "text": "You don't know what resources you'd need to actively search for attackers your monitoring has missed (threat hunting)." },
+      { "src": "c32adf38", "text": "You don't have access to an effective threat hunting capability." },
+      { "src": "457c6228", "text": "Your threat hunts have no structure, and little or nothing is written down." }
+    ],
+    "partial": [
+      { "src": "c8c64184", "text": "You know what resources you need for threat hunting and can deploy them promptly, on an occasional basis." },
+      { "src": "cae8d985", "text": "You carry out effective threat hunting, but not often enough for the risks your systems face, e.g. only after a tip-off from a trusted source." },
+      { "src": "ac9a76e4", "text": "Your threat hunts follow set, written methods, e.g. starting from a theory, from data, or from a specific user or device, to find attacks automated tools miss." },
+      { "src": "c1ddc938", "text": "You write up the details of each threat hunt and what you found afterwards." }
+    ],
+    "achieved": [
+      { "src": "d365f050", "text": "You understand what resources threat hunting needs, and it's part of your normal, day-to-day work." },
+      { "src": "14e0c07b", "text": "You hunt for threats as often as the risks to your systems require." },
+      { "src": "ac9a76e4", "text": "Your threat hunts follow set, written methods, e.g. starting from a theory, from data, or from a specific user or device, to find attacks automated tools miss." },
+      { "src": "0614234a", "text": "Where it makes sense, you turn what you learn from threat hunts into automated detections and alerts." },
+      { "src": "7d9960a8", "text": "You routinely record details of past threat hunts and follow-up work, and use them to improve your hunting and overall security." },
+      { "src": "868a75f8", "text": "You can justify your confidence that your threat hunts work, and you review and update the process to match the risks your systems face." },
+      { "src": "2706e67d", "text": "Where it makes sense, you use automation to improve threat hunts, e.g. automating some stages." },
+      { "src": "5907140a", "text": "Your threat hunts focus on how attackers behave and operate, rather than on single clues such as file fingerprints (hashes), IP addresses or domain names." }
+    ]
+  },
+  "D1.a": {
+    "not": [
+      { "src": "00c27e45", "text": "Your incident response plan isn't written down." },
+      { "src": "b1687026", "text": "Your incident response plan doesn't cover the essential functions your organisation has identified." },
+      { "src": "a9a17d88", "text": "Relevant staff don't understand your incident response plan well." }
+    ],
+    "partial": [
+      { "src": "be7dc019", "text": "Your incident response plan covers the systems behind your essential functions." },
+      { "src": "fcddb109", "text": "Your incident response plan thoroughly covers scenarios, but only the likely effects of known, well-understood attacks." },
+      { "src": "a42d1218", "text": "Everyone involved in responding to incidents understands your incident response plan." },
+      { "src": "ad682a85", "text": "Your incident response plan is written down and shared with everyone who needs it." },
+      { "src": "90fc1a83", "text": "Your incident response plan is easy to get to, even if an incident has knocked out your IT systems." },
+      { "src": "a147edbe", "text": "Your incident response plan is regularly reviewed to keep it effective." }
+    ],
+    "achieved": [
+      { "src": "6ae44586", "text": "Your incident response plan is based on a clear understanding of the security risks to the systems behind your essential functions." },
+      { "src": "4b63d370", "text": "Your incident response plan is complete, covering an incident from start to finish, roles and reporting, and both known types of attack and new, never-seen ones." },
+      { "src": "65821a85", "text": "Your incident response plan is written down and joined up with wider business plans, suppliers' response plans, and supporting services such as power and cooling." },
+      { "src": "b2a278f6", "text": "The parts of the business involved in running your essential functions have been told about, and understand, your incident response plan." }
+    ]
+  },
+  "D1.b": {
+    "not": [
+      { "src": "01a0a84d", "text": "You haven't arranged for the right resources to be available to carry out your response plan." },
+      { "src": "8d02a4f8", "text": "Your response team aren't equipped to make good response decisions and act on them." },
+      { "src": "8910a15d", "text": "You lack adequate fallback arrangements to keep your essential functions running during an incident." }
+    ],
+    "achieved": [
+      { "src": "9e581680", "text": "You know what resources you'll probably need to respond to an incident, and have arranged for them to be available." },
+      { "src": "3b844ce8", "text": "You know what information you'll probably need to make response decisions, and have arranged for it to be available." },
+      { "src": "9963e047", "text": "Your response team have the skills and knowledge to decide what's needed to limit harm, and the authority to do it." },
+      { "src": "93bc2064", "text": "Key roles have backup people, and everyone involved in running and recovering your essential functions shares the know-how to deliver them." },
+      { "src": "f99a0662", "text": "Fallback arrangements can be quickly switched on to keep your essential functions running, perhaps at a reduced level, if your main systems fail." },
+      { "src": "a9b38e17", "text": "You've arranged extra outside help for incident response if needed, e.g. specialist cyber incident responders." }
+    ]
+  },
+  "D1.c": {
+    "not": [
+      { "src": "73c06761", "text": "Exercises only test one part of the process, e.g. that backups work, rather than all areas." },
+      { "src": "35dde85b", "text": "Incident response exercises aren't held routinely, or only happen now and then without a plan." },
+      { "src": "1b1e371e", "text": "What you learn from exercises isn't fed into your organisation's lessons-learned process." },
+      { "src": "96f5b830", "text": "Exercises don't test every stage of your response." }
+    ],
+    "achieved": [
+      { "src": "e71ab5d4", "text": "Exercise scenarios are based on real incidents at your own or other organisations, or built from experience or threat intelligence." },
+      { "src": "cad9b629", "text": "Exercise scenarios are written down, regularly reviewed and checked for realism." },
+      { "src": "8ec533e2", "text": "Exercises are held routinely, and the findings are written up and used to improve your response plans and security." },
+      { "src": "b95a0d02", "text": "Exercises test every stage of your response for your essential functions, including getting back to normal service." }
+    ]
+  },
+  "D2.a": {
+    "not": [
+      { "src": "dc7408a7", "text": "You usually can't trace incidents back to their underlying cause, or see what contributed to them across your wider systems." },
+      { "src": "1c6c13c4", "text": "You have no formal process for investigating what caused an incident." },
+      { "src": "2c35a2ae", "text": "Investigators settle on a theory early and only look for evidence that supports it." },
+      { "src": "d9438fc6", "text": "Investigations focus only on finding someone to blame." }
+    ],
+    "achieved": [
+      { "src": "55b5ac8d", "text": "You routinely analyse incidents afterwards as a key part of learning lessons from them." },
+      { "src": "085e2d89", "text": "Your analysis is thorough, covering organisational factors such as policies, technical factors such as system design, human factors such as training, and changes in threat." },
+      { "src": "8d197fa6", "text": "The analysis team gets all the relevant incident data it needs." },
+      { "src": "1a56fa29", "text": "Your analysis considers what could have happened in realistic alternative circumstances, e.g. \"what if\" or \"if only\" scenarios." }
+    ]
+  },
+  "D2.b": {
+    "not": [
+      { "src": "7c1ca084", "text": "After incidents, lessons aren't captured, or only a narrow set are." },
+      { "src": "4082b136", "text": "Improvements identified after an incident aren't made, or aren't given enough priority." },
+      { "src": "f15e3948", "text": "Changes are rushed in as a knee-jerk reaction to an incident, without proper analysis and testing to check they're right." },
+      { "src": "1ac42391", "text": "You wait for a serious or high-profile incident before taking steps to improve." }
+    ],
+    "achieved": [
+      { "src": "52ec9807", "text": "You have a written incident review process that makes sure lessons from every incident, including near misses, are identified, recorded and acted on." },
+      { "src": "1e2b6227", "text": "Lessons learned cover reporting, roles, governance, skills and policies, not just the technical side of your systems." },
+      { "src": "9d81c870", "text": "You use lessons learned to improve security, including updating and retesting response plans when needed." },
+      { "src": "7146b094", "text": "Security improvements from lessons learned are prioritised, and the most important are completed promptly." },
+      { "src": "79465955", "text": "Findings go to senior management and feed into risk management and ongoing improvement." },
+      { "src": "65279cff", "text": "You get the most from lessons learned by exploring \"what if\" and \"if only\" scenarios." },
+      { "src": "34bd84b5", "text": "You learn from incidents reported elsewhere in your sector and across national infrastructure more widely." }
+    ]
+  }
+}

@@ -24,7 +24,23 @@
 // accepting the suggestion (the CAF is explicit that IGPs support expert
 // judgement rather than replace it). When set, override always wins.
 
-export const DATASET = await fetch(new URL('../data.json', import.meta.url)).then(function (r) { return r.json(); });
+import { fingerprint } from './utils.js';
+
+function fetchJson(file) {
+  return fetch(new URL('../' + file, import.meta.url)).then(function (r) {
+    if (!r.ok) throw new Error(file + ': HTTP ' + r.status);
+    return r.json();
+  });
+}
+
+// The plain-English summaries are optional extra help — if they fail to
+// load, the app still works with just the official wording.
+const [dataset, plainEnglish] = await Promise.all([
+  fetchJson('data.json'),
+  fetchJson('plain-english.json').catch(function () { return {}; })
+]);
+
+export const DATASET = dataset;
 
 export const STATUS_LABEL = {
   not: 'Not achieved',
@@ -50,6 +66,15 @@ DATASET.forEach(function (objective) {
     });
   });
 });
+
+// The unofficial plain-English summary of one IGP, or null if there isn't
+// one. A summary written for different wording (NCSC have since revised
+// that IGP) is treated as missing rather than shown against the new text.
+export function plainEnglishFor(outcomeId, key, idx, officialText) {
+  var entry = ((plainEnglish[outcomeId] || {})[key] || [])[idx];
+  if (!entry || entry.src !== fingerprint(officialText)) return null;
+  return entry.text;
+}
 
 export function normalizeResult(raw) {
   if (!raw) return { checks: {}, override: null, notes: '' };

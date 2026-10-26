@@ -1,13 +1,14 @@
 // Chrome that has no domain knowledge: toast, the generic confirm/message
-// dialog, the sidebar open/collapse behaviour, and theme/text-size
-// preferences. Self-wires its own listeners on import, same as the rest
-// of the app's init-on-load style.
+// dialog, the sidebar open/collapse behaviour, and theme/text-size/
+// plain-English preferences. Self-wires its own listeners on import, same
+// as the rest of the app's init-on-load style.
 
 import { el } from './dom.js';
 
 const SIDEBAR_COLLAPSED_KEY = 'caf_sidebar_collapsed_v1';
 const THEME_KEY = 'caf_theme_v1';
 const FONT_SIZE_KEY = 'caf_font_size_v1';
+const PLAIN_ENGLISH_KEY = 'caf_plain_english_v1';
 
 // ---------------------------------------------------------------
 // Toast
@@ -140,7 +141,7 @@ el.sidebar.addEventListener('click', function (evt) {
 initSidebarState();
 
 // ---------------------------------------------------------------
-// Theme (light / dark / system) and text size
+// Theme (light / dark / system), text size and plain English
 // ---------------------------------------------------------------
 // The attribute is already set on <html> by an inline script in <head>
 // (before this file loads) so the correct theme paints on first frame
@@ -205,6 +206,28 @@ el.fontSizeToggle.addEventListener('click', function (evt) {
 });
 
 applyFontSize(getStoredFontSize() || 'standard');
+
+// Plain English (off / on): shows or hides the unofficial summary under
+// each IGP. Purely a CSS switch on <html>, set early by the same inline
+// <head> script as theme and text size.
+
+function getStoredPlainEnglish() {
+  try { return window.localStorage.getItem(PLAIN_ENGLISH_KEY); } catch (e) { return null; }
+}
+
+function applyPlainEnglish(mode) {
+  document.documentElement.setAttribute('data-plain-english', mode);
+  setToggleGroupPressed(el.plainEnglishToggle, mode);
+}
+
+el.plainEnglishToggle.addEventListener('click', function (evt) {
+  var btn = evt.target.closest('button[data-value]');
+  if (!btn) return;
+  try { window.localStorage.setItem(PLAIN_ENGLISH_KEY, btn.dataset.value); } catch (e) {}
+  applyPlainEnglish(btn.dataset.value);
+});
+
+applyPlainEnglish(getStoredPlainEnglish() || 'off');
 
 // ---------------------------------------------------------------
 // Back to top

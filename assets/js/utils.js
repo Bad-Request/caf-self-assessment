@@ -44,3 +44,14 @@ export function downloadJson(data, suffix, fallbackName) {
   URL.revokeObjectURL(link.href);
   return filename;
 }
+
+// 32-bit FNV-1a hash of a string's UTF-8 bytes, as 8 hex digits. Used to
+// tie each plain-English IGP summary to the exact official wording it was
+// written for (see docs/data-schema.md) — not for anything security-related.
+export function fingerprint(text) {
+  var hash = 0x811c9dc5;
+  new TextEncoder().encode(text).forEach(function (byte) {
+    hash = Math.imul(hash ^ byte, 0x01000193);
+  });
+  return (hash >>> 0).toString(16).padStart(8, '0');
+}

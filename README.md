@@ -27,6 +27,10 @@ The IGP text, guidance, and control requirements reproduced in
 for that content belongs to NCSC. This project is an independent,
 unofficial companion tool and claims no ownership over that content.
 
+The plain-English summaries in `assets/plain-english.json` are this
+project's own unofficial paraphrases of that content, not NCSC wording, and
+are not endorsed by NCSC.
+
 
 ## Data handling — important
 
@@ -56,8 +60,10 @@ Nothing to install, but the app logic loads as native ES modules, which browsers
 | `sw.js` | Service worker — caches the app shell on first visit so the app works offline afterwards. Bump `CACHE_VERSION` inside it whenever a cached file's contents change. |
 | `assets/icons/` | App icons for the manifest/home screen, generated from the header's hexagon brand mark. |
 | `assets/data.json` | Source of truth for the full CAF 4.0 dataset (read-only reference content, Crown copyright / OGL v3.0). Fetched at startup by `assets/js/model.js`. See [docs/data-schema.md](docs/data-schema.md). |
-| `docs/data-schema.md` | Documents the `assets/data.json` structure and the invariants a reviewer should check after any update. |
+| `assets/plain-english.json` | Unofficial plain-English summaries of the IGPs, shown alongside the official wording when the "Plain English" preference is on. See [docs/data-schema.md](docs/data-schema.md#plain-english-summaries--assetsplain-englishjson). |
+| `docs/data-schema.md` | Documents the `assets/data.json` and `assets/plain-english.json` structures and the invariants a reviewer should check after any update. |
 | `tools/extract_ncsc_guidance.js` | Merges the per-principle guidance and reference links from NCSC's [Consolidated view of CAF Guidance](https://www.ncsc.gov.uk/collection/cyber-assessment-framework/consolidated-view-of-caf-guidance) page (saved as HTML) into `assets/data.json`. |
+| `tools/check_plain_english.mjs` | Checks `assets/plain-english.json` against `assets/data.json` (stale or misplaced summaries) and reports coverage. |
 | `tools/extract_caf_pdf.py` | Extracts a draft `data.json` from a CAF PDF, for updating the dataset when NCSC publish a revision. |
 | `assets/style.css` | Styling. |
 | `assets/js/app.js` | Entry point (`<script type="module">`) — wires the other modules together and handles the cross-cutting UI (new/delete assessment, JSON import/export, print). |
@@ -77,6 +83,7 @@ Nothing to install, but the app logic loads as native ES modules, which browsers
 - A checkbox against every individual Indicator of Good Practice (IGP) — tick the ones that genuinely describe your organisation.
 - An automatically **suggested** status per contributing outcome, worked out from those ticks (see [How suggestions work](#how-suggestions-work) below), which you can override by hand at any time.
 - Notes/evidence field per outcome.
+- An optional **Plain English** mode (Appearance → Plain English) that shows a short, unofficial summary under each IGP to help with the denser wording. The official NCSC text is always shown and is what you should assess against; the summaries are left out of printouts.
 - A collapsible **Guidance & references** section on each principle, listing the NCSC guidance and external resources from NCSC's [Consolidated view of CAF Guidance](https://www.ncsc.gov.uk/collection/cyber-assessment-framework/consolidated-view-of-caf-guidance). Collapsed by default and left out of printouts.
 - Dashboard: overall % score, per-objective breakdown, and an "outcome grid" — one tile per contributing outcome, labelled with its ID (e.g. A1.a), laid out one row per objective and grouped by principle, colour-coded by status; click a tile to jump straight to that outcome.
 - **Profiles**: since a CAF assessment is often measured against an agreed baseline rather than "fully achieved" everywhere, you can set a target level (Not achieved / Partially achieved / Achieved) for each of the 41 individual contributing outcomes (e.g. `A1.a`, `C1.d`) — not just per principle, since a profile can reasonably expect more of one outcome within a principle than another.
