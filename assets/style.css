@@ -726,7 +726,7 @@ a:hover { color: var(--purple-500); }
 .outcome-grid {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 /* One row per CAF objective; outcomes are grouped by principle within it,
    with a wider gap between principles than between outcomes. */
@@ -746,12 +746,12 @@ a:hover { color: var(--purple-500); }
 .outcome-grid__principles {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 14px;
+  gap: 8px 16px;
   min-width: 0;
 }
 .outcome-grid__principle {
   display: flex;
-  gap: 4px;
+  gap: 6px;
 }
 .outcome-dot {
   /* rem so the tile grows with the text-size setting */
@@ -777,13 +777,19 @@ a:hover { color: var(--purple-500); }
 .outcome-dot.status-not { background: var(--not-achieved); color: var(--grid-ink-not); }
 .outcome-dot.status-na { background: var(--grid-na); color: var(--grid-ink-na); }
 
-/* Baseline target border — independent of the fill above, which shows
-   the outcome's actual current status. The border shows the target
-   baseline set for that outcome's principle (if a baseline profile is
-   applied to this assessment); see .baseline-legend for the key. */
-.outcome-dot[data-baseline="not"] { border-color: var(--not-achieved); }
-.outcome-dot[data-baseline="partial"] { border-color: var(--partial); }
-.outcome-dot[data-baseline="achieved"] { border-color: var(--achieved); }
+/* Baseline target ring — independent of the fill above, which shows
+   the outcome's actual current status. The ring shows the target set for
+   that outcome (if a baseline profile is applied to this assessment); see
+   .baseline-legend for the key. It sits outside the tile, separated from
+   the fill by a panel-coloured border, so it stays visible when the fill
+   and the target share a colour (e.g. Achieved with an Achieved target). */
+.outcome-dot[data-baseline] {
+  border-color: var(--navy-900);
+  box-shadow: 0 0 0 2px var(--baseline-ring);
+}
+.outcome-dot[data-baseline="not"] { --baseline-ring: var(--not-achieved); }
+.outcome-dot[data-baseline="partial"] { --baseline-ring: var(--partial); }
+.outcome-dot[data-baseline="achieved"] { --baseline-ring: var(--achieved); }
 
 .baseline-legend {
   display: flex;
@@ -1385,7 +1391,8 @@ a:hover { color: var(--purple-500); }
   .score-ring__track { stroke: #ddd; }
   .score-ring__value { stroke: #000; }
   .dashboard__grid, .score-ring__label small, .objective-bar__title, .score-legend dt { color: #000 !important; }
-  .outcome-grid__key { color: #000; }
+  .dashboard__grid h3, .dashboard__grid .hint, .baseline-legend, .outcome-grid__key { color: #000; }
+  .outcome-dot[data-baseline] { border-color: #fff; }
   .objective-bar { border-color: #999; }
   .objective-bar__fill { background: #000; }
   .principle-block, .outcome-card { box-shadow: none; break-inside: avoid; }
@@ -1396,8 +1403,8 @@ a:hover { color: var(--purple-500); }
   .baseline-badge, .principle-baseline-chip { border: 1px solid #000 !important; background: #fff !important; color: #000 !important; }
   .method-note { border-color: #000; }
 
-  /* Force outcome status fills to print — otherwise Chrome/Firefox strip
-     background colours by default and only the baseline border survives. */
+  /* Force outcome status fills and baseline rings to print — otherwise
+     Chrome/Firefox strip background colours by default. */
   .outcome-dot, .baseline-legend__swatch {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;

@@ -18,6 +18,15 @@ and this project uses [Semantic Versioning](https://semver.org/).
 
 - Achieved and Not applicable tiles on the outcome grid use a slightly
   darker fill in the light theme so their labels stay readable.
+- A profile's baseline target now shows as an outer ring around each
+  outcome grid tile, separated from the fill by a gap, instead of a border
+  inside it. The target is now visible when it matches the tile's status
+  colour (e.g. an Achieved outcome with an Achieved target).
+
+### Fixed
+
+- The "Outcome grid" heading, its hint and the profile key were white or
+  pale grey on white when printed; they now print in black.
 
 ## [2.5.1] - 2026-10-04
 
