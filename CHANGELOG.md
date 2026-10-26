@@ -13,7 +13,8 @@ and this project uses [Semantic Versioning](https://semver.org/).
   unofficial summary under each Indicator of Good Practice, alongside the
   official NCSC wording, to help with the more densely worded indicators.
   Off by default, remembered per browser, and never printed. Summaries are
-  included for all of Objective A so far; Objectives B–D will follow.
+  included for Objective A and principles B1–B3 so far; the rest of
+  Objective B, and Objectives C and D, will follow.
 
 ## [2.6.0] - 2026-10-26
 

@@ -184,5 +184,235 @@
       { "src": "a6b66c06", "text": "Software development is shaped by a current understanding of threats, using techniques like threat modelling (mapping out how someone might attack it) to find weaknesses." },
       { "src": "f5577090", "text": "You can confirm software, updates and patches are genuine and haven't been tampered with." }
     ]
+  },
+  "B1.a": {
+    "not": [
+      { "src": "1e410d70", "text": "Your security policies and procedures are missing or leave gaps." },
+      { "src": "ace1d941", "text": "Your security policies and procedures aren't applied everywhere, or aren't applied consistently." },
+      { "src": "bf57e74c", "text": "People often work around security policies and procedures to get their jobs done." },
+      { "src": "bb593418", "text": "Your policies and procedures don't reflect how your organisation says it governs security and manages risk." },
+      { "src": "52465395", "text": "System security depends entirely on users carefully and consistently following manual steps." },
+      { "src": "39fbe133", "text": "Policies and procedures haven't been reviewed after major changes, such as new technology or regulations, or haven't been reviewed for too long." },
+      { "src": "06d9035f", "text": "Staff can't easily find your policies and procedures, or they're too detailed to remember or too hard to understand." }
+    ],
+    "partial": [
+      { "src": "6de7992d", "text": "Your policies and procedures set out your overall approach to governing security and managing risk, your technical security practices, and the regulations you must meet." },
+      { "src": "cb0d35c0", "text": "You review and update policies and procedures after major cyber security incidents." }
+    ],
+    "achieved": [
+      { "src": "3e3daf83", "text": "You fully write down your overall approach to governing security and managing risk, your technical security practices, and the regulations you must meet." },
+      { "src": "db6e9a9d", "text": "Cyber security is built into all your policies and procedures, and measures of security performance are reported to executive management." },
+      { "src": "44d941db", "text": "Your policies and procedures are practical, usable and suitable for reducing the risk of harm to the systems behind your essential functions." },
+      { "src": "78e9a8be", "text": "Where policies and procedures depend on how people behave, they are practical, sensible and realistic to follow." },
+      { "src": "31423c8b", "text": "You review and update policies and procedures at suitably regular intervals to keep them relevant, not just after major incidents." },
+      { "src": "6d365fb4", "text": "Any change to your essential functions, or to the threats they face, triggers a review of your policies and procedures." },
+      { "src": "ce3dae4c", "text": "Your systems are designed to stay secure even when people don't always follow security policies and procedures." }
+    ]
+  },
+  "B1.b": {
+    "not": [
+      { "src": "b6aa1478", "text": "Policies and procedures are ignored or only partly followed." },
+      { "src": "234def07", "text": "People don't really understand how your policies and procedures help keep your essential functions running." },
+      { "src": "73dbf468", "text": "Staff don't know what your policies and procedures require of them." },
+      { "src": "b98a84c5", "text": "You make no attempt to spot when policies and procedures are broken." },
+      { "src": "1e55011f", "text": "Your security policies and procedures don't fit together with the rest of your organisation's policies and procedures." },
+      { "src": "fcc62ffe", "text": "Your policies and procedures aren't communicated well across the organisation." }
+    ],
+    "partial": [
+      { "src": "e69c79a0", "text": "Most policies and procedures are followed, and you monitor how they're applied." },
+      { "src": "86eb3b2e", "text": "Your security policies and procedures link up with your other policies, including HR checks on whether individuals can be trusted." },
+      { "src": "e2bc8b32", "text": "All staff know what your policies and procedures require of them." },
+      { "src": "bf048b5e", "text": "Every breach that could harm your essential functions is fully investigated. Other breaches are tracked, checked for patterns and acted on." }
+    ],
+    "achieved": [
+      { "src": "2f97fea7", "text": "All policies and procedures are followed, and you check both that they're applied correctly and that they actually improve security." },
+      { "src": "86eb3b2e", "text": "Your security policies and procedures link up with your other policies, including HR checks on whether individuals can be trusted." },
+      { "src": "340cea3c", "text": "Policies and procedures are communicated well at every level of the organisation, so staff clearly understand their responsibilities." },
+      { "src": "2b0a6771", "text": "You act on every breach that could harm your essential functions, including lots of small breaches that add up to a bigger problem." }
+    ]
+  },
+  "B2.a": {
+    "not": [
+      { "src": "32a4c494", "text": "Your checks on who someone is, before giving them access, aren't thorough enough to be confident they are who they claim to be." },
+      { "src": "dca8e550", "text": "You can't identify each individual person or system that has access to the systems your essential functions rely on." },
+      { "src": "bdfc1a5a", "text": "People or devices that shouldn't have access can get into the networks or systems your essential functions rely on." },
+      { "src": "dfd1134f", "text": "More people and systems have access than your essential functions actually need." },
+      { "src": "e8d831d5", "text": "How you check the identity of users, devices and systems when they log in doesn't follow current good practice." }
+    ],
+    "partial": [
+      { "src": "8c98bf97", "text": "Before giving someone access, you check who they are thoroughly enough to be reasonably confident of their identity." },
+      { "src": "72e85a4c", "text": "Every person and system with access is individually identified and has to prove who they are when logging in." },
+      { "src": "57d4abe2", "text": "Only as many people and systems as your essential functions genuinely need have access." },
+      { "src": "5e22ad9f", "text": "Admin-level (privileged) access to all these systems needs a stronger login on top of a password, such as multi-factor authentication (MFA), e.g. a code from a phone app." },
+      { "src": "57bdcd8b", "text": "Every remote connection to these systems is individually checked: who it is, and what it's allowed to do." },
+      { "src": "b85620f3", "text": "You review the list of people and systems with access regularly, at least once a year." },
+      { "src": "be5f93a6", "text": "How you check the identity of users, devices and systems when they log in follows current good practice." }
+    ],
+    "achieved": [
+      { "src": "f733bbcb", "text": "Before giving someone access, you check who they are thoroughly enough to be highly confident of their identity." },
+      { "src": "687c0717", "text": "Only approved people who have individually proved who they are can physically get to, or connect over the network to, the systems your essential functions rely on." },
+      { "src": "57d4abe2", "text": "Only as many people and systems as your essential functions genuinely need have access." },
+      { "src": "0fa8748b", "text": "All access to these systems, including remote access, needs a stronger login on top of a password, such as multi-factor authentication (MFA)." },
+      { "src": "16151acd", "text": "You review the list of people and systems with access regularly, at least every six months." },
+      { "src": "be5f93a6", "text": "How you check the identity of users, devices and systems when they log in follows current good practice." }
+    ]
+  },
+  "B2.b": {
+    "not": [
+      { "src": "cb03e187", "text": "Users can connect to these systems from devices your organisation doesn't own and manage, such as personal phones or laptops." },
+      { "src": "f6bb2ae2", "text": "People with admin rights can carry out admin tasks from devices your organisation doesn't own and manage." },
+      { "src": "dcc5c3d1", "text": "You've done nothing to check the security of other organisations' devices or networks connected to your systems." },
+      { "src": "38c362a9", "text": "Plugging a device into your network gives it access without checking the device or the person using it." }
+    ],
+    "partial": [
+      { "src": "fc035a5d", "text": "Only devices your organisation owns and manages can access the systems behind your essential functions." },
+      { "src": "642e034a", "text": "All admin tasks are done from devices your organisation owns and manages, kept suitably separate from everyday user activity based on the risk." },
+      { "src": "c4cbd80a", "text": "Before other organisations' devices or networks can connect to your systems, you look into how secure they are and deal with any risks you find." },
+      { "src": "d8729a7f", "text": "Simply plugging into a network socket or cable doesn't give access to any systems." },
+      { "src": "601803ff", "text": "You can spot unknown devices being connected to your systems, and you investigate when it happens." }
+    ],
+    "achieved": [
+      { "src": "296e42e8", "text": "All admin tasks on these systems are done from highly trusted devices used for nothing else, such as Privileged Access Workstations." },
+      { "src": "55c01550", "text": "Other organisations' devices or networks can only connect if independent experts have vouched for their security, or if they're dedicated solely to supporting your systems." },
+      { "src": "de9af32a", "text": "Devices prove who they are using digital certificates, and only known devices can access the systems your essential functions need." },
+      { "src": "41bafc1a", "text": "You regularly scan for unknown devices and investigate anything you find." }
+    ]
+  },
+  "B2.c": {
+    "not": [
+      { "src": "eebb3949", "text": "You don't know, or don't manage, who has admin rights over these systems, including their infrastructure, platforms, software and settings." },
+      { "src": "3bddbabe", "text": "Admin access to these systems relies on weak logins, such as a simple password alone." },
+      { "src": "d8824603", "text": "The list of people with admin rights hasn't been reviewed recently, e.g. in the last 12 months." },
+      { "src": "ec2348fa", "text": "Admin rights cover whole systems rather than being limited to what each person's role needs." },
+      { "src": "fe8f5f54", "text": "Admin access uses generic, shared or default accounts rather than accounts belonging to named individuals." },
+      { "src": "deea1ae9", "text": "Terminals that stay logged in with admin powers, e.g. in a control room, have no extra controls, such as physical ones, limiting who can use them." },
+      { "src": "295dd152", "text": "Nothing separates a person's different roles, e.g. the same account is used both for email and for admin tasks." }
+    ],
+    "partial": [
+      { "src": "2add5700", "text": "All admin access to these systems needs a strong login, such as multi-factor authentication (MFA)." },
+      { "src": "b5204915", "text": "You know and manage exactly who has admin rights over these systems, including people from third parties." },
+      { "src": "95e990d0", "text": "Admin activity is routinely reviewed and checked, e.g. at least once a year." },
+      { "src": "39bf1241", "text": "People only get the specific admin rights they genuinely need for their job." }
+    ],
+    "achieved": [
+      { "src": "86e93ddc", "text": "Admin work is done from separate accounts used only for that purpose, which are closely monitored and managed." },
+      { "src": "f8f81691", "text": "You can grant admin rights, and access for outside support providers, for a limited time only, after which they expire." },
+      { "src": "0eb5b84c", "text": "Admin rights are reviewed regularly and always updated when people join, change roles or leave." },
+      { "src": "8129059d", "text": "All admin activity is routinely reviewed and checked, and recorded so it can be analysed or investigated later." }
+    ]
+  },
+  "B2.d": {
+    "not": [
+      { "src": "98edc7b7", "text": "People are given more access than they need." },
+      { "src": "7b33006c", "text": "You don't check who a user, device or system is, or whether it actually needs access, before granting it." },
+      { "src": "723e6fe6", "text": "People's access isn't reviewed when they change roles." },
+      { "src": "c898dd9f", "text": "People's access still works after they've left your organisation." },
+      { "src": "03247a02", "text": "The access that devices and systems have to each other isn't reviewed regularly, at least once a year." }
+    ],
+    "partial": [
+      { "src": "baa230af", "text": "You follow a thorough process to confirm who each user is and give them only the access they need." },
+      { "src": "00d7db91", "text": "You regularly review who has access and remove access that's no longer needed." },
+      { "src": "5a4c3e8c", "text": "People's access is reviewed when they change roles, as part of your process for people joining, moving and leaving." },
+      { "src": "3feaeec1", "text": "All access by users, devices and systems is logged and monitored, but not cross-checked against other logs or access records." }
+    ],
+    "achieved": [
+      { "src": "fab8c341", "text": "You follow a thorough process to confirm who each user is and give them only the access they need, and you regularly audit that it's followed." },
+      { "src": "a498c712", "text": "People's access is reviewed when they change roles, as part of your joining, moving and leaving process, and also at least once a year." },
+      { "src": "7742e96c", "text": "All access by users, devices and systems to the systems behind your essential functions is logged and monitored." },
+      { "src": "9ec8fe1c", "text": "You regularly review access logs and cross-check them against other access records and the activity you'd expect to see." },
+      { "src": "a9b94f87", "text": "Attempts by unapproved users, devices or systems to connect trigger an alert, and are quickly assessed and investigated." }
+    ]
+  },
+  "B3.a": {
+    "not": [
+      { "src": "1af462c1", "text": "You don't fully know what data your systems use and produce in running your essential functions." },
+      { "src": "a434bd6e", "text": "You haven't worked out which data the systems behind your essential functions depend on." },
+      { "src": "adb63136", "text": "You haven't worked out who can access your important data." },
+      { "src": "e3f3c60d", "text": "You haven't clearly set out what would happen if important data were compromised or became unavailable." }
+    ],
+    "partial": [
+      { "src": "77f643ee", "text": "You have found and recorded all data important to running these systems, plus any data that would help an attacker." },
+      { "src": "b4e9f4a4", "text": "You have found and recorded who has access to that important data." },
+      { "src": "00b2b08f", "text": "You regularly review where important data is kept, how it's sent, how much there is and how accurate it is." },
+      { "src": "09a35f0b", "text": "You have identified every mobile device and portable storage item, such as USB drives, that holds important data." },
+      { "src": "5af17595", "text": "You understand and write down how your essential functions would suffer if important data were wrongly accessed, leaked, changed or deleted, or became unavailable to the right people." },
+      { "src": "614374a8", "text": "You occasionally check that those written impact assessments are still right." }
+    ],
+    "achieved": [
+      { "src": "77f643ee", "text": "You have found and recorded all data important to running these systems, plus any data that would help an attacker." },
+      { "src": "b4e9f4a4", "text": "You have found and recorded who has access to that important data." },
+      { "src": "f6ab9a53", "text": "You always know where important data is kept, how much there is and how accurate it is." },
+      { "src": "3600a7f4", "text": "You remove or reduce unnecessary copies of data, and old data you no longer need." },
+      { "src": "f9928fb0", "text": "You have identified every mobile device and portable storage item that might hold important data." },
+      { "src": "b31f5911", "text": "You always know which network connections are used to send important data." },
+      { "src": "d109465f", "text": "You understand how your important data fits into your operations, what its limitations are, and what it relies on." },
+      { "src": "5af17595", "text": "You understand and write down how your essential functions would suffer if important data were wrongly accessed, leaked, changed or deleted, or became unavailable to the right people." },
+      { "src": "e539d3d2", "text": "You check those written impact assessments regularly, at least once a year." }
+    ]
+  },
+  "B3.b": {
+    "not": [
+      { "src": "e7a3406c", "text": "You don't know all your data connections, or which of them carry data important to your essential functions." },
+      { "src": "db5f7d43", "text": "Important data travels over untrusted or public networks without technical protection, such as encryption." },
+      { "src": "4e6d40e6", "text": "Critical data routes that could fail, be jammed or get overloaded have no backup route." }
+    ],
+    "partial": [
+      { "src": "b90315a5", "text": "You have identified every connection that carries important data and protected each one effectively, in line with the risk." },
+      { "src": "1339e00b", "text": "You use physical or technical measures, e.g. encryption, to protect important data sent over untrusted or public networks, but have little or no confidence the protection is strong enough." }
+    ],
+    "achieved": [
+      { "src": "b90315a5", "text": "You have identified every connection that carries important data and protected each one effectively, in line with the risk." },
+      { "src": "3ca3bc92", "text": "You use physical or technical measures, e.g. encryption, to protect important data sent over untrusted or public networks, and can justify your confidence the protection is strong enough." },
+      { "src": "a04a85ee", "text": "Where losing a data route would seriously affect your essential functions, e.g. through equipment failure or jamming, a suitable backup route is available." }
+    ]
+  },
+  "B3.c": {
+    "not": [
+      { "src": "73ddd114", "text": "You know little or nothing about where important data is stored." },
+      { "src": "2336f4e5", "text": "Important stored data that's at risk hasn't been properly protected." },
+      { "src": "7c8e4fdc", "text": "Backups are incomplete, untested, poorly secured, or might be out of reach when you need to recover from a disaster or keep the business running." }
+    ],
+    "partial": [
+      { "src": "906407b9", "text": "You keep only the copies of important data that you need, and copies sent to less secure systems are cut down or read-only." },
+      { "src": "ac44bea6", "text": "You use physical or technical measures to stop important stored data being accessed, changed or deleted without permission." },
+      { "src": "c4e879eb", "text": "If you use encryption, you've set it up with suitable technical and procedural measures, but have little or no confidence it's strong enough." },
+      { "src": "04683098", "text": "You have suitable, secure backups so your systems can keep running if the original data is lost, e.g. offline or separate backups, or paper copies." }
+    ],
+    "achieved": [
+      { "src": "906407b9", "text": "You keep only the copies of important data that you need, and copies sent to less secure systems are cut down or read-only." },
+      { "src": "ac44bea6", "text": "You use physical or technical measures to stop important stored data being accessed, changed or deleted without permission." },
+      { "src": "860a6cea", "text": "If you use encryption, you've set it up with suitable technical and procedural measures, and can justify your confidence that it's strong enough." },
+      { "src": "04683098", "text": "You have suitable, secure backups so your systems can keep running if the original data is lost, e.g. offline or separate backups, or paper copies." },
+      { "src": "534f0a9e", "text": "Old or archived data you still need is stored securely." }
+    ]
+  },
+  "B3.d": {
+    "not": [
+      { "src": "16124b2e", "text": "You don't know which mobile devices might hold important data." },
+      { "src": "665a645a", "text": "You let important data be stored on devices your organisation doesn't manage, or that aren't managed to at least the same standard." },
+      { "src": "315b8c63", "text": "Data on mobile devices isn't technically protected, or only some of it is." }
+    ],
+    "partial": [
+      { "src": "d0b0830d", "text": "You know which mobile devices hold important data." },
+      { "src": "7c71156f", "text": "Important data is only stored on mobile devices that meet at least the security standard set by your overall security policies." },
+      { "src": "3c861758", "text": "Data on mobile devices is technically protected, e.g. encrypted." }
+    ],
+    "achieved": [
+      { "src": "d8446ef3", "text": "Mobile devices holding important data are recorded, controlled by your organisation and set up following best practice for that type of device, with suitable rules in place." },
+      { "src": "8b4a2b1c", "text": "You can remotely erase every mobile device that holds important data." },
+      { "src": "8d8b87d2", "text": "You keep as little important data on mobile devices as possible, and some may be deleted automatically after a set time." }
+    ]
+  },
+  "B3.e": {
+    "not": [
+      { "src": "5f395952", "text": "Some or all devices, equipment or removable media holding important data are reused or thrown away without that data being securely erased." }
+    ],
+    "partial": [
+      { "src": "0230aee4", "text": "Important data is securely erased from all devices, equipment and removable media, such as USB drives, before they're reused or disposed of." }
+    ],
+    "achieved": [
+      { "src": "0b95586f", "text": "You record and track every device containing important data, whether it's a dedicated storage device or something with built-in storage." },
+      { "src": "f09c3cc4", "text": "Important data is securely erased from all devices, equipment and removable media before reuse or disposal, using an independently approved product or service." }
+    ]
   }
 }
