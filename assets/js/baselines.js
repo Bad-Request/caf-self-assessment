@@ -324,7 +324,7 @@ export function applyBaseline() {
   if (!baseline) {
     var none = document.createElement('span');
     none.className = 'baseline-legend__none';
-    none.textContent = 'No profile selected for this assessment — dots have no border.';
+    none.textContent = 'No profile selected for this assessment — tiles have no border.';
     el.baselineLegend.appendChild(none);
     return;
   }

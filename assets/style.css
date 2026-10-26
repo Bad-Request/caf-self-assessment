@@ -36,6 +36,17 @@
   --unset: #c7cadb;
   --unset-bg: #f3f4f8;
 
+  /* Outcome grid tiles carry a text label, so each status gets a label
+     colour that meets 4.5:1 on its fill. Achieved and N/A fills are a
+     shade darker than the status tokens for the same reason. */
+  --grid-achieved: #1b7f50;
+  --grid-na: #6e7284;
+  --grid-ink-achieved: #fff;
+  --grid-ink-partial: var(--navy-900);
+  --grid-ink-not: #fff;
+  --grid-ink-na: #fff;
+  --grid-ink-unset: var(--navy-900);
+
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
@@ -71,6 +82,14 @@
   --na-bg: #2a2c4a;
   --unset: #565879;
   --unset-bg: #232447;
+
+  --grid-achieved: var(--achieved);
+  --grid-na: var(--na);
+  --grid-ink-achieved: var(--navy-900);
+  --grid-ink-partial: var(--navy-900);
+  --grid-ink-not: var(--navy-900);
+  --grid-ink-na: var(--navy-900);
+  --grid-ink-unset: #fff;
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45), 0 1px 1px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.5);
@@ -706,24 +725,57 @@ a:hover { color: var(--purple-500); }
 
 .outcome-grid {
   display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+/* One row per CAF objective; outcomes are grouped by principle within it,
+   with a wider gap between principles than between outcomes. */
+.outcome-grid__objective {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.outcome-grid__key {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--slate-300);
+  width: 14px;
+  padding-top: 6px;
+  flex-shrink: 0;
+}
+.outcome-grid__principles {
+  display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 6px 14px;
+  min-width: 0;
+}
+.outcome-grid__principle {
+  display: flex;
+  gap: 4px;
 }
 .outcome-dot {
-  width: 20px;
-  height: 20px;
+  /* rem so the tile grows with the text-size setting */
+  min-width: 2.625rem;
+  height: 1.625rem;
+  padding: 0 0.3125rem;
   border-radius: 5px;
   border: 2px solid transparent;
   cursor: pointer;
   position: relative;
   background: var(--unset);
+  color: var(--grid-ink-unset);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
   transition: transform 0.1s ease;
 }
-.outcome-dot:hover { transform: scale(1.18); }
-.outcome-dot.status-achieved { background: var(--achieved); }
-.outcome-dot.status-partial { background: var(--partial); }
-.outcome-dot.status-not { background: var(--not-achieved); }
-.outcome-dot.status-na { background: var(--na); }
+.outcome-dot:hover { transform: scale(1.12); }
+.outcome-dot:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.outcome-dot.status-achieved { background: var(--grid-achieved); color: var(--grid-ink-achieved); }
+.outcome-dot.status-partial { background: var(--partial); color: var(--grid-ink-partial); }
+.outcome-dot.status-not { background: var(--not-achieved); color: var(--grid-ink-not); }
+.outcome-dot.status-na { background: var(--grid-na); color: var(--grid-ink-na); }
 
 /* Baseline target border — independent of the fill above, which shows
    the outcome's actual current status. The border shows the target
@@ -1333,6 +1385,7 @@ a:hover { color: var(--purple-500); }
   .score-ring__track { stroke: #ddd; }
   .score-ring__value { stroke: #000; }
   .dashboard__grid, .score-ring__label small, .objective-bar__title, .score-legend dt { color: #000 !important; }
+  .outcome-grid__key { color: #000; }
   .objective-bar { border-color: #999; }
   .objective-bar__fill { background: #000; }
   .principle-block, .outcome-card { box-shadow: none; break-inside: avoid; }

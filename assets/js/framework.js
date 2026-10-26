@@ -353,17 +353,36 @@ var gridBuilt = false;
 export function buildOutcomeGrid() {
   if (gridBuilt) return;
   var frag = document.createDocumentFragment();
-  allOutcomes.forEach(function (entry) {
-    var dot = document.createElement('button');
-    dot.type = 'button';
-    dot.className = 'outcome-dot';
-    dot.id = 'grid-dot-' + entry.outcome.id;
-    dot.title = entry.outcome.id + ' — ' + entry.outcome.title;
-    dot.setAttribute('aria-label', 'Jump to outcome ' + entry.outcome.id + ', ' + entry.outcome.title);
-    dot.addEventListener('click', function () {
-      flashTo(document.getElementById('outcome-' + entry.outcome.id), 'center');
+  DATASET.forEach(function (objective) {
+    var row = document.createElement('div');
+    row.className = 'outcome-grid__objective';
+    var key = document.createElement('span');
+    key.className = 'outcome-grid__key';
+    key.textContent = objective.id;
+    key.title = 'Objective ' + objective.id + ' — ' + objective.title;
+    var principles = document.createElement('div');
+    principles.className = 'outcome-grid__principles';
+    objective.principles.forEach(function (principle) {
+      var group = document.createElement('div');
+      group.className = 'outcome-grid__principle';
+      principle.outcomes.forEach(function (outcome) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'outcome-dot';
+        dot.id = 'grid-dot-' + outcome.id;
+        dot.textContent = outcome.id;
+        dot.title = outcome.id + ' — ' + outcome.title;
+        dot.setAttribute('aria-label', 'Jump to outcome ' + outcome.id + ', ' + outcome.title);
+        dot.addEventListener('click', function () {
+          flashTo(document.getElementById('outcome-' + outcome.id), 'center');
+        });
+        group.appendChild(dot);
+      });
+      principles.appendChild(group);
     });
-    frag.appendChild(dot);
+    row.appendChild(key);
+    row.appendChild(principles);
+    frag.appendChild(row);
   });
   el.outcomeGrid.appendChild(frag);
   gridBuilt = true;

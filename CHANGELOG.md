@@ -5,6 +5,20 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.6.0] - 2026-10-26
+
+### Added
+
+- Each tile on the dashboard's outcome grid is now labelled with its
+  contributing outcome ID (e.g. A1.a), and the grid is laid out with one
+  row per objective and a gap between principles. Tiles are larger to fit
+  the label.
+
+### Changed
+
+- Achieved and Not applicable tiles on the outcome grid use a slightly
+  darker fill in the light theme so their labels stay readable.
+
 ## [2.5.1] - 2026-10-04
 
 ### Changed
