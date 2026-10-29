@@ -5,6 +5,19 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.9.0] - 2026-10-29
+
+### Added
+
+- Contradiction warnings (pilot): if you tick two IGPs that appear to
+  contradict each other — for example "access is not limited to the minimum
+  necessary" and "access is limited to the minimum necessary" — the outcome
+  card shows a warning, and each of the two statements says what it appears
+  to contradict. Nothing is blocked or unticked, and the warning doesn't
+  change the suggested status or score. Only outcomes A1.a, B2.a and C1.a
+  have been reviewed so far. The pairings are this project's own reading
+  of the NCSC wording, and warnings are left out of printouts.
+
 ## [2.8.0] - 2026-10-29
 
 ### Added

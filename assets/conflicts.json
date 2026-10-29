@@ -1,0 +1,123 @@
+{
+  "A1.a": [
+    {
+      "pair": ["not-0", "achieved-1"],
+      "src": ["30daf9b7", "2b1e31bf"],
+      "why": "Not discussed regularly at board level, versus regular board-level discussions taking place."
+    },
+    {
+      "pair": ["not-0", "achieved-2"],
+      "src": ["30daf9b7", "3bedb0e4"],
+      "why": "Not discussed regularly at board level, versus a board-level individual driving regular discussion there."
+    },
+    {
+      "pair": ["not-1", "achieved-1"],
+      "src": ["b472b44d", "2b1e31bf"],
+      "why": "Discussions on partial or out-of-date information without expert guidance, versus discussions on timely, accurate information informed by expert guidance."
+    },
+    {
+      "pair": ["not-2", "achieved-3"],
+      "src": ["f518c6f8", "81ff89db"],
+      "why": "Security not driven effectively by board direction, versus board direction translated into effective practices."
+    }
+  ],
+  "B2.a": [
+    {
+      "pair": ["not-0", "partial-0"],
+      "src": ["32a4c494", "8c98bf97"],
+      "why": "Identity verification not robust enough for acceptable confidence, versus robust enough for reasonable confidence."
+    },
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["32a4c494", "f733bbcb"],
+      "why": "Identity verification not robust enough for acceptable confidence, versus robust enough for high confidence."
+    },
+    {
+      "pair": ["not-1", "partial-1"],
+      "src": ["dca8e550", "72e85a4c"],
+      "why": "Users and systems cannot be individually identified, versus all being individually identified and authenticated."
+    },
+    {
+      "pair": ["not-1", "achieved-1"],
+      "src": ["dca8e550", "687c0717"],
+      "why": "Users and systems cannot be individually identified, versus only individually authenticated users being able to access."
+    },
+    {
+      "pair": ["not-2", "achieved-1"],
+      "src": ["bdfc1a5a", "687c0717"],
+      "why": "Unauthorised individuals or devices can access, versus only authorised users being able to access."
+    },
+    {
+      "pair": ["not-3", "partial-2"],
+      "src": ["dfd1134f", "57d4abe2"],
+      "why": "Access not limited to the minimum necessary, versus limited to the minimum necessary."
+    },
+    {
+      "pair": ["not-3", "achieved-2"],
+      "src": ["dfd1134f", "57d4abe2"],
+      "why": "Access not limited to the minimum necessary, versus limited to the minimum necessary."
+    },
+    {
+      "pair": ["not-4", "partial-6"],
+      "src": ["e8d831d5", "be5f93a6"],
+      "why": "Authentication does not follow up-to-date best practice, versus follows it."
+    },
+    {
+      "pair": ["not-4", "achieved-5"],
+      "src": ["e8d831d5", "be5f93a6"],
+      "why": "Authentication does not follow up-to-date best practice, versus follows it."
+    }
+  ],
+  "C1.a": [
+    {
+      "pair": ["not-0", "partial-0"],
+      "src": ["12c18fc1", "0cea695d"],
+      "why": "Security and operational data not collected, versus collected for some areas."
+    },
+    {
+      "pair": ["not-0", "achieved-1"],
+      "src": ["12c18fc1", "561d7c55"],
+      "why": "Security and operational data not collected, versus monitoring data detailed enough to detect events."
+    },
+    {
+      "pair": ["not-1", "achieved-2"],
+      "src": ["6ac18336", "8055a9d7"],
+      "why": "Unable to audit user and system activity, versus extensive monitoring of user and system activity."
+    },
+    {
+      "pair": ["not-2", "partial-2"],
+      "src": ["8b7800f6", "96b4715b"],
+      "why": "Boundary traffic not monitored, versus boundary traffic monitored."
+    },
+    {
+      "pair": ["not-3", "achieved-5"],
+      "src": ["af13f48c", "5ca707ef"],
+      "why": "Logs cannot be synchronised to a common time source, versus synchronised to one."
+    },
+    {
+      "pair": ["not-4", "partial-6"],
+      "src": ["b53c2edf", "dd69042f"],
+      "why": "Logs not readily available to authorised users, versus log data available for analysis when needed."
+    },
+    {
+      "pair": ["not-6", "partial-4"],
+      "src": ["627db49d", "95c80963"],
+      "why": "Tools use only a fraction of log data, versus tools working with most log data."
+    },
+    {
+      "pair": ["not-8", "partial-6"],
+      "src": ["76699898", "dd69042f"],
+      "why": "No way of ensuring log data is available when needed, versus ensuring it is."
+    },
+    {
+      "pair": ["partial-0", "achieved-4"],
+      "src": ["0cea695d", "746e4c50"],
+      "why": "Data collection coverage not comprehensive, versus a comprehensive monitoring capability."
+    },
+    {
+      "pair": ["partial-1", "achieved-2"],
+      "src": ["81043d46", "8055a9d7"],
+      "why": "Some monitoring, not covering an agreed list of suspicious behaviour, versus extensive monitoring that detects such behaviour."
+    }
+  ]
+}

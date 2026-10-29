@@ -5,7 +5,7 @@
 import { el } from './dom.js';
 import {
   DATASET, allOutcomes, outcomesById, STATUS_LABEL, FLAG_LABEL, FLAG_KEYS,
-  normalizeResult, effectiveStatus, flagsOf, plainEnglishFor
+  normalizeResult, effectiveStatus, flagsOf, plainEnglishFor, conflictingChecks
 } from './model.js';
 import { debounce, flashTo } from './utils.js';
 import { findAssessment, getCurrentAssessmentId, touchCurrent, renderSidebar } from './assessments.js';
@@ -64,6 +64,7 @@ export function applyOutcomeState(outcomeId, rawResult) {
     checkboxes.forEach(function (cb) {
       cb.checked = !!r.checks[cb.getAttribute('data-check-key')];
     });
+    applyConflicts(card, outcome, r.checks);
 
     var buttons = card.querySelectorAll('.status-control button');
     buttons.forEach(function (b) {
@@ -103,6 +104,28 @@ export function applyOutcomeState(outcomeId, rawResult) {
     dot.setAttribute('aria-label', label);
     dot.title = outcomeId + ' — ' + outcome.title +
       (flags.length ? ' (' + flags.map(function (f) { return FLAG_LABEL[f]; }).join(', ') + ')' : '');
+  }
+}
+
+// Soft warning for ticked IGPs that appear to contradict each other (see
+// assets/conflicts.json). Advisory only: nothing is blocked or unticked.
+function applyConflicts(card, outcome, checks) {
+  var found = conflictingChecks(outcome, checks);
+  var pairs = 0;
+  card.querySelectorAll('[data-conflict-for]').forEach(function (note) {
+    var others = found[note.getAttribute('data-conflict-for')] || [];
+    pairs += others.length;
+    note.textContent = others.map(function (other) {
+      return 'Appears to contradict a ticked "' + STATUS_LABEL[other.key.split('-')[0]] + '" statement: ' + other.why;
+    }).join('\n');
+  });
+  pairs /= 2;
+
+  var summary = card.querySelector('.igp-conflict-summary');
+  if (summary) {
+    summary.textContent = pairs
+      ? (pairs === 1 ? 'Two ticked indicators' : pairs + ' pairs of ticked indicators') + ' appear to contradict each other — check your evidence.'
+      : '';
   }
 }
 
@@ -325,7 +348,14 @@ function buildOutcomeCard(outcome) {
     toggle.textContent = expanded ? 'Show indicators to assess this outcome' : 'Hide indicators';
   });
 
+  // Kept in the page (empty when there's nothing to say) so screen readers
+  // announce a new contradiction as it's ticked.
+  var conflictSummary = document.createElement('p');
+  conflictSummary.className = 'igp-conflict-summary';
+  conflictSummary.setAttribute('aria-live', 'polite');
+
   body.appendChild(buildFlagRow(outcome));
+  body.appendChild(conflictSummary);
   body.appendChild(toggle);
   body.appendChild(panel);
 
@@ -425,6 +455,11 @@ function igpChecklistColumn(key, label, items, outcomeId) {
       plainEl.appendChild(document.createTextNode(plain));
       body.appendChild(plainEl);
     }
+
+    var conflictEl = document.createElement('span');
+    conflictEl.className = 'igp-conflict';
+    conflictEl.setAttribute('data-conflict-for', checkKey);
+    body.appendChild(conflictEl);
 
     row.appendChild(input);
     row.appendChild(body);

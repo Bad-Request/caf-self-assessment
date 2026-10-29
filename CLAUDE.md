@@ -43,6 +43,15 @@ Both are easy to forget mid-task — check this list before opening a PR.
   check fails): rewrite the summary against the new wording, don't just
   update `src`.
 
+## Editing the conflicting-IGP pairs
+
+- [ ] Edit `assets/conflicts.json` (rules for what counts as a conflict in
+  `docs/data-schema.md`), then run `node tools/check_conflicts.mjs` — it
+  must pass. It's in `APP_SHELL`, so bump `CACHE_VERSION` in `sw.js`.
+- [ ] After changing an IGP in `data.json`, its pairs go stale (the check
+  fails): re-judge each pair against the new wording, don't just update
+  `src`.
+
 ## General
 
 - [ ] This app has no build step for its own runtime code (`assets/js/`) —

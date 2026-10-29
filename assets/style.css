@@ -1223,6 +1223,32 @@ a:hover { color: var(--purple-500); }
 }
 :root[data-plain-english="on"] .igp-plain { display: block; }
 
+/* Soft warning when ticked IGPs appear to contradict each other (see
+   assets/conflicts.json). Empty when there's nothing to say; never
+   printed, since the pairings are our reading, not NCSC's. */
+.igp-conflict {
+  display: block;
+  margin-top: 3px;
+  padding-left: 8px;
+  border-left: 2px solid var(--ink-700);
+  color: var(--ink-900);
+  font-weight: 600;
+  white-space: pre-line;
+}
+.igp-conflict::before,
+.igp-conflict-summary::before { content: "⚠ "; }
+.igp-conflict-summary {
+  margin: 0 0 8px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--partial);
+  background: var(--partial-bg);
+  color: var(--ink-900);
+  font-size: 0.8333rem;
+}
+.igp-conflict:empty,
+.igp-conflict-summary:empty { display: none; }
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -1567,7 +1593,7 @@ a:hover { color: var(--purple-500); }
 /* ---------- Print ---------- */
 
 @media print {
-  .no-print, .sidebar, .app-header, .status-control, .igp-toggle, .principle-guidance, .igp-plain, .flag-row { display: none !important; }
+  .no-print, .sidebar, .app-header, .status-control, .igp-toggle, .principle-guidance, .igp-plain, .flag-row, .igp-conflict, .igp-conflict-summary { display: none !important; }
   /* Review flags are working notes, not part of the finished assessment. */
   .outcome-dot::before, .outcome-dot::after { display: none !important; }
   body { background: #fff; }
