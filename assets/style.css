@@ -1225,15 +1225,27 @@ a:hover { color: var(--purple-500); }
 
 /* Soft warning when ticked IGPs appear to contradict each other (see
    assets/conflicts.json). Empty when there's nothing to say; never
-   printed, since the pairings are our reading, not NCSC's. */
+   printed, since the pairings are our reading, not NCSC's. The per-IGP
+   note is inverted (ink on paper swapped) so it stands out against all
+   three column tints in both themes, and pulses briefly when a tick
+   creates it. */
 .igp-conflict {
   display: block;
-  margin-top: 3px;
-  padding-left: 8px;
-  border-left: 2px solid var(--ink-700);
-  color: var(--ink-900);
+  margin-top: 5px;
+  padding: 5px 8px;
+  border-left: 4px solid var(--gold-500);
+  border-radius: var(--radius-sm);
+  background: var(--ink-900);
+  color: var(--paper);
   font-weight: 600;
   white-space: pre-line;
+}
+.igp-conflict--new { animation: igp-conflict-pulse 0.6s ease-in-out 2; }
+@keyframes igp-conflict-pulse {
+  50% { box-shadow: 0 0 0 4px var(--gold-500); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .igp-conflict--new { animation: none; }
 }
 .igp-conflict::before,
 .igp-conflict-summary::before { content: "⚠ "; }

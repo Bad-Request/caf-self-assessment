@@ -12,8 +12,10 @@ and this project uses [Semantic Versioning](https://semver.org/).
 - Contradiction warnings (pilot): if you tick two IGPs that appear to
   contradict each other — for example "access is not limited to the minimum
   necessary" and "access is limited to the minimum necessary" — the outcome
-  card shows a warning, and each of the two statements says what it appears
-  to contradict. Nothing is blocked or unticked, and the warning doesn't
+  card shows a warning, and each of the two statements gets a high-contrast
+  note saying what it appears to contradict, which pulses briefly when your
+  tick creates it (not if your device is set to reduce motion). Nothing is
+  blocked or unticked, and the warning doesn't
   change the suggested status or score. Only outcomes A1.a, B2.a and C1.a
   have been reviewed so far. The pairings are this project's own reading
   of the NCSC wording, and warnings are left out of printouts.

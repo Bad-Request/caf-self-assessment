@@ -26,7 +26,7 @@ function setChecked(outcomeId, checkKey, checked) {
   var r = updateResult(outcomeId, function (r) { r.checks[checkKey] = checked; });
   if (!r) return;
   touchCurrent();
-  applyOutcomeState(outcomeId, r);
+  applyOutcomeState(outcomeId, r, true);
   updateDashboard();
 }
 
@@ -52,7 +52,10 @@ function toggleFlag(outcomeId, flag) {
   updateDashboard();
 }
 
-export function applyOutcomeState(outcomeId, rawResult) {
+// fromTick: the change came from ticking an IGP, so a newly appearing
+// contradiction warning pulses to catch the eye (not on load or switching
+// assessment, when it isn't news).
+export function applyOutcomeState(outcomeId, rawResult, fromTick) {
   var outcome = outcomesById[outcomeId];
   var r = normalizeResult(rawResult);
   var effective = effectiveStatus(outcome, r);
@@ -64,7 +67,7 @@ export function applyOutcomeState(outcomeId, rawResult) {
     checkboxes.forEach(function (cb) {
       cb.checked = !!r.checks[cb.getAttribute('data-check-key')];
     });
-    applyConflicts(card, outcome, r.checks);
+    applyConflicts(card, outcome, r.checks, fromTick);
 
     var buttons = card.querySelectorAll('.status-control button');
     buttons.forEach(function (b) {
@@ -109,15 +112,21 @@ export function applyOutcomeState(outcomeId, rawResult) {
 
 // Soft warning for ticked IGPs that appear to contradict each other (see
 // assets/conflicts.json). Advisory only: nothing is blocked or unticked.
-function applyConflicts(card, outcome, checks) {
+function applyConflicts(card, outcome, checks, pulse) {
   var found = conflictingChecks(outcome, checks);
   var pairs = 0;
   card.querySelectorAll('[data-conflict-for]').forEach(function (note) {
     var others = found[note.getAttribute('data-conflict-for')] || [];
     pairs += others.length;
-    note.textContent = others.map(function (other) {
+    var text = others.map(function (other) {
       return 'Appears to contradict a ticked "' + STATUS_LABEL[other.key.split('-')[0]] + '" statement: ' + other.why;
     }).join('\n');
+    if (pulse && text && text !== note.textContent) {
+      note.classList.remove('igp-conflict--new');
+      void note.offsetWidth; // restart the animation if it's mid-pulse
+      note.classList.add('igp-conflict--new');
+    }
+    note.textContent = text;
   });
   pairs /= 2;
 
@@ -128,6 +137,10 @@ function applyConflicts(card, outcome, checks) {
       : '';
   }
 }
+
+document.addEventListener('animationend', function (e) {
+  if (e.target.classList.contains('igp-conflict--new')) e.target.classList.remove('igp-conflict--new');
+});
 
 function setDataAttr(node, name, value) {
   if (value) node.setAttribute('data-' + name, value);
