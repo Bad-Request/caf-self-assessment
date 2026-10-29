@@ -21,6 +21,35 @@
       "why": "Security not driven effectively by board direction, versus board direction translated into effective practices."
     }
   ],
+  "A1.b": [
+    {
+      "pair": ["not-0", "achieved-1"],
+      "src": ["8b76f51c", "354d1632"],
+      "why": "Key roles missing or left vacant, versus capable staff filling those roles."
+    },
+    {
+      "pair": ["not-1", "achieved-1"],
+      "src": ["f7eed652", "354d1632"],
+      "why": "Staff lack the authority or resources for their security responsibilities, versus being given the time, authority and resources to carry them out."
+    }
+  ],
+  "A1.c": [
+    {
+      "pair": ["not-0", "achieved-2"],
+      "src": ["b55d869d", "f319a00b"],
+      "why": "Straightforward risk decisions constantly referred up or not made, versus decisions delegated and escalated only where necessary."
+    },
+    {
+      "pair": ["not-1", "achieved-2"],
+      "src": ["096f92ef", "f319a00b"],
+      "why": "Risks resolved informally or ignored locally when they should be escalated, versus decisions escalated where necessary."
+    },
+    {
+      "pair": ["not-2", "achieved-1"],
+      "src": ["4a0db35b", "4da0e6e6"],
+      "why": "Decision-makers unsure of senior management's risk appetite, versus understanding their responsibilities in the context of that risk appetite."
+    }
+  ],
   "B2.a": [
     {
       "pair": ["not-0", "partial-0"],
@@ -66,6 +95,92 @@
       "pair": ["not-4", "achieved-5"],
       "src": ["e8d831d5", "be5f93a6"],
       "why": "Authentication does not follow up-to-date best practice, versus follows it."
+    }
+  ],
+  "B2.b": [
+    {
+      "pair": ["not-0", "partial-0"],
+      "src": ["cb03e187", "fc035a5d"],
+      "why": "Users can connect from devices that aren't corporately owned and managed, versus only corporate devices having access."
+    },
+    {
+      "pair": ["not-1", "partial-1"],
+      "src": ["f6bb2ae2", "642e034a"],
+      "why": "Privileged operations possible from non-corporate devices, versus all privileged operations performed from corporate devices."
+    },
+    {
+      "pair": ["not-2", "partial-2"],
+      "src": ["dcc5c3d1", "c4cbd80a"],
+      "why": "No assurance in the security of any third-party devices or networks, versus understanding their security and mitigating the risks before connection."
+    },
+    {
+      "pair": ["not-3", "partial-3"],
+      "src": ["38c362a9", "d8729a7f"],
+      "why": "Physically connecting a device gives it access without authentication, versus connecting to a port or cable granting no access."
+    },
+    {
+      "pair": ["not-3", "achieved-2"],
+      "src": ["38c362a9", "de9af32a"],
+      "why": "Physically connecting a device gives it access without authentication, versus only known devices being allowed access."
+    }
+  ],
+  "B2.c": [
+    {
+      "pair": ["not-0", "partial-1"],
+      "src": ["eebb3949", "b5204915"],
+      "why": "Privileged users' identities not known or managed, versus known and managed."
+    },
+    {
+      "pair": ["not-1", "partial-0"],
+      "src": ["3bddbabe", "2add5700"],
+      "why": "Privileged access via weak authentication, versus all privileged access requiring strong authentication."
+    },
+    {
+      "pair": ["not-3", "partial-3"],
+      "src": ["ec2348fa", "39bf1241"],
+      "why": "Privileged access granted system-wide, versus only the specific rights essential to each role."
+    },
+    {
+      "pair": ["not-6", "achieved-0"],
+      "src": ["295dd152", "86e93ddc"],
+      "why": "No logical separation between an individual's roles, versus privileged access from dedicated separate accounts."
+    }
+  ],
+  "B2.d": [
+    {
+      "pair": ["not-0", "partial-0"],
+      "src": ["98edc7b7", "baa230af"],
+      "why": "More access rights granted than necessary, versus only the minimum required."
+    },
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["98edc7b7", "fab8c341"],
+      "why": "More access rights granted than necessary, versus only the minimum required."
+    },
+    {
+      "pair": ["not-1", "partial-0"],
+      "src": ["7b33006c", "baa230af"],
+      "why": "Identity and need for access not validated, versus a robust procedure to verify each user."
+    },
+    {
+      "pair": ["not-1", "achieved-0"],
+      "src": ["7b33006c", "fab8c341"],
+      "why": "Identity and need for access not validated, versus a robust, audited procedure to verify each user."
+    },
+    {
+      "pair": ["not-2", "partial-2"],
+      "src": ["723e6fe6", "5a4c3e8c"],
+      "why": "Access rights not reviewed when users change roles, versus reviewed when they do."
+    },
+    {
+      "pair": ["not-2", "achieved-1"],
+      "src": ["723e6fe6", "a498c712"],
+      "why": "Access rights not reviewed when users change roles, versus reviewed when they do and at least annually."
+    },
+    {
+      "pair": ["partial-3", "achieved-3"],
+      "src": ["3feaeec1", "9ec8fe1c"],
+      "why": "Access logs not compared with other log data or access records, versus correlated with them."
     }
   ],
   "C1.a": [
@@ -118,6 +233,82 @@
       "pair": ["partial-1", "achieved-2"],
       "src": ["81043d46", "8055a9d7"],
       "why": "Some monitoring, not covering an agreed list of suspicious behaviour, versus extensive monitoring that detects such behaviour."
+    }
+  ],
+  "C2.a": [
+    {
+      "pair": ["not-0", "partial-0"],
+      "src": ["8f0d9356", "c8c64184"],
+      "why": "Threat hunting resources not known, versus identified."
+    },
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["8f0d9356", "d365f050"],
+      "why": "Threat hunting resources not known, versus understood and deployed as business as usual."
+    },
+    {
+      "pair": ["not-1", "partial-1"],
+      "src": ["c32adf38", "cae8d985"],
+      "why": "No access to an effective threat hunting capability, versus deploying one, if not often enough."
+    },
+    {
+      "pair": ["not-1", "achieved-5"],
+      "src": ["c32adf38", "868a75f8"],
+      "why": "No access to an effective threat hunting capability, versus justified confidence in the effectiveness of your threat hunts."
+    },
+    {
+      "pair": ["not-2", "partial-2"],
+      "src": ["457c6228", "ac9a76e4"],
+      "why": "Threat hunts follow no structure, versus pre-determined, documented methods."
+    },
+    {
+      "pair": ["not-2", "achieved-2"],
+      "src": ["457c6228", "ac9a76e4"],
+      "why": "Threat hunts follow no structure, versus pre-determined, documented methods."
+    },
+    {
+      "pair": ["not-2", "partial-3"],
+      "src": ["457c6228", "c1ddc938"],
+      "why": "Few if any records of threat hunts, versus documenting the hunts and post-hunt analysis."
+    },
+    {
+      "pair": ["not-2", "achieved-4"],
+      "src": ["457c6228", "7d9960a8"],
+      "why": "Few if any records of threat hunts, versus routinely recording them and post-hunt activities."
+    },
+    {
+      "pair": ["partial-1", "achieved-1"],
+      "src": ["cae8d985", "14e0c07b"],
+      "why": "Threat hunting not frequent enough to match the risks, versus a frequency that matches them."
+    }
+  ],
+  "D1.a": [
+    {
+      "pair": ["not-0", "partial-3"],
+      "src": ["00c27e45", "ad682a85"],
+      "why": "Incident response plan not documented, versus documented and shared."
+    },
+    {
+      "pair": ["not-0", "achieved-2"],
+      "src": ["00c27e45", "65821a85"],
+      "why": "Incident response plan not documented, versus documented and integrated with wider plans."
+    },
+    {
+      "pair": ["not-2", "partial-2"],
+      "src": ["a9a17d88", "a42d1218"],
+      "why": "Incident response plan not well understood by relevant staff, versus understood by all staff involved in the response."
+    },
+    {
+      "pair": ["partial-1", "achieved-1"],
+      "src": ["fcddb109", "4b63d370"],
+      "why": "Plan covers known, well understood attacks only, versus also covering possible attacks not seen before."
+    }
+  ],
+  "D2.a": [
+    {
+      "pair": ["not-3", "achieved-1"],
+      "src": ["d9438fc6", "085e2d89"],
+      "why": "Investigations focus solely on who to hold responsible, versus analysis considering organisational, technical and human factors."
     }
   ]
 }

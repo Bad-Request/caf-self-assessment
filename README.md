@@ -62,7 +62,7 @@ Nothing to install, but the app logic loads as native ES modules, which browsers
 | `assets/icons/` | App icons for the manifest/home screen, generated from the header's hexagon brand mark. |
 | `assets/data.json` | Source of truth for the full CAF 4.0 dataset (read-only reference content, Crown copyright / OGL v3.0). Fetched at startup by `assets/js/model.js`. See [docs/data-schema.md](docs/data-schema.md). |
 | `assets/plain-english.json` | Unofficial plain-English summaries of the IGPs, shown alongside the official wording when the "Plain English" preference is on. See [docs/data-schema.md](docs/data-schema.md#plain-english-summaries--assetsplain-englishjson). |
-| `assets/conflicts.json` | Unofficial pairs of IGPs that appear to contradict each other, used to warn when both are ticked. Pilot coverage only (A1.a, B2.a, C1.a). See [docs/data-schema.md](docs/data-schema.md#conflicting-igps--assetsconflictsjson). |
+| `assets/conflicts.json` | Unofficial pairs of IGPs that appear to contradict each other, used to warn when both are ticked. Partial coverage so far (11 of 41 outcomes). See [docs/data-schema.md](docs/data-schema.md#conflicting-igps--assetsconflictsjson). |
 | `docs/data-schema.md` | Documents the `assets/data.json`, `assets/plain-english.json` and `assets/conflicts.json` structures and the invariants a reviewer should check after any update. |
 | `tools/extract_ncsc_guidance.js` | Merges the per-principle guidance and reference links from NCSC's [Consolidated view of CAF Guidance](https://www.ncsc.gov.uk/collection/cyber-assessment-framework/consolidated-view-of-caf-guidance) page (saved as HTML) into `assets/data.json`. |
 | `tools/check_plain_english.mjs` | Checks `assets/plain-english.json` against `assets/data.json` (stale or misplaced summaries) and reports coverage. |
@@ -113,7 +113,7 @@ You can override the suggestion at any time using the small buttons beside each 
 
 Some IGPs can't both be true — for example "access is **not** limited to the minimum necessary" (Not achieved) and "access **is** limited to the minimum necessary" (Achieved). If you tick both, the outcome card shows a warning and each of the two statements is marked with what it appears to contradict. Both notes of a pair share a numbered tag (Clash 1, Clash 2…), and pointing at a note — or focusing a statement's checkbox — outlines the statement it clashes with. Nothing is blocked or unticked, and the warning never changes the suggested status or score: a mixed estate can legitimately make both partly true, so it's a prompt to check your evidence, not a rule. Warnings are left out of printouts, and can be switched off under Appearance → Contradiction warnings (on by default).
 
-The pairings are this project's own reading of the NCSC wording, not NCSC's. So far only **A1.a**, **B2.a** and **C1.a** have been reviewed; other outcomes never warn.
+The pairings are this project's own reading of the NCSC wording, not NCSC's. So far 11 of the 41 outcomes have been reviewed — **A1.a–c, B2.a–d, C1.a, C2.a, D1.a and D2.a** — and other outcomes never warn.
 
 ## A note on scoring
 
