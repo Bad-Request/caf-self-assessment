@@ -293,6 +293,7 @@ function buildOutcomeCard(outcome) {
     statusControl.appendChild(b);
   });
   statusArea.appendChild(statusControl);
+  statusArea.appendChild(buildFlagRow(outcome));
 
   head.appendChild(statusArea);
   card.appendChild(head);
@@ -327,7 +328,6 @@ function buildOutcomeCard(outcome) {
 
   body.appendChild(toggle);
   body.appendChild(panel);
-  body.appendChild(buildFlagRow(outcome));
 
   var notesRow = document.createElement('div');
   notesRow.className = 'notes-row';

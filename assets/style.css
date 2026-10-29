@@ -1246,8 +1246,8 @@ a:hover { color: var(--purple-500); }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   gap: 6px 10px;
-  margin-top: 12px;
 }
 .flag-row__label {
   font-size: 0.7667rem;
@@ -1517,6 +1517,7 @@ a:hover { color: var(--purple-500); }
      of forcing the status buttons to stay on one unbreakable line. */
   .outcome-card__head { gap: 10px; }
   .status-area { align-items: stretch; width: 100%; }
+  .flag-row { justify-content: flex-start; }
 
   /* Status buttons: stop forcing one unbroken nowrap row, and let the
      pill wrap onto two rows of two instead of overflowing sideways. */
