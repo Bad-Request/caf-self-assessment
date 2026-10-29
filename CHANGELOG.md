@@ -5,6 +5,16 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.9.2] - 2026-10-29
+
+### Fixed
+
+- In the dark theme, the selected option in the sidebar's **Appearance**
+  toggles (Colour theme, Text size, Plain English, Contradiction warnings)
+  is now easy to tell apart from the unselected ones. It used to be a navy
+  almost identical to the dark background; it is now highlighted in gold.
+  The light theme is unchanged.
+
 ## [2.9.1] - 2026-10-29
 
 ### Fixed

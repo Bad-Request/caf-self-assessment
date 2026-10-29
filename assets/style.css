@@ -57,6 +57,8 @@
   --flag-review-ink: #fff;
   --flag-question: var(--gold-400);
   --flag-question-ink: var(--navy-900);
+  --toggle-on-bg: var(--navy-900);
+  --toggle-on-ink: #fff;
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -101,6 +103,10 @@
   --grid-ink-not: var(--navy-900);
   --grid-ink-na: var(--navy-900);
   --grid-ink-unset: #fff;
+  /* navy-900 is almost the same colour as the dark --paper, so a selected
+     toggle-group button would be indistinguishable from the unselected ones. */
+  --toggle-on-bg: var(--gold-400);
+  --toggle-on-ink: var(--navy-900);
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45), 0 1px 1px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.5);
@@ -543,7 +549,7 @@ a:hover { color: var(--purple-500); }
   white-space: nowrap;
 }
 .toggle-group__btn:first-child { border-left: none; }
-.toggle-group__btn[aria-pressed="true"] { background: var(--navy-900); color: #fff; }
+.toggle-group__btn[aria-pressed="true"] { background: var(--toggle-on-bg); color: var(--toggle-on-ink); }
 .toggle-group__btn:hover:not([aria-pressed="true"]) { background: var(--cream-50); }
 .field-row--actions { justify-content: flex-end; }
 
