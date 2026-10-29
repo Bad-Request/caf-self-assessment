@@ -62,7 +62,7 @@ Nothing to install, but the app logic loads as native ES modules, which browsers
 | `assets/icons/` | App icons for the manifest/home screen, generated from the header's hexagon brand mark. |
 | `assets/data.json` | Source of truth for the full CAF 4.0 dataset (read-only reference content, Crown copyright / OGL v3.0). Fetched at startup by `assets/js/model.js`. See [docs/data-schema.md](docs/data-schema.md). |
 | `assets/plain-english.json` | Unofficial plain-English summaries of the IGPs, shown alongside the official wording when the "Plain English" preference is on. See [docs/data-schema.md](docs/data-schema.md#plain-english-summaries--assetsplain-englishjson). |
-| `assets/conflicts.json` | Unofficial pairs of IGPs that appear to contradict each other, used to warn when both are ticked. Partial coverage so far (11 of 41 outcomes). See [docs/data-schema.md](docs/data-schema.md#conflicting-igps--assetsconflictsjson). |
+| `assets/conflicts.json` | Unofficial pairs of IGPs that appear to contradict each other, used to warn when both are ticked. Covers all 41 outcomes. See [docs/data-schema.md](docs/data-schema.md#conflicting-igps--assetsconflictsjson). |
 | `docs/data-schema.md` | Documents the `assets/data.json`, `assets/plain-english.json` and `assets/conflicts.json` structures and the invariants a reviewer should check after any update. |
 | `tools/extract_ncsc_guidance.js` | Merges the per-principle guidance and reference links from NCSC's [Consolidated view of CAF Guidance](https://www.ncsc.gov.uk/collection/cyber-assessment-framework/consolidated-view-of-caf-guidance) page (saved as HTML) into `assets/data.json`. |
 | `tools/check_plain_english.mjs` | Checks `assets/plain-english.json` against `assets/data.json` (stale or misplaced summaries) and reports coverage. |
@@ -88,7 +88,7 @@ Nothing to install, but the app logic loads as native ES modules, which browsers
 - Notes/evidence field per outcome.
 - **Review flags** per outcome: mark an outcome as **In progress** or **Ready for review** (one or the other), and separately flag a **Question** for review. Flagged outcomes show a marker on the outcome grid (⋯ in progress, ✓ ready for review, ? question) and are counted and listed on the dashboard — select one to jump to it. Flags don't affect the score or suggested status, and are left out of printouts.
 - An optional **Plain English** mode (Appearance → Plain English) that shows a short, unofficial summary under each IGP to help with the denser wording. The official NCSC text is always shown and is what you should assess against; the summaries are left out of printouts.
-- Optional **Contradiction warnings** (Appearance → Contradiction warnings, on by default) that flag ticked IGPs which appear to contradict each other — see [below](#contradiction-warnings-pilot).
+- Optional **Contradiction warnings** (Appearance → Contradiction warnings, on by default) that flag ticked IGPs which appear to contradict each other — see [below](#contradiction-warnings).
 - A collapsible **Guidance & references** section on each principle, listing the NCSC guidance and external resources from NCSC's [Consolidated view of CAF Guidance](https://www.ncsc.gov.uk/collection/cyber-assessment-framework/consolidated-view-of-caf-guidance). Collapsed by default and left out of printouts.
 - Dashboard: overall % score, per-objective breakdown, and an "outcome grid" — one tile per contributing outcome, labelled with its ID (e.g. A1.a), laid out one row per objective and grouped by principle, colour-coded by status; click a tile to jump straight to that outcome.
 - **Profiles**: since a CAF assessment is often measured against an agreed baseline rather than "fully achieved" everywhere, you can set a target level (Not achieved / Partially achieved / Achieved) for each of the 41 individual contributing outcomes (e.g. `A1.a`, `C1.d`) — not just per principle, since a profile can reasonably expect more of one outcome within a principle than another.
@@ -109,11 +109,11 @@ Tick the IGP statements that apply to your organisation for each outcome. The su
 
 You can override the suggestion at any time using the small buttons beside each outcome (click the same one again to clear the override and go back to the suggestion). This is deliberate: the CAF document itself says IGPs are "intended to help inform expert judgement", not "a checklist to be used in an inflexible assessment process" — so the tool suggests, but the assessor always has the final say. Overridden outcomes are marked "· manual" in their status badge so it's clear when a human has stepped in.
 
-### Contradiction warnings (pilot)
+### Contradiction warnings
 
 Some IGPs can't both be true — for example "access is **not** limited to the minimum necessary" (Not achieved) and "access **is** limited to the minimum necessary" (Achieved). If you tick both, the outcome card shows a warning and each of the two statements is marked with what it appears to contradict. Both notes of a pair share a numbered tag (Clash 1, Clash 2…), and pointing at a note — or focusing a statement's checkbox — outlines the statement it clashes with. Nothing is blocked or unticked, and the warning never changes the suggested status or score: a mixed estate can legitimately make both partly true, so it's a prompt to check your evidence, not a rule. Warnings are left out of printouts, and can be switched off under Appearance → Contradiction warnings (on by default).
 
-The pairings are this project's own reading of the NCSC wording, not NCSC's. So far 11 of the 41 outcomes have been reviewed — **A1.a–c, B2.a–d, C1.a, C2.a, D1.a and D2.a** — and other outcomes never warn.
+The pairings are this project's own reading of the NCSC wording, not NCSC's. All 41 outcomes have been reviewed (about 200 pairs). The pairs are deliberately conservative — only statements that can't both be fully true, not ones that merely sit uneasily together — so no warning doesn't prove your ticks are consistent.
 
 ## A note on scoring
 

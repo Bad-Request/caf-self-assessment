@@ -50,6 +50,197 @@
       "why": "Decision-makers unsure of senior management's risk appetite, versus understanding their responsibilities in the context of that risk appetite."
     }
   ],
+  "A2.a": [
+    {
+      "pair": ["not-0", "achieved-2"],
+      "src": ["9cd4db91", "38b99929"],
+      "why": "Risk assessments not based on clearly defined threat assumptions, versus based on a clearly understood set of them."
+    },
+    {
+      "pair": ["not-2", "partial-4"],
+      "src": ["353e3ae5", "b0e87aa4"],
+      "why": "Risk assessments a one-off or not done at all, versus carried out whenever significant events occur."
+    },
+    {
+      "pair": ["not-2", "achieved-6"],
+      "src": ["353e3ae5", "1870b805"],
+      "why": "Risk assessments a one-off or not done at all, versus dynamic and readily updated."
+    },
+    {
+      "pair": ["not-4", "partial-0"],
+      "src": ["cf49b36d", "149ddfa8"],
+      "why": "No systematic process to manage identified risks, versus a process that ensures risks are identified, analysed, prioritised and managed."
+    },
+    {
+      "pair": ["not-4", "achieved-0"],
+      "src": ["cf49b36d", "149ddfa8"],
+      "why": "No systematic process to manage identified risks, versus a process that ensures risks are identified, analysed, prioritised and managed."
+    }
+  ],
+  "A2.b": [
+    {
+      "pair": ["not-0", "partial-0"],
+      "src": ["db3f6045", "e1c21fca"],
+      "why": "Unable to perform threat analysis, versus performing it."
+    },
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["db3f6045", "0e68d4d0"],
+      "why": "Unable to perform threat analysis, versus performing detailed threat analysis."
+    },
+    {
+      "pair": ["not-1", "partial-1"],
+      "src": ["762d2700", "51912166"],
+      "why": "Threats not understood, versus understanding common types of attack and keeping that up to date."
+    },
+    {
+      "pair": ["not-1", "achieved-5"],
+      "src": ["762d2700", "4663956b"],
+      "why": "Threats not understood, versus maintaining a detailed understanding of current threats."
+    },
+    {
+      "pair": ["not-3", "partial-4"],
+      "src": ["0715c5c1", "5144531d"],
+      "why": "Understanding of threat not used in risk decisions, versus used to inform them."
+    },
+    {
+      "pair": ["not-3", "achieved-6"],
+      "src": ["0715c5c1", "0124c63b"],
+      "why": "Understanding of threat not used in risk decisions, versus used to inform them."
+    }
+  ],
+  "A2.c": [
+    {
+      "pair": ["not-1", "achieved-1"],
+      "src": ["551fe659", "da165866"],
+      "why": "Assurance methods applied without appreciating their strengths and limitations, versus understanding the methods and choosing appropriate ones."
+    },
+    {
+      "pair": ["not-2", "achieved-0"],
+      "src": ["e56891f5", "25336840"],
+      "why": "Assurance assumed because nothing has gone wrong yet, versus validating that security measures are and remain effective."
+    }
+  ],
+  "A3.a": [
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["90d80077", "71d67242"],
+      "why": "Asset inventories incomplete, missing or lacking detail, versus all relevant assets inventoried at a suitable level of detail."
+    },
+    {
+      "pair": ["not-1", "achieved-0"],
+      "src": ["31e4f21d", "71d67242"],
+      "why": "Only some domains or types of asset documented, versus all relevant assets inventoried."
+    },
+    {
+      "pair": ["not-5", "achieved-0"],
+      "src": ["7052e832", "71d67242"],
+      "why": "Asset inventories neglected and out of date, versus kept up to date."
+    }
+  ],
+  "A4.a": [
+    {
+      "pair": ["not-1", "partial-1"],
+      "src": ["530f6060", "eded3184"],
+      "why": "Little or no visibility of sub-contractors, versus knowing the extent of the supply chain including sub-contractors."
+    },
+    {
+      "pair": ["not-1", "achieved-0"],
+      "src": ["530f6060", "f3175425"],
+      "why": "Little or no visibility of sub-contractors, versus a deep understanding of the supply chain including sub-contractors."
+    },
+    {
+      "pair": ["not-2", "partial-3"],
+      "src": ["c955423d", "9d67b8c2"],
+      "why": "Relevant contracts not understood or lacking security obligations, versus understood and including them."
+    },
+    {
+      "pair": ["not-2", "achieved-5"],
+      "src": ["c955423d", "9d67b8c2"],
+      "why": "Relevant contracts not understood or lacking security obligations, versus understood and including them."
+    }
+  ],
+  "A4.b": [
+    {
+      "pair": ["not-0", "partial-1"],
+      "src": ["0391d6ab", "916817f1"],
+      "why": "Software supplier unaware of the software's composition and provenance, versus able to show some understanding of it."
+    },
+    {
+      "pair": ["not-0", "achieved-1"],
+      "src": ["0391d6ab", "22dfa1af"],
+      "why": "Software supplier unaware of the software's composition and provenance, versus able to show a thorough understanding of it."
+    },
+    {
+      "pair": ["not-1", "partial-3"],
+      "src": ["c32fb38c", "a91c8ef9"],
+      "why": "Little to no testing of software, versus a testing regime using a range of approaches."
+    }
+  ],
+  "B1.a": [
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["1e410d70", "3e3daf83"],
+      "why": "Policies, processes and procedures absent or incomplete, versus fully documented."
+    },
+    {
+      "pair": ["not-3", "partial-0"],
+      "src": ["bb593418", "6de7992d"],
+      "why": "Governance and risk management approach has no bearing on policies, versus policies documenting that approach."
+    },
+    {
+      "pair": ["not-4", "achieved-6"],
+      "src": ["52465395", "ce3dae4c"],
+      "why": "Security totally reliant on users following manual processes, versus systems that stay secure even when users don't."
+    },
+    {
+      "pair": ["not-5", "achieved-4"],
+      "src": ["39fbe133", "31423c8b"],
+      "why": "Policies not reviewed after major changes or within a suitable period, versus reviewed at suitably regular intervals."
+    }
+  ],
+  "B1.b": [
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["b6aa1478", "2f97fea7"],
+      "why": "Policies ignored or only partly followed, versus all followed."
+    },
+    {
+      "pair": ["not-2", "partial-2"],
+      "src": ["73dbf468", "e2bc8b32"],
+      "why": "Staff unaware of their responsibilities under policies, versus all staff aware of them."
+    },
+    {
+      "pair": ["not-2", "achieved-2"],
+      "src": ["73dbf468", "340cea3c"],
+      "why": "Staff unaware of their responsibilities under policies, versus good staff awareness of them."
+    },
+    {
+      "pair": ["not-3", "partial-0"],
+      "src": ["b98a84c5", "e69c79a0"],
+      "why": "No attempt to detect policy breaches, versus monitoring how policies are applied."
+    },
+    {
+      "pair": ["not-3", "partial-3"],
+      "src": ["b98a84c5", "bf048b5e"],
+      "why": "No attempt to detect policy breaches, versus investigating or tracking them."
+    },
+    {
+      "pair": ["not-4", "partial-1"],
+      "src": ["1e55011f", "86eb3b2e"],
+      "why": "Policies not integrated with other organisational policies, versus integrated with them."
+    },
+    {
+      "pair": ["not-4", "achieved-1"],
+      "src": ["1e55011f", "86eb3b2e"],
+      "why": "Policies not integrated with other organisational policies, versus integrated with them."
+    },
+    {
+      "pair": ["not-5", "achieved-2"],
+      "src": ["fcc62ffe", "340cea3c"],
+      "why": "Policies not well communicated, versus effectively communicated at all levels."
+    }
+  ],
   "B2.a": [
     {
       "pair": ["not-0", "partial-0"],
@@ -183,6 +374,319 @@
       "why": "Access logs not compared with other log data or access records, versus correlated with them."
     }
   ],
+  "B3.a": [
+    {
+      "pair": ["not-1", "partial-0"],
+      "src": ["a434bd6e", "77f643ee"],
+      "why": "Important data not identified, versus all important data identified and catalogued."
+    },
+    {
+      "pair": ["not-1", "achieved-0"],
+      "src": ["a434bd6e", "77f643ee"],
+      "why": "Important data not identified, versus all important data identified and catalogued."
+    },
+    {
+      "pair": ["not-2", "partial-1"],
+      "src": ["adb63136", "b4e9f4a4"],
+      "why": "Who has access to important data not identified, versus identified and catalogued."
+    },
+    {
+      "pair": ["not-2", "achieved-1"],
+      "src": ["adb63136", "b4e9f4a4"],
+      "why": "Who has access to important data not identified, versus identified and catalogued."
+    },
+    {
+      "pair": ["not-3", "partial-4"],
+      "src": ["e3f3c60d", "5af17595"],
+      "why": "Impact of data compromise or unavailability not articulated, versus understood and documented."
+    },
+    {
+      "pair": ["not-3", "achieved-7"],
+      "src": ["e3f3c60d", "5af17595"],
+      "why": "Impact of data compromise or unavailability not articulated, versus understood and documented."
+    }
+  ],
+  "B3.b": [
+    {
+      "pair": ["not-0", "partial-0"],
+      "src": ["e7a3406c", "b90315a5"],
+      "why": "Not all data links known, versus all important data links identified and protected."
+    },
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["e7a3406c", "b90315a5"],
+      "why": "Not all data links known, versus all important data links identified and protected."
+    },
+    {
+      "pair": ["not-1", "partial-1"],
+      "src": ["db5f7d43", "1339e00b"],
+      "why": "Important data travels unprotected over untrusted carriers, versus protected when it does."
+    },
+    {
+      "pair": ["not-1", "achieved-1"],
+      "src": ["db5f7d43", "3ca3bc92"],
+      "why": "Important data travels unprotected over untrusted carriers, versus protected when it does."
+    },
+    {
+      "pair": ["not-2", "achieved-2"],
+      "src": ["4e6d40e6", "a04a85ee"],
+      "why": "Critical data paths have no alternative, versus suitable alternative paths where the risk is significant."
+    },
+    {
+      "pair": ["partial-1", "achieved-1"],
+      "src": ["1339e00b", "3ca3bc92"],
+      "why": "Limited or no confidence in the protection of data in transit, versus justified confidence in it."
+    }
+  ],
+  "B3.c": [
+    {
+      "pair": ["not-1", "partial-1"],
+      "src": ["2336f4e5", "ac44bea6"],
+      "why": "Vulnerable stored data not suitably protected, versus suitable means applied to protect it."
+    },
+    {
+      "pair": ["not-1", "achieved-1"],
+      "src": ["2336f4e5", "ac44bea6"],
+      "why": "Vulnerable stored data not suitably protected, versus suitable means applied to protect it."
+    },
+    {
+      "pair": ["partial-2", "achieved-2"],
+      "src": ["c4e879eb", "860a6cea"],
+      "why": "Limited or no confidence in cryptographic protection, versus justified confidence in it."
+    }
+  ],
+  "B3.d": [
+    {
+      "pair": ["not-0", "partial-0"],
+      "src": ["16124b2e", "d0b0830d"],
+      "why": "Not knowing which mobile devices hold important data, versus knowing."
+    },
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["16124b2e", "d8446ef3"],
+      "why": "Not knowing which mobile devices hold important data, versus those devices being catalogued."
+    },
+    {
+      "pair": ["not-1", "partial-1"],
+      "src": ["665a645a", "7c71156f"],
+      "why": "Important data allowed on devices below your security standard, versus only on devices that meet it."
+    },
+    {
+      "pair": ["not-1", "achieved-0"],
+      "src": ["665a645a", "d8446ef3"],
+      "why": "Important data allowed on unmanaged devices, versus only on devices under your control."
+    },
+    {
+      "pair": ["not-2", "partial-2"],
+      "src": ["315b8c63", "3c861758"],
+      "why": "Data on mobile devices not, or only partly, technically secured, versus technically secured."
+    }
+  ],
+  "B3.e": [
+    {
+      "pair": ["not-0", "partial-0"],
+      "src": ["5f395952", "0230aee4"],
+      "why": "Devices or media reused or disposed of without sanitisation, versus data removed from all of them first."
+    },
+    {
+      "pair": ["not-0", "achieved-1"],
+      "src": ["5f395952", "f09c3cc4"],
+      "why": "Devices or media reused or disposed of without sanitisation, versus data removed from all of them first using an assured product or service."
+    }
+  ],
+  "B4.a": [
+    {
+      "pair": ["not-0", "achieved-1"],
+      "src": ["eb2e1bef", "04fdcdef"],
+      "why": "Systems not appropriately segregated, versus segregated into appropriate security zones."
+    }
+  ],
+  "B4.b": [
+    {
+      "pair": ["not-0", "partial-0"],
+      "src": ["246daa8b", "8f0faa75"],
+      "why": "Assets needing careful configuration not identified, versus identified and documented."
+    },
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["246daa8b", "d49b1485"],
+      "why": "Assets needing careful configuration not identified, versus identified, documented and actively managed."
+    },
+    {
+      "pair": ["not-1", "partial-1"],
+      "src": ["a7cce235", "c092055c"],
+      "why": "Build and configuration policies not applied consistently, versus secure builds used across the estate."
+    },
+    {
+      "pair": ["not-1", "partial-2"],
+      "src": ["a7cce235", "4d9fc22b"],
+      "why": "Build and configuration policies not applied consistently, versus consistent configurations applied."
+    },
+    {
+      "pair": ["not-1", "achieved-1"],
+      "src": ["a7cce235", "994c7853"],
+      "why": "Build and configuration policies not applied consistently, versus all platforms conforming to the baseline build."
+    },
+    {
+      "pair": ["not-3", "achieved-2"],
+      "src": ["40db66aa", "bc440913"],
+      "why": "Recording of security changes lacking or inconsistent, versus changes closely managed and documented."
+    },
+    {
+      "pair": ["not-5", "partial-6"],
+      "src": ["b3c0c5d2", "149e43f5"],
+      "why": "Standard users can change security-relevant settings, versus cannot."
+    }
+  ],
+  "B4.c": [
+    {
+      "pair": ["not-1", "partial-1"],
+      "src": ["a2207740", "5d76e518"],
+      "why": "No good or current technical documentation, versus documentation regularly reviewed and updated."
+    },
+    {
+      "pair": ["not-1", "achieved-1"],
+      "src": ["a2207740", "15b311ce"],
+      "why": "No good or current technical documentation, versus documentation regularly reviewed and updated."
+    }
+  ],
+  "B4.d": [
+    {
+      "pair": ["not-0", "partial-0"],
+      "src": ["f391aa79", "c22f2381"],
+      "why": "Exposure to publicly known vulnerabilities not understood, versus a current understanding of it."
+    },
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["f391aa79", "c22f2381"],
+      "why": "Exposure to publicly known vulnerabilities not understood, versus a current understanding of it."
+    },
+    {
+      "pair": ["not-1", "partial-1"],
+      "src": ["36713ad1", "00fdceab"],
+      "why": "Externally exposed vulnerabilities not mitigated promptly, versus mitigated promptly."
+    },
+    {
+      "pair": ["not-1", "achieved-1"],
+      "src": ["36713ad1", "c388d0c7"],
+      "why": "Externally exposed vulnerabilities not mitigated promptly, versus all vulnerabilities mitigated promptly."
+    },
+    {
+      "pair": ["not-2", "partial-4"],
+      "src": ["f4140bec", "740d38ff"],
+      "why": "Vulnerabilities not recently tested for, versus regular testing."
+    },
+    {
+      "pair": ["not-2", "achieved-2"],
+      "src": ["f4140bec", "81558059"],
+      "why": "Vulnerabilities not recently tested for, versus regular testing verified by third parties."
+    },
+    {
+      "pair": ["not-4", "partial-3"],
+      "src": ["25ebcb76", "b07a22f6"],
+      "why": "Not pursuing replacement of unsupported systems, versus pursuing migration to supported technology."
+    },
+    {
+      "pair": ["not-4", "achieved-3"],
+      "src": ["25ebcb76", "537676e6"],
+      "why": "Not pursuing replacement of unsupported systems, versus actively maximising use of supported technology."
+    }
+  ],
+  "B5.a": [
+    {
+      "pair": ["not-0", "partial-0"],
+      "src": ["fa92120e", "f8001fcc"],
+      "why": "Limited understanding of what is needed to restore operation, versus knowing all the systems needed and how they depend on each other."
+    },
+    {
+      "pair": ["not-1", "achieved-0"],
+      "src": ["426a3dfa", "062a8228"],
+      "why": "Continuity and recovery plans not completed, versus plans tested for completeness."
+    },
+    {
+      "pair": ["not-2", "achieved-0"],
+      "src": ["7a200b6b", "062a8228"],
+      "why": "Practical implementation of the plans not fully assessed, versus plans tested for practicality."
+    }
+  ],
+  "B5.b": [
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["96f41b19", "878a93f1"],
+      "why": "Systems not appropriately segregated, versus segregated by appropriate technical and physical means."
+    },
+    {
+      "pair": ["not-1", "partial-1"],
+      "src": ["795c8a00", "99f742b3"],
+      "why": "Internet services accessible from essential systems, versus not accessible."
+    },
+    {
+      "pair": ["not-1", "achieved-1"],
+      "src": ["795c8a00", "99f742b3"],
+      "why": "Internet services accessible from essential systems, versus not accessible."
+    },
+    {
+      "pair": ["not-2", "achieved-2"],
+      "src": ["3d5a4772", "2c162918"],
+      "why": "Resource limitations not understood or without plans to mitigate them all, versus all identified and mitigated."
+    },
+    {
+      "pair": ["partial-2", "achieved-2"],
+      "src": ["f3bbf7f3", "2c162918"],
+      "why": "Resource limitations not fully mitigated, versus all mitigated."
+    }
+  ],
+  "B5.c": [
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["45709167", "0203473e"],
+      "why": "Backup coverage incomplete, versus comprehensive backups."
+    },
+    {
+      "pair": ["not-0", "achieved-1"],
+      "src": ["45709167", "be03dd03"],
+      "why": "Backup coverage incomplete, versus backups of all important data and information."
+    }
+  ],
+  "B6.a": [
+    {
+      "pair": ["not-0", "partial-1"],
+      "src": ["bfbd3494", "37ba8588"],
+      "why": "People don't understand their contribution to cyber security, versus all understanding it."
+    },
+    {
+      "pair": ["not-1", "partial-2"],
+      "src": ["a91ef1ef", "19cf0f09"],
+      "why": "People don't know how to raise a cyber security concern, versus all knowing how."
+    }
+  ],
+  "B6.b": [
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["546a29e3", "adfe59c6"],
+      "why": "Some teams lack any cyber security training, versus everyone following appropriate training paths."
+    },
+    {
+      "pair": ["not-1", "partial-0"],
+      "src": ["51fcb027", "b53fe413"],
+      "why": "Training restricted to specific roles, versus defined for all roles."
+    },
+    {
+      "pair": ["not-1", "achieved-0"],
+      "src": ["51fcb027", "adfe59c6"],
+      "why": "Training restricted to specific roles, versus everyone following appropriate training paths."
+    },
+    {
+      "pair": ["not-2", "achieved-1"],
+      "src": ["36aab984", "8000824d"],
+      "why": "Training records lacking or incomplete, versus each individual's training tracked."
+    },
+    {
+      "pair": ["not-4", "achieved-2"],
+      "src": ["be68ada1", "8fcf4518"],
+      "why": "Training success measured only by reach, versus evaluated for effectiveness."
+    }
+  ],
   "C1.a": [
     {
       "pair": ["not-0", "partial-0"],
@@ -233,6 +737,221 @@
       "pair": ["partial-1", "achieved-2"],
       "src": ["81043d46", "8055a9d7"],
       "why": "Some monitoring, not covering an agreed list of suspicious behaviour, versus extensive monitoring that detects such behaviour."
+    }
+  ],
+  "C1.b": [
+    {
+      "pair": ["not-0", "achieved-4"],
+      "src": ["af1ae6a8", "8124604f"],
+      "why": "Log data easily edited or deleted, versus its integrity protected and any modification detected."
+    },
+    {
+      "pair": ["not-1", "partial-0"],
+      "src": ["c9a73f3b", "42e398b0"],
+      "why": "No control over who can access log data, versus only authorised users and systems."
+    },
+    {
+      "pair": ["not-1", "achieved-0"],
+      "src": ["c9a73f3b", "d45d5217"],
+      "why": "No control over who can access log data, versus access limited to those with a business need."
+    },
+    {
+      "pair": ["not-2", "partial-1"],
+      "src": ["1adc026d", "5ce4adae"],
+      "why": "No monitoring of access to log data, versus some monitoring of it."
+    },
+    {
+      "pair": ["not-3", "partial-3"],
+      "src": ["329ed4b2", "42d9cb88"],
+      "why": "No policies covering access to log data, versus policies giving legitimate reasons for access."
+    }
+  ],
+  "C1.c": [
+    {
+      "pair": ["not-0", "achieved-1"],
+      "src": ["7a3196e6", "1714c148"],
+      "why": "Detection updates not applied in a timely way, versus all applied promptly."
+    },
+    {
+      "pair": ["not-1", "partial-2"],
+      "src": ["cb3ec4f5", "54e05191"],
+      "why": "Security alerts not prioritised, versus prioritised."
+    },
+    {
+      "pair": ["not-1", "achieved-2"],
+      "src": ["cb3ec4f5", "6ff489da"],
+      "why": "Security alerts not prioritised, versus prioritised for all systems."
+    },
+    {
+      "pair": ["not-2", "partial-3"],
+      "src": ["ec106111", "09dd170d"],
+      "why": "Alert enrichment cannot be performed, versus performed."
+    },
+    {
+      "pair": ["not-2", "achieved-3"],
+      "src": ["ec106111", "9eed5265"],
+      "why": "Alert enrichment cannot be performed, versus routinely performed."
+    },
+    {
+      "pair": ["not-3", "partial-0"],
+      "src": ["9ed3557c", "699e001d"],
+      "why": "IoCs not confidently detected, versus easily detected."
+    },
+    {
+      "pair": ["not-3", "achieved-0"],
+      "src": ["9ed3557c", "bc86fc16"],
+      "why": "IoCs not confidently detected, versus easily detected."
+    },
+    {
+      "pair": ["not-4", "partial-7"],
+      "src": ["5a8dcc3a", "334a7e1f"],
+      "why": "No monitoring for abnormalities, versus monitoring for them, if irregularly."
+    },
+    {
+      "pair": ["not-4", "achieved-7"],
+      "src": ["5a8dcc3a", "bb744d38"],
+      "why": "No monitoring for abnormalities, versus continuous monitoring for them."
+    },
+    {
+      "pair": ["not-5", "achieved-8"],
+      "src": ["31190a4b", "37ed600b"],
+      "why": "Logs monitored infrequently, versus continuously."
+    },
+    {
+      "pair": ["partial-3", "achieved-3"],
+      "src": ["09dd170d", "9eed5265"],
+      "why": "Alert enrichment not part of the original alert, versus part of it."
+    },
+    {
+      "pair": ["partial-4", "achieved-5"],
+      "src": ["96797291", "dd82c1b2"],
+      "why": "Off-the-shelf detections without customisation, versus customised and tuned rules."
+    },
+    {
+      "pair": ["partial-7", "achieved-7"],
+      "src": ["334a7e1f", "bb744d38"],
+      "why": "Monitoring for abnormalities irregular, versus continuous."
+    }
+  ],
+  "C1.d": [
+    {
+      "pair": ["not-0", "partial-0"],
+      "src": ["b404a965", "a9ff77ea"],
+      "why": "Alerts not triaged, versus alerts from some tools triaged."
+    },
+    {
+      "pair": ["not-0", "partial-2"],
+      "src": ["b404a965", "14a07d6f"],
+      "why": "Alerts not triaged, versus some triage performed."
+    },
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["b404a965", "2263f73f"],
+      "why": "Alerts not triaged, versus alerts from all tools triaged."
+    },
+    {
+      "pair": ["not-1", "partial-3"],
+      "src": ["d8b4cd1b", "0d6c43f7"],
+      "why": "Alerts and incidents not categorised, versus categorised by type and priority."
+    },
+    {
+      "pair": ["not-1", "achieved-2"],
+      "src": ["d8b4cd1b", "0d6c43f7"],
+      "why": "Alerts and incidents not categorised, versus categorised by type and priority."
+    },
+    {
+      "pair": ["not-2", "partial-1"],
+      "src": ["0230f7c9", "9bef9113"],
+      "why": "No playbooks for triage, versus playbooks for the most common cases."
+    },
+    {
+      "pair": ["not-2", "achieved-1"],
+      "src": ["0230f7c9", "53ad161e"],
+      "why": "No playbooks for triage, versus playbooks for all plausible cases."
+    },
+    {
+      "pair": ["not-3", "partial-2"],
+      "src": ["3a23904a", "14a07d6f"],
+      "why": "No records of triage, versus triage actions recorded."
+    },
+    {
+      "pair": ["not-3", "achieved-3"],
+      "src": ["3a23904a", "d9ebe9e6"],
+      "why": "No records of triage, versus all triage activity documented."
+    },
+    {
+      "pair": ["not-4", "achieved-5"],
+      "src": ["38ebb1b7", "7ccfc20a"],
+      "why": "Understanding of normal behaviour insufficient for triage decisions, versus sufficient."
+    }
+  ],
+  "C1.e": [
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["18a289ce", "ce2336b7"],
+      "why": "No monitoring and detection personnel, versus personnel responsible for analysing alerts."
+    },
+    {
+      "pair": ["not-1", "achieved-1"],
+      "src": ["fec85cf7", "ce5a734f"],
+      "why": "Monitoring personnel lack the right specialist skills, versus skills covering the whole process."
+    },
+    {
+      "pair": ["not-2", "achieved-2"],
+      "src": ["1967b71c", "2a05b319"],
+      "why": "Monitoring personnel can't report against governance requirements, versus processes addressing all of them."
+    },
+    {
+      "pair": ["not-3", "achieved-4"],
+      "src": ["086b43c0", "64bb57a2"],
+      "why": "Monitoring personnel unaware of the essential functions and related assets, versus aware of them."
+    },
+    {
+      "pair": ["not-5", "partial-5"],
+      "src": ["45893036", "356f995c"],
+      "why": "Monitoring personnel overwhelmed by alerts, versus dealing with their workload effectively."
+    },
+    {
+      "pair": ["not-5", "achieved-8"],
+      "src": ["45893036", "dbcb3937"],
+      "why": "Monitoring personnel overwhelmed by alerts, versus dealing with their workload effectively."
+    }
+  ],
+  "C1.f": [
+    {
+      "pair": ["not-1", "partial-0"],
+      "src": ["f2b475e0", "b4e899b8"],
+      "why": "Usefulness of threat intelligence not evaluated, versus knowing how effective it is."
+    },
+    {
+      "pair": ["not-1", "achieved-0"],
+      "src": ["f2b475e0", "203e5f12"],
+      "why": "Threat intelligence not evaluated and no feedback shared, versus tracked and feedback actively shared."
+    },
+    {
+      "pair": ["not-3", "achieved-2"],
+      "src": ["69f9f8df", "5536feb1"],
+      "why": "Threat intelligence unreliable or not actioned promptly, versus reliable and made available promptly."
+    },
+    {
+      "pair": ["not-4", "partial-2"],
+      "src": ["ae53c341", "a214f53e"],
+      "why": "No understanding of which abnormalities to look for, versus using those from past attacks and threat intelligence."
+    },
+    {
+      "pair": ["not-4", "achieved-5"],
+      "src": ["ae53c341", "52f047c6"],
+      "why": "No understanding of which abnormalities to look for, versus monitoring for those likely adverse activities would cause."
+    },
+    {
+      "pair": ["not-5", "partial-3"],
+      "src": ["32d10cd7", "14fa9646"],
+      "why": "Updates not received for all detection technologies, versus regular updates for all of them."
+    },
+    {
+      "pair": ["not-6", "achieved-4"],
+      "src": ["a8327f03", "31b4d08b"],
+      "why": "Normal behaviour not understood well enough to spot abnormalities, versus understood fully."
     }
   ],
   "C2.a": [
@@ -304,11 +1023,67 @@
       "why": "Plan covers known, well understood attacks only, versus also covering possible attacks not seen before."
     }
   ],
+  "D1.b": [
+    {
+      "pair": ["not-0", "achieved-0"],
+      "src": ["01a0a84d", "9e581680"],
+      "why": "Inadequate arrangements for response resources, versus arrangements in place."
+    },
+    {
+      "pair": ["not-1", "achieved-2"],
+      "src": ["8d02a4f8", "9963e047"],
+      "why": "Response team not equipped to make and carry out good decisions, versus having the skills, knowledge and authority to."
+    },
+    {
+      "pair": ["not-2", "achieved-4"],
+      "src": ["8910a15d", "f99a0662"],
+      "why": "Inadequate back-up mechanisms, versus back-up mechanisms ready to activate."
+    }
+  ],
+  "D1.c": [
+    {
+      "pair": ["not-0", "achieved-3"],
+      "src": ["73c06761", "b95a0d02"],
+      "why": "Exercises test only a discrete part of the process, versus all parts of the response cycle."
+    },
+    {
+      "pair": ["not-1", "achieved-2"],
+      "src": ["35dde85b", "8ec533e2"],
+      "why": "Exercises not routine or ad hoc, versus routinely run."
+    },
+    {
+      "pair": ["not-2", "achieved-2"],
+      "src": ["1b1e371e", "8ec533e2"],
+      "why": "Exercise outputs not fed into lessons learned, versus findings used in line with them."
+    },
+    {
+      "pair": ["not-3", "achieved-3"],
+      "src": ["96f5b830", "b95a0d02"],
+      "why": "Exercises don't test all parts of the response cycle, versus test all of them."
+    }
+  ],
   "D2.a": [
     {
       "pair": ["not-3", "achieved-1"],
       "src": ["d9438fc6", "085e2d89"],
       "why": "Investigations focus solely on who to hold responsible, versus analysis considering organisational, technical and human factors."
+    }
+  ],
+  "D2.b": [
+    {
+      "pair": ["not-0", "achieved-1"],
+      "src": ["7c1ca084", "1e2b6227"],
+      "why": "Lessons learned not captured or limited in scope, versus covering organisational as well as technical issues."
+    },
+    {
+      "pair": ["not-1", "achieved-3"],
+      "src": ["4082b136", "7146b094"],
+      "why": "Improvements from lessons learned not implemented or prioritised, versus prioritised and the most important completed promptly."
+    },
+    {
+      "pair": ["not-3", "achieved-0"],
+      "src": ["1ac42391", "52ec9807"],
+      "why": "Waiting for a severe incident before improving, versus acting on lessons from every incident, including near misses."
     }
   ]
 }

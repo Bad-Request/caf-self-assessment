@@ -164,9 +164,9 @@ verbatim. It's in `sw.js`'s `APP_SHELL`, so bump `CACHE_VERSION` after
 editing it. If the file is missing or fails to load the app still works,
 just without warnings.
 
-Coverage is partial: only outcomes listed in the file have been reviewed.
-An outcome that's absent has simply not been looked at yet — it doesn't
-mean it has no conflicts.
+Every outcome has been reviewed and is listed, even where it has only one
+pair. An outcome that's absent (e.g. one added in a new CAF revision) has
+simply not been looked at yet — it doesn't mean it has no conflicts.
 
 ## Shape
 

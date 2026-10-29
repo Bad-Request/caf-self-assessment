@@ -9,7 +9,7 @@ and this project uses [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-- Contradiction warnings (pilot): if you tick two IGPs that appear to
+- Contradiction warnings: if you tick two IGPs that appear to
   contradict each other — for example "access is not limited to the minimum
   necessary" and "access is limited to the minimum necessary" — the outcome
   card shows a warning, and each of the two statements gets a high-contrast
@@ -19,9 +19,9 @@ and this project uses [Semantic Versioning](https://semver.org/).
   at a note, or focusing a statement's checkbox, outlines the statement it
   clashes with. Clicking a note doesn't tick or untick its statement. Nothing
   is blocked or unticked, and the warning doesn't change the suggested status
-  or score. So far 11 of the 41 outcomes have been reviewed (A1.a–c,
-  B2.a–d, C1.a, C2.a, D1.a and D2.a). The pairings are this project's own
-  reading of the NCSC wording, and warnings are left out of printouts. Switch them
+  or score. All 41 outcomes are covered, with about 200 pairs of statements
+  that can't both be fully true. The pairings are this project's own reading
+  of the NCSC wording, and warnings are left out of printouts. Switch them
   off or on under Appearance → **Contradiction warnings** (on by default).
 
 ## [2.8.0] - 2026-10-29
