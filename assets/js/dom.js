@@ -16,6 +16,7 @@ export const el = {
   framework: document.getElementById('framework'),
   outcomeGrid: document.getElementById('outcome-grid'),
   objectiveBars: document.getElementById('objective-bars'),
+  flagSummary: document.getElementById('flag-summary'),
   scorePct: document.getElementById('score-percentage'),
   scoreRingValue: document.getElementById('score-ring-value'),
   countAchieved: document.getElementById('count-achieved'),

@@ -3,7 +3,10 @@
 // changes), and owns the per-outcome state mutations triggered from them.
 
 import { el } from './dom.js';
-import { DATASET, allOutcomes, outcomesById, STATUS_LABEL, normalizeResult, effectiveStatus, plainEnglishFor } from './model.js';
+import {
+  DATASET, allOutcomes, outcomesById, STATUS_LABEL, FLAG_LABEL, FLAG_KEYS,
+  normalizeResult, effectiveStatus, flagsOf, plainEnglishFor
+} from './model.js';
 import { debounce, flashTo } from './utils.js';
 import { findAssessment, getCurrentAssessmentId, touchCurrent, renderSidebar } from './assessments.js';
 import { updateDashboard } from './dashboard.js';
@@ -36,10 +39,24 @@ function setOverride(outcomeId, status) {
   renderSidebar();
 }
 
+// 'wip' and 'review' share one progress value, so pressing one clears the
+// other; pressing the active one clears it. 'question' toggles on its own.
+function toggleFlag(outcomeId, flag) {
+  var r = updateResult(outcomeId, function (r) {
+    if (flag === 'question') r.question = !r.question;
+    else r.progress = (r.progress === flag) ? null : flag;
+  });
+  if (!r) return;
+  touchCurrent();
+  applyOutcomeState(outcomeId, r);
+  updateDashboard();
+}
+
 export function applyOutcomeState(outcomeId, rawResult) {
   var outcome = outcomesById[outcomeId];
   var r = normalizeResult(rawResult);
   var effective = effectiveStatus(outcome, r);
+  var flags = flagsOf(r);
 
   var card = document.getElementById('outcome-' + outcomeId);
   if (card) {
@@ -65,13 +82,33 @@ export function applyOutcomeState(outcomeId, rawResult) {
 
     var textarea = card.querySelector('[data-notes-for="' + outcomeId + '"]');
     if (textarea) textarea.value = r.notes || '';
+
+    card.querySelectorAll('.flag-control button').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(flags.indexOf(b.getAttribute('data-flag')) !== -1));
+    });
+    setDataAttr(card, 'progress', r.progress);
+    setDataAttr(card, 'question', r.question ? 'true' : null);
   }
 
   var dot = document.getElementById('grid-dot-' + outcomeId);
   if (dot) {
     dot.className = 'outcome-dot';
     if (effective) dot.classList.add('status-' + effective);
+    setDataAttr(dot, 'progress', r.progress);
+    setDataAttr(dot, 'question', r.question ? 'true' : null);
+    var label = 'Jump to outcome ' + outcomeId + ', ' + outcome.title;
+    if (flags.length) {
+      label += ' — flagged: ' + flags.map(function (f) { return FLAG_LABEL[f]; }).join(', ');
+    }
+    dot.setAttribute('aria-label', label);
+    dot.title = outcomeId + ' — ' + outcome.title +
+      (flags.length ? ' (' + flags.map(function (f) { return FLAG_LABEL[f]; }).join(', ') + ')' : '');
   }
+}
+
+function setDataAttr(node, name, value) {
+  if (value) node.setAttribute('data-' + name, value);
+  else node.removeAttribute('data-' + name);
 }
 
 export function applyAllState(assessment) {
@@ -290,6 +327,7 @@ function buildOutcomeCard(outcome) {
 
   body.appendChild(toggle);
   body.appendChild(panel);
+  body.appendChild(buildFlagRow(outcome));
 
   var notesRow = document.createElement('div');
   notesRow.className = 'notes-row';
@@ -313,6 +351,38 @@ function buildOutcomeCard(outcome) {
 
   card.appendChild(body);
   return card;
+}
+
+function buildFlagRow(outcome) {
+  var row = document.createElement('div');
+  row.className = 'flag-row';
+  var label = document.createElement('span');
+  label.className = 'flag-row__label';
+  label.id = 'flag-label-' + outcome.id;
+  label.textContent = 'Flag for review';
+  row.appendChild(label);
+
+  var control = document.createElement('div');
+  control.className = 'flag-control';
+  control.setAttribute('role', 'group');
+  control.setAttribute('aria-labelledby', label.id);
+  FLAG_KEYS.forEach(function (flag) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'flag-btn flag-btn--' + flag;
+    b.textContent = FLAG_LABEL[flag];
+    b.setAttribute('aria-pressed', 'false');
+    b.setAttribute('data-flag', flag);
+    b.title = flag === 'question'
+      ? 'Flag a question about this outcome for review (click again to clear)'
+      : 'Mark this outcome as "' + FLAG_LABEL[flag] + '" (click again to clear)';
+    b.addEventListener('click', function () {
+      toggleFlag(outcome.id, flag);
+    });
+    control.appendChild(b);
+  });
+  row.appendChild(control);
+  return row;
 }
 
 function igpChecklistColumn(key, label, items, outcomeId) {

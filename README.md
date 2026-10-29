@@ -34,7 +34,7 @@ are not endorsed by NCSC.
 
 ## Data handling — important
 
-Every assessment you create — organisation name, ticks, overrides, notes — is saved entirely in your browser's `localStorage`. Profiles (see [Features](#features)) are saved the same way, under their own separate `localStorage` key. This means:
+Every assessment you create — organisation name, ticks, overrides, notes, review flags — is saved entirely in your browser's `localStorage`. Profiles (see [Features](#features)) are saved the same way, under their own separate `localStorage` key. This means:
 
 - Assessments and profiles are tied to the browser/device you created them on.
 - Clearing browser data for this site/folder will delete them.
@@ -83,6 +83,7 @@ Nothing to install, but the app logic loads as native ES modules, which browsers
 - A checkbox against every individual Indicator of Good Practice (IGP) — tick the ones that genuinely describe your organisation.
 - An automatically **suggested** status per contributing outcome, worked out from those ticks (see [How suggestions work](#how-suggestions-work) below), which you can override by hand at any time.
 - Notes/evidence field per outcome.
+- **Review flags** per outcome: mark an outcome as **In progress** or **Ready for review** (one or the other), and separately flag a **Question** for review. Flagged outcomes show a marker on the outcome grid (⋯ in progress, ✓ ready for review, ? question) and are counted and listed on the dashboard — select one to jump to it. Flags don't affect the score or suggested status, and are left out of printouts.
 - An optional **Plain English** mode (Appearance → Plain English) that shows a short, unofficial summary under each IGP to help with the denser wording. The official NCSC text is always shown and is what you should assess against; the summaries are left out of printouts.
 - A collapsible **Guidance & references** section on each principle, listing the NCSC guidance and external resources from NCSC's [Consolidated view of CAF Guidance](https://www.ncsc.gov.uk/collection/cyber-assessment-framework/consolidated-view-of-caf-guidance). Collapsed by default and left out of printouts.
 - Dashboard: overall % score, per-objective breakdown, and an "outcome grid" — one tile per contributing outcome, labelled with its ID (e.g. A1.a), laid out one row per objective and grouped by principle, colour-coded by status; click a tile to jump straight to that outcome.
