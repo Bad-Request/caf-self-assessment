@@ -358,14 +358,14 @@ function buildFlagRow(outcome) {
   row.className = 'flag-row';
   var label = document.createElement('span');
   label.className = 'flag-row__label';
-  label.id = 'flag-label-' + outcome.id;
-  label.textContent = 'Flag for review';
+  label.setAttribute('aria-hidden', 'true');
+  label.textContent = 'Flag';
   row.appendChild(label);
 
   var control = document.createElement('div');
   control.className = 'flag-control';
   control.setAttribute('role', 'group');
-  control.setAttribute('aria-labelledby', label.id);
+  control.setAttribute('aria-label', 'Flag outcome ' + outcome.id + ' for review');
   FLAG_KEYS.forEach(function (flag) {
     var b = document.createElement('button');
     b.type = 'button';
