@@ -293,7 +293,6 @@ function buildOutcomeCard(outcome) {
     statusControl.appendChild(b);
   });
   statusArea.appendChild(statusControl);
-  statusArea.appendChild(buildFlagRow(outcome));
 
   head.appendChild(statusArea);
   card.appendChild(head);
@@ -326,6 +325,7 @@ function buildOutcomeCard(outcome) {
     toggle.textContent = expanded ? 'Show indicators to assess this outcome' : 'Hide indicators';
   });
 
+  body.appendChild(buildFlagRow(outcome));
   body.appendChild(toggle);
   body.appendChild(panel);
 

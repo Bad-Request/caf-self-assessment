@@ -1244,9 +1244,10 @@ a:hover { color: var(--purple-500); }
 
 .flag-row {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-bottom: 8px;
 }
 .flag-row__label {
   font-size: 0.7667rem;
@@ -1255,7 +1256,7 @@ a:hover { color: var(--purple-500); }
   color: var(--slate-500);
   font-weight: 600;
 }
-.flag-control { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+.flag-control { display: flex; flex-wrap: wrap; gap: 6px; }
 .flag-btn {
   font-family: var(--font-body);
   font-size: 0.7667rem;
@@ -1516,7 +1517,6 @@ a:hover { color: var(--purple-500); }
      of forcing the status buttons to stay on one unbreakable line. */
   .outcome-card__head { gap: 10px; }
   .status-area { align-items: stretch; width: 100%; }
-  .flag-row { align-items: flex-start; }
 
   /* Status buttons: stop forcing one unbroken nowrap row, and let the
      pill wrap onto two rows of two instead of overflowing sideways. */
