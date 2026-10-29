@@ -5,6 +5,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.9.1] - 2026-10-29
+
+### Fixed
+
+- On the outcome grid, a tile's **Question** badge no longer overlaps the
+  **In progress** or **Ready for review** badge on the tile next to it.
+
 ## [2.9.0] - 2026-10-29
 
 ### Added

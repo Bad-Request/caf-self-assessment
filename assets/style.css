@@ -834,7 +834,10 @@ a:hover { color: var(--purple-500); }
 /* Review flag markers: a small badge with a distinct glyph per flag, so
    flags read without relying on colour. On grid tiles they sit on the
    corners (progress top-left, question top-right), clear of the fill and
-   ring colours that show status and baseline target. */
+   ring colours that show status and baseline target. They overhang the
+   tile's sides by at most half the 6px gap between tiles (fixed px, not
+   rem, so it holds at every text size), so a question badge never meets
+   the progress badge on the tile to its right. */
 .flag-marker,
 .outcome-dot[data-progress]::before,
 .outcome-dot[data-question]::after {
@@ -857,8 +860,8 @@ a:hover { color: var(--purple-500); }
   z-index: 1;
   border: 1.5px solid var(--navy-900);
 }
-.outcome-dot[data-progress]::before { left: -0.5rem; }
-.outcome-dot[data-question]::after { right: -0.5rem; }
+.outcome-dot[data-progress]::before { left: -3px; }
+.outcome-dot[data-question]::after { right: -3px; }
 .flag-marker--wip, .outcome-dot[data-progress="wip"]::before {
   background: var(--flag-wip); color: var(--flag-wip-ink);
 }
