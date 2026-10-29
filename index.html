@@ -133,7 +133,7 @@
 
     <div class="sidebar__section sidebar__footer">
       <p>Reference: NCSC <a href="https://www.ncsc.gov.uk/collection/cyber-assessment-framework" target="_blank" rel="noopener">Cyber Assessment Framework 4.0</a>. Contains 41 contributing outcomes across 4 objectives and 14 principles.</p>
-      <p class="version-tag">v2.7.1</p>
+      <p class="version-tag">v2.8.0</p>
       <p class="footer-links"><a href="https://github.com/Bad-Request/caf-self-assessment" target="_blank" rel="noopener">View on GitHub &mdash; contributions welcome</a></p>
     </div>
   </nav>
@@ -199,6 +199,17 @@
           <h3>Outcome grid <span class="hint">— every tile is one of the 41 contributing outcomes, labelled with its ID and grouped by objective (rows) and principle; fill colour shows its current status, outer ring colour (if set) shows its baseline target; select a tile to jump to it</span></h3>
           <div class="outcome-grid" id="outcome-grid"></div>
           <div class="baseline-legend" id="baseline-legend"></div>
+          <div class="flag-legend no-print">
+            <span>Flag key:</span>
+            <span class="flag-legend__item"><span class="flag-marker flag-marker--wip" aria-hidden="true">⋯</span>In progress</span>
+            <span class="flag-legend__item"><span class="flag-marker flag-marker--review" aria-hidden="true">✓</span>Ready for review</span>
+            <span class="flag-legend__item"><span class="flag-marker flag-marker--question" aria-hidden="true">?</span>Question</span>
+          </div>
+        </div>
+
+        <div class="dashboard__flags no-print">
+          <h3>Flagged for review <span class="hint">— set flags on each outcome; select an ID to jump to it</span></h3>
+          <dl class="flag-summary" id="flag-summary"></dl>
         </div>
       </section>
 

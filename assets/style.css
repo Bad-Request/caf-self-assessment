@@ -49,6 +49,15 @@
   --grid-ink-na: #fff;
   --grid-ink-unset: var(--navy-900);
 
+  /* Review flags. Same in both themes: they're drawn on the always-dark
+     dashboard as well as on cards, and each carries its own ink colour. */
+  --flag-wip: #3565c4;
+  --flag-wip-ink: #fff;
+  --flag-review: #7d4bb5;
+  --flag-review-ink: #fff;
+  --flag-question: var(--gold-400);
+  --flag-question-ink: var(--navy-900);
+
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
@@ -822,6 +831,114 @@ a:hover { color: var(--purple-500); }
   font-style: italic;
 }
 
+/* Review flag markers: a small badge with a distinct glyph per flag, so
+   flags read without relying on colour. On grid tiles they sit on the
+   corners (progress top-left, question top-right), clear of the fill and
+   ring colours that show status and baseline target. */
+.flag-marker,
+.outcome-dot[data-progress]::before,
+.outcome-dot[data-question]::after {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  border-radius: 50%;
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.outcome-dot[data-progress]::before,
+.outcome-dot[data-question]::after {
+  position: absolute;
+  top: -0.5rem;
+  z-index: 1;
+  border: 1.5px solid var(--navy-900);
+}
+.outcome-dot[data-progress]::before { left: -0.5rem; }
+.outcome-dot[data-question]::after { right: -0.5rem; }
+.flag-marker--wip, .outcome-dot[data-progress="wip"]::before {
+  background: var(--flag-wip); color: var(--flag-wip-ink);
+}
+.flag-marker--review, .outcome-dot[data-progress="review"]::before {
+  background: var(--flag-review); color: var(--flag-review-ink);
+}
+.flag-marker--question, .outcome-dot[data-question]::after {
+  background: var(--flag-question); color: var(--flag-question-ink);
+}
+/* The tile's aria-label already names its flags, so the glyphs are
+   decorative ("/ ''" gives them empty alt text where supported). */
+.outcome-dot[data-progress="wip"]::before { content: "⋯"; content: "⋯" / ""; }
+.outcome-dot[data-progress="review"]::before { content: "✓"; content: "✓" / ""; }
+.outcome-dot[data-question]::after { content: "?"; content: "?" / ""; }
+
+.flag-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--slate-300);
+}
+.flag-legend__item { display: flex; align-items: center; gap: 6px; }
+
+.dashboard__flags {
+  grid-column: 1 / -1;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 18px;
+}
+.dashboard__flags h3 {
+  color: #fff;
+  font-size: 0.8667rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.dashboard__flags .hint {
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+  color: var(--slate-300);
+  font-family: var(--font-body);
+  font-size: 0.8333rem;
+}
+.flag-summary {
+  margin: 0;
+  display: grid;
+  grid-template-columns: max-content auto minmax(0, 1fr);
+  gap: 8px 14px;
+  align-items: center;
+  font-size: 0.8667rem;
+}
+.flag-summary__row { display: contents; }
+.flag-summary dt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--slate-300);
+}
+.flag-summary dd { margin: 0; }
+.flag-summary__count { font-family: var(--font-mono); font-weight: 600; }
+.flag-summary__ids { display: flex; flex-wrap: wrap; gap: 6px; }
+.flag-summary__ids--none { color: var(--slate-300); font-style: italic; }
+.flag-chip {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+.flag-chip:hover { background: rgba(255,255,255,0.12); }
+.flag-chip:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
 /* ---------- Framework / accordions ---------- */
 
 .objective-block { margin-bottom: 22px; }
@@ -942,6 +1059,11 @@ a:hover { color: var(--purple-500); }
   padding: 18px 20px;
 }
 .outcome-card:last-child { border-bottom: none; }
+/* A flagged card gets a stripe down its left edge; a question takes
+   precedence over a progress flag when both are set. */
+.outcome-card[data-progress="wip"] { box-shadow: inset 4px 0 0 var(--flag-wip); }
+.outcome-card[data-progress="review"] { box-shadow: inset 4px 0 0 var(--flag-review); }
+.outcome-card[data-question] { box-shadow: inset 4px 0 0 var(--flag-question); }
 
 .outcome-card__head {
   display: flex;
@@ -1119,6 +1241,38 @@ a:hover { color: var(--purple-500); }
 .igp-col--partial h4 { color: var(--partial); }
 .igp-col--achieved { background: var(--achieved-bg); }
 .igp-col--achieved h4 { color: var(--achieved); }
+
+.flag-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-bottom: 8px;
+}
+.flag-row__label {
+  font-size: 0.7667rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--slate-500);
+  font-weight: 600;
+}
+.flag-control { display: flex; flex-wrap: wrap; gap: 6px; }
+.flag-btn {
+  font-family: var(--font-body);
+  font-size: 0.7667rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--slate-500);
+  cursor: pointer;
+}
+.flag-btn:hover:not([aria-pressed="true"]) { background: var(--cream-50); }
+.flag-btn[aria-pressed="true"] { border-color: transparent; }
+.flag-btn--wip[aria-pressed="true"] { background: var(--flag-wip); color: var(--flag-wip-ink); }
+.flag-btn--review[aria-pressed="true"] { background: var(--flag-review); color: var(--flag-review-ink); }
+.flag-btn--question[aria-pressed="true"] { background: var(--flag-question); color: var(--flag-question-ink); }
 
 .notes-row { margin-top: 12px; }
 .notes-row label {
@@ -1413,7 +1567,9 @@ a:hover { color: var(--purple-500); }
 /* ---------- Print ---------- */
 
 @media print {
-  .no-print, .sidebar, .app-header, .status-control, .igp-toggle, .principle-guidance, .igp-plain { display: none !important; }
+  .no-print, .sidebar, .app-header, .status-control, .igp-toggle, .principle-guidance, .igp-plain, .flag-row { display: none !important; }
+  /* Review flags are working notes, not part of the finished assessment. */
+  .outcome-dot::before, .outcome-dot::after { display: none !important; }
   body { background: #fff; }
   .app-shell { display: block; }
   .main-content { max-width: 100%; padding: 0; }
@@ -1425,7 +1581,7 @@ a:hover { color: var(--purple-500); }
   .outcome-dot[data-baseline] { border-color: #fff; }
   .objective-bar { border-color: #999; }
   .objective-bar__fill { background: #000; }
-  .principle-block, .outcome-card { box-shadow: none; break-inside: avoid; }
+  .principle-block, .outcome-card { box-shadow: none !important; break-inside: avoid; }
   .igp-panel[hidden] { display: grid !important; }
   .igp-toggle { display: none !important; }
   .igp-check input[type="checkbox"] { accent-color: #000; }

@@ -5,6 +5,19 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.8.0] - 2026-10-29
+
+### Added
+
+- Review flags on each contributing outcome: mark it as **In progress** or
+  **Ready for review** (one at a time — choosing one clears the other), and
+  separately flag a **Question** for review. Flagged outcomes get a coloured
+  stripe on their card, a corner marker on their outcome grid tile, and are
+  counted and listed in a new "Flagged for review" panel on the dashboard,
+  where selecting an ID jumps to that outcome. Flags are saved and exported
+  with the assessment, don't affect the score or suggested status, and are
+  left out of printouts.
+
 ## [2.7.1] - 2026-10-26
 
 ### Fixed

@@ -6,7 +6,9 @@
 //   {
 //     checks:   { "<not|partial|achieved>-<index>": true, ... },
 //     override: null | 'not' | 'partial' | 'achieved' | 'na',
-//     notes:    "free text"
+//     notes:    "free text",
+//     progress: null | 'wip' | 'review',
+//     question: true | false
 //   }
 //
 // "checks" records which individual IGP statements the assessor has
@@ -23,6 +25,11 @@
 // "override" lets the assessor set the final status by hand instead of
 // accepting the suggestion (the CAF is explicit that IGPs support expert
 // judgement rather than replace it). When set, override always wins.
+//
+// "progress" and "question" are review flags for managing the work, and
+// never affect the suggested status or the score. "progress" is a single
+// value because an outcome can't be both still in progress and ready for
+// review; "question" can be set alongside either.
 
 import { fingerprint } from './utils.js';
 
@@ -55,6 +62,13 @@ export const STATUS_LABEL = {
 // and "not yet assessed" don't make sense as a *target*).
 export const BASELINE_TIERS = ['not', 'partial', 'achieved'];
 
+export const FLAG_LABEL = {
+  wip: 'In progress',
+  review: 'Ready for review',
+  question: 'Question'
+};
+export const FLAG_KEYS = ['wip', 'review', 'question'];
+
 export const allOutcomes = [];
 export const outcomesById = {};
 DATASET.forEach(function (objective) {
@@ -77,8 +91,33 @@ export function plainEnglishFor(outcomeId, key, idx, officialText) {
 }
 
 export function normalizeResult(raw) {
-  if (!raw) return { checks: {}, override: null, notes: '' };
-  return { checks: raw.checks || {}, override: raw.override || null, notes: raw.notes || '' };
+  if (!raw) return { checks: {}, override: null, notes: '', progress: null, question: false };
+  return {
+    checks: raw.checks || {},
+    override: raw.override || null,
+    notes: raw.notes || '',
+    progress: (raw.progress === 'wip' || raw.progress === 'review') ? raw.progress : null,
+    question: raw.question === true
+  };
+}
+
+// The flag keys ('wip', 'review', 'question') set on one result.
+export function flagsOf(result) {
+  var flags = [];
+  if (result.progress) flags.push(result.progress);
+  if (result.question) flags.push('question');
+  return flags;
+}
+
+// Outcome IDs carrying each flag, in framework order.
+export function flaggedOutcomes(entries, results) {
+  var flagged = { wip: [], review: [], question: [] };
+  entries.forEach(function (entry) {
+    flagsOf(normalizeResult(results[entry.outcome.id])).forEach(function (flag) {
+      flagged[flag].push(entry.outcome.id);
+    });
+  });
+  return flagged;
 }
 
 function computeSuggestedStatus(outcome, checks) {

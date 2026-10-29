@@ -1,7 +1,7 @@
-// Score ring, status counts and per-objective bars.
+// Score ring, status counts, per-objective bars and flagged outcomes.
 
 import { el, RING_CIRCUMFERENCE } from './dom.js';
-import { DATASET, allOutcomes, scoreFor } from './model.js';
+import { DATASET, allOutcomes, scoreFor, flaggedOutcomes, FLAG_KEYS, FLAG_LABEL, outcomesById } from './model.js';
 import { flashTo } from './utils.js';
 import { findAssessment, getCurrentAssessmentId } from './assessments.js';
 
@@ -41,4 +41,43 @@ export function updateDashboard() {
     });
     el.objectiveBars.appendChild(bar);
   });
+
+  renderFlagSummary(flaggedOutcomes(allOutcomes, results));
 }
+
+function renderFlagSummary(flagged) {
+  el.flagSummary.innerHTML = '';
+  FLAG_KEYS.forEach(function (flag) {
+    var ids = flagged[flag];
+    var row = document.createElement('div');
+    row.className = 'flag-summary__row';
+    row.innerHTML =
+      '<dt><span class="flag-marker flag-marker--' + flag + '" aria-hidden="true"></span><span></span></dt>' +
+      '<dd class="flag-summary__count"></dd>' +
+      '<dd class="flag-summary__ids"></dd>';
+    row.querySelector('.flag-marker').textContent = FLAG_MARKER[flag];
+    row.querySelector('dt span:last-child').textContent = FLAG_LABEL[flag];
+    row.querySelector('.flag-summary__count').textContent = ids.length;
+    var list = row.querySelector('.flag-summary__ids');
+    if (!ids.length) {
+      list.textContent = 'None';
+      list.classList.add('flag-summary__ids--none');
+    }
+    ids.forEach(function (id) {
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'flag-chip';
+      chip.textContent = id;
+      chip.title = id + ' — ' + outcomesById[id].title;
+      chip.setAttribute('aria-label', 'Jump to outcome ' + id + ', ' + outcomesById[id].title);
+      chip.addEventListener('click', function () {
+        flashTo(document.getElementById('outcome-' + id), 'center');
+      });
+      list.appendChild(chip);
+    });
+    el.flagSummary.appendChild(row);
+  });
+}
+
+// Must match the grid tile markers in style.css.
+var FLAG_MARKER = { wip: '⋯', review: '✓', question: '?' };
