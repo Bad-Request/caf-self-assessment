@@ -5,7 +5,7 @@
 import { el } from './dom.js';
 import {
   DATASET, allOutcomes, outcomesById, STATUS_LABEL, FLAG_LABEL, FLAG_KEYS,
-  normalizeResult, effectiveStatus, flagsOf, plainEnglishFor
+  normalizeResult, effectiveStatus, flagsOf, plainEnglishFor, conflictingChecks
 } from './model.js';
 import { debounce, flashTo } from './utils.js';
 import { findAssessment, getCurrentAssessmentId, touchCurrent, renderSidebar } from './assessments.js';
@@ -26,7 +26,7 @@ function setChecked(outcomeId, checkKey, checked) {
   var r = updateResult(outcomeId, function (r) { r.checks[checkKey] = checked; });
   if (!r) return;
   touchCurrent();
-  applyOutcomeState(outcomeId, r);
+  applyOutcomeState(outcomeId, r, true);
   updateDashboard();
 }
 
@@ -52,7 +52,10 @@ function toggleFlag(outcomeId, flag) {
   updateDashboard();
 }
 
-export function applyOutcomeState(outcomeId, rawResult) {
+// fromTick: the change came from ticking an IGP, so a newly appearing
+// contradiction warning pulses to catch the eye (not on load or switching
+// assessment, when it isn't news).
+export function applyOutcomeState(outcomeId, rawResult, fromTick) {
   var outcome = outcomesById[outcomeId];
   var r = normalizeResult(rawResult);
   var effective = effectiveStatus(outcome, r);
@@ -64,6 +67,7 @@ export function applyOutcomeState(outcomeId, rawResult) {
     checkboxes.forEach(function (cb) {
       cb.checked = !!r.checks[cb.getAttribute('data-check-key')];
     });
+    applyConflicts(card, outcome, r.checks, fromTick);
 
     var buttons = card.querySelectorAll('.status-control button');
     buttons.forEach(function (b) {
@@ -104,6 +108,99 @@ export function applyOutcomeState(outcomeId, rawResult) {
     dot.title = outcomeId + ' — ' + outcome.title +
       (flags.length ? ' (' + flags.map(function (f) { return FLAG_LABEL[f]; }).join(', ') + ')' : '');
   }
+}
+
+// Soft warning for ticked IGPs that appear to contradict each other (see
+// assets/conflicts.json). Advisory only: nothing is blocked or unticked.
+// Both notes of a pair carry the same "Clash n" tag, and pointing at a
+// note (or focusing its checkbox) outlines the partner statement.
+function applyConflicts(card, outcome, checks, pulse) {
+  var found = conflictingChecks(outcome, checks);
+  var pairs = 0;
+  card.querySelectorAll('[data-conflict-for]').forEach(function (note) {
+    var others = found[note.getAttribute('data-conflict-for')] || [];
+    pairs += others.length;
+    // Partners, not clash numbers: a note shouldn't pulse just because
+    // ticking an earlier pair renumbered it.
+    var partners = others.map(function (other) { return other.key; }).join(' ');
+    if (pulse && partners && partners !== note.getAttribute('data-partners')) {
+      note.classList.remove('igp-conflict--new');
+      void note.offsetWidth; // restart the animation if it's mid-pulse
+      note.classList.add('igp-conflict--new');
+    }
+    note.setAttribute('data-partners', partners);
+    note.replaceChildren(...others.map(function (other) {
+      var line = document.createElement('span');
+      line.className = 'igp-conflict__line';
+      line.setAttribute('data-partner', other.key);
+      var tag = document.createElement('span');
+      tag.className = 'igp-conflict__tag';
+      tag.textContent = 'Clash ' + other.n;
+      line.appendChild(tag);
+      line.appendChild(document.createTextNode(
+        ' Appears to contradict a ticked "' + STATUS_LABEL[other.key.split('-')[0]] + '" statement: ' + other.why));
+      return line;
+    }));
+  });
+  pairs /= 2;
+
+  // Ticking a box focuses it (in most browsers), so keep its partners
+  // outlined as they change; otherwise drop any outline that's now stale.
+  clearPartnerHighlight(card);
+  var focused = document.activeElement;
+  if (card.contains(focused) && focused.hasAttribute('data-check-key')) {
+    highlightPartners(card, partnersOf(card, focused.getAttribute('data-check-key')));
+  }
+
+  var summary = card.querySelector('.igp-conflict-summary');
+  if (summary) {
+    summary.textContent = pairs
+      ? (pairs === 1 ? 'Two ticked indicators' : pairs + ' pairs of ticked indicators') + ' appear to contradict each other — check your evidence.'
+      : '';
+  }
+}
+
+document.addEventListener('animationend', function (e) {
+  if (e.target.classList.contains('igp-conflict--new')) e.target.classList.remove('igp-conflict--new');
+});
+
+function partnersOf(card, checkKey) {
+  var note = card.querySelector('[data-conflict-for="' + checkKey + '"]');
+  return ((note && note.getAttribute('data-partners')) || '').split(' ').filter(Boolean);
+}
+
+function highlightPartners(card, keys) {
+  clearPartnerHighlight(card);
+  keys.forEach(function (key) {
+    var input = card.querySelector('input[data-check-key="' + key + '"]');
+    if (input) input.closest('.igp-check').classList.add('igp-check--partner');
+  });
+}
+
+function clearPartnerHighlight(card) {
+  card.querySelectorAll('.igp-check--partner').forEach(function (row) {
+    row.classList.remove('igp-check--partner');
+  });
+}
+
+// Pointing at one line of a note outlines that line's partner; focusing a
+// checkbox outlines all of its statement's partners (keyboard and touch).
+function wireConflictHighlight(card) {
+  card.addEventListener('mouseover', function (e) {
+    var line = e.target.closest('.igp-conflict__line');
+    if (line) highlightPartners(card, [line.getAttribute('data-partner')]);
+  });
+  card.addEventListener('mouseout', function (e) {
+    var line = e.target.closest('.igp-conflict__line');
+    if (line && !line.contains(e.relatedTarget)) clearPartnerHighlight(card);
+  });
+  card.addEventListener('focusin', function (e) {
+    var key = e.target.getAttribute('data-check-key');
+    if (key) highlightPartners(card, partnersOf(card, key));
+  });
+  card.addEventListener('focusout', function (e) {
+    if (e.target.hasAttribute('data-check-key')) clearPartnerHighlight(card);
+  });
 }
 
 function setDataAttr(node, name, value) {
@@ -325,7 +422,14 @@ function buildOutcomeCard(outcome) {
     toggle.textContent = expanded ? 'Show indicators to assess this outcome' : 'Hide indicators';
   });
 
+  // Kept in the page (empty when there's nothing to say) so screen readers
+  // announce a new contradiction as it's ticked.
+  var conflictSummary = document.createElement('p');
+  conflictSummary.className = 'igp-conflict-summary';
+  conflictSummary.setAttribute('aria-live', 'polite');
+
   body.appendChild(buildFlagRow(outcome));
+  body.appendChild(conflictSummary);
   body.appendChild(toggle);
   body.appendChild(panel);
 
@@ -350,6 +454,7 @@ function buildOutcomeCard(outcome) {
   body.appendChild(notesRow);
 
   card.appendChild(body);
+  wireConflictHighlight(card);
   return card;
 }
 
@@ -425,6 +530,14 @@ function igpChecklistColumn(key, label, items, outcomeId) {
       plainEl.appendChild(document.createTextNode(plain));
       body.appendChild(plainEl);
     }
+
+    var conflictEl = document.createElement('span');
+    conflictEl.className = 'igp-conflict';
+    conflictEl.setAttribute('data-conflict-for', checkKey);
+    // It sits inside the checkbox's <label>, but clicking a warning
+    // shouldn't tick or untick the statement.
+    conflictEl.addEventListener('click', function (e) { e.preventDefault(); });
+    body.appendChild(conflictEl);
 
     row.appendChild(input);
     row.appendChild(body);

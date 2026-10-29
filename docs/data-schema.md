@@ -151,3 +151,66 @@ node tools/check_plain_english.mjs stub B2.a # skeleton entries with src filled 
 The check fails on unknown outcomes/columns, out-of-range entries, stale
 `src` fingerprints and empty summaries, and warns about summaries over 30
 words.
+
+# Conflicting IGPs — `assets/conflicts.json`
+
+Optional, **unofficial** pairs of IGPs on the same outcome that appear to
+contradict each other. When both IGPs of a pair are ticked and the user has
+switched on Appearance → Contradiction warnings (off by default), the app
+shows a warning on the outcome card and against each of the two statements.
+It is
+advisory only: nothing is blocked or unticked, the suggested status and
+score are unaffected, and warnings are never printed. Like the plain-English
+summaries, it's kept out of `data.json` so the official dataset stays
+verbatim. It's in `sw.js`'s `APP_SHELL`, so bump `CACHE_VERSION` after
+editing it. If the file is missing or fails to load the app still works,
+just without warnings.
+
+Every outcome has been reviewed and is listed, even where it has only one
+pair. An outcome that's absent (e.g. one added in a new CAF revision) has
+simply not been looked at yet — it doesn't mean it has no conflicts.
+
+## Shape
+
+```
+{ "<outcome id>": Pair[] }
+```
+
+### Pair
+
+| Field | Type | Notes |
+|---|---|---|
+| `pair` | `[string, string]` | Two check keys, `"<not\|partial\|achieved>-<index>"` — the same keys the app stores ticks under. Must be in different columns. |
+| `src` | `[string, string]` | Fingerprints (as for the plain-English summaries) of the exact official wording of each IGP, in the same order as `pair`. A pair with a stale fingerprint is ignored by the app. |
+| `why` | string | One line stating the contradiction ("X, versus Y"). Shown to the user in the warning, so write it for them, in British English. |
+
+## What counts as a conflict
+
+Only pairs that **cannot both be fully true** of the same organisation —
+one statement denies what the other asserts. In particular:
+
+- A stronger and a weaker version of the same requirement are **not** a
+  conflict: "reasonable confidence" (Partially achieved) vs "high
+  confidence" (Achieved), or "reviewed at least annually" vs "at least
+  every six months". The stronger implies the weaker.
+- An IGP repeated verbatim in `partial` and `achieved` is not a conflict.
+- Partially achieved IGPs worded as a shortfall ("…but coverage is not
+  comprehensive") can conflict with Achieved ones, not just with Not
+  achieved ones.
+- If it takes an argument to show the two contradict, leave it out. A
+  missed warning costs little; a wrong one teaches users to ignore them.
+
+After an IGP's wording changes in `data.json`, its pairs go stale (the
+check fails): re-judge each pair against the new wording, don't just update
+`src`. Check keys are positional, so an IGP added or removed mid-column
+also shifts the keys after it — the fingerprints catch this.
+
+## Checking
+
+```
+node tools/check_conflicts.mjs           # validate + coverage
+node tools/check_conflicts.mjs list B2.a # one outcome's check keys, fingerprints and wording
+```
+
+The check fails on unknown outcomes or check keys, stale `src`
+fingerprints, pairs within one column, duplicate pairs and a missing `why`.

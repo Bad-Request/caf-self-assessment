@@ -38,6 +38,7 @@
     document.documentElement.setAttribute('data-theme', resolved);
     document.documentElement.setAttribute('data-font-size', window.localStorage.getItem('caf_font_size_v1') || 'standard');
     document.documentElement.setAttribute('data-plain-english', window.localStorage.getItem('caf_plain_english_v1') || 'off');
+    document.documentElement.setAttribute('data-conflict-warnings', window.localStorage.getItem('caf_conflict_warnings_v1') || 'off');
   } catch (e) {}
 })();
 </script>
@@ -129,11 +130,19 @@
         </div>
         <p class="sidebar__hint" id="plain-english-hint">Unofficial summaries under each indicator, where available. Always assess against the official NCSC wording. Not printed.</p>
       </div>
+      <div class="field-row">
+        <span class="field-row__label" id="conflict-warnings-toggle-label">Contradiction warnings</span>
+        <div class="toggle-group" id="conflict-warnings-toggle" role="group" aria-labelledby="conflict-warnings-toggle-label" aria-describedby="conflict-warnings-hint">
+          <button type="button" class="toggle-group__btn" data-value="off" aria-pressed="false">Off</button>
+          <button type="button" class="toggle-group__btn" data-value="on" aria-pressed="false">On</button>
+        </div>
+        <p class="sidebar__hint" id="conflict-warnings-hint">Warns when ticked indicators appear to contradict each other. Unofficial. Never changes the suggested status. Not printed.</p>
+      </div>
     </div>
 
     <div class="sidebar__section sidebar__footer">
       <p>Reference: NCSC <a href="https://www.ncsc.gov.uk/collection/cyber-assessment-framework" target="_blank" rel="noopener">Cyber Assessment Framework 4.0</a>. Contains 41 contributing outcomes across 4 objectives and 14 principles.</p>
-      <p class="version-tag">v2.8.0</p>
+      <p class="version-tag">v2.9.0</p>
       <p class="footer-links"><a href="https://github.com/Bad-Request/caf-self-assessment" target="_blank" rel="noopener">View on GitHub &mdash; contributions welcome</a></p>
     </div>
   </nav>

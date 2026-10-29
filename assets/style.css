@@ -1223,6 +1223,66 @@ a:hover { color: var(--purple-500); }
 }
 :root[data-plain-english="on"] .igp-plain { display: block; }
 
+/* Soft warning when ticked IGPs appear to contradict each other (see
+   assets/conflicts.json). Empty when there's nothing to say; never
+   printed, since the pairings are our reading, not NCSC's. The per-IGP
+   note is inverted (ink on paper swapped) so it stands out against all
+   three column tints in both themes, and pulses briefly when a tick
+   creates it. */
+.igp-conflict {
+  display: block;
+  margin-top: 5px;
+  padding: 5px 8px;
+  border-left: 4px solid var(--gold-500);
+  border-radius: var(--radius-sm);
+  background: var(--ink-900);
+  color: var(--paper);
+  font-weight: 600;
+  cursor: default;
+}
+.igp-conflict__line { display: block; }
+.igp-conflict__line + .igp-conflict__line { margin-top: 4px; }
+.igp-conflict__tag {
+  display: inline-block;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--gold-500);
+  color: var(--navy-900);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+.igp-conflict__tag::before { content: "⚠ "; }
+/* The partner statement of the warning being pointed at or focused. */
+.igp-check--partner {
+  outline: 3px solid var(--ink-900);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+.igp-conflict--new { animation: igp-conflict-pulse 0.6s ease-in-out 2; }
+@keyframes igp-conflict-pulse {
+  50% { box-shadow: 0 0 0 4px var(--gold-500); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .igp-conflict--new { animation: none; }
+}
+/* Switched off under Appearance → Contradiction warnings. */
+:root[data-conflict-warnings="off"] .igp-conflict,
+:root[data-conflict-warnings="off"] .igp-conflict-summary { display: none; }
+:root[data-conflict-warnings="off"] .igp-check--partner { outline: none; }
+.igp-conflict-summary::before { content: "⚠ "; }
+.igp-conflict-summary {
+  margin: 0 0 8px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--partial);
+  background: var(--partial-bg);
+  color: var(--ink-900);
+  font-size: 0.8333rem;
+}
+.igp-conflict:empty,
+.igp-conflict-summary:empty { display: none; }
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -1567,7 +1627,8 @@ a:hover { color: var(--purple-500); }
 /* ---------- Print ---------- */
 
 @media print {
-  .no-print, .sidebar, .app-header, .status-control, .igp-toggle, .principle-guidance, .igp-plain, .flag-row { display: none !important; }
+  .no-print, .sidebar, .app-header, .status-control, .igp-toggle, .principle-guidance, .igp-plain, .flag-row, .igp-conflict, .igp-conflict-summary { display: none !important; }
+  .igp-check--partner { outline: none !important; }
   /* Review flags are working notes, not part of the finished assessment. */
   .outcome-dot::before, .outcome-dot::after { display: none !important; }
   body { background: #fff; }

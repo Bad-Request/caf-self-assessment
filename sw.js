@@ -6,7 +6,7 @@
 // CACHE_VERSION must be bumped (any string change is enough) whenever any
 // cached file's contents change, so returning visitors pick up the update
 // instead of being stuck on a stale offline copy.
-const CACHE_VERSION = 'v2.8.0';
+const CACHE_VERSION = 'v2.9.0';
 const CACHE_NAME = 'caf-shell-' + CACHE_VERSION;
 
 const APP_SHELL = [
@@ -16,6 +16,7 @@ const APP_SHELL = [
   './assets/style.css',
   './assets/data.json',
   './assets/plain-english.json',
+  './assets/conflicts.json',
   './assets/js/app.js',
   './assets/js/assessments.js',
   './assets/js/baselines.js',

@@ -40,11 +40,12 @@ function fetchJson(file) {
   });
 }
 
-// The plain-English summaries are optional extra help — if they fail to
-// load, the app still works with just the official wording.
-const [dataset, plainEnglish] = await Promise.all([
+// The plain-English summaries and IGP conflict pairs are optional extra
+// help — if either fails to load, the app still works without it.
+const [dataset, plainEnglish, conflicts] = await Promise.all([
   fetchJson('data.json'),
-  fetchJson('plain-english.json').catch(function () { return {}; })
+  fetchJson('plain-english.json').catch(function () { return {}; }),
+  fetchJson('conflicts.json').catch(function () { return {}; })
 ]);
 
 export const DATASET = dataset;
@@ -88,6 +89,34 @@ export function plainEnglishFor(outcomeId, key, idx, officialText) {
   var entry = ((plainEnglish[outcomeId] || {})[key] || [])[idx];
   if (!entry || entry.src !== fingerprint(officialText)) return null;
   return entry.text;
+}
+
+// The official wording of one IGP, from its check key ("partial-2").
+function igpText(outcome, checkKey) {
+  var parts = checkKey.split('-');
+  return (outcome[parts[0]] || [])[Number(parts[1])];
+}
+
+// Ticked IGPs that appear to contradict another ticked IGP on the same
+// outcome, as { "<check key>": [{ key: "<other check key>", why, n }, ...] },
+// where n numbers the active pairs 1, 2, 3… in file order. A pair
+// written for different wording (NCSC have since revised one of the IGPs)
+// is ignored rather than applied to the new text. Purely advisory: never
+// affects the suggested status or the score.
+export function conflictingChecks(outcome, checks) {
+  var found = {};
+  var n = 0;
+  (conflicts[outcome.id] || []).forEach(function (entry) {
+    var a = entry.pair[0];
+    var b = entry.pair[1];
+    if (!checks[a] || !checks[b]) return;
+    if (entry.src[0] !== fingerprint(igpText(outcome, a) || '') ||
+        entry.src[1] !== fingerprint(igpText(outcome, b) || '')) return;
+    n++;
+    (found[a] = found[a] || []).push({ key: b, why: entry.why, n: n });
+    (found[b] = found[b] || []).push({ key: a, why: entry.why, n: n });
+  });
+  return found;
 }
 
 export function normalizeResult(raw) {

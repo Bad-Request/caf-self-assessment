@@ -5,6 +5,25 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.9.0] - 2026-10-29
+
+### Added
+
+- Contradiction warnings: if you tick two IGPs that appear to
+  contradict each other — for example "access is not limited to the minimum
+  necessary" and "access is limited to the minimum necessary" — the outcome
+  card shows a warning, and each of the two statements gets a high-contrast
+  note saying what it appears to contradict, which pulses briefly when your
+  tick creates it (not if your device is set to reduce motion). Both notes of a
+  pair carry the same numbered tag (**Clash 1**, **Clash 2**…), and pointing
+  at a note, or focusing a statement's checkbox, outlines the statement it
+  clashes with. Clicking a note doesn't tick or untick its statement. Nothing
+  is blocked or unticked, and the warning doesn't change the suggested status
+  or score. All 41 outcomes are covered, with about 200 pairs of statements
+  that can't both be fully true. The pairings are this project's own reading
+  of the NCSC wording, and warnings are left out of printouts. Off by
+  default: switch them on under Appearance → **Contradiction warnings**.
+
 ## [2.8.0] - 2026-10-29
 
 ### Added
