@@ -155,8 +155,10 @@ words.
 # Conflicting IGPs — `assets/conflicts.json`
 
 Optional, **unofficial** pairs of IGPs on the same outcome that appear to
-contradict each other. When both IGPs of a pair are ticked, the app shows a
-warning on the outcome card and against each of the two statements. It is
+contradict each other. When both IGPs of a pair are ticked and the user has
+switched on Appearance → Contradiction warnings (off by default), the app
+shows a warning on the outcome card and against each of the two statements.
+It is
 advisory only: nothing is blocked or unticked, the suggested status and
 score are unaffected, and warnings are never printed. Like the plain-English
 summaries, it's kept out of `data.json` so the official dataset stays

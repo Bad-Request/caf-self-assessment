@@ -21,8 +21,8 @@ and this project uses [Semantic Versioning](https://semver.org/).
   is blocked or unticked, and the warning doesn't change the suggested status
   or score. All 41 outcomes are covered, with about 200 pairs of statements
   that can't both be fully true. The pairings are this project's own reading
-  of the NCSC wording, and warnings are left out of printouts. Switch them
-  off or on under Appearance → **Contradiction warnings** (on by default).
+  of the NCSC wording, and warnings are left out of printouts. Off by
+  default: switch them on under Appearance → **Contradiction warnings**.
 
 ## [2.8.0] - 2026-10-29
 

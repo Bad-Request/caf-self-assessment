@@ -212,10 +212,10 @@ applyFontSize(getStoredFontSize() || 'standard');
 // Off / on preferences that are purely a CSS switch on <html>, set early
 // by the same inline <head> script as theme and text size (keep the
 // defaults here in step with it):
-//   - Plain English: the unofficial summary under each IGP. Off by default.
+//   - Plain English: the unofficial summary under each IGP.
 //   - Contradiction warnings: the notes when ticked IGPs appear to
-//     contradict each other. On by default — they exist to catch mistakes,
-//     which they can't do if no one knows to switch them on.
+//     contradict each other.
+// Both are off by default, being our interpretation rather than NCSC's.
 
 function initOnOffPreference(group, storageKey, attr, fallback) {
   function apply(mode) {
@@ -234,7 +234,7 @@ function initOnOffPreference(group, storageKey, attr, fallback) {
 }
 
 initOnOffPreference(el.plainEnglishToggle, PLAIN_ENGLISH_KEY, 'data-plain-english', 'off');
-initOnOffPreference(el.conflictWarningsToggle, CONFLICT_WARNINGS_KEY, 'data-conflict-warnings', 'on');
+initOnOffPreference(el.conflictWarningsToggle, CONFLICT_WARNINGS_KEY, 'data-conflict-warnings', 'off');
 
 // ---------------------------------------------------------------
 // Back to top
