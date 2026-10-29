@@ -9,8 +9,12 @@ and this project uses [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
-- On the outcome grid, a tile's **Question** badge no longer overlaps the
-  **In progress** or **Ready for review** badge on the tile next to it.
+- On the outcome grid, flag badges no longer overlap each other, the tile
+  in the row above (or its baseline ring), or the tile's own ID. A tile's
+  **Question** badge used to run into the **In progress** or **Ready for
+  review** badge on the tile next to it. The badges now sit mostly above
+  their tile, and the grid's rows are spaced a little further apart to make
+  room for them (printing keeps the old spacing, since flags aren't printed).
 
 ## [2.9.0] - 2026-10-29
 
