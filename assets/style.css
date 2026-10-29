@@ -1238,7 +1238,26 @@ a:hover { color: var(--purple-500); }
   background: var(--ink-900);
   color: var(--paper);
   font-weight: 600;
-  white-space: pre-line;
+  cursor: default;
+}
+.igp-conflict__line { display: block; }
+.igp-conflict__line + .igp-conflict__line { margin-top: 4px; }
+.igp-conflict__tag {
+  display: inline-block;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--gold-500);
+  color: var(--navy-900);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+.igp-conflict__tag::before { content: "⚠ "; }
+/* The partner statement of the warning being pointed at or focused. */
+.igp-check--partner {
+  outline: 3px solid var(--ink-900);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
 }
 .igp-conflict--new { animation: igp-conflict-pulse 0.6s ease-in-out 2; }
 @keyframes igp-conflict-pulse {
@@ -1250,7 +1269,7 @@ a:hover { color: var(--purple-500); }
 /* Switched off under Appearance → Contradiction warnings. */
 :root[data-conflict-warnings="off"] .igp-conflict,
 :root[data-conflict-warnings="off"] .igp-conflict-summary { display: none; }
-.igp-conflict::before,
+:root[data-conflict-warnings="off"] .igp-check--partner { outline: none; }
 .igp-conflict-summary::before { content: "⚠ "; }
 .igp-conflict-summary {
   margin: 0 0 8px;
@@ -1609,6 +1628,7 @@ a:hover { color: var(--purple-500); }
 
 @media print {
   .no-print, .sidebar, .app-header, .status-control, .igp-toggle, .principle-guidance, .igp-plain, .flag-row, .igp-conflict, .igp-conflict-summary { display: none !important; }
+  .igp-check--partner { outline: none !important; }
   /* Review flags are working notes, not part of the finished assessment. */
   .outcome-dot::before, .outcome-dot::after { display: none !important; }
   body { background: #fff; }

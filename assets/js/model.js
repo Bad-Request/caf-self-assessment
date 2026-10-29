@@ -98,20 +98,23 @@ function igpText(outcome, checkKey) {
 }
 
 // Ticked IGPs that appear to contradict another ticked IGP on the same
-// outcome, as { "<check key>": [{ key: "<other check key>", why }, ...] }. A pair
+// outcome, as { "<check key>": [{ key: "<other check key>", why, n }, ...] },
+// where n numbers the active pairs 1, 2, 3… in file order. A pair
 // written for different wording (NCSC have since revised one of the IGPs)
 // is ignored rather than applied to the new text. Purely advisory: never
 // affects the suggested status or the score.
 export function conflictingChecks(outcome, checks) {
   var found = {};
+  var n = 0;
   (conflicts[outcome.id] || []).forEach(function (entry) {
     var a = entry.pair[0];
     var b = entry.pair[1];
     if (!checks[a] || !checks[b]) return;
     if (entry.src[0] !== fingerprint(igpText(outcome, a) || '') ||
         entry.src[1] !== fingerprint(igpText(outcome, b) || '')) return;
-    (found[a] = found[a] || []).push({ key: b, why: entry.why });
-    (found[b] = found[b] || []).push({ key: a, why: entry.why });
+    n++;
+    (found[a] = found[a] || []).push({ key: b, why: entry.why, n: n });
+    (found[b] = found[b] || []).push({ key: a, why: entry.why, n: n });
   });
   return found;
 }

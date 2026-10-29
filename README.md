@@ -111,7 +111,7 @@ You can override the suggestion at any time using the small buttons beside each 
 
 ### Contradiction warnings (pilot)
 
-Some IGPs can't both be true — for example "access is **not** limited to the minimum necessary" (Not achieved) and "access **is** limited to the minimum necessary" (Achieved). If you tick both, the outcome card shows a warning and each of the two statements is marked with what it appears to contradict. Nothing is blocked or unticked, and the warning never changes the suggested status or score: a mixed estate can legitimately make both partly true, so it's a prompt to check your evidence, not a rule. Warnings are left out of printouts, and can be switched off under Appearance → Contradiction warnings (on by default).
+Some IGPs can't both be true — for example "access is **not** limited to the minimum necessary" (Not achieved) and "access **is** limited to the minimum necessary" (Achieved). If you tick both, the outcome card shows a warning and each of the two statements is marked with what it appears to contradict. Both notes of a pair share a numbered tag (Clash 1, Clash 2…), and pointing at a note — or focusing a statement's checkbox — outlines the statement it clashes with. Nothing is blocked or unticked, and the warning never changes the suggested status or score: a mixed estate can legitimately make both partly true, so it's a prompt to check your evidence, not a rule. Warnings are left out of printouts, and can be switched off under Appearance → Contradiction warnings (on by default).
 
 The pairings are this project's own reading of the NCSC wording, not NCSC's. So far only **A1.a**, **B2.a** and **C1.a** have been reviewed; other outcomes never warn.
 

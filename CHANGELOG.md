@@ -14,7 +14,10 @@ and this project uses [Semantic Versioning](https://semver.org/).
   necessary" and "access is limited to the minimum necessary" — the outcome
   card shows a warning, and each of the two statements gets a high-contrast
   note saying what it appears to contradict, which pulses briefly when your
-  tick creates it (not if your device is set to reduce motion). Nothing is
+  tick creates it (not if your device is set to reduce motion). Both notes of a
+  pair carry the same numbered tag (**Clash 1**, **Clash 2**…), and pointing
+  at a note, or focusing a statement's checkbox, outlines the statement it
+  clashes with. Clicking a note doesn't tick or untick its statement. Nothing is
   blocked or unticked, and the warning doesn't
   change the suggested status or score. Only outcomes A1.a, B2.a and C1.a
   have been reviewed so far. The pairings are this project's own reading
