@@ -1247,6 +1247,9 @@ a:hover { color: var(--purple-500); }
 @media (prefers-reduced-motion: reduce) {
   .igp-conflict--new { animation: none; }
 }
+/* Switched off under Appearance → Contradiction warnings. */
+:root[data-conflict-warnings="off"] .igp-conflict,
+:root[data-conflict-warnings="off"] .igp-conflict-summary { display: none; }
 .igp-conflict::before,
 .igp-conflict-summary::before { content: "⚠ "; }
 .igp-conflict-summary {

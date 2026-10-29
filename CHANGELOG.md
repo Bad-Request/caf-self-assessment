@@ -18,7 +18,8 @@ and this project uses [Semantic Versioning](https://semver.org/).
   blocked or unticked, and the warning doesn't
   change the suggested status or score. Only outcomes A1.a, B2.a and C1.a
   have been reviewed so far. The pairings are this project's own reading
-  of the NCSC wording, and warnings are left out of printouts.
+  of the NCSC wording, and warnings are left out of printouts. Switch them
+  off or on under Appearance → **Contradiction warnings** (on by default).
 
 ## [2.8.0] - 2026-10-29
 

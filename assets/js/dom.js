@@ -50,6 +50,7 @@ export const el = {
   themeToggle: document.getElementById('theme-toggle'),
   fontSizeToggle: document.getElementById('fontsize-toggle'),
   plainEnglishToggle: document.getElementById('plain-english-toggle'),
+  conflictWarningsToggle: document.getElementById('conflict-warnings-toggle'),
   backToTop: document.getElementById('btn-back-to-top')
 };
 
