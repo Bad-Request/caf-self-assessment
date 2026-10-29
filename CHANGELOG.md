@@ -5,6 +5,17 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.9.1] - 2026-10-29
+
+### Fixed
+
+- On the outcome grid, flag badges no longer overlap each other, the tile
+  in the row above (or its baseline ring), or the tile's own ID. A tile's
+  **Question** badge used to run into the **In progress** or **Ready for
+  review** badge on the tile next to it. The badges now sit mostly above
+  their tile, and the grid's rows are spaced a little further apart to make
+  room for them (printing keeps the old spacing, since flags aren't printed).
+
 ## [2.9.0] - 2026-10-29
 
 ### Added

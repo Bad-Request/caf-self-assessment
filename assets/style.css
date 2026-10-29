@@ -738,10 +738,17 @@ a:hover { color: var(--purple-500); }
   font-size: 0.8333rem;
 }
 
+/* --flag-rise is how far a flag badge pokes up above its tile (see the
+   review flag markers below). Every row gap, and the space above the
+   first row, leaves room for it plus the baseline ring of the tile above,
+   so badges never touch the row above or the heading. */
 .outcome-grid {
+  --flag-rise: calc(0.625rem + 3px);
+  --flag-row-gap: calc(var(--flag-rise) + 5px);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--flag-row-gap);
+  padding-top: calc(var(--flag-rise) - 8px);
 }
 /* One row per CAF objective; outcomes are grouped by principle within it,
    with a wider gap between principles than between outcomes. */
@@ -761,7 +768,7 @@ a:hover { color: var(--purple-500); }
 .outcome-grid__principles {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 16px;
+  gap: var(--flag-row-gap) 16px;
   min-width: 0;
 }
 .outcome-grid__principle {
@@ -834,7 +841,12 @@ a:hover { color: var(--purple-500); }
 /* Review flag markers: a small badge with a distinct glyph per flag, so
    flags read without relying on colour. On grid tiles they sit on the
    corners (progress top-left, question top-right), clear of the fill and
-   ring colours that show status and baseline target. */
+   ring colours that show status and baseline target. They sit mostly
+   above the tile, overlapping only its top 0.3125rem so they stay clear
+   of the ID; .outcome-grid's row gaps make room for the rest. Sideways
+   they overhang by at most half the 6px gap between tiles (fixed px, not
+   rem, so it holds at every text size), so a question badge never meets
+   the progress badge on the tile to its right. */
 .flag-marker,
 .outcome-dot[data-progress]::before,
 .outcome-dot[data-question]::after {
@@ -853,12 +865,12 @@ a:hover { color: var(--purple-500); }
 .outcome-dot[data-progress]::before,
 .outcome-dot[data-question]::after {
   position: absolute;
-  top: -0.5rem;
+  top: calc(-1 * var(--flag-rise));
   z-index: 1;
   border: 1.5px solid var(--navy-900);
 }
-.outcome-dot[data-progress]::before { left: -0.5rem; }
-.outcome-dot[data-question]::after { right: -0.5rem; }
+.outcome-dot[data-progress]::before { left: -3px; }
+.outcome-dot[data-question]::after { right: -3px; }
 .flag-marker--wip, .outcome-dot[data-progress="wip"]::before {
   background: var(--flag-wip); color: var(--flag-wip-ink);
 }
@@ -1631,6 +1643,9 @@ a:hover { color: var(--purple-500); }
   .igp-check--partner { outline: none !important; }
   /* Review flags are working notes, not part of the finished assessment. */
   .outcome-dot::before, .outcome-dot::after { display: none !important; }
+  /* No badges, so no need for the room .outcome-grid leaves for them. */
+  .outcome-grid { gap: 10px; padding-top: 0; }
+  .outcome-grid__principles { gap: 8px 16px; }
   body { background: #fff; }
   .app-shell { display: block; }
   .main-content { max-width: 100%; padding: 0; }
