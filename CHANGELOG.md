@@ -5,6 +5,15 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [2.9.3] - 2026-10-29
+
+### Fixed
+
+- The **+** on the sidebar's **New assessment** and **New profile** buttons
+  is now centred in its circle. It was a text character, so its position
+  depended on the font's metrics and it sat slightly low on some systems;
+  it is now drawn as an icon.
+
 ## [2.9.2] - 2026-10-29
 
 ### Fixed
